@@ -1,0 +1,54 @@
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+
+// MySQL
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+
+// Debug
+logging setup --level DEBUG 
+
+// Create corporate
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+
+// Create enum EmployeeStatus
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+
+// Employee
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+// 1 -> n: Corporate -> Employee
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+
+// Customer
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+
+// Contract
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+// n -> n: Employee -> Contract
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+// 1 -> n: Customer -> Contract
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+
+// mvc
+web mvc setup
+web mvc all --package ~.web
+
