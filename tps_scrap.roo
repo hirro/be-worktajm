@@ -1,15 +1,5 @@
 
 
-
-
-// Project
-entity jpa --class ~.model.Project --testAutomatically 
-field string --fieldName name --notNull 
-field string --fieldName description
-// 1 -> n: Contract -> Project
-field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
-field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
-
 // TimeEntry
 entity jpa --class ~.model.TimeEntry
 field date --fieldName startTime --type java.util.Date --notNull 

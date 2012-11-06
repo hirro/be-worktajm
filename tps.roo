@@ -48,6 +48,29 @@ field set --class ~.model.Contract --fieldName contracters --type ~.model.Employ
 field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
 field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
 
+// Project
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+// 1 -> n: Contract -> Project
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+// n -> 1: Project -> Contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+
+// TimeEntry
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+// 1 -> n: Employee -> TimeEntry
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+// 1 -> n: Project -> TimeEntry
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+// n -> 1: TimeEntry -> Employee
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+// n -> 1: TimeEntry -> Project
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+
 // mvc
 web mvc setup
 web mvc all --package ~.web
