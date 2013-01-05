@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_arnellconsulting_tps_model_Corporate" modelAttribute="corporate" path="/corporates" render="${empty dependencies}" z="etEvkIIuzUxgW3X2VMzP8bx2ka8=">
+        <field:input field="name" id="c_com_arnellconsulting_tps_model_Corporate_name" required="true" z="rrguMJ8mknp0577SX0XMDxd7zG4="/>
+        <field:simple field="Persons" id="c_com_arnellconsulting_tps_model_Corporate_Persons" messageCode="entity_reference_not_managed" messageCodeAttribute="Person" z="A5YVcIgPuMTkOTfk0x0MYiPPafc="/>
+        <field:simple field="customers" id="c_com_arnellconsulting_tps_model_Corporate_customers" messageCode="entity_reference_not_managed" messageCodeAttribute="Customer" z="VLfhfz8qupWMVS37tDXDWiDnlxE="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_arnellconsulting_tps_model_Corporate" render="${not empty dependencies}" z="GtMbfxtvTN3QunW4HPF4iv91b20="/>
+</div>

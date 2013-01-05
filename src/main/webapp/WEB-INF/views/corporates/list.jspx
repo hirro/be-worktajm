@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_arnellconsulting_tps_model_Corporate" items="${corporates}" z="0YGpDeGqmShwAl5GahE4WyMf+48=">
+        <table:table data="${corporates}" id="l_com_arnellconsulting_tps_model_Corporate" path="/corporates" z="D1MagCGepHt19mvvmYaVaUBLsKo=">
+            <table:column id="c_com_arnellconsulting_tps_model_Corporate_name" property="name" z="qZUiaOByD24CXw9r/4ZQal8cNPY="/>
+        </table:table>
+    </page:list>
+</div>

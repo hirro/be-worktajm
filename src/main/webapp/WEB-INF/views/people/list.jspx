@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_arnellconsulting_tps_model_Person" items="${people}" z="i5UEKRrCG1yDUc94mWASjOi81Ik=">
+        <table:table data="${people}" id="l_com_arnellconsulting_tps_model_Person" path="/people" z="pfKBw2/La14zyf9VF14nIvO0cxs=">
+            <table:column id="c_com_arnellconsulting_tps_model_Person_firstName" property="firstName" z="k5C7d1H/+nJduzWzdaKYI6X121Q="/>
+            <table:column id="c_com_arnellconsulting_tps_model_Person_lastName" property="lastName" z="/terIBVhKklH8nMww+m4+dR/LTY="/>
+            <table:column id="c_com_arnellconsulting_tps_model_Person_email" property="email" z="5oRUmr3EDelAJI8IiUalXb23B0k="/>
+            <table:column id="c_com_arnellconsulting_tps_model_Person_status" property="status" z="uCzX8dFwFfR/lMixSAzTUzTzoNs="/>
+            <table:column id="c_com_arnellconsulting_tps_model_Person_employer" property="employer" z="RD7d3hlS51UgAUxXlCmSsHgyWX4="/>
+            <table:column id="c_com_arnellconsulting_tps_model_Person_contracts" property="contracts" z="Z3H4U9lZvd8u4Z/rls9L5DOlI6g="/>
+        </table:table>
+    </page:list>
+</div>

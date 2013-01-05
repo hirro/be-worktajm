@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_arnellconsulting_tps_model_Contract" modelAttribute="contract" path="/contracts" versionField="Version" z="AyPZvmf3XogB4ysWTZJjuC2LqHg=">
+        <field:datetime dateTimePattern="${contract_validfrom_date_format}" field="validFrom" id="c_com_arnellconsulting_tps_model_Contract_validFrom" required="true" z="MDNbxcU4cOTX+WbyX36iD0vFS7Y="/>
+        <field:datetime dateTimePattern="${contract_validto_date_format}" field="validTo" id="c_com_arnellconsulting_tps_model_Contract_validTo" z="zNDxuxb18g3xH0ugZH9q8iSshZs="/>
+        <field:input field="rate" id="c_com_arnellconsulting_tps_model_Contract_rate" required="true" validationMessageCode="field_invalid_number" z="A4IeFSe2Asy9mMW/LwPm+0NGfj4="/>
+        <field:select field="contracters" id="c_com_arnellconsulting_tps_model_Contract_contracters" itemValue="id" items="${people}" multiple="true" path="/people" z="q8k7Hk4O+8EK5eabCUeZgzQqPKM="/>
+        <field:select field="customer" id="c_com_arnellconsulting_tps_model_Contract_customer" itemValue="id" items="${customers}" path="/customers" z="GZrgwZFnbm2kU++o0UMrzojMTVw="/>
+        <field:simple field="projects" id="c_com_arnellconsulting_tps_model_Contract_projects" messageCode="entity_reference_not_managed" messageCodeAttribute="Project" z="JSw8Mdbl4fy1IE4r4QTqQQ1sNhM="/>
+    </form:update>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_arnellconsulting_tps_model_security_AuthorityPrincipalAssignment" object="${authorityprincipalassignment}" path="/security/assignments" z="Qaa3zDZnWGsbzI7E7G0OJVOUtvI=">
+        <field:display field="username" id="s_com_arnellconsulting_tps_model_security_AuthorityPrincipalAssignment_username" object="${authorityprincipalassignment}" z="fPcwIbAuXWqI4r10FHW03XstzvA="/>
+        <field:display field="roleId" id="s_com_arnellconsulting_tps_model_security_AuthorityPrincipalAssignment_roleId" object="${authorityprincipalassignment}" z="9/Q8ytGOFFrCBnvhQVQL/K6ZgQk="/>
+    </page:show>
+</div>

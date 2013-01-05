@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_arnellconsulting_tps_model_TimeEntry" modelAttribute="timeEntry" path="/timeentrys" render="${empty dependencies}" z="7CVZCfrM9aq9R+fyRFGtcj2S9ys=">
+        <field:datetime dateTimePattern="${timeEntry_starttime_date_format}" field="startTime" id="c_com_arnellconsulting_tps_model_TimeEntry_startTime" required="true" z="Y4K6G8nwXHckt4bt1F+3OT4Pf6w="/>
+        <field:datetime dateTimePattern="${timeEntry_endtime_date_format}" field="endTime" id="c_com_arnellconsulting_tps_model_TimeEntry_endTime" required="true" z="jwzaFijwf1AyOl1MJK+Bfg9vXGw="/>
+        <field:input field="comment" id="c_com_arnellconsulting_tps_model_TimeEntry_comment" z="qN45Xdx4T8E3pXVq5Lltw7YhwOQ="/>
+        <field:select field="Person" id="c_com_arnellconsulting_tps_model_TimeEntry_Person" itemValue="id" items="${people}" path="/people" z="T9tJFd9qsggxOYiAsNemy8yhqhc="/>
+        <field:select field="project" id="c_com_arnellconsulting_tps_model_TimeEntry_project" itemValue="id" items="${projects}" path="/projects" z="4eKYRLGI8gda4uH+eNCJAJjHNBI="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_arnellconsulting_tps_model_TimeEntry" render="${not empty dependencies}" z="3Or8brrwXDywPhHitoj9REjB/vs="/>
+</div>

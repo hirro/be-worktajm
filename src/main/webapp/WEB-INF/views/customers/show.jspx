@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_arnellconsulting_tps_model_Customer" object="${customer}" path="/customers" z="aKNWmT4J/LbE1W8QBtVHso1P9EA=">
+        <field:display field="name" id="s_com_arnellconsulting_tps_model_Customer_name" object="${customer}" z="vL3TNsV9oN3j5riO/SCLywhxKkA="/>
+        <field:display field="organisationalNumber" id="s_com_arnellconsulting_tps_model_Customer_organisationalNumber" object="${customer}" z="JrLZCVYa1g9fM11W7Ot7hGXuRGc="/>
+        <field:display field="street" id="s_com_arnellconsulting_tps_model_Customer_street" object="${customer}" z="HzVynrrkbYrnD3F3+BMFrKSTJK8="/>
+        <field:display field="streetNumber" id="s_com_arnellconsulting_tps_model_Customer_streetNumber" object="${customer}" z="VcWyvFjWxArROhNkcDXn3yOnGG8="/>
+        <field:display field="zipCode" id="s_com_arnellconsulting_tps_model_Customer_zipCode" object="${customer}" z="ubLB2D/pR47dY2lVUQsmxjYs6y0="/>
+        <field:display field="country" id="s_com_arnellconsulting_tps_model_Customer_country" object="${customer}" z="h9j6u3/EkySegrhbBUw1D9BC/IQ="/>
+        <field:display field="client" id="s_com_arnellconsulting_tps_model_Customer_client" object="${customer}" z="tIs3xcGmpIBgf5BN9Ea532H9wi8="/>
+    </page:show>
+</div>

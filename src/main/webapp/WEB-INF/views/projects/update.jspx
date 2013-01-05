@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_arnellconsulting_tps_model_Project" modelAttribute="project" path="/projects" versionField="Version" z="3X/CpuDg5VYopQdywWIBtM01Qn8=">
+        <field:input field="name" id="c_com_arnellconsulting_tps_model_Project_name" required="true" z="a7XEaG/GIbtV1K2pz8+OE4k0d7w="/>
+        <field:input field="description" id="c_com_arnellconsulting_tps_model_Project_description" z="Tafcotm8VKOc1oNhjMNvNah9stU="/>
+        <field:select field="contract" id="c_com_arnellconsulting_tps_model_Project_contract" itemValue="id" items="${contracts}" path="/contracts" z="xxxzMwQ/bVKZ+jX/4P+mTWTmcLM="/>
+        <field:simple field="projects" id="c_com_arnellconsulting_tps_model_Project_projects" messageCode="entity_reference_not_managed" messageCodeAttribute="Time Entry" z="LHXNx3oTptPGtwznkeBjCKpk6Hs="/>
+    </form:update>
+</div>
