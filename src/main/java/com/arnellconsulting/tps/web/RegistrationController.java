@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/registrations")
 @Controller
-@RooWebScaffold(path = "registrations", formBackingObject = Registration.class, list=false)
+@RooWebScaffold(path = "registrations", formBackingObject = Registration.class, delete=false, update=false)
 public class RegistrationController {
 }

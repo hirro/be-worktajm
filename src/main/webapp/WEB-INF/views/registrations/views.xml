@@ -10,7 +10,6 @@
 <definition extends="default" name="registrations/create">
         <put-attribute name="body" value="/WEB-INF/views/registrations/create.jspx"/>
     </definition>
-<definition extends="default" name="registrations/update">
-        <put-attribute name="body" value="/WEB-INF/views/registrations/update.jspx"/>
-    </definition>
+
+
 </tiles-definitions>

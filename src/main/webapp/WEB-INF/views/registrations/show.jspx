@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_com_arnellconsulting_tps_model_Registration" object="${registration}" path="/registrations" z="fMhaKzgxkjfyu+lrb4+DLAdM1wY=">
+    <page:show delete="false" id="ps_com_arnellconsulting_tps_model_Registration" object="${registration}" path="/registrations" update="false" z="FTl/EgkKkPTuV68yXn8bCF52/Wc=">
         <field:display field="corporateName" id="s_com_arnellconsulting_tps_model_Registration_corporateName" object="${registration}" z="/FLMSEz6g2zDnC5+hG8y1oznVfM="/>
         <field:display field="email" id="s_com_arnellconsulting_tps_model_Registration_email" object="${registration}" z="T1JNt2LjBbdgpQbL1gJW7mPhYQU="/>
     </page:show>

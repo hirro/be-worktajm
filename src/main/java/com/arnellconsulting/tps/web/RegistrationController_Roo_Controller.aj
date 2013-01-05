@@ -57,33 +57,6 @@ privileged aspect RegistrationController_Roo_Controller {
         return "registrations/list";
     }
     
-    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String RegistrationController.update(@Valid Registration registration, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, registration);
-            return "registrations/update";
-        }
-        uiModel.asMap().clear();
-        registration.merge();
-        return "redirect:/registrations/" + encodeUrlPathSegment(registration.getId().toString(), httpServletRequest);
-    }
-    
-    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String RegistrationController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Registration.findRegistration(id));
-        return "registrations/update";
-    }
-    
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String RegistrationController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Registration registration = Registration.findRegistration(id);
-        registration.remove();
-        uiModel.asMap().clear();
-        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
-        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/registrations";
-    }
-    
     void RegistrationController.populateEditForm(Model uiModel, Registration registration) {
         uiModel.addAttribute("registration", registration);
     }
