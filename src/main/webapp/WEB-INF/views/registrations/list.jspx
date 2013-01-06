@@ -6,6 +6,7 @@
         <table:table data="${registrations}" delete="false" id="l_com_arnellconsulting_tps_model_Registration" path="/registrations" update="false" z="JRlwzRC9TUQdb10tjriGl6y/5+Q=">
             <table:column id="c_com_arnellconsulting_tps_model_Registration_corporateName" property="corporateName" z="dJIGaUduHd0frQat3Ab8T0I1ZrE="/>
             <table:column id="c_com_arnellconsulting_tps_model_Registration_email" property="email" z="S+Aa4YXvaL9rI0b/ZekbtbCrkGE="/>
+            <table:column id="c_com_arnellconsulting_tps_model_Registration_password" property="password" z="vPm1ZAZF+4yjKDjKoqw3aWfD05A="/>
         </table:table>
     </page:list>
 </div>

@@ -5,6 +5,7 @@
     <form:create id="fc_com_arnellconsulting_tps_model_Registration" modelAttribute="registration" path="/registrations" render="${empty dependencies}" z="8RTUzb3gazvziPiQv687IyVxHRs=">
         <field:input field="corporateName" id="c_com_arnellconsulting_tps_model_Registration_corporateName" required="true" z="tshAyi7uagcKu87VY2ub8qbw8TE="/>
         <field:input field="email" id="c_com_arnellconsulting_tps_model_Registration_email" required="true" validationMessageCode="field_invalid_email" z="fsT91TU6NQ0joJTBEwcrc3Acnu8="/>
+        <field:input field="password" id="c_com_arnellconsulting_tps_model_Registration_password" min="10" required="true" z="2IbKQG6MwkO6ONdBMBp1FAA8zo0="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_arnellconsulting_tps_model_Registration" render="${not empty dependencies}" z="joBF7pY/4MyNs2SspEHSX+7WNyY="/>
 </div>

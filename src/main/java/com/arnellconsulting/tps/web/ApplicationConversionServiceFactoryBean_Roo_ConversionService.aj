@@ -145,7 +145,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Registration, String> ApplicationConversionServiceFactoryBean.getRegistrationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.arnellconsulting.tps.model.Registration, java.lang.String>() {
             public String convert(Registration registration) {
-                return new StringBuilder().append(registration.getCorporateName()).append(' ').append(registration.getEmail()).toString();
+                return new StringBuilder().append(registration.getCorporateName()).append(' ').append(registration.getEmail()).append(' ').append(registration.getPassword()).toString();
             }
         };
     }

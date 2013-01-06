@@ -23,4 +23,12 @@ privileged aspect Registration_Roo_JavaBean {
         this.email = email;
     }
     
+    public String Registration.getPassword() {
+        return this.password;
+    }
+    
+    public void Registration.setPassword(String password) {
+        this.password = password;
+    }
+    
 }

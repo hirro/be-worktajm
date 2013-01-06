@@ -9,8 +9,9 @@ logging setup --level DEBUG
 
 // Registration
 entity jpa --class ~.model.Registration
-field string --fieldName corporateName --notNull
-field string --fieldName email --notNull
+field string --fieldName corporateName --notNull --unique
+field string --fieldName email --notNull --unique
+field string --fieldName password --sizeMin 10 --comment "Password comment"
 
 // Create corporate
 entity jpa --class ~.model.Corporate --testAutomatically true
