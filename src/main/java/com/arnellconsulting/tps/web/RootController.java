@@ -20,6 +20,7 @@ public class RootController {
 			indexPage = "index";
 		}
 		logger.info("Using index page; " + indexPage);
+		logger.debug("Using index page; " + indexPage);
 		return indexPage;
 	}
 

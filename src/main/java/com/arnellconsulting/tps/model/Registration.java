@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -26,6 +25,6 @@ public class Registration {
     @Column(unique = true)
     private String email;
 
-    @Size(min = 10)
+    @Size(min = 10, max=20)
     private String password;
 }

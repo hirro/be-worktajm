@@ -1,0 +1,2708 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-22 08:16:55
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+web mvc setup
+web mvc all --package ~.web
+// script --file tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-22 08:17:34
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-24 07:29:21
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+web mvc all --package ~.web
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-24 07:41:08
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-24 07:53:22
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-24 08:16:27
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-27 08:08:24
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+
+web mvc all --package ~.web
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-30 07:39:58
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 08:39:54
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 08:39:57
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 08:40:24
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 08:40:26
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 08:42:00
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 08:42:02
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 08:42:34
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+// script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 08:42:46
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 08:43:42
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 08:52:43
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+// script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 08:53:05
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 08:57:24
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+// script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 08:57:43
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 10:42:38
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 12:01:13
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field reference --class ~.model.TimeEntry --fieldName contract --type ~.model.Employee --cardinality MANY_TO_ONE
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 12:01:23
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 12:09:22
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field reference --class ~.model.TimeEntry --fieldName contract --type ~.model.Employee --cardinality MANY_TO_ONE
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field reference --class ~.model.TimeEntry --fieldName projects --type ~.model.Project --cardinality MANY_TO_ONE
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+web mvc setup
+web mvc all --package ~.web
+// script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 12:09:37
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 12:15:46
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field reference --class ~.model.TimeEntry --fieldName contract --type ~.model.Employee --cardinality MANY_TO_ONE
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field reference --class ~.model.TimeEntry --fieldName projects --type ~.model.Project --cardinality MANY_TO_ONE
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+web mvc setup
+web mvc all --package ~.web
+// script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 12:16:02
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 14:48:39
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field reference --class ~.model.TimeEntry --fieldName contract --type ~.model.Employee --cardinality MANY_TO_ONE
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+web mvc setup
+web mvc all --package ~.web
+// script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 14:48:55
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-05 15:32:16
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+// script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-05 15:32:31
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-06 05:26:53
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-06 12:33:26
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 07:34:49
+addon list
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 10:33:58
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web gwt setup
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 10:34:16
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 10:34:50
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web gwt setup
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 10:35:05
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 10:47:58
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 10:48:11
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 10:48:13
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 11:09:28
+web gwt setup
+web gwt all --proxyPackage com.arnellconsulting.tps.gwt --requestPackage com.arnellconsulting.tps.gwt.Request
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 11:11:39
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 11:22:09
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 11:24:21
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 11:25:44
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web jsf setup
+web jsf all --package ~.web
+// script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 11:26:10
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 11:45:54
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web jsf setup --implementation APACHE_MYFACES --theme  EGGPLANT
+web jsf all --package ~.jsf
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 11:46:17
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 11:46:17
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 11:46:17
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 12:13:17
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 12:16:06
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web gwt setup
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 12:16:25
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 12:16:25
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 12:16:25
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 12:18:47
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web gwt setup
+web gwt all --proxyPackage ~.client.proxy --requestPackage ~.client.request
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 12:19:24
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 12:19:24
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 12:19:24
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 12:49:12
+pgp trust --keyId 0xBF0451C0
+download accept terms of use
+addon install bundle --bundleSymbolicName com.vaadin.spring.roo.addon
+addon install bundle --bundleSymbolicName com.vaadin.spring.roo.addon
+addon list
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 13:27:13
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web jsf setup --implementation APACHE_MYFACES --theme  EGGPLANT
+web jsf all --package ~.jsf
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 13:27:30
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-11 13:27:30
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-11 13:27:30
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-12 09:01:49
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web jsf setup --implementation APACHE_MYFACES --theme  EGGPLANT
+web jsf all --package ~.jsf
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-12 09:02:03
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-11-12 09:02:03
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-12 09:02:03
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-11-12 09:35:01
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-10 08:22:07
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-10 11:34:16
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-27 09:22:54
+hint
+hint mvc
+hint web
+hint mvc mvc
+hint web mvc
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-27 09:30:30
+web jsf setup
+web jsf scaffold --class ~.web.RegistrationController --entity ~.model.Corporate
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-27 12:12:03
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-27 12:14:43
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web jsf setup --implementation APACHE_MYFACES --theme  EGGPLANT
+web jsf all --package ~.jsf
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-27 12:14:56
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-27 12:14:56
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-27 12:14:56
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-27 14:46:18
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.EmployeeStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Employee --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.EmployeeStatus --fieldName status
+field set --class ~.model.Corporate --fieldName employees --type ~.model.Employee --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Employee --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Employee --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Employee --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Employee --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy employee
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName employee --type ~.model.Employee --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-27 14:46:32
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-27 14:46:32
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-27 14:46:32
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-27 23:20:28
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-27 23:20:42
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-27 23:20:42
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-27 23:20:42
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 17:32:21
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.CorporateRegistration
+field reference --class ~.model.Corporate --fieldName project --type ~.model.Corporate --cardinality ONE_TO_ONE
+field reference --class ~.model.Person --fieldName project --type ~.model.Person --cardinality ONE_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 17:32:39
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 17:32:39
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 17:32:39
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 17:44:26
+entity jpa --class Hej
+field reference --fieldName bajs --type ~.model.Contract --cardinality ONE_TO_ONE 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 17:48:17
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.CorporateRegistration
+field reference --class ~.model.CorporateRegistration --fieldName corporate --type ~.model.Corporate --cardinality ONE_TO_ONE
+field reference --class ~.model.CorporateRegistration --fieldName admin --type ~.model.Person --cardinality ONE_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 17:48:33
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 17:48:33
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 17:48:33
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 17:59:24
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 18:01:03
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.CorporateRegistration
+// [failed] field embedded --class ~.model.CorporateRegistration --fieldName corporate --type ~.model.Corporate
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 18:01:17
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 18:04:13
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.CorporateRegistration
+field reference --class ~.model.CorporateRegistration --fieldName corporate --type ~.model.Corporate --cardinality ONE_TO_ONE
+field reference --class ~.model.CorporateRegistration --fieldName admin --type ~.model.Person --cardinality ONE_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 18:04:29
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 18:04:29
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 18:04:29
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 18:23:18
+controller class --class Test 
+hint controller
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 18:26:40
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 18:26:45
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 18:27:00
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 18:43:54
+help controller
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 18:45:34
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 18:45:50
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 18:45:50
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-04 18:45:50
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 18:46:58
+web mvc controller --class ~.web.RegisterCorporateController 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-04 21:03:15
+web mvc controller --class ~.web.RegisterCorporateController 
+help
+help entiry
+class --class Jim 
+field string --fieldName street
+help
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:32:36
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.CorporateRegistration --testAutomatically true
+field string --fieldName corporateName --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:33:00
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:34:32
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.CorporateRegistration --testAutomatically true
+field string --fieldName corporateName --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+// [failed] web mvc setup
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:34:51
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:36:10
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.CorporateRegistration --testAutomatically true
+field string --fieldName corporateName --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:36:29
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:37:29
+hint
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:39:42
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:39:47
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:40:06
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:40:06
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:40:06
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:41:26
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.CorporateRegistration
+field string --fieldName corporateName --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:41:44
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:46:45
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.CorporateRegistration
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:47:02
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:47:23
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:47:42
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:47:42
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:47:42
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:50:25
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level INFO
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:50:44
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 02:50:44
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 02:50:44
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 12:15:52
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 12:24:07
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level DEBUG
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 12:24:24
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 12:24:24
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 12:24:24
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 12:44:53
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 15:57:24
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 15:57:46
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 15:59:26
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 15:59:47
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:01:12
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:01:30
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:01:41
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:02:07
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:03:33
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level DEBUG
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:03:53
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:03:53
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:03:53
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:04:06
+security setup
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:05:33
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:05:38
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Register
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level DEBUG
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:05:56
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:05:56
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:05:56
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:06:24
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Register
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level DEBUG
+// [failed] security setup
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:06:52
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:07:14
+security setup
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:07:32
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:08:02
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:09:52
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Register
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:10:10
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:10:51
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Register
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:11:10
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:12:14
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level DEBUG
+security setup
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:12:36
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:12:36
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:12:36
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 16:33:26
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 16:59:20
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 17:19:14
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 17:19:21
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level DEBUG
+security setup
+entity jpa --class ~.model.security.Principal --table security_principals
+field string  --fieldName username --notNull --sizeMax 50 --sizeMin 3
+field string  --fieldName password --notNull --sizeMax 50 --sizeMin 3
+field boolean --fieldName enabled
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 17:19:40
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 17:20:22
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level DEBUG
+security setup
+entity jpa --class ~.model.security.Principal --table security_principals
+field string  --fieldName username --notNull --sizeMax 50 --sizeMin 3
+field string  --fieldName password --notNull --sizeMax 50 --sizeMin 3
+field boolean --fieldName enabled
+entity jpa --class ~.model.security.Authority --table security_authorities
+// [failed] script tps.roo
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 17:20:43
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 17:24:17
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+logging setup --level DEBUG 
+entity jpa --class ~.model.Registration
+field string --fieldName corporateName --notNull
+field string --fieldName email --notNull
+entity jpa --class ~.model.Corporate --testAutomatically true
+field string --fieldName name --notNull
+enum type --class ~.model.PersonStatus
+enum constant --name ACTIVE
+enum constant --name INACTIVE
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.model.PersonStatus --fieldName status
+field set --class ~.model.Corporate --fieldName Persons --type ~.model.Person --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person --fieldName employer --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+field set --class ~.model.Person --fieldName contracts --type ~.model.Contract --cardinality MANY_TO_MANY --mappedBy contracters
+field set --class ~.model.Contract --fieldName contracters --type ~.model.Person --cardinality MANY_TO_MANY
+field set --class ~.model.Customer --fieldName contracts --type ~.model.Contract --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE
+entity jpa --class ~.model.Project --testAutomatically 
+field string --fieldName name --notNull 
+field string --fieldName description
+field set --class ~.model.Contract --fieldName projects --type ~.model.Project --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project --fieldName contract --type ~.model.Contract --cardinality MANY_TO_ONE
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+field set --class ~.model.Person --fieldName contract --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy Person
+field set --class ~.model.Project --fieldName projects --type ~.model.TimeEntry --cardinality ONE_TO_MANY --mappedBy project
+field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Person --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
+web mvc setup
+web mvc all --package ~.web
+loggin setup --level DEBUG
+security setup
+entity jpa --class ~.model.security.Principal --table security_principals
+field string  --fieldName username --notNull --sizeMax 50 --sizeMin 3
+field string  --fieldName password --notNull --sizeMax 50 --sizeMin 3
+field boolean --fieldName enabled
+entity jpa --class ~.model.security.Authority --table security_authorities
+field string --fieldName roleId --notNull --sizeMax 10 --sizeMin 8 
+field string --fieldName authority --notNull --sizeMax 50 --sizeMin 8 --regexp ^ROLE_[A-Z]*
+entity jpa --class ~.model.security.AuthorityPrincipalAssignment --table security_role_assignments
+field reference --fieldName username --type ~.model.security.Principal
+field reference --fieldName roleId --type ~.model.security.Authority
+web mvc scaffold --class ~.web.security.UserController --backingType ~.model.security.Principal --path /security/users
+web mvc scaffold --class ~.web.security.RoleController --backingType ~.model.security.Authority --path /security/roles
+web mvc scaffold --class ~.web.security.RoleMappingController --backingType ~.model.security.AuthorityPrincipalAssignment --path /security/assignments
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 17:24:37
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 17:24:37
+// script tps.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 17:24:37
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 18:34:11
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-05 19:28:47
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-01-05 19:37:09
+hint
+hint fields
+hint entities
+hint
+help
+addon list
+help
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-05 19:44:39
+addon list
+hint
+help
+focus --class ~.model.Registration
+field string --fieldName test --unique --sizeMin 10 --comment "Jim"
+field string --fieldName password --unique --sizeMin 10 --comment "Jim"
+// [failed] controller class --class ~.web.RootController --preferredMapping "/" 
+controller class --class ~.web.RootController
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-01-06 14:07:57
+email template setup --from tps@arnellconsulting.com --subject "Registration confirmation" 
+interface --class ~.email.NotificationService
+class --class ~.email.NotificationServiceImpl
+help email
+help email sender setup
+email sender setup --hostServer mailout.telia.com --protocol SMTP --port 465 --username u09003390 --password Z2JSAQKf 

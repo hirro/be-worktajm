@@ -14,11 +14,30 @@
         <intercept-url pattern="/resources/**" access="permitAll" />
         <intercept-url pattern="/**" access="permitAll" />
     </http>
+
+		<ldap-server id="ldapServer"
+		         url="${ldap.server}"
+		        manager-dn="${ldap.user}"
+		        manager-password="${ldap.password}"
+		/>
+		
     <!-- Configure Authentication mechanism -->
     <authentication-manager alias="authenticationManager">
         <!-- SHA-256 values can be produced using 'echo -n your_desired_password | sha256sum' (using normal *nix environments) -->
         <authentication-provider>
             <password-encoder hash="sha-256" />
+						<jdbc-user-service data-source-ref="dataSource"
+						    users-by-username-query="
+						      SELECT username, password, enabled
+						      FROM security_principals WHERE username = ?"
+						    authorities-by-username-query="
+						      SELECT p.username, a.authority
+						      FROM security_principals p, security_authorities a,
+						           security_role_assignments ra
+						      WHERE p.username = ra.username
+						      AND a.roleId = ra.roleId
+						      AND p.username = ?"
+						/>
             <user-service>
                 <user name="admin" password="8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918" authorities="ROLE_ADMIN" />
                 <user name="user" password="04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb" authorities="ROLE_USER" />
