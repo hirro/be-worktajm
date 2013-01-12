@@ -23,7 +23,7 @@
 		user-search-base="${ldap.userSearchBase}" 
 		user-search-filter="${ldap.userSearchFilter}" />
 
-	<authentication-manager>
+	<authentication-manager alias="authenticationManager">
 		<ldap-authentication-provider
 			server-ref="contextSource"
 			group-search-base="${ldap.groupSearchBase}"
