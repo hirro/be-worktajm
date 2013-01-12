@@ -10,9 +10,6 @@ import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.Registration;
 import com.arnellconsulting.tps.model.TimeEntry;
-import com.arnellconsulting.tps.model.security.Authority;
-import com.arnellconsulting.tps.model.security.AuthorityPrincipalAssignment;
-import com.arnellconsulting.tps.model.security.Principal;
 import com.arnellconsulting.tps.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -190,78 +187,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Authority, String> ApplicationConversionServiceFactoryBean.getAuthorityToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.arnellconsulting.tps.model.security.Authority, java.lang.String>() {
-            public String convert(Authority authority) {
-                return new StringBuilder().append(authority.getRoleId()).append(' ').append(authority.getAuthority()).toString();
-            }
-        };
-    }
-    
-    public Converter<Long, Authority> ApplicationConversionServiceFactoryBean.getIdToAuthorityConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.arnellconsulting.tps.model.security.Authority>() {
-            public com.arnellconsulting.tps.model.security.Authority convert(java.lang.Long id) {
-                return Authority.findAuthority(id);
-            }
-        };
-    }
-    
-    public Converter<String, Authority> ApplicationConversionServiceFactoryBean.getStringToAuthorityConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.arnellconsulting.tps.model.security.Authority>() {
-            public com.arnellconsulting.tps.model.security.Authority convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Authority.class);
-            }
-        };
-    }
-    
-    public Converter<AuthorityPrincipalAssignment, String> ApplicationConversionServiceFactoryBean.getAuthorityPrincipalAssignmentToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.arnellconsulting.tps.model.security.AuthorityPrincipalAssignment, java.lang.String>() {
-            public String convert(AuthorityPrincipalAssignment authorityPrincipalAssignment) {
-                return "(no displayable fields)";
-            }
-        };
-    }
-    
-    public Converter<Long, AuthorityPrincipalAssignment> ApplicationConversionServiceFactoryBean.getIdToAuthorityPrincipalAssignmentConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.arnellconsulting.tps.model.security.AuthorityPrincipalAssignment>() {
-            public com.arnellconsulting.tps.model.security.AuthorityPrincipalAssignment convert(java.lang.Long id) {
-                return AuthorityPrincipalAssignment.findAuthorityPrincipalAssignment(id);
-            }
-        };
-    }
-    
-    public Converter<String, AuthorityPrincipalAssignment> ApplicationConversionServiceFactoryBean.getStringToAuthorityPrincipalAssignmentConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.arnellconsulting.tps.model.security.AuthorityPrincipalAssignment>() {
-            public com.arnellconsulting.tps.model.security.AuthorityPrincipalAssignment convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), AuthorityPrincipalAssignment.class);
-            }
-        };
-    }
-    
-    public Converter<Principal, String> ApplicationConversionServiceFactoryBean.getPrincipalToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.arnellconsulting.tps.model.security.Principal, java.lang.String>() {
-            public String convert(Principal principal) {
-                return new StringBuilder().append(principal.getUsername()).append(' ').append(principal.getPassword()).toString();
-            }
-        };
-    }
-    
-    public Converter<Long, Principal> ApplicationConversionServiceFactoryBean.getIdToPrincipalConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.arnellconsulting.tps.model.security.Principal>() {
-            public com.arnellconsulting.tps.model.security.Principal convert(java.lang.Long id) {
-                return Principal.findPrincipal(id);
-            }
-        };
-    }
-    
-    public Converter<String, Principal> ApplicationConversionServiceFactoryBean.getStringToPrincipalConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.arnellconsulting.tps.model.security.Principal>() {
-            public com.arnellconsulting.tps.model.security.Principal convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Principal.class);
-            }
-        };
-    }
-    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getContractToStringConverter());
         registry.addConverter(getIdToContractConverter());
@@ -284,15 +209,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getTimeEntryToStringConverter());
         registry.addConverter(getIdToTimeEntryConverter());
         registry.addConverter(getStringToTimeEntryConverter());
-        registry.addConverter(getAuthorityToStringConverter());
-        registry.addConverter(getIdToAuthorityConverter());
-        registry.addConverter(getStringToAuthorityConverter());
-        registry.addConverter(getAuthorityPrincipalAssignmentToStringConverter());
-        registry.addConverter(getIdToAuthorityPrincipalAssignmentConverter());
-        registry.addConverter(getStringToAuthorityPrincipalAssignmentConverter());
-        registry.addConverter(getPrincipalToStringConverter());
-        registry.addConverter(getIdToPrincipalConverter());
-        registry.addConverter(getStringToPrincipalConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {
