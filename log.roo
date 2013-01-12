@@ -2706,3 +2706,5 @@ class --class ~.email.NotificationServiceImpl
 help email
 help email sender setup
 email sender setup --hostServer mailout.telia.com --protocol SMTP --port 465 --username u09003390 --password Z2JSAQKf 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-10 13:35:21
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-12 12:44:44
