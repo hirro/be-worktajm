@@ -78,6 +78,13 @@ field reference --class ~.model.TimeEntry --fieldName Person --type ~.model.Pers
 // n -> 1: TimeEntry -> Project
 field reference --class ~.model.TimeEntry --fieldName project --type ~.model.Project --cardinality MANY_TO_ONE
 
+// Remember me
+entity jpa --class ~.model.PersistentLogin
+field string --fieldName username --sizeMax 64 --notNull 
+field string --fieldName series --sizeMax 64 --notNull 
+field string --fieldName token --sizeMax 64 --notNull 
+field date --fieldName createdOn --type java.util.Date --persistenceType JPA_TIMESTAMP --column timestamp 
+
 // spring mvc
 web mvc setup
 web mvc all --package ~.web

@@ -2708,3 +2708,20 @@ help email sender setup
 email sender setup --hostServer mailout.telia.com --protocol SMTP --port 465 --username u09003390 --password Z2JSAQKf 
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-10 13:35:21
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-12 12:44:44
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-15 20:47:24
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-19 08:34:38
+enum type --class ~.model.PersistentLogin
+entity jpa --class ~.model.PersistentLogin
+
+field string --fieldName username --sizeMax 64
+// [failed] field string --fieldName username --sizeMax 64 --notNull 
+field string --fieldName username --sizeMax 64 --notNull 
+field string --fieldName series --sizeMax 64 --notNull 
+field string --fieldName token --sizeMax 64 --notNull 
+
+// [failed] field date --fieldName timeStamp --type java.util.Date --notNull --persistenceType JPA_TIMESTAMP 
+
+// [failed] field date --fieldName timeStamp --type java.util.Date --persistenceType JPA_TIMESTAMP 
+
+field date --fieldName createdOn --type java.util.Date --persistenceType JPA_TIMESTAMP --column timestamp 
+

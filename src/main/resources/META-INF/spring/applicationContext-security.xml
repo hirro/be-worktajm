@@ -5,8 +5,11 @@
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	<!-- HTTP security configurations -->
 	<http auto-config="true" use-expressions="true">
+		<custom-filter before="REMEMBER_ME_FILTER" ref="customRememberMeFilter" />
 		<form-login login-processing-url="/resources/j_spring_security_check"
 			login-page="/login" authentication-failure-url="/login?login_error=t" />
+		<remember-me key="_spring_security_remember_me"
+			token-validity-seconds="14400" token-repository-ref="tokenRepository" />
 		<logout logout-url="/resources/j_spring_security_logout" />
 		<!-- Configure these elements to secure URIs in your application -->
 		<intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
@@ -15,29 +18,28 @@
 		<intercept-url pattern="/**" access="permitAll" />
 	</http>
 
-	<ldap-user-service 
-		id="ldapUserService"
-		group-search-base="${ldap.groupSearchBase}"
-		group-role-attribute="${ldap.groupRoleAttribute}"
-		group-search-filter="${ldap.groupSearchFilter}"
-		user-search-base="${ldap.userSearchBase}" 
+	<ldap-user-service id="ldapUserService"
+		group-search-base="${ldap.groupSearchBase}" group-role-attribute="${ldap.groupRoleAttribute}"
+		group-search-filter="${ldap.groupSearchFilter}" user-search-base="${ldap.userSearchBase}"
 		user-search-filter="${ldap.userSearchFilter}" />
 
 	<authentication-manager alias="authenticationManager">
-		<ldap-authentication-provider
-			server-ref="contextSource"
-			group-search-base="${ldap.groupSearchBase}"
-			user-search-base="${ldap.userSearchBase}" 
-			user-search-filter="${ldap.userSearchFilter}"
-			group-role-attribute="${ldap.groupRoleAttribute}"
-			group-search-filter="${ldap.groupSearchFilter}" 
-			role-prefix="${ldap.rolePrefix}" />
+		<ldap-authentication-provider server-ref="contextSource"
+			group-search-base="${ldap.groupSearchBase}" user-search-base="${ldap.userSearchBase}"
+			user-search-filter="${ldap.userSearchFilter}" group-role-attribute="${ldap.groupRoleAttribute}"
+			group-search-filter="${ldap.groupSearchFilter}" role-prefix="${ldap.rolePrefix}" />
 	</authentication-manager>
 
-	<ldap-server 
-		id="contextSource" 
-		url="${ldap.url}"
-		manager-dn="${ldap.managerDn}" 
-		manager-password="${ldap.managerPassword}" />
+	<ldap-server id="contextSource" url="${ldap.url}"
+		manager-dn="${ldap.managerDn}" manager-password="${ldap.managerPassword}" />
+
+	<beans:bean id="tokenRepository"
+		class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+		<beans:property name="createTableOnStartup" value="false" />
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+
+	<beans:bean id="customRememberMeFilter"
+		class="com.arnellconsulting.tps.security.CustomRememberMeFilter" />
 
 </beans:beans>
