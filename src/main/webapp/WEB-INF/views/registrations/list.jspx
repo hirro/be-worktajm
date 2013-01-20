@@ -2,11 +2,11 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_com_arnellconsulting_tps_model_Registration" items="${registrations}" z="EtiXMh1nD0oPEemyucAHLsmGzqo=">
-        <table:table data="${registrations}" delete="false" id="l_com_arnellconsulting_tps_model_Registration" path="/registrations" update="false" z="JRlwzRC9TUQdb10tjriGl6y/5+Q=">
-            <table:column id="c_com_arnellconsulting_tps_model_Registration_corporateName" property="corporateName" z="dJIGaUduHd0frQat3Ab8T0I1ZrE="/>
-            <table:column id="c_com_arnellconsulting_tps_model_Registration_email" property="email" z="S+Aa4YXvaL9rI0b/ZekbtbCrkGE="/>
-            <table:column id="c_com_arnellconsulting_tps_model_Registration_password" property="password" z="vPm1ZAZF+4yjKDjKoqw3aWfD05A="/>
+    <page:list id="pl_com_arnellconsulting_tps_model_CorporateRegistration" items="${corporateregistrations}" z="Y6idWqt4hh8PrM9HVnnRqLLO6xs=">
+        <table:table data="${corporateregistrations}" delete="false" id="l_com_arnellconsulting_tps_model_CorporateRegistration" path="/registrations" update="false" z="XPDGiJeZpzt8rpRWkTIZ+X89wYQ=">
+            <table:column id="c_com_arnellconsulting_tps_model_CorporateRegistration_corporateName" property="corporateName" z="b65FAYCbakjKKEjEuFy3moUDWsc="/>
+            <table:column id="c_com_arnellconsulting_tps_model_CorporateRegistration_email" property="email" z="dG70HxaOt4Uw7c01OJ2iCGDnFTw="/>
+            <table:column id="c_com_arnellconsulting_tps_model_CorporateRegistration_password" property="password" z="hNyVMb/eWO5qkYuKj7+Rlb+Nm/k="/>
         </table:table>
     </page:list>
 </div>

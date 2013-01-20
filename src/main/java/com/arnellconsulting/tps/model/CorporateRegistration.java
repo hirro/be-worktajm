@@ -12,7 +12,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class Registration {
+public class CorporateRegistration {
 
     @NotNull
     @NotBlank
@@ -25,6 +25,6 @@ public class Registration {
     @Column(unique = true)
     private String email;
 
-    @Size(min = 10, max=20)
+    @Size(min = 6, max=20)
     private String password;
 }

@@ -38,18 +38,6 @@
                 <menu:item id="i_contract_new" messageCode="global_menu_new" url="/contracts?form" z="Ywk8JpUEsv3Yi6GdSROwzM7phdc="/>
                 <menu:item id="i_contract_list" messageCode="global_menu_list" url="/contracts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="T8YOGqikEgnHJfLf0mVomxbN/GI="/>
             </menu:category>
-            <menu:category id="c_principal" z="FnLFWXB/U5tWagL29D8k2ZPp4KM=">
-                <menu:item id="i_principal_new" messageCode="global_menu_new" url="/security/users?form" z="6j8zS/LbvDWl/oqZ8HUh7BeNF1I="/>
-                <menu:item id="i_principal_list" messageCode="global_menu_list" url="/security/users?page=1&amp;size=${empty param.size ? 10 : param.size}" z="8dS8JWBi//b31LIKAyhANwlewho="/>
-            </menu:category>
-            <menu:category id="c_authority" z="GIU2CEy7lITDknErfBZQNPQ7WFs=">
-                <menu:item id="i_authority_new" messageCode="global_menu_new" url="/security/roles?form" z="ic1VJI/lUEk+gvBIBpev512GBag="/>
-                <menu:item id="i_authority_list" messageCode="global_menu_list" url="/security/roles?page=1&amp;size=${empty param.size ? 10 : param.size}" z="KdCWOMYIRNTbRpUaEFZQW1jX1YI="/>
-            </menu:category>
-            <menu:category id="c_authorityprincipalassignment" z="84rVDN6WJ/Uk7yg4qXPcYJtvilI=">
-                <menu:item id="i_authorityprincipalassignment_new" messageCode="global_menu_new" url="/security/assignments?form" z="aS8SQaOLVMFADzUKt/vBn1nw3aI="/>
-                <menu:item id="i_authorityprincipalassignment_list" messageCode="global_menu_list" url="/security/assignments?page=1&amp;size=${empty param.size ? 10 : param.size}" z="phqoEU9/Sjen2SjxV5//Ozel1iQ="/>
-            </menu:category>
         </sec:authorize>
     </menu:menu>
 </div>

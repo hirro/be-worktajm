@@ -3,8 +3,8 @@
 
 package com.arnellconsulting.tps.web;
 
-import com.arnellconsulting.tps.model.Registration;
-import com.arnellconsulting.tps.web.RegistrationController;
+import com.arnellconsulting.tps.model.CorporateRegistration;
+import com.arnellconsulting.tps.web.CorporateRegistrationController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
@@ -14,40 +14,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
-privileged aspect RegistrationController_Roo_Controller {
+privileged aspect CorporateRegistrationController_Roo_Controller {
     
     @RequestMapping(params = "form", produces = "text/html")
-    public String RegistrationController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new Registration());
+    public String CorporateRegistrationController.createForm(Model uiModel) {
+        populateEditForm(uiModel, new CorporateRegistration());
         return "registrations/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String RegistrationController.show(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("registration", Registration.findRegistration(id));
+    public String CorporateRegistrationController.show(@PathVariable("id") Long id, Model uiModel) {
+        uiModel.addAttribute("corporateregistration", CorporateRegistration.findCorporateRegistration(id));
         uiModel.addAttribute("itemId", id);
         return "registrations/show";
     }
     
     @RequestMapping(produces = "text/html")
-    public String RegistrationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String CorporateRegistrationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("registrations", Registration.findRegistrationEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Registration.countRegistrations() / sizeNo;
+            uiModel.addAttribute("corporateregistrations", CorporateRegistration.findCorporateRegistrationEntries(firstResult, sizeNo));
+            float nrOfPages = (float) CorporateRegistration.countCorporateRegistrations() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("registrations", Registration.findAllRegistrations());
+            uiModel.addAttribute("corporateregistrations", CorporateRegistration.findAllCorporateRegistrations());
         }
         return "registrations/list";
     }
     
-    void RegistrationController.populateEditForm(Model uiModel, Registration registration) {
-        uiModel.addAttribute("registration", registration);
+    void CorporateRegistrationController.populateEditForm(Model uiModel, CorporateRegistration corporateRegistration) {
+        uiModel.addAttribute("corporateRegistration", corporateRegistration);
     }
     
-    String RegistrationController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+    String CorporateRegistrationController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;

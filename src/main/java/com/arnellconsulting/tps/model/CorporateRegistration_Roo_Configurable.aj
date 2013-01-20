@@ -3,11 +3,11 @@
 
 package com.arnellconsulting.tps.model;
 
-import com.arnellconsulting.tps.model.Registration;
+import com.arnellconsulting.tps.model.CorporateRegistration;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect Registration_Roo_Configurable {
+privileged aspect CorporateRegistration_Roo_Configurable {
     
-    declare @type: Registration: @Configurable;
+    declare @type: CorporateRegistration: @Configurable;
     
 }

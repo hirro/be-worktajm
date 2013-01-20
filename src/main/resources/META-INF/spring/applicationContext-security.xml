@@ -39,6 +39,10 @@
 	<ldap-server id="contextSource" url="${ldap.url}"
 		manager-dn="${ldap.managerDn}" manager-password="${ldap.managerPassword}" />
 
+      <beans:bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+           <beans:constructor-arg ref="contextSource" />
+      </beans:bean>
+	
 	<beans:bean id="tokenRepository"
 		class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
 		<beans:property name="createTableOnStartup" value="false" />

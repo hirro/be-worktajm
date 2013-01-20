@@ -2,9 +2,9 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show delete="false" id="ps_com_arnellconsulting_tps_model_Registration" object="${registration}" path="/registrations" update="false" z="FTl/EgkKkPTuV68yXn8bCF52/Wc=">
-        <field:display field="corporateName" id="s_com_arnellconsulting_tps_model_Registration_corporateName" object="${registration}" z="/FLMSEz6g2zDnC5+hG8y1oznVfM="/>
-        <field:display field="email" id="s_com_arnellconsulting_tps_model_Registration_email" object="${registration}" z="T1JNt2LjBbdgpQbL1gJW7mPhYQU="/>
-        <field:display field="password" id="s_com_arnellconsulting_tps_model_Registration_password" object="${registration}" z="jAMtLYY9kfdea7VfoGt2JPw3k0M="/>
+    <page:show delete="false" id="ps_com_arnellconsulting_tps_model_CorporateRegistration" object="${corporateregistration}" path="/registrations" update="false" z="rdjNPxPu4uq1ii7YtPnGEq3jiRY=">
+        <field:display field="corporateName" id="s_com_arnellconsulting_tps_model_CorporateRegistration_corporateName" object="${corporateregistration}" z="crBX0iwZSyvgSPgDo16ajJUF3m0="/>
+        <field:display field="email" id="s_com_arnellconsulting_tps_model_CorporateRegistration_email" object="${corporateregistration}" z="mxTUonIwGBHILpRBlzIJWnVaKZk="/>
+        <field:display field="password" id="s_com_arnellconsulting_tps_model_CorporateRegistration_password" object="${corporateregistration}" z="xCVyNBJZZpja+zD3D2zosb+zfGY="/>
     </page:show>
 </div>

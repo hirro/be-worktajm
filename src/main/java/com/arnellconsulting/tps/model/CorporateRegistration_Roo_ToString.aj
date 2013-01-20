@@ -3,13 +3,13 @@
 
 package com.arnellconsulting.tps.model;
 
-import com.arnellconsulting.tps.model.Registration;
+import com.arnellconsulting.tps.model.CorporateRegistration;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect Registration_Roo_ToString {
+privileged aspect CorporateRegistration_Roo_ToString {
     
-    public String Registration.toString() {
+    public String CorporateRegistration.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

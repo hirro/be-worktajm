@@ -5,10 +5,10 @@ package com.arnellconsulting.tps.web;
 
 import com.arnellconsulting.tps.model.Contract;
 import com.arnellconsulting.tps.model.Corporate;
+import com.arnellconsulting.tps.model.CorporateRegistration;
 import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
-import com.arnellconsulting.tps.model.Registration;
 import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -63,6 +63,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, com.arnellconsulting.tps.model.Corporate>() {
             public com.arnellconsulting.tps.model.Corporate convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Corporate.class);
+            }
+        };
+    }
+    
+    public Converter<CorporateRegistration, String> ApplicationConversionServiceFactoryBean.getCorporateRegistrationToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.arnellconsulting.tps.model.CorporateRegistration, java.lang.String>() {
+            public String convert(CorporateRegistration corporateRegistration) {
+                return new StringBuilder().append(corporateRegistration.getCorporateName()).append(' ').append(corporateRegistration.getEmail()).append(' ').append(corporateRegistration.getPassword()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, CorporateRegistration> ApplicationConversionServiceFactoryBean.getIdToCorporateRegistrationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.arnellconsulting.tps.model.CorporateRegistration>() {
+            public com.arnellconsulting.tps.model.CorporateRegistration convert(java.lang.Long id) {
+                return CorporateRegistration.findCorporateRegistration(id);
+            }
+        };
+    }
+    
+    public Converter<String, CorporateRegistration> ApplicationConversionServiceFactoryBean.getStringToCorporateRegistrationConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.arnellconsulting.tps.model.CorporateRegistration>() {
+            public com.arnellconsulting.tps.model.CorporateRegistration convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), CorporateRegistration.class);
             }
         };
     }
@@ -139,30 +163,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Registration, String> ApplicationConversionServiceFactoryBean.getRegistrationToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.arnellconsulting.tps.model.Registration, java.lang.String>() {
-            public String convert(Registration registration) {
-                return new StringBuilder().append(registration.getCorporateName()).append(' ').append(registration.getEmail()).append(' ').append(registration.getPassword()).toString();
-            }
-        };
-    }
-    
-    public Converter<Long, Registration> ApplicationConversionServiceFactoryBean.getIdToRegistrationConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.arnellconsulting.tps.model.Registration>() {
-            public com.arnellconsulting.tps.model.Registration convert(java.lang.Long id) {
-                return Registration.findRegistration(id);
-            }
-        };
-    }
-    
-    public Converter<String, Registration> ApplicationConversionServiceFactoryBean.getStringToRegistrationConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.arnellconsulting.tps.model.Registration>() {
-            public com.arnellconsulting.tps.model.Registration convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Registration.class);
-            }
-        };
-    }
-    
     public Converter<TimeEntry, String> ApplicationConversionServiceFactoryBean.getTimeEntryToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.arnellconsulting.tps.model.TimeEntry, java.lang.String>() {
             public String convert(TimeEntry timeEntry) {
@@ -194,6 +194,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getCorporateToStringConverter());
         registry.addConverter(getIdToCorporateConverter());
         registry.addConverter(getStringToCorporateConverter());
+        registry.addConverter(getCorporateRegistrationToStringConverter());
+        registry.addConverter(getIdToCorporateRegistrationConverter());
+        registry.addConverter(getStringToCorporateRegistrationConverter());
         registry.addConverter(getCustomerToStringConverter());
         registry.addConverter(getIdToCustomerConverter());
         registry.addConverter(getStringToCustomerConverter());
@@ -203,9 +206,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getProjectToStringConverter());
         registry.addConverter(getIdToProjectConverter());
         registry.addConverter(getStringToProjectConverter());
-        registry.addConverter(getRegistrationToStringConverter());
-        registry.addConverter(getIdToRegistrationConverter());
-        registry.addConverter(getStringToRegistrationConverter());
         registry.addConverter(getTimeEntryToStringConverter());
         registry.addConverter(getIdToTimeEntryConverter());
         registry.addConverter(getStringToTimeEntryConverter());

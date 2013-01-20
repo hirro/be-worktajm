@@ -3,7 +3,7 @@
 
 package com.arnellconsulting.tps.model;
 
-import com.arnellconsulting.tps.model.Registration;
+import com.arnellconsulting.tps.model.CorporateRegistration;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,32 +11,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
-privileged aspect Registration_Roo_Jpa_Entity {
+privileged aspect CorporateRegistration_Roo_Jpa_Entity {
     
-    declare @type: Registration: @Entity;
+    declare @type: CorporateRegistration: @Entity;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long Registration.id;
+    private Long CorporateRegistration.id;
     
     @Version
     @Column(name = "version")
-    private Integer Registration.version;
+    private Integer CorporateRegistration.version;
     
-    public Long Registration.getId() {
+    public Long CorporateRegistration.getId() {
         return this.id;
     }
     
-    public void Registration.setId(Long id) {
+    public void CorporateRegistration.setId(Long id) {
         this.id = id;
     }
     
-    public Integer Registration.getVersion() {
+    public Integer CorporateRegistration.getVersion() {
         return this.version;
     }
     
-    public void Registration.setVersion(Integer version) {
+    public void CorporateRegistration.setVersion(Integer version) {
         this.version = version;
     }
     
