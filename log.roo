@@ -2725,3 +2725,5 @@ field string --fieldName token --sizeMax 64 --notNull
 
 field date --fieldName createdOn --type java.util.Date --persistenceType JPA_TIMESTAMP --column timestamp 
 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-20 08:47:02
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-20 08:48:11

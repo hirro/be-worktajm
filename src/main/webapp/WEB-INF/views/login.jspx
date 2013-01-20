@@ -47,10 +47,10 @@
         </script>
       </div>
       <div>
-        <label for="j_rememberme">
+        <label for="_spring_security_remember_me">
           <spring:message code="security_login_form_remember_me" />
         </label>
-        <input id="j_rememberme" type='checkbox' name='j_rememberme' />
+        <input id="_spring_security_remember_me" type='checkbox' name='_spring_security_remember_me' />
         <spring:message code="security_login_form_remember_me_message" var="remember_me_msg" htmlEscape="false" />
       </div>
       <br />

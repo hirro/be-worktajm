@@ -9,7 +9,8 @@
 		<form-login login-processing-url="/resources/j_spring_security_check"
 			login-page="/login" authentication-failure-url="/login?login_error=t" />
 		<remember-me key="_spring_security_remember_me"
-			token-validity-seconds="14400" token-repository-ref="tokenRepository" />
+			token-validity-seconds="14400" 
+			token-repository-ref="tokenRepository" />
 		<logout logout-url="/resources/j_spring_security_logout" />
 		<!-- Configure these elements to secure URIs in your application -->
 		<intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
@@ -19,15 +20,20 @@
 	</http>
 
 	<ldap-user-service id="ldapUserService"
-		group-search-base="${ldap.groupSearchBase}" group-role-attribute="${ldap.groupRoleAttribute}"
-		group-search-filter="${ldap.groupSearchFilter}" user-search-base="${ldap.userSearchBase}"
+		group-search-base="${ldap.groupSearchBase}" 
+		group-role-attribute="${ldap.groupRoleAttribute}"
+		group-search-filter="${ldap.groupSearchFilter}" 
+		user-search-base="${ldap.userSearchBase}"
 		user-search-filter="${ldap.userSearchFilter}" />
 
 	<authentication-manager alias="authenticationManager">
 		<ldap-authentication-provider server-ref="contextSource"
-			group-search-base="${ldap.groupSearchBase}" user-search-base="${ldap.userSearchBase}"
-			user-search-filter="${ldap.userSearchFilter}" group-role-attribute="${ldap.groupRoleAttribute}"
-			group-search-filter="${ldap.groupSearchFilter}" role-prefix="${ldap.rolePrefix}" />
+			group-search-base="${ldap.groupSearchBase}" 
+			user-search-base="${ldap.userSearchBase}"
+			user-search-filter="${ldap.userSearchFilter}" 
+			group-role-attribute="${ldap.groupRoleAttribute}"
+			group-search-filter="${ldap.groupSearchFilter}" 
+			role-prefix="${ldap.rolePrefix}" />
 	</authentication-manager>
 
 	<ldap-server id="contextSource" url="${ldap.url}"
