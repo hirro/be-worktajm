@@ -46,13 +46,6 @@
           Spring.addDecoration(new Spring.ElementDecoration({elementId : "j_password", widgetType : "dijit.form.ValidationTextBox", widgetAttrs : {promptMessage: "${sec_pwd_msg}", required : true}})); 
         </script>
       </div>
-      <div>
-        <label for="_spring_security_remember_me">
-          <spring:message code="security_login_form_remember_me" />
-        </label>
-        <input id="_spring_security_remember_me" type='checkbox' name='_spring_security_remember_me' />
-        <spring:message code="security_login_form_remember_me_message" var="remember_me_msg" htmlEscape="false" />
-      </div>
       <br />
       <div class="submit">
         <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>

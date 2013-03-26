@@ -3,10 +3,11 @@
 
 package com.arnellconsulting.tps.model;
 
+import com.arnellconsulting.tps.enums.PersonStatus;
+import com.arnellconsulting.tps.enums.RegistrationStatus;
 import com.arnellconsulting.tps.model.CorporateDataOnDemand;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.PersonDataOnDemand;
-import com.arnellconsulting.tps.model.PersonStatus;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,6 +34,7 @@ privileged aspect PersonDataOnDemand_Roo_DataOnDemand {
         setEmail(obj, index);
         setFirstName(obj, index);
         setLastName(obj, index);
+        setRegistrationStatus(obj, index);
         setStatus(obj, index);
         return obj;
     }
@@ -50,6 +52,11 @@ privileged aspect PersonDataOnDemand_Roo_DataOnDemand {
     public void PersonDataOnDemand.setLastName(Person obj, int index) {
         String lastName = "lastName_" + index;
         obj.setLastName(lastName);
+    }
+    
+    public void PersonDataOnDemand.setRegistrationStatus(Person obj, int index) {
+        RegistrationStatus registrationStatus = RegistrationStatus.class.getEnumConstants()[0];
+        obj.setRegistrationStatus(registrationStatus);
     }
     
     public void PersonDataOnDemand.setStatus(Person obj, int index) {

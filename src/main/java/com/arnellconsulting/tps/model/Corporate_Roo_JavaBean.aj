@@ -18,20 +18,20 @@ privileged aspect Corporate_Roo_JavaBean {
         this.name = name;
     }
     
-    public Set<Person> Corporate.getPersons() {
-        return this.Persons;
-    }
-    
-    public void Corporate.setPersons(Set<Person> Persons) {
-        this.Persons = Persons;
-    }
-    
     public Set<Customer> Corporate.getCustomers() {
         return this.customers;
     }
     
     public void Corporate.setCustomers(Set<Customer> customers) {
         this.customers = customers;
+    }
+    
+    public Set<Person> Corporate.getPersons() {
+        return this.Persons;
+    }
+    
+    public void Corporate.setPersons(Set<Person> Persons) {
+        this.Persons = Persons;
     }
     
 }

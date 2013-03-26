@@ -3,10 +3,11 @@
 
 package com.arnellconsulting.tps.model;
 
+import com.arnellconsulting.tps.enums.PersonStatus;
+import com.arnellconsulting.tps.enums.RegistrationStatus;
 import com.arnellconsulting.tps.model.Contract;
 import com.arnellconsulting.tps.model.Corporate;
 import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.model.PersonStatus;
 import com.arnellconsulting.tps.model.TimeEntry;
 import java.util.Set;
 
@@ -42,6 +43,14 @@ privileged aspect Person_Roo_JavaBean {
     
     public void Person.setStatus(PersonStatus status) {
         this.status = status;
+    }
+    
+    public RegistrationStatus Person.getRegistrationStatus() {
+        return this.registrationStatus;
+    }
+    
+    public void Person.setRegistrationStatus(RegistrationStatus registrationStatus) {
+        this.registrationStatus = registrationStatus;
     }
     
     public Corporate Person.getEmployer() {

@@ -1,5 +1,7 @@
 package com.arnellconsulting.tps.model;
 
+import com.arnellconsulting.tps.enums.PersonStatus;
+import com.arnellconsulting.tps.enums.RegistrationStatus;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -28,6 +30,9 @@ public class Person {
 
     @Enumerated
     private PersonStatus status;
+
+    @Enumerated
+    private RegistrationStatus registrationStatus;
 
     @ManyToOne
     private Corporate employer;

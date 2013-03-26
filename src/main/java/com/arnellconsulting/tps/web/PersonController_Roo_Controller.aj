@@ -3,10 +3,11 @@
 
 package com.arnellconsulting.tps.web;
 
+import com.arnellconsulting.tps.enums.PersonStatus;
+import com.arnellconsulting.tps.enums.RegistrationStatus;
 import com.arnellconsulting.tps.model.Contract;
 import com.arnellconsulting.tps.model.Corporate;
 import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.model.PersonStatus;
 import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.web.PersonController;
 import java.io.UnsupportedEncodingException;
@@ -91,9 +92,10 @@ privileged aspect PersonController_Roo_Controller {
     
     void PersonController.populateEditForm(Model uiModel, Person person) {
         uiModel.addAttribute("person", person);
+        uiModel.addAttribute("personstatuses", Arrays.asList(PersonStatus.values()));
+        uiModel.addAttribute("registrationstatuses", Arrays.asList(RegistrationStatus.values()));
         uiModel.addAttribute("contracts", Contract.findAllContracts());
         uiModel.addAttribute("corporates", Corporate.findAllCorporates());
-        uiModel.addAttribute("personstatuses", Arrays.asList(PersonStatus.values()));
         uiModel.addAttribute("timeentrys", TimeEntry.findAllTimeEntrys());
     }
     

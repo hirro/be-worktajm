@@ -17,9 +17,9 @@ public class Corporate {
     @NotNull
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employer")
-    private Set<Person> Persons = new HashSet<Person>();
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
     private Set<Customer> customers = new HashSet<Customer>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employer")
+    private Set<Person> Persons = new HashSet<Person>();
 }

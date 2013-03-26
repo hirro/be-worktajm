@@ -8,8 +8,8 @@
             <table:column id="c_com_arnellconsulting_tps_model_Person_lastName" property="lastName" z="/terIBVhKklH8nMww+m4+dR/LTY="/>
             <table:column id="c_com_arnellconsulting_tps_model_Person_email" property="email" z="5oRUmr3EDelAJI8IiUalXb23B0k="/>
             <table:column id="c_com_arnellconsulting_tps_model_Person_status" property="status" z="uCzX8dFwFfR/lMixSAzTUzTzoNs="/>
+            <table:column id="c_com_arnellconsulting_tps_model_Person_registrationStatus" property="registrationStatus" z="yTaI4D+zNtClGiGAJOtXETvjHnk="/>
             <table:column id="c_com_arnellconsulting_tps_model_Person_employer" property="employer" z="RD7d3hlS51UgAUxXlCmSsHgyWX4="/>
-            <table:column id="c_com_arnellconsulting_tps_model_Person_contracts" property="contracts" z="Z3H4U9lZvd8u4Z/rls9L5DOlI6g="/>
         </table:table>
     </page:list>
 </div>

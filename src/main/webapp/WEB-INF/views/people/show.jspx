@@ -7,6 +7,7 @@
         <field:display field="lastName" id="s_com_arnellconsulting_tps_model_Person_lastName" object="${person}" z="G/XC8LNMd67HM6upp49I3xABiJY="/>
         <field:display field="email" id="s_com_arnellconsulting_tps_model_Person_email" object="${person}" z="s9UJoo1bUL5EWas+EzXmVbW+n5s="/>
         <field:display field="status" id="s_com_arnellconsulting_tps_model_Person_status" object="${person}" z="hY7hns9jWm+QQySA4LnJUDN6Di8="/>
+        <field:display field="registrationStatus" id="s_com_arnellconsulting_tps_model_Person_registrationStatus" object="${person}" z="mkw7y9u2f05mCRDxGQRE2PXtKIg="/>
         <field:display field="employer" id="s_com_arnellconsulting_tps_model_Person_employer" object="${person}" z="ft2wU94TU6k2nzUzLPuHP+jew9E="/>
         <field:display field="contracts" id="s_com_arnellconsulting_tps_model_Person_contracts" object="${person}" z="Kb93ys57wM86GCPdbJ2ai1A+ycg="/>
     </page:show>
