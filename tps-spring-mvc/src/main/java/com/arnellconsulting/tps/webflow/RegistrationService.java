@@ -7,7 +7,7 @@ public interface RegistrationService {
      * Persist the registration to the database
      * @param registration the registration
      */
-    public void persistBooking(Registration registration);
+    public void persist(Registration registration);
 
     /**
      * Verify challenge

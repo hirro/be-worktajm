@@ -19,10 +19,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord
 public class Person {
 
-    @NotNull
     private String firstName;
 
-    @NotNull
     private String lastName;
 
     @NotNull

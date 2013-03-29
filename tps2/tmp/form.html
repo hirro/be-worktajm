@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta content="IE=8" http-equiv="X-UA-Compatible" />
+		<link href="/tps/resources/dijit/themes/tundra/tundra.css" type="text/css" rel="stylesheet" />
+		<link href="/tps/resources/styles/standard.css" media="screen" type="text/css" rel="stylesheet" />
+		<link href="/tps/resources/images/favicon.ico" rel="SHORTCUT ICON" />
+		<script type="text/javascript">
+//<![CDATA[
+		var djConfig = {parseOnLoad: false, isDebug: false, locale: 'en-us'};
+		//]]>
+		</script>
+		<script type="text/javascript" src="/tps/resources/dojo/dojo.js">
+</script>
+		<script type="text/javascript" src="/tps/resources/spring/Spring.js">
+</script>
+		<script type="text/javascript" src="/tps/resources/spring/Spring-Dojo.js">
+</script>
+		<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+		dojo.require("dojo.parser");
+		//]]>
+		</script>
+		<title>
+			Welcome to Tps
+		</title>
+	</head>
+	<body class="tundra spring">
+		<div id="wrapper">
+			<div version="2.0" id="header">
+				<a title="Home" name="Home" href="/tps/" id="Home"><img src="/tps/resources/images/banner-graphic.png" /></a>
+			</div>
+			<div version="2.0" id="menu">
+				<ul id="_menu">
+					<li id="c_person">
+						<h2>
+							Person
+						</h2>
+						<ul>
+							<li id="i_person_new">
+								<a title="Create new Person" href="/tps/people?form">Create new Person</a>
+							</li>
+							<li id="i_person_list">
+								<a title="List all People" href="/tps/people?page=1&amp;size=10">List all People</a>
+							</li>
+						</ul>
+					</li>
+					<li id="c_seleniumtests">
+						<h2>
+							Selenium Tests
+						</h2>
+						<ul>
+							<li id="si_seleniumtests_test">
+								<a title="Test Suite" href="/tps/resources/selenium/test-suite.xhtml">Test Suite</a>
+							</li>
+						</ul>
+					</li>
+					<li id="c_flows">
+						<h2>
+							Flows
+						</h2>
+						<ul>
+							<li id="i_flows_registration">
+								<a title="Enter Registration flow" href="/tps/registration">Enter Registration flow</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div id="main">
+				<div version="2.0">
+					<script type="text/javascript">
+//<![CDATA[
+					dojo.require('dijit.TitlePane');
+					//]]>
+					</script>
+					<div id="_title_title_id">
+						<script type="text/javascript">
+//<![CDATA[
+						Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_title_id', widgetType : 'dijit.TitlePane', widgetAttrs : {title: 'Step 1 - Enter Company information', open: true}})); 
+						//]]>
+						</script>
+						<h1>
+							Step 1 - Enter Company information
+						</h1>
+						<p>
+							This is a simple example to get started with Spring Web Flow. The buttons below lead you to another view state (Proceed) or to an end state.
+						</p>
+						<form method="post">
+							<div class="submit">
+								<label for="company_name">Company Name</label><input size="50" path="company_name" /><br />
+								<label for="email">Email</label><input size="50" path="email" /><br />
+								<label for="password">Password</label><input path="password" type="password" /><br />
+								<label for="password_again">Password (again)</label><input path="password_again" type="password" /><br />
+								<input value="Cancel" name="_eventId_cancel" id="cancel" type="submit" /><input value="Proceed" name="_eventId_success" id="success" type="submit" />
+							</div>
+						</form>
+					</div>
+				</div>
+				<div version="2.0" id="footer">
+					<span><a href="/tps/">Home</a></span> <span id="language">| Language: <a title="Switch language to English" href="?lang=en"><img alt="Switch language to English" src="/tps/resources/images/en.png" class="flag" /></a></span> <span>| Theme: <a title="standard" href="?theme=standard">standard</a> | <a title="alt" href="?theme=alt">alt</a></span><span><a title="Sponsored by SpringSource" href="http://springsource.com"><img src="/tps/resources/images/springsource-logo.png" alt="Sponsored by SpringSource" align="right" /></a></span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -3,8 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<var name="registration" class="com.arnellconsulting.tps.webflow.Registration" />
-
 	<on-start>
 		<evaluate expression="registrationService.createRegistration()"
                   result="flowScope.registration"  />
@@ -19,7 +17,7 @@
 	<!-- Account verification -->
 	<view-state id="account-verification-state" view="registration/account-verification" model="registration">
 		<transition on="success" to="complete-state">
-			<evaluate expression="registration.persist" />
+			<evaluate expression="registrationService.persist(registration)" />
 		</transition>
 		<transition on="cancel" to="cancelled-state" />
 	</view-state>

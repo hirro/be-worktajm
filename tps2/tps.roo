@@ -1,0 +1,133 @@
+project --topLevelPackage com.arnellconsulting.tps --projectName tps --java 6 --packaging JAR
+
+// MySQL
+persistence setup --database MYSQL --provider HIBERNATE --hostName localhost --databaseName tps --userName root --password test
+
+// Debug
+logging setup --level DEBUG 
+
+///////////////////////////////////////////////////////////////////////////////
+// Enums
+///////////////////////////////////////////////////////////////////////////////
+
+// Create enum PersonStatus
+enum type --class ~.enums.PersonStatus
+enum constant --name NORMAL
+enum constant --name PRO
+
+enum type --class ~.enums.RegistrationStatus
+enum constant --name REGISTERED
+enum constant --name PENDING
+enum constant --name FAILED
+
+///////////////////////////////////////////////////////////////////////////////
+// Entities
+///////////////////////////////////////////////////////////////////////////////
+
+
+// Create corporate
+entity jpa --class ~.model.Corporate --testAutomatically true  --activeRecord true
+field string --fieldName name --notNull
+
+// Person (User)
+entity jpa --class ~.model.Person --testAutomatically
+field string --fieldName firstName --notNull
+field string --fieldName lastName --notNull
+field string --fieldName email --notNull
+field enum --type ~.enums.PersonStatus --fieldName status
+field enum --type ~.enums.RegistrationStatus --fieldName registrationStatus
+
+// Customer
+entity jpa --class ~.model.Customer --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName organisationalNumber
+field string --fieldName street
+field string --fieldName streetNumber
+field string --fieldName zipCode
+field string --fieldName country
+field set --class ~.model.Corporate --fieldName customers --type ~.model.Customer --cardinality ONE_TO_MANY --mappedBy client
+field reference --class ~.model.Customer --fieldName client --type ~.model.Corporate --cardinality MANY_TO_ONE 
+
+// Contract
+entity jpa --class ~.model.Contract
+field date --fieldName validFrom --type java.util.Date --notNull --timeFormat SHORT
+field date --fieldName validTo --type java.util.Date  --timeFormat SHORT
+field number --fieldName rate --type java.math.BigDecimal --notNull
+
+// Project
+entity jpa --class ~.model.Project --testAutomatically
+field string --fieldName name --notNull 
+field string --fieldName description
+
+// TimeEntry
+entity jpa --class ~.model.TimeEntry
+field date --fieldName startTime --type java.util.Date --notNull 
+field date --fieldName endTime --type java.util.Date --notNull 
+field string --fieldName comment
+
+///////////////////////////////////////////////////////////////////////////////
+// Relations
+///////////////////////////////////////////////////////////////////////////////
+
+// 1 -> n: Corporate -> Person
+field set       --class ~.model.Corporate     --fieldName Persons         --type ~.model.Person         --cardinality ONE_TO_MANY --mappedBy employer
+field reference --class ~.model.Person        --fieldName employer        --type ~.model.Corporate      --cardinality MANY_TO_ONE 
+
+// n -> n: Person -> Contract
+field set       --class ~.model.Person        --fieldName contracts       --type ~.model.Contract       --cardinality MANY_TO_MANY --mappedBy contracters
+field set       --class ~.model.Contract      --fieldName contracters     --type ~.model.Person         --cardinality MANY_TO_MANY
+
+// 1 -> n: Customer -> Contract
+field set       --class ~.model.Customer      --fieldName contracts       --type ~.model.Contract       --cardinality ONE_TO_MANY --mappedBy customer 
+field reference --class ~.model.Contract      --fieldName customer        --type ~.model.Customer       --cardinality MANY_TO_ONE
+
+// 1 -> n: Contract -> Project
+field set       --class ~.model.Contract      --fieldName projects        --type ~.model.Project        --cardinality ONE_TO_MANY --mappedBy contract
+field reference --class ~.model.Project       --fieldName contract        --type ~.model.Contract       --cardinality MANY_TO_ONE
+
+// 1 -> n: Person -> TimeEntry
+field set       --class ~.model.Person        --fieldName contract        --type ~.model.TimeEntry      --cardinality ONE_TO_MANY --mappedBy Person
+field set       --class ~.model.Project       --fieldName projects        --type ~.model.TimeEntry      --cardinality ONE_TO_MANY --mappedBy project
+
+// n -> 1: TimeEntry -> Person
+field reference --class ~.model.TimeEntry     --fieldName Person          --type ~.model.Person         --cardinality MANY_TO_ONE
+field reference --class ~.model.TimeEntry     --fieldName project         --type ~.model.Project        --cardinality MANY_TO_ONE
+
+///////////////////////////////////////////////////////////////////////////////
+// Web flow backing beans
+///////////////////////////////////////////////////////////////////////////////
+class --class ~.webflow.Registration --rooAnnotations
+field string --fieldName corporateName --notNull 
+field string email --notNull 
+field string --fieldName password
+
+///////////////////////////////////////////////////////////////////////////////
+// MVC
+///////////////////////////////////////////////////////////////////////////////
+web mvc setup
+web mvc scaffold --class ~.web.PersonController --backingType ~.model.Person
+selenium test --controller ~.web.PersonController
+
+///////////////////////////////////////////////////////////////////////////////
+// JSF
+///////////////////////////////////////////////////////////////////////////////
+//web jsf setup --implementation APACHE_MYFACES --theme  EGGPLANT
+//web jsf all --package ~.jsf
+
+///////////////////////////////////////////////////////////////////////////////
+// web flow
+///////////////////////////////////////////////////////////////////////////////
+web flow --flowName registration 
+
+///////////////////////////////////////////////////////////////////////////////
+// setup security
+///////////////////////////////////////////////////////////////////////////////
+security setup
+
+///////////////////////////////////////////////////////////////////////////////
+// 
+///////////////////////////////////////////////////////////////////////////////
+//perform eclipse
+
+// done
+quit

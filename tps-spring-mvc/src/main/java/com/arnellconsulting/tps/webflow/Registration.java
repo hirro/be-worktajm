@@ -17,46 +17,18 @@ import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 
+@RooJavaBean
+@RooToString
+@RooEquals
+@RooSerializable
 public class Registration{
 
-    private static final String DEFAULT_PROJECT_NAME = "Project X";
-
     @NotNull
-    private String corporateName;
+    private String corporateName = "";
 
     @NotNull
     private String email;
 
     private String password;
     
-    public Corporate persist() {
-        Corporate corporate = new Corporate();
-        corporate.setName(corporateName);
-        Person person = new Person();
-        person.setEmail(email);
-        person.setEmployer(corporate);
-        
-        // Default customer
-        Customer customer = new Customer();
-        customer.setName(corporateName);
-        
-        // Default contract
-        Contract contract = new Contract();
-        contract.setCustomer(customer);
-        // Mandatory
-        contract.setValidFrom(new DateTime().toDate());
-        // Mandatory
-        contract.setValidTo(new DateTime().toDate());
-        // Mandatory
-        contract.setRate(BigDecimal.valueOf(0));      
-        
-        // Default project
-        Project project = new Project();
-        project.setName(DEFAULT_PROJECT_NAME);
-        project.setContract(contract);
-        contract.getProjects().add(project);
-        corporate.persist();
-
-        return corporate;
-    }
 }
