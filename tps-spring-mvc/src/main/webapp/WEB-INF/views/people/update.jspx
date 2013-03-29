@@ -6,10 +6,7 @@
         <field:input field="firstName" id="c_com_arnellconsulting_tps_model_Person_firstName" required="true" z="Gqh2tufwHSTviB+C+LxuvF68Ht4="/>
         <field:input field="lastName" id="c_com_arnellconsulting_tps_model_Person_lastName" required="true" z="4BDFCyHuOdEnRgbJXjvY5s84M88="/>
         <field:input field="email" id="c_com_arnellconsulting_tps_model_Person_email" required="true" validationMessageCode="field_invalid_email" z="WwpxfHSs05D78bOWJeLRrf6Hn2A="/>
-        <field:select field="status" id="c_com_arnellconsulting_tps_model_Person_status" items="${personstatuses}" path="personstatuses" z="cmWsSVWZUbWozDIbSjULGBH8qjk="/>
-        <field:select field="registrationStatus" id="c_com_arnellconsulting_tps_model_Person_registrationStatus" items="${registrationstatuses}" path="registrationstatuses" z="GVkxItwCaksyHOCnrqha/jSGNHw="/>
-        <field:select field="employer" id="c_com_arnellconsulting_tps_model_Person_employer" itemValue="id" items="${corporates}" path="/corporates" z="IqQRSkoMRVpbwdjJmMbTmI60FvQ="/>
-        <field:select field="contracts" id="c_com_arnellconsulting_tps_model_Person_contracts" itemValue="id" items="${contracts}" multiple="true" path="/contracts" z="g9bPVKagPiehRQZ+vS4C6+pU7/M="/>
-        <field:simple field="contract" id="c_com_arnellconsulting_tps_model_Person_contract" messageCode="entity_reference_not_managed" messageCodeAttribute="Time Entry" z="SoWUogUgGbU1fJiK3xX4aPib8zE="/>
+        <field:input field="status" id="c_com_arnellconsulting_tps_model_Person_status" readonly="true" z="cmWsSVWZUbWozDIbSjULGBH8qjk="/>
+        <field:input field="registrationStatus" readonly="true" id="c_com_arnellconsulting_tps_model_Person_registrationStatus" z="GVkxItwCaksyHOCnrqha/jSGNHw="/>
     </form:update>
 </div>

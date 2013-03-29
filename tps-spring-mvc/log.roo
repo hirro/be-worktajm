@@ -73,3 +73,5 @@ quit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-03-28 14:13:31
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-03-28 20:23:55
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-03-28 20:29:39
+email sender setup --hostServer mailout.telia.com --password Z2JSAQKf --protocol IMAP --username u09003390 --port 465 
+email template setup 
