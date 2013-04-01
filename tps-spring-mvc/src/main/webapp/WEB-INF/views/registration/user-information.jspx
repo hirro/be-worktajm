@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<div xmlns:spring="http://www.springframework.org/tags" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:form="http://www.springframework.org/tags/form" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:form="http://www.springframework.org/tags/form" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+
 	<jsp:directive.page contentType="text/html;charset=UTF-8"/>
 	<jsp:output omit-xml-declaration="yes"/>
 	<spring:message var="title" code="webflow_registration_state1_title" htmlEscape="false"/>
@@ -8,17 +9,34 @@
 		<p>
 			<spring:message code="webflow_registration_state1_message"/>
 		</p>
-		<form:form commandName="customer">
+		<spring:hasBindErrors name="registration">
+			<div class="error">
+				<spring:bind path="registration">
+					<c:forEach items="${status.errorMessages}" var="error">
+						<span><c:out value="${error}"/></span><br/>
+					</c:forEach>
+				</spring:bind>
+			</div>
+		</spring:hasBindErrors>		
+		<form:form  modelAttribute="registration" action="${flowExecutionUrl}">
 			<div class="submit">
 				<label for="email">
 					<spring:message code="webflow_registration_email"/>
 				</label>
-				<input path="email" size="50" value="${registration.email}"/>
+				<form:input path="email" maxlength="50" value="${registration.email}" placeholder="Test"/>
+				<script type="text/javascript">
+					Spring.addDecoration(new Spring.ElementDecoration({
+						elementId : "email",
+						widgetType : "dijit.form.ValidationTextBox",
+						widgetAttrs : { required : true, 
+							            invalidMessage : "A valid email address is required.", 
+							            validator : dojox.validate.isEmailAddress  }}));
+				</script>
 				<br/>
 				<label for="password">
 					<spring:message code="webflow_registration_password"/>
 				</label>
-				<input type="password" path="password"/>
+				<form:input type="password" path="password"/>
 				<br/>
 				<label for="password_again">
 					<spring:message code="webflow_registration_password_again"/>
@@ -27,8 +45,8 @@
 				<br/>
 				<spring:message var="cancel" code="button_cancel" htmlEscape="false"/>
 				<spring:message var="proceed" code="button_proceed" htmlEscape="false"/>
-				<input type="submit" id="cancel" name="_eventId_cancel" value="${fn:escapeXml(cancel)}"/>
-				<input type="submit" id="success" name="_eventId_success" value="${fn:escapeXml(proceed)}"/>
+				<button type="submit" id="proceed" name="_eventId_proceed">${fn:escapeXml(proceed)}</button>
+				<button type="submit" name="_eventId_cancel" >${fn:escapeXml(cancel)}</button>
 			</div>
 		</form:form>
 	</util:panel>

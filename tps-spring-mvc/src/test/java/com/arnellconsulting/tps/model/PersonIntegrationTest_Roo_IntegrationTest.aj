@@ -24,7 +24,7 @@ privileged aspect PersonIntegrationTest_Roo_IntegrationTest {
     declare @type: PersonIntegrationTest: @Transactional;
     
     @Autowired
-    private PersonDataOnDemand PersonIntegrationTest.dod;
+    PersonDataOnDemand PersonIntegrationTest.dod;
     
     @Test
     public void PersonIntegrationTest.testCountPeople() {

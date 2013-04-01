@@ -17,11 +17,11 @@ privileged aspect Registration_Roo_Equals {
             return true;
         }
         Registration rhs = (Registration) obj;
-        return new EqualsBuilder().append(corporateName, rhs.corporateName).append(email, rhs.email).append(password, rhs.password).isEquals();
+        return new EqualsBuilder().append(corporateName, rhs.corporateName).append(email, rhs.email).append(password, rhs.password).append(receivedChallenge, rhs.receivedChallenge).append(sentChallenge, rhs.sentChallenge).isEquals();
     }
     
     public int Registration.hashCode() {
-        return new HashCodeBuilder().append(corporateName).append(email).append(password).toHashCode();
+        return new HashCodeBuilder().append(corporateName).append(email).append(password).append(receivedChallenge).append(sentChallenge).toHashCode();
     }
     
 }

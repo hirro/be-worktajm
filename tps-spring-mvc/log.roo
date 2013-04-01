@@ -75,3 +75,16 @@ quit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-03-28 20:29:39
 email sender setup --hostServer mailout.telia.com --password Z2JSAQKf --protocol IMAP --username u09003390 --port 465 
 email template setup 
+email template setup --from "tps@arnellconsulting.com" --subject "Registration"
+help
+help
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-29 17:14:28
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-03-29 17:16:52
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-29 17:49:18
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-29 18:13:37
+logging setup --level DEBUG --package PROJECT 
+logging setup --level DEBUG --package PROJECT 
+logging setup --level ERROR --package ROOT
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-03-31 18:28:37
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-03-31 18:28:37

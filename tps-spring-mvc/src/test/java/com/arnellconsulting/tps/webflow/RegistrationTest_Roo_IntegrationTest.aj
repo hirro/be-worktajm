@@ -24,7 +24,7 @@ privileged aspect RegistrationTest_Roo_IntegrationTest {
     declare @type: RegistrationTest: @Transactional;
     
     @Autowired
-    private CorporateDataOnDemand RegistrationTest.dod;
+    CorporateDataOnDemand RegistrationTest.dod;
     
     @Test
     public void RegistrationTest.testCountCorporates() {

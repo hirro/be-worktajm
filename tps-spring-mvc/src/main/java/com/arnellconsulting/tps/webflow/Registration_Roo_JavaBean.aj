@@ -31,4 +31,20 @@ privileged aspect Registration_Roo_JavaBean {
         this.password = password;
     }
     
+    public String Registration.getSentChallenge() {
+        return this.sentChallenge;
+    }
+    
+    public void Registration.setSentChallenge(String sentChallenge) {
+        this.sentChallenge = sentChallenge;
+    }
+    
+    public String Registration.getReceivedChallenge() {
+        return this.receivedChallenge;
+    }
+    
+    public void Registration.setReceivedChallenge(String receivedChallenge) {
+        this.receivedChallenge = receivedChallenge;
+    }
+    
 }
