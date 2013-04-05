@@ -24,7 +24,7 @@ privileged aspect CorporateIntegrationTest_Roo_IntegrationTest {
     declare @type: CorporateIntegrationTest: @Transactional;
     
     @Autowired
-    CorporateDataOnDemand CorporateIntegrationTest.dod;
+    private CorporateDataOnDemand CorporateIntegrationTest.dod;
     
     @Test
     public void CorporateIntegrationTest.testCountCorporates() {

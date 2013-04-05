@@ -8,41 +8,45 @@
 	</on-start>
 	
 	<!-- User information -->
-	<view-state id="user-information-state" view="registration/user-information" model="registration">
+	<view-state id="userInformationState" view="registration/user-information" model="registration">
 		<binder>
 			<binding property="email"/>
 			<binding property="password"/>
+			<binding property="passwordAgain"/>
 		</binder>
-		<transition on="proceed" to="account-verification-state">
-			<evaluate expression="registrationService.sendChallenge(registration)" />
-		</transition>
-		<transition on="cancel" to="cancelled-state" />
+		<transition on="proceed" to="sendChallengeState" validate="true"/>
+		<transition on="cancel" to="cancelledState" validate="false" />
 	</view-state>
 
+	<action-state id="sendChallengeState">
+		<evaluate expression="registrationService.sendChallenge(registration)" />
+        <transition to="verifyAccountState" />
+	</action-state>
+	
 	<!-- Account verification -->
-	<view-state id="account-verification-state" view="registration/account-verification" model="registration">
-		<transition on="proceed" to="check-challenge-state">
+	<view-state id="verifyAccountState" view="registration/account-verification" model="registration">
+		<transition on="proceed" to="checkChallengeState">
 		</transition>
-		<transition on="cancel" to="cancelled-state" />
+		<transition on="cancel" to="cancelledState" validate="false" />
 	</view-state>
 	
-	<decision-state id="check-challenge-state">
+	<decision-state id="checkChallengeState">
 	  <if test="registrationService.verifyChallenge(registration)"
-	      then="register-user"
-	      else="account-verification-state" />
+	      then="registerUserState"
+	      else="verifyAccountState" />
 	</decision-state>	
 	
-	<action-state id="register-user">
+	<action-state id="registerUserState">
 		<evaluate expression="registrationService.persist(registration)" />	
-        <transition to="complete-state" />
+        <transition to="completeState" />
 	</action-state>
 	
 	<!-- Registration canceled -->
-	<view-state id="cancelled-state" view="registration/cancelled">
-		<transition on="restart" to="user-information-state" />
+	<view-state id="cancelledState" view="registration/cancelled">
+		<transition on="restart" to="userInformationState" />
 	</view-state>
 
 	<!-- Success -->
-	<end-state id="complete-state" view="registration/complete" />
+	<end-state id="completeState" view="registration/complete" />
 
 </flow>

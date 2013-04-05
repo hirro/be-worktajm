@@ -16,7 +16,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findPeopleByEmail" })
 public class Person {
 
     private String firstName;
@@ -40,7 +40,7 @@ public class Person {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Person")
     private Set<TimeEntry> contract = new HashSet<TimeEntry>();
-    
+
     public Person() {
         this.status = PersonStatus.NORMAL;
         this.registrationStatus = RegistrationStatus.PENDING;

@@ -21,7 +21,6 @@ import com.arnellconsulting.tps.model.Project;
 @Repository
 public class JpaRegistrationService implements RegistrationService {
     private static final String DEFAULT_PROJECT_NAME = "Project X";
-    private static final String DEFAULT_EMAIL = "jimarnell@me.com";
     private static final String DEFAULT_CORPORATE_NAME = "Example corporate name";
 
     private static final Logger log = Logger.getLogger(JpaRegistrationService.class);
@@ -34,7 +33,6 @@ public class JpaRegistrationService implements RegistrationService {
         log.debug("createRegistration");
 
         Registration r = new Registration();
-        r.setEmail(DEFAULT_EMAIL);
         r.setCorporateName(DEFAULT_CORPORATE_NAME);
         r.setSentChallenge(RandomStringUtils.randomNumeric(4));
         return r;

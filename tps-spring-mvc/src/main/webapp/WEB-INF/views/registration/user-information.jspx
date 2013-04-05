@@ -5,44 +5,79 @@
 	<jsp:output omit-xml-declaration="yes"/>
 	<spring:message var="title" code="webflow_registration_state1_title" htmlEscape="false"/>
 	<util:panel id="title" title="${title}">
-		<h1>${fn:escapeXml(title)}</h1>
 		<p>
 			<spring:message code="webflow_registration_state1_message"/>
-		</p>
-		<spring:hasBindErrors name="registration">
-			<div class="error">
-				<spring:bind path="registration">
-					<c:forEach items="${status.errorMessages}" var="error">
-						<span><c:out value="${error}"/></span><br/>
-					</c:forEach>
-				</spring:bind>
-			</div>
-		</spring:hasBindErrors>		
+		</p>	
 		<form:form  modelAttribute="registration" action="${flowExecutionUrl}">
 			<div class="submit">
-				<label for="email">
-					<spring:message code="webflow_registration_email"/>
-				</label>
-				<form:input path="email" maxlength="50" value="${registration.email}" placeholder="Test"/>
-				<script type="text/javascript">
-					Spring.addDecoration(new Spring.ElementDecoration({
-						elementId : "email",
-						widgetType : "dijit.form.ValidationTextBox",
-						widgetAttrs : { required : true, 
-							            invalidMessage : "A valid email address is required.", 
-							            validator : dojox.validate.isEmailAddress  }}));
-				</script>
-				<br/>
-				<label for="password">
-					<spring:message code="webflow_registration_password"/>
-				</label>
-				<form:input type="password" path="password"/>
-				<br/>
-				<label for="password_again">
-					<spring:message code="webflow_registration_password_again"/>
-				</label>
-				<input type="password" path="password_again"/>
-				<br/>
+
+				<div>
+					<div class="span-4">
+						<label for="email">
+							<spring:message code="webflow_registration_email"/>
+						</label>
+					</div>
+					<div class="span-7 last">
+						<p>	
+							<form:input path="email" placeholder="Email address" autofocus="true"/>
+							<form:errors path="email" cssClass="errors" element="div"/>					
+						</p>						
+						<script type="text/javascript">
+							Spring.addDecoration(new Spring.ElementDecoration({
+								elementId : "email",
+								widgetType : "dijit.form.ValidationTextBox",
+								widgetAttrs : { required : true, 
+												promptMessage : "Please enter your email address",
+												invalidMessage : "Email address enterred is not complete...",
+												regExp : "[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}",
+											    trim : "true"}}));
+						</script>
+					</div>
+				</div>
+				
+				<div>
+					<div class="span-4">
+						<label for="password">
+							<spring:message code="webflow_registration_password"/>
+						</label>
+					</div>
+					<div class="span-7 last">
+						<p>
+							<form:input type="password" path="password" placeholder="Password"/>
+							<form:errors path="password" cssClass="errors" element="div"/>					
+						</p>
+						<script type="text/javascript">
+							Spring.addDecoration(new Spring.ElementDecoration({
+								elementId : "password",
+								widgetType : "dijit.form.ValidationTextBox",
+								widgetAttrs : { required : true, 
+												promptMessage : "Please your password" }}));  
+						</script>
+					</div>
+				</div>
+
+				<div>
+					<div class="span-4">
+						<label for="passwordAgain">
+							<spring:message code="webflow_registration_password_again"/>
+							${resourceBundle.password}
+							${resourceBundle.passwordAgain}
+						</label>
+					</div>
+					<div>
+						<p>						
+							<form:input type="password" path="passwordAgain" placeholder="Password again"/>
+							<form:errors path="passwordAgain" cssClass="errors" element="div"/>					
+						</p>
+						<script type="text/javascript">
+							Spring.addDecoration(new Spring.ElementDecoration({
+								elementId : "passwordAgain",
+								widgetType : "dijit.form.ValidationTextBox",
+								widgetAttrs : { required : true, 
+									            promptMessage : "Please your password again" }}));  
+						</script>						
+					</div>
+				</div>
 				<spring:message var="cancel" code="button_cancel" htmlEscape="false"/>
 				<spring:message var="proceed" code="button_proceed" htmlEscape="false"/>
 				<button type="submit" id="proceed" name="_eventId_proceed">${fn:escapeXml(proceed)}</button>
