@@ -1,9 +1,12 @@
 package com.arnellconsulting.tps.webflow;
 
 import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.binding.validation.ValidationContext;
@@ -11,6 +14,11 @@ import org.springframework.roo.addon.equals.RooEquals;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.serializable.RooSerializable;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
 import com.arnellconsulting.tps.model.Person;
 
@@ -20,7 +28,7 @@ import com.arnellconsulting.tps.model.Person;
 @RooSerializable
 public class Registration{
 
-    private static final Logger log = Logger.getLogger(Registration.class);
+    private static final Logger log = LoggerFactory.getLogger(Registration.class);
 
     @NotNull
     private String corporateName = "";
@@ -99,4 +107,5 @@ public class Registration{
             log.debug("Received challenge is blank");             
         }         
     }
+
 }

@@ -29,4 +29,10 @@ public interface RegistrationService {
      * @param id the registration id
      */
     public void cancelRegistration(Long id);
+
+    /**
+     * Logins in the user after successful registration.
+     * @param registration
+     */
+    void login(Registration registration);
 }

@@ -38,9 +38,14 @@
 	
 	<action-state id="registerUserState">
 		<evaluate expression="registrationService.persist(registration)" />	
-        <transition to="completeState" />
+        <transition to="loginState" />
 	</action-state>
 	
+	<action-state id="loginState">
+		<evaluate expression="registrationService.login(registration)" />	
+        <transition to="completeState" />
+	</action-state>
+
 	<!-- Registration canceled -->
 	<view-state id="cancelledState" view="registration/cancelled">
 		<transition on="restart" to="userInformationState" />
