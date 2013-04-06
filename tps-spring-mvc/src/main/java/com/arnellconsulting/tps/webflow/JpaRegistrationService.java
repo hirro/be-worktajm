@@ -100,6 +100,7 @@ public class JpaRegistrationService implements RegistrationService {
         simpleMailMessage.setTo(registration.getEmail());
         simpleMailMessage.setText(registration.getSentChallenge());
         simpleMailMessage.setFrom("jim@arnellconsulting.com");
+        simpleMailMessage.setSubject("Almost ready to report time");
         mailTemplate.send(simpleMailMessage);
     }
 

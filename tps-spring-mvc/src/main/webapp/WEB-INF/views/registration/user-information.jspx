@@ -4,6 +4,13 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8"/>
 	<jsp:output omit-xml-declaration="yes"/>
 	<spring:message var="title" code="webflow_registration_state1_title" htmlEscape="false"/>
+	
+	<script type="text/javascript">
+		window.onload = function() {
+		    document.getElementById("email").focus();
+		}
+	</script>
+	
 	<util:panel id="title" title="${title}">
 		<p>
 			<spring:message code="webflow_registration_state1_message"/>

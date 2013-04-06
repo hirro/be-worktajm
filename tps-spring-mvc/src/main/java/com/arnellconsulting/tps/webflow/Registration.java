@@ -1,5 +1,6 @@
 package com.arnellconsulting.tps.webflow;
 
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 
 import org.apache.log4j.Logger;
@@ -10,6 +11,8 @@ import org.springframework.roo.addon.equals.RooEquals;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.serializable.RooSerializable;
 import org.springframework.roo.addon.tostring.RooToString;
+
+import com.arnellconsulting.tps.model.Person;
 
 @RooJavaBean
 @RooToString
@@ -36,11 +39,26 @@ public class Registration{
     public void validateUserInformationState(ValidationContext context) {
         MessageContext messages = context.getMessageContext();
         
+        verifyEmail(messages);
+        
+        verifyPassword(messages);
+    }
+
+    private void verifyEmail(MessageContext messages) {
         if (email == null || email.isEmpty()) {
             messages.addMessage(new MessageBuilder().error().source("email").
                     defaultText("Email must not be blank").build());
+        } else {
+            TypedQuery<Person> query = Person.findPeopleByEmail(email);        
+            boolean emailInUse = !query.getResultList().isEmpty();
+            if (emailInUse) {
+                messages.addMessage(new MessageBuilder().error().source("email").
+                        defaultText("This email is already in use").build());                
+            }
         }
-        
+    }
+
+    private void verifyPassword(MessageContext messages) {
         if (password != null && passwordAgain != null) {
             if (password.compareTo(passwordAgain) != 0) {
                 messages.addMessage(new MessageBuilder().error().source("password").
