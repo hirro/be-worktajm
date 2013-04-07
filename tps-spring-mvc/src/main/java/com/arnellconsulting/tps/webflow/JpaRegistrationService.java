@@ -55,8 +55,11 @@ public class JpaRegistrationService implements RegistrationService {
             Corporate corporate = new Corporate();
             corporate.setName(registration.getCorporateName());
             Person person = new Person();
-            person.setEmail(registration.getEmail());
+            person.setUserName(registration.getEmail());
             person.setEmployer(corporate);
+            person.setPassword(registration.getPassword());
+            person.setEnabled(true);
+            person.setAuthority("ROLE_ADMIN");
     
             // Default customer
             Customer customer = new Customer();
@@ -124,7 +127,8 @@ public class JpaRegistrationService implements RegistrationService {
 
     @Override
     public void login(Registration registration) {
-        log.debug("login(email: {})", registration.getEmail());
+        String scambledPassword = scramblePassword(registration.getPassword());
+        log.debug("login(email: {}, password: {})", registration.getEmail(), scambledPassword);
         try {
             Authentication authenticate = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -140,5 +144,13 @@ public class JpaRegistrationService implements RegistrationService {
         } catch (Exception e) {
             log.error("You failed to log in}", e);
         }
+    }
+
+    private String scramblePassword(String password) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < password.length(); i++) {
+            sb.append('*');
+        }
+        return sb.toString();
     }
 }

@@ -27,21 +27,29 @@ privileged aspect PersonDataOnDemand_Roo_DataOnDemand {
     private List<Person> PersonDataOnDemand.data;
     
     @Autowired
-    CorporateDataOnDemand PersonDataOnDemand.corporateDataOnDemand;
+    private CorporateDataOnDemand PersonDataOnDemand.corporateDataOnDemand;
     
     public Person PersonDataOnDemand.getNewTransientPerson(int index) {
         Person obj = new Person();
-        setEmail(obj, index);
+        setAuthority(obj, index);
+        setEnabled(obj, index);
         setFirstName(obj, index);
         setLastName(obj, index);
+        setPassword(obj, index);
         setRegistrationStatus(obj, index);
         setStatus(obj, index);
+        setUserName(obj, index);
         return obj;
     }
     
-    public void PersonDataOnDemand.setEmail(Person obj, int index) {
-        String email = "foo" + index + "@bar.com";
-        obj.setEmail(email);
+    public void PersonDataOnDemand.setAuthority(Person obj, int index) {
+        String authority = "authority_" + index;
+        obj.setAuthority(authority);
+    }
+    
+    public void PersonDataOnDemand.setEnabled(Person obj, int index) {
+        Boolean enabled = Boolean.TRUE;
+        obj.setEnabled(enabled);
     }
     
     public void PersonDataOnDemand.setFirstName(Person obj, int index) {
@@ -54,6 +62,11 @@ privileged aspect PersonDataOnDemand_Roo_DataOnDemand {
         obj.setLastName(lastName);
     }
     
+    public void PersonDataOnDemand.setPassword(Person obj, int index) {
+        String password = "password_" + index;
+        obj.setPassword(password);
+    }
+    
     public void PersonDataOnDemand.setRegistrationStatus(Person obj, int index) {
         RegistrationStatus registrationStatus = RegistrationStatus.class.getEnumConstants()[0];
         obj.setRegistrationStatus(registrationStatus);
@@ -62,6 +75,11 @@ privileged aspect PersonDataOnDemand_Roo_DataOnDemand {
     public void PersonDataOnDemand.setStatus(Person obj, int index) {
         PersonStatus status = PersonStatus.class.getEnumConstants()[0];
         obj.setStatus(status);
+    }
+    
+    public void PersonDataOnDemand.setUserName(Person obj, int index) {
+        String userName = "userName_" + index;
+        obj.setUserName(userName);
     }
     
     public Person PersonDataOnDemand.getSpecificPerson(int index) {

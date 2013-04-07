@@ -29,12 +29,28 @@ privileged aspect Person_Roo_JavaBean {
         this.lastName = lastName;
     }
     
-    public String Person.getEmail() {
-        return this.email;
+    public String Person.getPassword() {
+        return this.password;
     }
     
-    public void Person.setEmail(String email) {
-        this.email = email;
+    public void Person.setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String Person.getUserName() {
+        return this.userName;
+    }
+    
+    public void Person.setUserName(String userName) {
+        this.userName = userName;
+    }
+    
+    public String Person.getAuthority() {
+        return this.authority;
+    }
+    
+    public void Person.setAuthority(String authority) {
+        this.authority = authority;
     }
     
     public PersonStatus Person.getStatus() {
@@ -43,6 +59,14 @@ privileged aspect Person_Roo_JavaBean {
     
     public void Person.setStatus(PersonStatus status) {
         this.status = status;
+    }
+    
+    public Boolean Person.getEnabled() {
+        return this.enabled;
+    }
+    
+    public void Person.setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
     
     public RegistrationStatus Person.getRegistrationStatus() {

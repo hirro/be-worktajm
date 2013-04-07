@@ -5,11 +5,14 @@
     <form:update id="fu_com_arnellconsulting_tps_model_Person" modelAttribute="person" path="/people" versionField="Version" z="3G0K0g0QPeITKBHc/JbZ6YUuBw4=">
         <field:input field="firstName" id="c_com_arnellconsulting_tps_model_Person_firstName" z="OcbBqR9sGgR5Q9MKBaBv7kmQyPM="/>
         <field:input field="lastName" id="c_com_arnellconsulting_tps_model_Person_lastName" z="HNryl4jluw2DNtyLTLz3hrU6r9Q="/>
-        <field:input field="email" id="c_com_arnellconsulting_tps_model_Person_email" required="true" validationMessageCode="field_invalid_email" z="WwpxfHSs05D78bOWJeLRrf6Hn2A="/>
         <field:input field="status" id="c_com_arnellconsulting_tps_model_Person_status" readonly="true" z="user-managed"/>
         <field:input field="registrationStatus" id="c_com_arnellconsulting_tps_model_Person_registrationStatus" readonly="true" z="user-managed"/>
         <field:select field="employer" id="c_com_arnellconsulting_tps_model_Person_employer" itemValue="id" items="${corporates}" path="/corporates" z="IqQRSkoMRVpbwdjJmMbTmI60FvQ="/>
         <field:select field="contracts" id="c_com_arnellconsulting_tps_model_Person_contracts" itemValue="id" items="${contracts}" multiple="true" path="/contracts" z="g9bPVKagPiehRQZ+vS4C6+pU7/M="/>
         <field:simple field="contract" id="c_com_arnellconsulting_tps_model_Person_contract" messageCode="entity_reference_not_managed" messageCodeAttribute="Time Entry" z="SoWUogUgGbU1fJiK3xX4aPib8zE="/>
+        <field:input field="userName" id="c_com_arnellconsulting_tps_model_Person_userName" required="true" z="/cbv0NHvqW5VaxPO7Pdm+MlsZwU="/>
+        <field:input field="authority" id="c_com_arnellconsulting_tps_model_Person_authority" z="OyC2EXlHbUlXhA/0DgoXBL1SULw="/>
+        <field:checkbox field="enabled" id="c_com_arnellconsulting_tps_model_Person_enabled" z="zcY3Bm2ouvY95rBhD/W4tfO0v1Y="/>
+        <field:input field="password" id="c_com_arnellconsulting_tps_model_Person_password" z="lNY4bP+cgY1VGDfB1SNP/76pBsc="/>
     </form:update>
 </div>

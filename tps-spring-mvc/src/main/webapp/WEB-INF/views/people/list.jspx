@@ -4,12 +4,13 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_arnellconsulting_tps_model_Person" items="${people}" z="i5UEKRrCG1yDUc94mWASjOi81Ik=">
         <table:table data="${people}" id="l_com_arnellconsulting_tps_model_Person" path="/people" z="pfKBw2/La14zyf9VF14nIvO0cxs=">
-            <table:column id="c_com_arnellconsulting_tps_model_Person_email" property="email" z="5oRUmr3EDelAJI8IiUalXb23B0k="/>
             <table:column id="c_com_arnellconsulting_tps_model_Person_status" property="status" z="uCzX8dFwFfR/lMixSAzTUzTzoNs="/>
-            <table:column id="c_com_arnellconsulting_tps_model_Person_registrationStatus" property="registrationStatus" z="yTaI4D+zNtClGiGAJOtXETvjHnk="/>
             <table:column id="c_com_arnellconsulting_tps_model_Person_firstName" property="firstName" z="k5C7d1H/+nJduzWzdaKYI6X121Q="/>
             <table:column id="c_com_arnellconsulting_tps_model_Person_lastName" property="lastName" z="/terIBVhKklH8nMww+m4+dR/LTY="/>
-            <table:column id="c_com_arnellconsulting_tps_model_Person_employer" property="employer" z="RD7d3hlS51UgAUxXlCmSsHgyWX4="/>
+            <!--             <table:column id="c_com_arnellconsulting_tps_model_Person_employer" property="employer" z="RD7d3hlS51UgAUxXlCmSsHgyWX4="/> -->
+            <table:column id="c_com_arnellconsulting_tps_model_Person_userName" property="userName" z="gLwrP9PsIae41/X5Zn54+io2yaM="/>
+            <table:column id="c_com_arnellconsulting_tps_model_Person_authority" property="authority" z="0iKFxXKAxFcDP4Yw55xLrQhRhnY="/>
+            <table:column id="c_com_arnellconsulting_tps_model_Person_password" property="password" z="U5ZtgRw1rBgDKS0KFSPcgGq26dc="/>
         </table:table>
     </page:list>
 </div>

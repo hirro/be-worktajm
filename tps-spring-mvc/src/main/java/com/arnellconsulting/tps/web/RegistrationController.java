@@ -20,8 +20,8 @@ public class RegistrationController {
     }
     
     @RequestMapping(method = RequestMethod.GET, value="email")
-    public @ResponseBody Boolean isEmailUnique(@RequestParam String email) {
-        TypedQuery<Person> query = Person.findPeopleByEmail(email);        
+    public @ResponseBody Boolean isUserNameUnique(@RequestParam String email) {
+        TypedQuery<Person> query = Person.findPeopleByUserName(email);        
         boolean emailExists = query.getResultList().isEmpty();
         return emailExists;
     }

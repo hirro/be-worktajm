@@ -57,7 +57,7 @@ public class Registration{
             messages.addMessage(new MessageBuilder().error().source("email").
                     defaultText("Email must not be blank").build());
         } else {
-            TypedQuery<Person> query = Person.findPeopleByEmail(email);        
+            TypedQuery<Person> query = Person.findPeopleByUserName(email);        
             boolean emailInUse = !query.getResultList().isEmpty();
             if (emailInUse) {
                 messages.addMessage(new MessageBuilder().error().source("email").

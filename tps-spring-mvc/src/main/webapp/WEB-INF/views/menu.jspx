@@ -13,8 +13,10 @@
 	            <menu:item id="i_person_list" messageCode="global_menu_list" url="/people?page=1&amp;size=${empty param.size ? 10 : param.size}" z="MFjeqYeiMgVzk2P/OWfFpXZhhS4="/>
 	        </menu:category>
 		</sec:authorize>		
-        <menu:category id="c_flows" z="5igpkb/e+HPIN8iUErvmM38Eqqk=">
-            <menu:item id="i_flows_registration" messageCode="webflow_menu_enter" url="/registration" z="cVw3HOM+ODgWMtCRn/PYZCHroXE="/>
-        </menu:category>
+    	<sec:authorize access="!isAuthenticated()">
+	        <menu:category id="c_flows" z="5igpkb/e+HPIN8iUErvmM38Eqqk=">
+	            <menu:item id="i_flows_registration" messageCode="webflow_menu_enter" url="/registration" z="cVw3HOM+ODgWMtCRn/PYZCHroXE="/>
+	        </menu:category>
+		</sec:authorize>		
     </menu:menu>
 </div>

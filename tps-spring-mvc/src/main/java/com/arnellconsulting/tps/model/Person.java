@@ -5,6 +5,7 @@ import com.arnellconsulting.tps.enums.RegistrationStatus;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -17,19 +18,26 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findPeopleByEmail" })
+@RooJpaActiveRecord(finders = { "findPeopleByUserName" })
 public class Person {
 
     private String firstName;
 
     private String lastName;
+    
+    private String password;
 
+    @Column(name = "username")
     @NotNull
-    private String email;
+    private String userName;
+    
+    private String authority;
 
     @Enumerated
     private PersonStatus status;
 
+    private Boolean enabled;
+    
     @Enumerated
     private RegistrationStatus registrationStatus;
 
