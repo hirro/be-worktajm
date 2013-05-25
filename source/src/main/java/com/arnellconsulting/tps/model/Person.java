@@ -44,4 +44,15 @@ public class Person {
         this.status = PersonStatus.NORMAL;
         this.registrationStatus = RegistrationStatus.PENDING;
     }
+
+    @Id
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

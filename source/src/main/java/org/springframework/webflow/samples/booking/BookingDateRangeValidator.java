@@ -9,11 +9,8 @@ public class BookingDateRangeValidator implements ConstraintValidator<BookingDat
     }
 
     public boolean isValid(Booking booking, ConstraintValidatorContext context) {
-	if ((booking.getCheckinDate() != null) && (booking.getCheckoutDate() != null)
-		&& booking.getCheckoutDate().before(booking.getCheckinDate())) {
-	    return false;
-	}
-	return true;
+        return !((booking.getCheckinDate() != null) && (booking.getCheckoutDate() != null)
+                && booking.getCheckoutDate().before(booking.getCheckinDate()));
     }
 
 }

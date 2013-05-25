@@ -32,4 +32,14 @@ public class Contract {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contract")
     private Set<Project> projects = new HashSet<Project>();
+    @Id
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
