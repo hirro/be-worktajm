@@ -25,7 +25,7 @@ privileged aspect CustomerDataOnDemand_Roo_DataOnDemand {
     private List<Customer> CustomerDataOnDemand.data;
     
     @Autowired
-    private CorporateDataOnDemand CustomerDataOnDemand.corporateDataOnDemand;
+    CorporateDataOnDemand CustomerDataOnDemand.corporateDataOnDemand;
     
     public Customer CustomerDataOnDemand.getNewTransientCustomer(int index) {
         Customer obj = new Customer();

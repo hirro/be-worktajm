@@ -24,7 +24,7 @@ privileged aspect CustomerIntegrationTest_Roo_IntegrationTest {
     declare @type: CustomerIntegrationTest: @Transactional;
     
     @Autowired
-    private CustomerDataOnDemand CustomerIntegrationTest.dod;
+    CustomerDataOnDemand CustomerIntegrationTest.dod;
     
     @Test
     public void CustomerIntegrationTest.testCountCustomers() {

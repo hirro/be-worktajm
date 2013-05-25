@@ -24,7 +24,7 @@ privileged aspect ProjectIntegrationTest_Roo_IntegrationTest {
     declare @type: ProjectIntegrationTest: @Transactional;
     
     @Autowired
-    private ProjectDataOnDemand ProjectIntegrationTest.dod;
+    ProjectDataOnDemand ProjectIntegrationTest.dod;
     
     @Test
     public void ProjectIntegrationTest.testCountProjects() {

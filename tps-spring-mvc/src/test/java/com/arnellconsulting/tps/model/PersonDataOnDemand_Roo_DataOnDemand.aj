@@ -27,7 +27,7 @@ privileged aspect PersonDataOnDemand_Roo_DataOnDemand {
     private List<Person> PersonDataOnDemand.data;
     
     @Autowired
-    private CorporateDataOnDemand PersonDataOnDemand.corporateDataOnDemand;
+    CorporateDataOnDemand PersonDataOnDemand.corporateDataOnDemand;
     
     public Person PersonDataOnDemand.getNewTransientPerson(int index) {
         Person obj = new Person();

@@ -33,10 +33,10 @@ public class JpaRegistrationService implements RegistrationService {
 
     @Autowired
     private transient MailSender mailTemplate;
-    
+
     @Autowired
     AuthenticationManager authenticationManager;
-    
+
     @Override
     public Registration createRegistration() {
         log.debug("createRegistration");
@@ -60,11 +60,11 @@ public class JpaRegistrationService implements RegistrationService {
             person.setPassword(registration.getPassword());
             person.setEnabled(true);
             person.setAuthority("ROLE_ADMIN");
-    
+
             // Default customer
             Customer customer = new Customer();
             customer.setName(registration.getCorporateName());
-    
+
             // Default contract
             Contract contract = new Contract();
             contract.setCustomer(customer);
@@ -74,13 +74,13 @@ public class JpaRegistrationService implements RegistrationService {
             contract.setValidTo(new DateTime().toDate());
             // Mandatory
             contract.setRate(BigDecimal.valueOf(0));
-    
+
             // Default project
             Project project = new Project();
             project.setName(DEFAULT_PROJECT_NAME);
             project.setContract(contract);
             contract.getProjects().add(project);
-    
+
             // Persist
             corporate.persist();
             customer.persist();
@@ -95,13 +95,13 @@ public class JpaRegistrationService implements RegistrationService {
 
     @Override
     public boolean verifyChallenge(Registration registration) {
-        log.debug("verifyChallenge user: %s, sent-otp: %s, received-otp: %s", 
+        log.debug("verifyChallenge user: %s, sent-otp: %s, received-otp: %s",
                 registration.getEmail(),
-                registration.getSentChallenge(), 
+                registration.getSentChallenge(),
                 registration.getReceivedChallenge());
-        
+
         if ((registration.getReceivedChallenge() != null) && (registration.getSentChallenge() != null )) {
-            return registration.getReceivedChallenge().equals(registration.getSentChallenge());            
+            return registration.getReceivedChallenge().equals(registration.getSentChallenge());
         } else {
             return false;
         }
@@ -114,8 +114,8 @@ public class JpaRegistrationService implements RegistrationService {
 
     @Override
     public void sendChallenge(Registration registration) {
-        log.debug("sendChallenge(sendChallenge: {}, email: {})", 
-                registration.getSentChallenge(), 
+        log.debug("sendChallenge(sendChallenge: {}, email: {})",
+                registration.getSentChallenge(),
                 registration.getEmail());
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(registration.getEmail());
