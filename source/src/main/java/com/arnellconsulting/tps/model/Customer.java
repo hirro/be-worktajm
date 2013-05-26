@@ -4,9 +4,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Data;
 
 @Entity
+@Data
+@SuppressWarnings("PMD")
 public class Customer {
+    @Id
+    private String id;
 
     @NotNull
     private String name;
@@ -26,14 +31,4 @@ public class Customer {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Set<Contract> contracts = new HashSet<Contract>();
-    @Id
-    private String id;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

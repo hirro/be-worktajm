@@ -1,158 +1,177 @@
 package com.arnellconsulting.tps.webflow;
 
-import java.math.BigDecimal;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-
 import com.arnellconsulting.tps.model.Contract;
 import com.arnellconsulting.tps.model.Corporate;
 import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
+import org.joda.time.DateTime;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 @Service("registrationService")
+@SuppressWarnings("PMD.BeanMembersShouldSerialize")
 @Repository
 public class JpaRegistrationService implements RegistrationService {
-    private static final String DEFAULT_PROJECT_NAME = "Project X";
-    private static final String DEFAULT_CORPORATE_NAME = "Example corporate name";
+   private static final String DEFAULT_PROJECT_NAME = "Project X";
+   private static final String DEFAULT_CORPORATE_NAME = "Example corporate name";
+   private static final Logger LOG = LoggerFactory.getLogger(JpaRegistrationService.class);
 
-    private static final Logger log = LoggerFactory.getLogger(JpaRegistrationService.class);
+   @Autowired
+   private transient MailSender mailTemplate;
 
-    @Autowired
-    private transient MailSender mailTemplate;
+   /** PersistanceContext */
+   @SuppressWarnings("PMD.ShortVariable")
+   private EntityManager em;
 
-    @Autowired
-    AuthenticationManager authenticationManager;
+   //~--- methods -------------------------------------------------------------
 
-    @Override
-    public Registration createRegistration() {
-        log.debug("createRegistration");
+   @Override
+   public void cancelRegistration(Long id) {}
 
-        Registration r = new Registration();
-        r.setCorporateName(DEFAULT_CORPORATE_NAME);
-        r.setSentChallenge(RandomStringUtils.randomNumeric(4));
-        return r;
-    }
+   @Override
+   @Transactional(readOnly = true)
+   public Registration createRegistration() {
+      LOG.debug("createRegistration");
 
-    @Override
-    public void persist(Registration registration) {
-        log.debug("persist({})", registration.getEmail());
+      Registration r = new Registration();
 
-        try {
-            Corporate corporate = new Corporate();
-            corporate.setName(registration.getCorporateName());
-            Person person = new Person();
-            person.setUserName(registration.getEmail());
-            person.setEmployer(corporate);
-            person.setPassword(registration.getPassword());
-            person.setEnabled(true);
-            person.setAuthority("ROLE_ADMIN");
+      r.setCorporateName(DEFAULT_CORPORATE_NAME);
+      r.setSentChallenge(RandomStringUtils.randomNumeric(4));
 
-            // Default customer
-            Customer customer = new Customer();
-            customer.setName(registration.getCorporateName());
+      return r;
+   }
 
-            // Default contract
-            Contract contract = new Contract();
-            contract.setCustomer(customer);
-            // Mandatory
-            contract.setValidFrom(new DateTime().toDate());
-            // Mandatory
-            contract.setValidTo(new DateTime().toDate());
-            // Mandatory
-            contract.setRate(BigDecimal.valueOf(0));
+   @Override
+   public void login(Registration registration) {}
 
-            // Default project
-            Project project = new Project();
-            project.setName(DEFAULT_PROJECT_NAME);
-            project.setContract(contract);
-            contract.getProjects().add(project);
+   @Override
+   @Transactional
+   public void persist(Registration registration) {
+      LOG.debug("persist({})", registration.getEmail());
 
-            // Persist
-            corporate.persist();
-            customer.persist();
-            contract.persist();
-            project.persist();
-            person.persist();
-            log.debug("Successfully persisted entry with email {}", registration.getEmail());
-        } catch (Exception e) {
-            log.error("Failed to persist entry", e);
-        }
-    }
+      try {
+         Corporate corporate = new Corporate();
 
-    @Override
-    public boolean verifyChallenge(Registration registration) {
-        log.debug("verifyChallenge user: %s, sent-otp: %s, received-otp: %s",
-                registration.getEmail(),
-                registration.getSentChallenge(),
-                registration.getReceivedChallenge());
+         corporate.setName(registration.getCorporateName());
 
-        if ((registration.getReceivedChallenge() != null) && (registration.getSentChallenge() != null )) {
-            return registration.getReceivedChallenge().equals(registration.getSentChallenge());
-        } else {
-            return false;
-        }
+         Person person = new Person();
 
-    }
+         person.setUserName(registration.getEmail());
+         person.setEmployer(corporate);
+         person.setPassword(registration.getPassword());
+         person.setEnabled(true);
+         person.setAuthority("ROLE_ADMIN");
 
-    @Override
-    public void cancelRegistration(Long id) {
-    }
+         // Default customer
+         Customer customer = new Customer();
 
-    @Override
-    public void sendChallenge(Registration registration) {
-        log.debug("sendChallenge(sendChallenge: {}, email: {})",
+         customer.setName(registration.getCorporateName());
+
+         // Default contract
+         Contract contract = new Contract();
+
+         contract.setCustomer(customer);
+
+         // Mandatory
+         contract.setValidFrom(new DateTime().toDate());
+
+         // Mandatory
+         contract.setValidTo(new DateTime().toDate());
+
+         // Mandatory
+         contract.setRate(BigDecimal.valueOf(0));
+
+         // Default project
+         Project project = new Project();
+
+         project.setName(DEFAULT_PROJECT_NAME);
+         project.setContract(contract);
+         contract.getProjects().add(project);
+
+         // Persist
+         em.persist(corporate);
+         em.persist(customer);
+         em.persist(corporate);
+         em.persist(contract);
+         em.persist(project);
+         em.persist(person);
+         LOG.debug("Successfully persisted entry with email {}", registration.getEmail());
+      } catch (Exception e) {
+         LOG.error("Failed to persist entry", e);
+      }
+   }
+
+   @Override
+   public void sendChallenge(Registration registration) {
+      LOG.debug("sendChallenge(sendChallenge: {}, email: {})",
                 registration.getSentChallenge(),
                 registration.getEmail());
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setTo(registration.getEmail());
-        simpleMailMessage.setText(registration.getSentChallenge());
-        simpleMailMessage.setFrom("jim@arnellconsulting.com");
-        simpleMailMessage.setSubject("Almost ready to report time");
-        mailTemplate.send(simpleMailMessage);
-    }
 
-    @Override
-    public void login(Registration registration) {
-        /*
-        String scambledPassword = scramblePassword(registration.getPassword());
-        log.debug("login(email: {}, password: {})", registration.getEmail(), scambledPassword);
-        try {
-            Authentication authenticate = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            registration.getEmail(), 
-                            registration.getPassword()));
-            if (authenticate.isAuthenticated()) {
-                SecurityContextHolder.getContext().setAuthentication(authenticate);
-                log.debug("You are logged in as {}", registration.getEmail());
-            } else {
-                log.error("You failed to log in as {}", registration.getEmail());
-            }
-            log.debug("Login succeeded");
-        } catch (Exception e) {
-            log.error("You failed to log in}", e);
-        }
-        */
-    }
+      SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
-    private String scramblePassword(String password) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < password.length(); i++) {
-            sb.append('*');
-        }
-        return sb.toString();
-    }
+      simpleMailMessage.setTo(registration.getEmail());
+      simpleMailMessage.setText(registration.getSentChallenge());
+      simpleMailMessage.setFrom("jim@arnellconsulting.com");
+      simpleMailMessage.setSubject("Almost ready to report time");
+      mailTemplate.send(simpleMailMessage);
+   }
+
+   @Override
+   public boolean verifyChallenge(Registration registration) {
+      LOG.debug("verifyChallenge user: {}, sent-otp: {}, received-otp: {}",
+                registration.getEmail(),
+                registration.getSentChallenge(),
+                registration.getReceivedChallenge().toString());
+
+      if ((registration.getReceivedChallenge() != null) && (registration.getSentChallenge() != null)) {
+         return registration.getReceivedChallenge().equals(registration.getSentChallenge());
+      } else {
+         return false;
+      }
+   }
+
+   //~--- set methods ---------------------------------------------------------
+
+   @PersistenceContext
+   public void setEntityManager(EntityManager em) {
+      this.em = em;
+   }
+
+   //~--- methods -------------------------------------------------------------
+
+   @Override
+      public final boolean isUsernameUnique(final String username) 
+   {
+      Object person = em.createQuery("select u from Person u where u.username = :username").setParameter("username",
+              username).getSingleResult();
+      return person == null;
+      
+   }
+
+   private String scramblePassword(String password) {
+      StringBuffer sb = new StringBuffer();
+
+      for (int i = 0; i < password.length(); i++) {
+         sb.append('*');
+      }
+
+      return sb.toString();
+   }
 }

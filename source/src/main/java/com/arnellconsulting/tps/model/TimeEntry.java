@@ -1,13 +1,23 @@
 package com.arnellconsulting.tps.model;
 
+import java.io.Serializable;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import lombok.Data;
 
+/**
+ * TBD
+ * @author jiar
+ */
 @Entity
-public class TimeEntry {
+@Data
+@SuppressWarnings("PMD")
+public class TimeEntry implements Serializable {
+    @Id
+    private String id;
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
@@ -26,14 +36,4 @@ public class TimeEntry {
 
     @ManyToOne
     private Project project;
-    @Id
-    private String id;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

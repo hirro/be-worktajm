@@ -2,57 +2,67 @@ package com.arnellconsulting.tps.model;
 
 import com.arnellconsulting.tps.common.PersonStatus;
 import com.arnellconsulting.tps.common.RegistrationStatus;
+import java.io.Serializable;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import lombok.Data;
+
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.*;
+
+import javax.validation.constraints.NotNull;
+
+/**
+ * TBD
+ * @author jiar
+ */
 @Entity
-public class Person {
+@Data
+@SuppressWarnings("PMD")
+public class Person implements Serializable {
 
-    private String firstName;
+   @Id
+   @GeneratedValue(strategy = GenerationType.SEQUENCE)
+   private String id;
 
-    private String lastName;
+   private String firstName;
 
-    private String password;
+   private String lastName;
 
-    @Column(name = "username")
-    @NotNull
-    private String userName;
+   private String password;
 
-    private String authority;
+   @Column(name = "username")
+   @NotNull
+   private String userName;
 
-    @Enumerated
-    private PersonStatus status;
+   private String authority;
 
-    private Boolean enabled;
+   @Enumerated
+   private PersonStatus status;
 
-    @Enumerated
-    private RegistrationStatus registrationStatus;
+   private Boolean enabled;
 
-    @ManyToOne
-    private Corporate employer;
+   @Enumerated
+   private RegistrationStatus registrationStatus;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
-    private Set<Contract> contracts = new HashSet<Contract>();
+   @ManyToOne
+   private Corporate employer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Person")
-    private Set<TimeEntry> contract = new HashSet<TimeEntry>();
+   @ManyToMany(
+      cascade = CascadeType.ALL,
+      mappedBy = "contracters"
+   )
+   private Set<Contract> contracts = new HashSet<Contract>();
 
-    public Person() {
-        this.status = PersonStatus.NORMAL;
-        this.registrationStatus = RegistrationStatus.PENDING;
-    }
+   @OneToMany(
+      cascade = CascadeType.ALL,
+      mappedBy = "Person"
+   )
+   private Set<TimeEntry> contract = new HashSet<TimeEntry>();
 
-    @Id
-    private String id;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+   public Person() {
+      this.status = PersonStatus.NORMAL;
+      this.registrationStatus = RegistrationStatus.PENDING;
+   }
 }

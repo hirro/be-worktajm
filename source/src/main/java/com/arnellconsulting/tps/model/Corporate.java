@@ -7,9 +7,14 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Data;
 
 @Entity
+@Data
+@SuppressWarnings("PMD")
 public class Corporate {
+    @Id
+    private String id;
 
     @NotNull
     private String name;
@@ -19,14 +24,4 @@ public class Corporate {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employer")
     private Set<Person> Persons = new HashSet<Person>();
-    @Id
-    private String id;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

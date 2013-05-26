@@ -35,4 +35,11 @@ public interface RegistrationService {
      * @param registration
      */
     void login(Registration registration);
+    
+    /**
+     * Check if person already has been registered.
+     * @param userName
+     * @return 
+     */
+   boolean isUsernameUnique(final String userName);    
 }
