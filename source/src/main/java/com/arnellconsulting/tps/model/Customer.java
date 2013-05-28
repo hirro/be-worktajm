@@ -30,5 +30,5 @@ public class Customer {
     private Corporate client;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-    private Set<Contract> contracts = new HashSet<Contract>();
+    private final Set<Contract> contracts = new HashSet<Contract>();
 }

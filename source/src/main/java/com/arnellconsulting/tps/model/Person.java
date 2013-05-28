@@ -32,19 +32,18 @@ public class Person implements Serializable {
 
    private String password;
 
-   @Column(name = "username")
    @NotNull
-   private String userName;
+   private String username;
 
    private String authority;
 
    @Enumerated
-   private PersonStatus status;
+   private final PersonStatus status;
 
    private Boolean enabled;
 
    @Enumerated
-   private RegistrationStatus registrationStatus;
+   private final RegistrationStatus registrationStatus;
 
    @ManyToOne
    private Corporate employer;
@@ -53,13 +52,13 @@ public class Person implements Serializable {
       cascade = CascadeType.ALL,
       mappedBy = "contracters"
    )
-   private Set<Contract> contracts = new HashSet<Contract>();
+   private final Set<Contract> contracts = new HashSet<Contract>();
 
    @OneToMany(
       cascade = CascadeType.ALL,
       mappedBy = "Person"
    )
-   private Set<TimeEntry> contract = new HashSet<TimeEntry>();
+   private final Set<TimeEntry> contract = new HashSet<TimeEntry>();
 
    public Person() {
       this.status = PersonStatus.NORMAL;

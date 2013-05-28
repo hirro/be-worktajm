@@ -28,9 +28,6 @@
 		<property name="flowExecutor" ref="flowExecutor"/>
 		<property name="saveOutputToFlashScopeOnRedirect" value="true"/>
 	</bean>
-
-	<!-- Custom FlowHandler for the hotel booking flow -->
-	<bean name="hotels/booking" class="org.springframework.webflow.samples.booking.BookingFlowHandler" />	
 		
 	<!-- Thymeleaf template resolver -->
 	<bean id="templateResolver"

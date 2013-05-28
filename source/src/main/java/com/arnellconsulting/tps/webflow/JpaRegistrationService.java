@@ -6,12 +6,11 @@ import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
 import org.joda.time.DateTime;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -28,10 +27,10 @@ import javax.persistence.PersistenceContext;
 @Service("registrationService")
 @SuppressWarnings("PMD.BeanMembersShouldSerialize")
 @Repository
+@Slf4j
 public class JpaRegistrationService implements RegistrationService {
    private static final String DEFAULT_PROJECT_NAME = "Project X";
    private static final String DEFAULT_CORPORATE_NAME = "Example corporate name";
-   private static final Logger LOG = LoggerFactory.getLogger(JpaRegistrationService.class);
 
    @Autowired
    private transient MailSender mailTemplate;
@@ -43,49 +42,48 @@ public class JpaRegistrationService implements RegistrationService {
    //~--- methods -------------------------------------------------------------
 
    @Override
-   public void cancelRegistration(Long id) {}
+   public void cancelRegistration(final Long id) {}
 
    @Override
    @Transactional(readOnly = true)
    public Registration createRegistration() {
-      LOG.debug("createRegistration");
+      log.debug("createRegistration");
 
-      Registration r = new Registration();
+      final Registration r = new Registration();
 
-      r.setCorporateName(DEFAULT_CORPORATE_NAME);
       r.setSentChallenge(RandomStringUtils.randomNumeric(4));
 
       return r;
    }
 
    @Override
-   public void login(Registration registration) {}
+   public void login(final Registration registration) {}
 
    @Override
    @Transactional
-   public void persist(Registration registration) {
-      LOG.debug("persist({})", registration.getEmail());
+   public void persist(final Registration registration) {
+      log.debug("persist({})", registration.getEmail());
 
       try {
-         Corporate corporate = new Corporate();
+         final Corporate corporate = new Corporate();
 
          corporate.setName(registration.getCorporateName());
 
-         Person person = new Person();
+         final Person person = new Person();
 
-         person.setUserName(registration.getEmail());
+         person.setUsername(registration.getEmail());
          person.setEmployer(corporate);
          person.setPassword(registration.getPassword());
          person.setEnabled(true);
          person.setAuthority("ROLE_ADMIN");
 
          // Default customer
-         Customer customer = new Customer();
+         final Customer customer = new Customer();
 
          customer.setName(registration.getCorporateName());
 
          // Default contract
-         Contract contract = new Contract();
+         final Contract contract = new Contract();
 
          contract.setCustomer(customer);
 
@@ -99,7 +97,7 @@ public class JpaRegistrationService implements RegistrationService {
          contract.setRate(BigDecimal.valueOf(0));
 
          // Default project
-         Project project = new Project();
+         final Project project = new Project();
 
          project.setName(DEFAULT_PROJECT_NAME);
          project.setContract(contract);
@@ -112,19 +110,19 @@ public class JpaRegistrationService implements RegistrationService {
          em.persist(contract);
          em.persist(project);
          em.persist(person);
-         LOG.debug("Successfully persisted entry with email {}", registration.getEmail());
+         log.debug("Successfully persisted entry with email {}", registration.getEmail());
       } catch (Exception e) {
-         LOG.error("Failed to persist entry", e);
+         log.error("Failed to persist entry", e);
       }
    }
 
    @Override
-   public void sendChallenge(Registration registration) {
-      LOG.debug("sendChallenge(sendChallenge: {}, email: {})",
+   public void sendChallenge(final Registration registration) {
+      log.debug("sendChallenge(sendChallenge: {}, email: {})",
                 registration.getSentChallenge(),
                 registration.getEmail());
 
-      SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+      final SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
       simpleMailMessage.setTo(registration.getEmail());
       simpleMailMessage.setText(registration.getSentChallenge());
@@ -134,11 +132,11 @@ public class JpaRegistrationService implements RegistrationService {
    }
 
    @Override
-   public boolean verifyChallenge(Registration registration) {
-      LOG.debug("verifyChallenge user: {}, sent-otp: {}, received-otp: {}",
+   public boolean verifyChallenge(final Registration registration) {
+      log.debug("verifyChallenge user: {}, sent-otp: {}, received-otp: {}",
                 registration.getEmail(),
                 registration.getSentChallenge(),
-                registration.getReceivedChallenge().toString());
+                registration.getReceivedChallenge());
 
       if ((registration.getReceivedChallenge() != null) && (registration.getSentChallenge() != null)) {
          return registration.getReceivedChallenge().equals(registration.getSentChallenge());
@@ -147,26 +145,28 @@ public class JpaRegistrationService implements RegistrationService {
       }
    }
 
+   //~--- get methods ---------------------------------------------------------
+
+   @Override
+   public final boolean isUsernameUnique(final String username) {
+      final Object person =
+         em.createQuery("select u from Person u where u.username = :username").setParameter("username",
+              username).getSingleResult();
+
+      return person == null;
+   }
+
    //~--- set methods ---------------------------------------------------------
 
    @PersistenceContext
-   public void setEntityManager(EntityManager em) {
+   public void setEntityManager(final EntityManager em) {
       this.em = em;
    }
 
    //~--- methods -------------------------------------------------------------
 
-   @Override
-      public final boolean isUsernameUnique(final String username) 
-   {
-      Object person = em.createQuery("select u from Person u where u.username = :username").setParameter("username",
-              username).getSingleResult();
-      return person == null;
-      
-   }
-
-   private String scramblePassword(String password) {
-      StringBuffer sb = new StringBuffer();
+   private static String scramblePassword(final String password) {
+      final StringBuffer sb = new StringBuffer();
 
       for (int i = 0; i < password.length(); i++) {
          sb.append('*');

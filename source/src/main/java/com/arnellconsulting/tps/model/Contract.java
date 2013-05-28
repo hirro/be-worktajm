@@ -30,11 +30,11 @@ public class Contract {
     private BigDecimal rate;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Person> contracters = new HashSet<Person>();
+    private final Set<Person> contracters = new HashSet<Person>();
 
     @ManyToOne
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contract")
-    private Set<Project> projects = new HashSet<Project>();
+    private final Set<Project> projects = new HashSet<Project>();
 }

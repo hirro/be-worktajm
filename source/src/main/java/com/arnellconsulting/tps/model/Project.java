@@ -28,6 +28,6 @@ public class Project implements Serializable {
     private Contract contract;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
-    private Set<TimeEntry> projects = new HashSet<TimeEntry>();
+    private final Set<TimeEntry> projects = new HashSet<TimeEntry>();
 
 }

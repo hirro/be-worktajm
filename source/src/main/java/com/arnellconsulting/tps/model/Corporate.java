@@ -20,8 +20,8 @@ public class Corporate {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-    private Set<Customer> customers = new HashSet<Customer>();
+    private final Set<Customer> customers = new HashSet<Customer>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employer")
-    private Set<Person> Persons = new HashSet<Person>();
+    private final Set<Person> Persons = new HashSet<Person>();
 }
