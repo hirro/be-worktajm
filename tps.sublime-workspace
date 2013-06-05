@@ -1,0 +1,364 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"L",
+				"LicentioUser"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pacak",
+				"Package Control: Remove Package"
+			],
+			[
+				":install",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				":wq",
+				"BracketHighlighter: Swap Quotes"
+			],
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Inst",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Snippet: import junit.framework.TestCase;"
+			]
+		],
+		"width": 507.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": true,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/jiar/git/tps/tech-samples/roo/tps-roo-spring-mvc/src/main/resources/META-INF/spring/email.properties",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/SublimeClang.sublime-settings",
+		"/Users/jiar/svn/saml2/opensaml/2.5.3/src/test/java/org/opensaml/saml2/binding/decoding/HTTPRedirectDeflateDecoderTest.java",
+		"/Users/jiar/svn/saml2/idp2-2/trunk/src/main/java/edu/internet2/middleware/shibboleth/idp/profile/saml2/SSOProfileHandler.java",
+		"/Users/jiar/svn/saml2/idp2-2/trunk/src/main/java/edu/internet2/middleware/shibboleth/idp/profile/saml2/BaseSAML2ProfileRequestContext.java",
+		"/Users/jiar/svn/saml2/idp2-2/trunk/src/main/java/edu/internet2/middleware/shibboleth/idp/profile/saml2/AttributeQueryProfileHandler.java",
+		"/Users/jiar/svn/saml2/opensaml/2.5.3/src/test/java/org/opensaml/saml2/binding/security/SAML2HTTPRedirectDeflateSignatureSecurityPolicyRuleTest.java",
+		"/Users/jiar/svn/saml2/opensaml/2.5.3/src/test/java/org/opensaml/saml2/binding/encoding/HTTPPostEncoderTest.java",
+		"/Users/jiar/svn/saml2/opensaml/2.5.3/src/test/java/org/opensaml/saml1/binding/encoding/HTTPPostEncoderTest.java",
+		"/Users/jiar/svn/saml2/opensaml/2.5.3/src/main/java/org/opensaml/saml2/binding/encoding/HTTPPostSimpleSignEncoder.java",
+		"/Users/jiar/svn/saml2/idp2-2/trunk/src/installer/resources/conf-tmpl/internal.xml",
+		"/Users/jiar/svn/saml2/opensaml/2.5.3/src/main/resources/templates/saml2-post-simplesign-binding.vm",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/api/Jim.java",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/api/AuthenticationMechanism.java",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/jiar/tmp/Bajskorv.java",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/jiar/git/openid/src/test/java/com/smarttrust/licentio/authentication/token/TokenUtilsTest.java",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/api/LicentioUser.java",
+		"/Users/jiar/git/openid/src/test/java/com/smarttrust/licentio/springsecurity/LicentioAuthenticationTokenTest.java",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/Distraction Free.sublime-settings",
+		"/Users/jiar/svn/shibboleth-idp-trunk/idp-saml-impl/src/main/java/net/shibboleth/idp/saml/impl/profile/saml2/SetRequestedAuthenticationWorkflows.java",
+		"/Users/jiar/svn/shibboleth-idp-trunk/idp-authn-impl/src/main/java/net/shibboleth/idp/authn/impl/DisplayUsernamePasswordPage.java",
+		"/Users/jiar/svn/shibboleth-idp-trunk/idp-attribute-filter-api/src/main/java/net/shibboleth/idp/attribute/filtering/AttributeFilteringException.java",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/JSON.sublime-settings",
+		"/Users/jiar/svn/shibboleth-idp-trunk/idp-attribute-filter-spring/src/main/java/net/shibboleth/attribute/filtering/spring/AttributeFilterPolicyBeanDefinitionParser.java",
+		"/Users/jiar/svn/shibboleth-idp-trunk/idp-attribute-api/.settings/org.eclipse.jdt.core.prefs",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/Side Bar.sublime-settings",
+		"/Users/jiar/svn/shibboleth-idp-trunk/idp-saml-api/src/main/java/net/shibboleth/idp/saml/attribute/encoding/AbstractSaml2NameIDEncoder.java",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/openid/web/controller/FirstController.java",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/openid/web/controller/OpenIdUtils.java",
+		"/Users/jiar/git/openid/src/main/webapp/WEB-INF/spring/web-application-config.xml",
+		"/Users/jiar/git/openid/src/main/webapp/WEB-INF/spring/security-config-licentio.xml",
+		"/Users/jiar/git/openid/pom.xml",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/openid/web/controller/OpenIdProviderController.java",
+		"/Users/jiar/git/openid/src/main/resources/xrds.xml",
+		"/Users/jiar/git/openid/src/main/resources/log4j.xml",
+		"/Users/jiar/git/openid/src/main/webapp/WEB-INF/spring/security-config.xml",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/springsecurity/LicentioUserDetails.java",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/springsecurity/LicentioExceptionTranslationFilter.java",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/springsecurity/LicentioUserDetailsService.java",
+		"/Users/jiar/git/openid/src/main/webapp/WEB-INF/authentication/username.html",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/springsecurity/LicentioAuthenticationProvider.java",
+		"/Users/jiar/git/openid/src/main/webapp/WEB-INF/authentication/views.xml",
+		"/Users/jiar/git/openid/target/licentio-openid/WEB-INF/authentication/error_userNameProvidedButInvalid.html",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/Package Control.sublime-settings",
+		"/Users/jiar/git/openid/src/main/webapp/WEB-INF/authentication/error_accountLockedOut.html",
+		"/Users/jiar/git/openid/src/main/java/com/smarttrust/licentio/api/Licentio.java"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"smtp",
+			"cleanup",
+			"com.smarttrust",
+			"licentio",
+			"tp",
+			"tps",
+			"tp",
+			"tps",
+			"licentio",
+			"     <password>li",
+			"     <password>l",
+			"licentio",
+			"Licentio",
+			"licentio",
+			"openid",
+			"samlResponse",
+			"getInboundBinding",
+			"setInboundMessageTransport",
+			"saml2-post-simplesign-binding.vm",
+			"velocityEngine",
+			"VelocityEngine",
+			"HTTPPostSimpleSignEncoder",
+			"HTTPPostEncoder",
+			"HTTPPostDecoder",
+			"HttpServletResponseAdapter",
+			"HTTPRedirectDeflateDecoder",
+			"ial_bay_ssfsdf_funbay_888888",
+			"4888888",
+			"4",
+			"day",
+			"daygggg",
+			"day",
+			"ff",
+			"sdfsdf",
+			"mon",
+			"monday",
+			"funday",
+			"sunday",
+			"maximumWaitTime",
+			"MaximumWaitTime",
+			"maximumWaitTime",
+			"tab",
+			"wrap",
+			"80",
+			"wrap",
+			"ProfileRequestContext",
+			"AuthnRequest",
+			"AuthRequest",
+			"jsp",
+			"[.]jsp$",
+			"webflow",
+			"localhost",
+			"tomcat-maven-plugin",
+			"tab",
+			"form-login",
+			"always-use-default-target",
+			"redirectToLogin",
+			"if",
+			"was",
+			"lookupUser"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 249.0
+	},
+	"output.find_results":
+	{
+		"height": 102.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"person",
+				"src/main/java/com/arnellconsulting/tps/model/Person.java"
+			],
+			[
+				"samplecpp",
+				"libs/spirit/classic/phoenix/example/fundamental/sample5.cpp"
+			],
+			[
+				"sample",
+				"libs/filesystem/test/sample_test.cpp"
+			],
+			[
+				"basesamlprofilerequestcontext",
+				"idp2-2/trunk/src/main/java/edu/internet2/middleware/shibboleth/idp/profile/saml2/BaseSAML2ProfileRequestContext.java"
+			],
+			[
+				"basesaml2profilerequestcontext.",
+				"idp2-2/trunk/src/main/java/edu/internet2/middleware/shibboleth/idp/profile/saml2/BaseSAML2ProfileRequestContext.java"
+			],
+			[
+				"basesaml2profilerequestcontext",
+				"idp2-2/trunk/src/main/java/edu/internet2/middleware/shibboleth/idp/profile/saml2/BaseSAML2ProfileRequestContext.java"
+			],
+			[
+				"saml2-post-simplesign-binding.vm",
+				"opensaml/2.5.3/src/main/resources/templates/saml2-post-simplesign-binding.vm"
+			],
+			[
+				"webbr",
+				"src/main/java/com/smarttrust/licentio/saml/WebBrowserSSO.java"
+			],
+			[
+				"token",
+				"src/test/java/com/smarttrust/licentio/authentication/token/TokenUtilsTest.java"
+			],
+			[
+				"openidcon",
+				"src/main/java/com/smarttrust/licentio/openid/web/controller/OpenIdProviderController.java"
+			],
+			[
+				"log4j",
+				"src/main/resources/log4j.xml"
+			],
+			[
+				"",
+				"src/main/java/com/smarttrust/licentio/openid/web/controller/OpenIdProviderController.java"
+			],
+			[
+				"controller",
+				"src/main/java/com/smarttrust/licentio/openid/web/controller/OpenIdProviderController.java"
+			],
+			[
+				"licentiouser",
+				"src/main/java/com/smarttrust/licentio/springsecurity/LicentioUserDetails.java"
+			],
+			[
+				"install",
+				"target/licentio-openid/WEB-INF/authentication/error_userNameProvidedButInvalid.html"
+			],
+			[
+				"logonpa",
+				"src/main/java/com/smarttrust/licentio/springsecurity/LicentioAuthenticationProvider.java"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 318.0,
+	"status_bar_visible": true
+}
