@@ -59,6 +59,7 @@ a:hover {
   font-weight: 300;
   color: #a8a7a8;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  margin: 0em 0;
 }
 .login p {
   margin: 0 0 10px;
@@ -71,6 +72,7 @@ input, button, label, error {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin: 0em 0;
 }
 
 input[type=text], input[type=password] {
@@ -84,6 +86,7 @@ input[type=text], input[type=password] {
   border-radius: 5px;
   -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  margin: 0em 0;
 }
 input[type=text]:focus, input[type=password]:focus {
   color: white;
@@ -106,6 +109,11 @@ label {
   font-size: 13px;
   font-weight: 100;
   letter-spacing: 1px;
+}
+
+#submit {
+  /* Hack since blueprint overrides this otherwise */
+  padding: 0 0 48px;
 }
 
 .login-submit {
