@@ -2,28 +2,39 @@
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org" lang="en" xml:lang="en">
 	<head>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<!-- This <head> section is only used for static prototyping purposes. At runtime, -->
-		<!-- Tiles will only use the body fragment defined with tiles:fragment="content",  -->
-		<!-- as specified at the corresponding views.xml file.                             -->
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<title>
-			Spring Travel: Spring MVC and Web Flow Reference Application
-		</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" media="screen, projection" href="../styles/blueprint/screen.css" />
-		<link rel="stylesheet" type="text/css" media="print" href="../styles/blueprint/print.css" />
-		<!--[if lt IE 8]>
-				<link rel="stylesheet" type="text/css" media="screen, projection"
-							href="../styles/blueprint/ie.css" />
-		<![endif]-->
-		<link rel="stylesheet" type="text/css" media="screen" href="../styles/booking.css" />
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
-		<!-- Some styles and scripts are served from spring-js-resources-{ver}.jar at -->
-		<!-- runtime. Therefore not available for static prototyping. See the         -->
-		<!-- layouts/standard.html template file for detail.                          -->
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+	    <title>Time Reporting Server</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	            
+		<!-- Blue print framework CSS -->  
+	    <link rel="stylesheet" href="../styles/blueprint/screen.css" type="text/css" media="screen, projection">
+	    <link rel="stylesheet" href="../styles/blueprint/print.css" type="text/css" media="print"> 
+	    <!--[if IE]><link rel="stylesheet" href="../styles/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
+	        
+	    <link rel="stylesheet" type="text/css" media="screen" href="../styles/tps.css" />
+	    <link rel="stylesheet" type="text/css" media="screen" href="../styles/dark_login/style.css" />
+	    
+	    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+	    <!-- Some styles and scripts are served from spring-js-resources-{ver}.jar at -->
+	    <!-- runtime. Therefore not available for static prototyping. See the         -->
+	    <!-- layouts/standard.html template file for detail.                          -->
+	    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+	    
 	</head>
+
+	<div id="header" >
+		<h1>
+	        <a href="/">TRS</a>
+	    </h1>
+	    <div id="navigation">
+	        <nav>
+	            <ul>
+	                <li>Login</li>
+	                <li>Register</li>
+	            </ul>
+	        </nav>    
+	    </div>
+	</div>
+
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<!-- START of the content to be included in the execution result.  -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -31,10 +42,10 @@
 	<!-- template if no static prototyping was intended.               -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<body tiles:fragment="content">
-		<div>
-			<h1>
+		<div class="prepend-6 span-10 append-2 last light_text">
+			<h2>
 				Welcome Time Reporting Server
-			</h1>
+			</h2>
 			<p>
 				Start reporting your time now!
 			</p>
@@ -96,5 +107,10 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<!-- END of the content to be included in the execution result -->
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+		<script>
+		document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+		</script>
+
 	</body>
 </html>
