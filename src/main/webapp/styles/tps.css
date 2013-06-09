@@ -26,62 +26,26 @@
 	display: block;
 }
 
-a,a:visited,a:link,a:active {
-	color: #59924B;
-	background-color: transparent;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-a:hover {
+.dark_text {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: black;
 	color: white;
-	background-color: #65a242;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-button {
-	color: #fff;
-	background: #fff url(../images/btn.bg.gif) 0 0 repeat-x;
-	border-style: none;
-}
-
-button:hover {
-	color: yellow;
-	background: #fff url(../images/btn.bg.gif) 0 0 repeat-x;
-	border-style: none;
-}
-
-.summary {
 	width: 100%;
-	border: 1px solid #414f23;
-	border-collapse: collapse;
+	height: 100%;	
 }
 
-.summary thead th {
-	border-left: 1px solid #414f23;
-	background: #fff url(../images/th.bg.gif) 0 100% repeat-x;
-	border-bottom: 1px solid #414f23;
-	padding: 6px;
-	text-align: left;
-	font-size: small;
+.light_text {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: white;
+	width: 100%;
+	height: 100%;	
 }
 
-.summary tbody td {
-	border-left: 1px solid #9cac7c;
-	padding: 4px;
-	border-bottom: 1px solid #9cac7c;
-	font-size: 8pt;
-}
-
-.label {
-	font-weight: bold;	
-}
-
-div.confirmed {
-	border: solid 1px #CCCCCC;
-	background: #E4F7CD;
-	padding: 4px;
-	font-weight: bold;
-	margin-bottom: 4px;
+.error_text {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+	height: 100%;		
 }
