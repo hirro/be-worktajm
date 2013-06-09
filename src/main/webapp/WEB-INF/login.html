@@ -16,7 +16,9 @@
     <title>Time Reporting Server</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             
-	<!-- Blue print dramework CSS -->  
+	<!-- Blue print framework CSS -->  
+    <link rel="stylesheet" href="../styles/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="../styles/blueprint/print.css" type="text/css" media="print"> 
     <!--[if IE]><link rel="stylesheet" href="../styles/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
         
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/tps.css" />
@@ -30,11 +32,18 @@
     
 </head>
 
-<div id="header" class="prepend-6 span-10 append-2 last">
-	<h1><a href="#"/></h1>
-	<nav>
-	  <a href="/jquery/">Login</a>
-	</nav>
+<div id="header" >
+	<h1>
+        <a href="/">TRS</a>
+    </h1>
+    <div id="navigation">
+        <nav>
+            <ul>
+                <li>Login</li>
+                <li>Register</li>
+            </ul>
+        </nav>    
+    </div>
 </div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -102,6 +111,10 @@
     </div>
 </div>
     
+<script>
+document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+</script>
+
 </body>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- END of the content to be included in the execution result -->
