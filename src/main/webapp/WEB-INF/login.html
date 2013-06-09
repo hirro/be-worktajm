@@ -13,22 +13,14 @@
     <!-- as specified at the corresponding views.xml file.                             -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-    <title>Spring Travel: Spring MVC and Web Flow Reference Application</title>
+    <title>Time Reporting Server</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <link rel="stylesheet" type="text/css" media="screen, projection" 
-          href="../styles/blueprint/screen.css" />
-    
-    <link rel="stylesheet" type="text/css" media="print" 
-          href="../styles/blueprint/print.css" />
-    
-    <!--[if lt IE 8]>
-        <link rel="stylesheet" type="text/css" media="screen, projection"
-              href="../styles/blueprint/ie.css" />
-    <![endif]-->
-    
-    <link rel="stylesheet" type="text/css" media="screen" 
-          href="../styles/booking.css" />
+            
+	<!-- Blue print dramework CSS -->  
+    <!--[if IE]><link rel="stylesheet" href="../styles/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
+        
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/tps.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/dark_login/style.css" />
     
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <!-- Some styles and scripts are served from spring-js-resources-{ver}.jar at -->
@@ -37,6 +29,13 @@
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     
 </head>
+
+<div id="header" class="prepend-6 span-10 append-2 last">
+	<h1><a href="#"/></h1>
+	<nav>
+	  <a href="/jquery/">Login</a>
+	</nav>
+</div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- START of the content to be included in the execution result.  -->
@@ -50,74 +49,59 @@
      xmlns:th="http://www.thymeleaf.org"
      th:with="lastUsernameKey=${T(org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter).SPRING_SECURITY_LAST_USERNAME_KEY},
               lastExceptionKey=${T(org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter).SPRING_SECURITY_LAST_EXCEPTION_KEY}">
-
-    <div class="error" th:if="${param.login_error}">
-        Your login attempt was not successful, try again.<br /><br />
-        Reason: <span th:text="${session[__${lastExceptionKey}__].message}">Invalid password</span> 
-    </div>
     
-    <form name="f" action="#" th:action="@{/loginProcess}" method="post">
+    <form name="f" action="#" th:action="@{/loginProcess}" method="post" class="login">
     
-        <fieldset>
-        
-            <legend>Login Information</legend>
-            
             <p>
-                <label for="j_username">User:</label>
-                <br />
-                <input type="text" name="j_username" id="j_username"
+                <label for="login">User:</label>
+                <input type="text" name="j_username" id="login"
                        th:value="${param.login_error} ? ${session[__${lastUsernameKey}__]} : ''" />
             </p>
             
             <script type="text/javascript">
                 // <![CDATA[
                     Spring.addDecoration(new Spring.ElementDecoration({
-                        elementId : "j_username",
+                        elementId : "login",
                         widgetType : "dijit.form.ValidationTextBox",
                         widgetAttrs : { required : true }}));
                 // ]]>
             </script>
             
             <p>
-                <label for="j_password">Password:</label>
-                <br />
-                <input type="password" name="j_password" id="j_password" />
+                <label for="password">Password:</label>
+                <input type="password" name="j_password" id="password" />
             </p>
             
             <script type="text/javascript">
                 // <![CDATA[
                     Spring.addDecoration(new Spring.ElementDecoration({
-                        elementId : "j_password",
+                        elementId : "password",
                         widgetType : "dijit.form.ValidationTextBox",
                         widgetAttrs : { required : true}}));
                 // ]]>
             </script>
             
-            <p>
-                <input type="checkbox" name="_spring_security_remember_me" id="remember_me" />
-                <label for="remember_me">Don't ask for my password for two weeks:</label>
-            </p>
-            
-            <script type="text/javascript">
-                // <![CDATA[
-                    Spring.addDecoration(new Spring.ElementDecoration({
-                        elementId : "remember_me",
-                        widgetType : "dijit.form.CheckBox"}));
-                // ]]>
-            </script>
-            
-            <p>
-                <button id="submit" type="submit">Login</button>
+            <p class="login-submit">
+                <button id="submit" type="submit" class="login-button">Login</button>
                 <script type="text/javascript">
                     Spring.addDecoration(
                             new Spring.ValidateAllDecoration({event : 'onclick', elementId : 'submit'}));
                 </script>
             </p>            
-        </fieldset>        
+            
+                <p class="forgot-password"><a href="index.html">Forgot your password?</a></p>
     </form>    
 </div>
 
-
+<div class="prepend-6 span-10 append-2 last">
+    <div class="error" th:if="${param.login_error}">
+    	<p>
+	        Your login attempt was not successful, try again.<br />
+			Reason: <span th:text="${session[__${lastExceptionKey}__].message}">Invalid password</span> 
+        <p>
+    </div>
+</div>
+    
 </body>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- END of the content to be included in the execution result -->
