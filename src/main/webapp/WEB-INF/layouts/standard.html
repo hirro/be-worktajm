@@ -11,10 +11,11 @@
               
     <!-- Blue print framework CSS -->  
     <link rel="stylesheet" href="../styles/blueprint/print.css" th:href="@{/styles/blueprint/print.css}" type="text/css" media="print"/> 
+    <link rel="stylesheet" href="../styles/blueprint/screen.css" th:href="@{/styles/blueprint/screen.css}" type="text/css" media="screen, projection"/>
     <!--[if IE]><link rel="stylesheet" href="../styles/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
         
-    <link rel="stylesheet" type="text/css" media="screen" href="../styles/tps.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../styles/dark_login/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/tps.css" th:href="@{/styles/tps.css}"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/dark_login/style.css" th:href="@{/styles/dark_login/style.css}" />
       
 
     <script type="text/javascript" src="#" th:src="@{/resources/dojo/dojo.js}"></script>
@@ -40,7 +41,7 @@
     </div> 
 
     <div id="content">
-        <div id="main" class="span-18 last" tiles:include="body">
+        <div id="main" class="prepend-6 span-10 append-2 last light_text" tiles:include="body">
 
           <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->      
           <!-- At runtime, the body of this <div> will be substituted by -->
@@ -52,7 +53,7 @@
         </div>
     </div>
     
-    <div id="footer">
+    <div id="footer" class="prepend-6 span-10 append-2 last">
         <a href="http://www.springframework.org">
             <img src="../../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
         </a>
