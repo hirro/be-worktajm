@@ -18,7 +18,7 @@
             
 	<!-- Blue print framework CSS -->  
     <link rel="stylesheet" href="../styles/blueprint/screen.css" type="text/css" media="screen, projection"/>
-    <link rel="stylesheet" href="../styles/blueprint/print.css" type="text/css" media="print"/> 
+    <link rel="stylesheet" href="../styles/blueprint/print.css" type="text/css" media="print> 
     <!--[if IE]><link rel="stylesheet" href="../styles/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
         
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/tps.css" />
@@ -32,34 +32,35 @@
     
 </head>
 
-<div id="header" >
-	<h1>
-        <a href="/">TRS</a>
-    </h1>
-    <div id="navigation">
-        <nav>
-            <ul>
-                <li>Login</li>
-                <li>Register</li>
-            </ul>
-        </nav>    
-    </div>
-</div>
-
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- START of the content to be included in the execution result.  -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- Only the markup inside this <body> would be required in this  -->
 <!-- template if no static prototyping was intended.               -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<body tiles:fragment="content">
+<body>
 
-<div class="prepend-6 span-10 append-2 last" 
-     xmlns:th="http://www.thymeleaf.org"
-     th:with="lastUsernameKey=${T(org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter).SPRING_SECURITY_LAST_USERNAME_KEY},
+    <div id="header" >
+        <h1>
+            <a href="/">TRS</a>
+        </h1>
+        <div id="navigation">
+            <nav>
+                <ul>
+                    <li>Login</li>
+                    <li>Register</li>
+                </ul>
+            </nav>    
+        </div>
+    </div>      
+
+    <div tiles:fragment="content"
+        class="prepend-6 span-10 append-2 last" 
+        xmlns:th="http://www.thymeleaf.org"
+        th:with="lastUsernameKey=${T(org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter).SPRING_SECURITY_LAST_USERNAME_KEY},
               lastExceptionKey=${T(org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter).SPRING_SECURITY_LAST_EXCEPTION_KEY}">
     
-    <form name="f" action="#" th:action="@{/loginProcess}" method="post" class="login">
+        <form name="f" action="#" th:action="@{/loginProcess}" method="post" class="login">
     
             <p>
                 <label for="login">User:</label>
