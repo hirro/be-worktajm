@@ -5,6 +5,9 @@
 
 <tiles-definitions>
 	
-    <definition name="standardLayout" template="/layouts/standard.html" templateType="thymeleaf"/>
+    <definition name="standardLayout" template="/layouts/standard.html" templateType="thymeleaf">
+		<put-attribute name="header" value="/layouts/header.html :: content" type="thymeleaf"/>
+		<put-attribute name="footer" value="/layouts/footer.html :: content" type="thymeleaf"/>    	    	
+    </definition>
     	
 </tiles-definitions>
