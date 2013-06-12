@@ -26,21 +26,9 @@
 
 <body>        
 
-    <div id="header" >
-        <h1>
-            <a href="/">TRS</a>
-        </h1>
-        <div id="navigation">
-            <nav>
-                <ul>
-                    <li>Login</li>
-                    <li>Register</li>
-                </ul>
-            </nav>    
-        </div>
-    </div> 
 
     <div id="content">
+        <div id="header" class="prepend-6 span-10 append-2 last light_text" tiles:include="header"/>
         <div id="main" class="prepend-6 span-10 append-2 last light_text" tiles:include="body">
 
           <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->      
@@ -51,12 +39,7 @@
           
           BODY PAGE GOES HERE!              
         </div>
-    </div>
-    
-    <div id="footer" class="prepend-6 span-10 append-2 last">
-        <a href="http://www.springframework.org">
-            <img src="../../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
-        </a>
+        <div id="footer" tiles:substituteby="footer">Footer Block</div>
     </div>
         
   </body>
