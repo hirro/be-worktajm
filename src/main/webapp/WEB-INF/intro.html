@@ -28,13 +28,33 @@
 	<!-- template if no static prototyping was intended.               -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<body>	
+	
+	    <div id="header" >
+	        <h1>
+	            <a href="/">TRS</a>
+	        </h1>
+	        <div id="navigation">
+	            <nav>
+	                <ul>
+	                    <li>Login</li>
+	                    <li>Register</li>
+	                </ul>
+	            </nav>    
+	        </div>
+	    </div> 	
 		
 		<div tiles:fragment="content" class="prepend-6 span-10 append-2 last light_text">
 			<h2>
 				[Intro text]
 			</h2>
-
 		</div>
+		
+        <div id="footer" class="prepend-6 span-10 append-2 last dark_text">
+            <a href="http://www.springframework.org">
+                <img src="../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
+            </a>
+            [FOOTER TEXT]
+        </div>		
 
 	</body>
 </html>
