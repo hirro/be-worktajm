@@ -1,46 +1,76 @@
 #header {
 	color: white;
-	height: 40px;
+	height:30px;
 	width: 100%;
-	background: black;
+	background: #256188;
 	display: block;
 	position: relative;
 	z-index: 12;
 	overflow: visible;
-	padding: 0 13 0 20px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
-#header h1 > a {
+#header > a {
 	padding: 0px;
 	display: block;
 	width: 100%;
-	height: 100%;	
+	height: 100%;
 	text-indent: -9999em;
-	background: url(../images/logo.png) no-repeat left center;
+	background: url(../images/logo.png) no-repeat left top;
 }
 
 #navigation {
 	float: right;
 	position: relative;
-	margin-top: 17px
+	margin-top: 17px;
 	display: block;
 }
 
-.dark_text {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background: black;
-	color: white;
+.background_dark {
 	width: 100%;
-	height: 100%;	
+	background: black;	
+	color: white;
+}
+.background_dark h2 {
+	font-weight: bold;
+	color:white;
+	font-weight: normal;
+	font-family: "myriad-pro-1","myriad-pro-2",Arial,Helvetica,sans-serif;	
+	text-shadow: 1px 2px 3px rgb(0, 0, 0);
+}
+.background_dark h4 {
+	font-weight:lighter;
+	color: rgb(153, 153, 153);
+	font-family: "myriad-pro-1","myriad-pro-2",Arial,Helvetica,sans-serif;
+	font-weight: 200;
 }
 
-.light_text {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background: white;
+.background_grey {
 	width: 100%;
-	height: 100%;	
+	background: gray;	
+	color: white;
+}
+.background_grey h2 {
+	font-weight: bold;
+	color:white;
+}
+.background_grey h4 {
+   font-family: "myriad-pro-semi-condensed-1","myriad-pro-semi-condensed-2",Arial,Helvetica,sans-serif;
+    font-size: 1.6em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2em;
+	color:#720713;
+	-webkit-margin: 0em;
+	margin: 0em;
+}
+.background_white {
+	width: 100%;
+	background: white;	
+	color: black;
 }
 
 .error_text {
@@ -50,6 +80,95 @@
 	height: 100%;		
 }
 
-.h1 {
-	font-family: Verdana, Tahoma, "DejaVu Sans", sans-serif;
+.section {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-family: "myriad-pro-1","myriad-pro-2",Arial,Helvetica,sans-serif;
+}
+
+.kolumn {
+	padding-left: 10px;	
+}
+
+/* From cool menu
+See http://www.onextrapixel.com/2011/06/03/how-to-create-a-horizontal-dropdown-menu-with-html-css-and-jquery/
+*/
+
+#navigation ul {
+    list-style: none;
+}
+#navigation {
+    float: left;
+}
+#navigation > li {
+    float: left;
+}
+#navigation li a {
+	display: block;
+    height: 2em;
+    line-height: 2em;
+    padding: 0 1.5em;
+    text-decoration: none;
+}
+#navigation ul {
+    position: absolute;
+    display: none;
+	z-index: 999;
+}
+#navigation ul li a {
+    width: 80px;
+}
+#navigation li:hover ul {
+    display: block;
+}
+
+.promo-picture {	
+	background: url(../images/photo_1824_20060728.jpg) no-repeat left top;	
+	background-size: 100%;
+	height: 260px;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+}
+
+.ios {
+	background: url(../images/ios.png)  no-repeat left top;
+	background-size:100%;	
+	background-position: center center;
+	width: 168px;
+	height: 61px;
+	padding-top: 10px;
+	display:inline-block;
+	margin-right: 10px;
+}
+
+.android {
+	padding-top: 10px;
+	background: url(../images/andriod.png)  no-repeat left top;
+	background-size:100%;	
+	background-position: center center;
+	width: 168px;
+	height: 61px;
+	display:inline-block;
+}
+
+#registration {
+	padding-top: 20px;
+	min-height: 400px;
+vertical-align: top;
+}
+#registration-form {
+	vertical-align:bottom;
+	margin-top: 5em;	
+}
+#registration-form li {
+	list-style: none;
+}
+#registration-form input[type=text], input[type=password] {
+	display: block;	
+}
+#registration-form input[type=submit] {
+	margin-top: 1em;
+}
+.error {
+	display: none;
 }
