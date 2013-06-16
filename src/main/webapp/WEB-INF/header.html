@@ -1,13 +1,69 @@
-<div id="header" tiles:include="header">
-    <h1>
-        <a href="/">TRS</a>
-    </h1>
-    <div id="navigation">
-        <nav>
-            <ul>
-                <li>Login</li>
-                <li>Register</li>
-            </ul>
-        </nav>    
-    </div>
-</div>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- This <head> section is only used for static prototyping purposes. At runtime, -->
+    <!-- Tiles will only use the body fragment defined with tiles:fragment="content",  --> 
+    <!-- as specified at the corresponding views.xml file.                             -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <title>Time Reporting Server</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            
+	<!-- Blue print framework CSS -->  
+    <link rel="stylesheet" href="../styles/blueprint/screen.css" type="text/css" media="screen, projection"/>
+    <link rel="stylesheet" href="../styles/blueprint/print.css" type="text/css" media="print" /> 
+    <!--[if IE]><link rel="stylesheet" href="../styles/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
+        
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/tps.css" />
+    
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!-- Some styles and scripts are served from spring-js-resources-{ver}.jar at -->
+    <!-- runtime. Therefore not available for static prototyping. See the         -->
+    <!-- layouts/standard.html template file for detail.                          -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    
+</head>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- START of the content to be included in the execution result.  -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Only the markup inside this <body> would be required in this  -->
+<!-- template if no static prototyping was intended.               -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<body>
+
+    <div id="header"
+    	tiles:fragment="header"
+        class="prepend-6 span-10 append-2 last" 
+        xmlns:th="http://www.thymeleaf.org"
+        th:with="lastUsernameKey=${T(org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter).SPRING_SECURITY_LAST_USERNAME_KEY},
+              lastExceptionKey=${T(org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter).SPRING_SECURITY_LAST_EXCEPTION_KEY}">
+		<div tiles:fragment="content">
+		    <h1>
+		        <a href="/">TRS</a>
+		    </h1>
+		    <div id="navigation">
+		        <nav>
+		            <ul>
+		                <li>Login</li>
+		                <li>Register</li>
+		            </ul>
+		        </nav>    
+		    </div>
+		</div>
+		
+	</div>
+
+</body>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- END of the content to be included in the execution result -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+</html>

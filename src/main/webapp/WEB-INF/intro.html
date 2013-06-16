@@ -2,7 +2,7 @@
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org" lang="en" xml:lang="en">
 	<head>
-	    <title>Time Reporting Server</title>
+	    <title>Intro</title>
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	            
 		<!-- Blue print framework CSS -->  
@@ -11,7 +11,6 @@
 	    <!--[if IE]><link rel="stylesheet" href="../styles/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
 	        
 	    <link rel="stylesheet" type="text/css" media="screen" href="../styles/tps.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="../styles/dark_login/style.css" />
 	    
 	    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
 	    <!-- Some styles and scripts are served from spring-js-resources-{ver}.jar at -->
@@ -29,32 +28,67 @@
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<body>	
 	
-	    <div id="header" >
-	        <h1>
-	            <a href="/">TRS</a>
-	        </h1>
-	        <div id="navigation">
-	            <nav>
-	                <ul>
-	                    <li>Login</li>
-	                    <li>Register</li>
-	                </ul>
-	            </nav>    
-	        </div>
-	    </div> 	
-		
-		<div tiles:fragment="content" class="prepend-6 span-10 append-2 last light_text">
-			<h2>
-				[Intro text]
-			</h2>
+		<div class="prepend-2 span-20 append-2 last" id="header">
+	        <a href="/">&nbsp;</a>
+		</div>
+		<div id="section-1" class="prepend-2 span-20 append-2 last section background_dark">
+			<div class="span-20 last">
+				<div class="span-10">
+					<h2>Start reporting time now!</h2>
+					<hr/>
+					<h4>
+						Simple and free registration.<br/>
+						Generate invoices and track time.
+					</h4>
+					<a class="button" href="register.html">Sign up for free</a>
+					<a class="button" href="login.html">Login</a>
+				</div>
+				<div class="span-10 last">
+					<div class="promo-picture">
+					</div>
+					<div class="span-10 last">
+						<div class="ios">
+							&nbsp;
+						</div>
+	    				<div class="android">
+	    					&nbsp;
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="section-2" class="prepend-2 span-20 append-2 last section background_grey">
+			<div class="span-20 last">
+				<div class="span-9 append-1">
+					<h4>Registration</h4>
+					Just enter email to get started!
+					You will be up and reporting in a minute.
+				</div>
+				<div class="span-9 append-1 last">
+					<h4>Reporting</h4>
+					Easily log time for the projects which you have defined.
+				</div>
+				<div class="span-9 append-1 section">
+					<h4>Invoices</h4>
+					Generate invoices.
+				</div>
+				<div class="span-9 append-1 last">
+					<h4>Corporate</h4>
+					Invite employees to report time under the projects which you have defined.
+				</div>
+			</div>
 		</div>
 		
-        <div id="footer" class="prepend-6 span-10 append-2 last dark_text">
-            <a href="http://www.springframework.org">
-                <img src="../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
-            </a>
-            [FOOTER TEXT]
-        </div>		
+		<div id="footer" class="prepend-2 span-20 append-2 last section background_white">
+        	<div class="span-20 last">
+            	
+        	</div>
+        	<div class="span-20 last">
+	            <a href="http://www.springframework.org">
+    	            <img src="../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
+				</a>
+        	</div>
+        </div>	
 
 	</body>
 </html>

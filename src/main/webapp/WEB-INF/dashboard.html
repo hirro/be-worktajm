@@ -2,7 +2,7 @@
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org" lang="en" xml:lang="en">
 	<head>
-	    <title>Login</title>
+	    <title>Dashboard</title>
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	            
 		<!-- Blue print framework CSS -->  
@@ -28,31 +28,42 @@
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<body>	
 	
-		<div class="prepend-2 span-20 append-2 last" id="header">
-	        <a href="/">&nbsp;</a>
+		<div class="span-24" id="header">
+	        <h1>
+	            <a href="/">[HEADER from intro.html]</a>
+	        </h1>
+	        <div id="navigation">
+	            <nav>
+	                <ul>
+	                    <li>Login</li>
+	                    <li>Register</li>
+	                </ul>
+	            </nav>    
+	        </div>
 		</div>
-		<div class="background_dark prepend-2 span-20 append-2 last section ">
-			<div id="registration" class="span-20">
-
-		       <form id="registration-form" action="" method="post">
-					<div class="error">
-						This is a &lt;div&gt; with the class <strong>.error</strong>.
-					</div>
-					<label for="email">Enter email</label>
-					<input type="text" class="title" name="email" placeholder="Enter you email address" id="email">
-					<label for="password">Enter password</label>
-					<input type="password" class="title" name="password" placeholder="Enter you password" id="password">
-					<input type="submit" value="Submit">
-					<input type="reset" value="Reset">
-		        </form>
+		
+		<div id="content" tiles:fragment="content" class="prepend-4 span-16 append-4">
+			<div class="span-10">
+				<h1>
+					Dashboard
+				</h1>
+			</div>
+			<div class="span-5 last">
+				<h2>My projects</h2>
+				Text
+			</div>
+			<div class="span-5">
+				<h2>Activity feed</h2>
+				Text
 			</div>
 		</div>
 		
-		<div id="footer" class="prepend-2 span-20 append-2 last section background_white">
-        	<div class="span-20 last">
-            	
+		<div id="footer" class="prepend-4 span-16 append-4">
+        	<div class="span-16">
+                    [FOOTER TEXT]
         	</div>
-        	<div class="span-20 last">
+
+        	<div class="span-16">
 	            <a href="http://www.springframework.org">
     	            <img src="../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
 				</a>

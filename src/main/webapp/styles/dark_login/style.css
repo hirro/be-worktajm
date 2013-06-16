@@ -35,7 +35,7 @@ table {
  * http://www.opensource.org/licenses/mit-license.php
  */
 body, .login-submit, .login-submit:before, .login-submit:after {
-  background: #373737 url("../../images/dark_login/bg.png") 0 0 repeat;
+  background: #eeeeee;
 }
 
 body {
