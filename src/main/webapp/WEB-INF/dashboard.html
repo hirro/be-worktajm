@@ -1,74 +1,143 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org" lang="en" xml:lang="en">
-	<head>
-	    <title>Dashboard</title>
-	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	            
-		<!-- Blue print framework CSS -->  
-	    <link rel="stylesheet" href="../styles/blueprint/screen.css" type="text/css" media="screen, projection"/>
-	    <link rel="stylesheet" href="../styles/blueprint/print.css" type="text/css" media="print"/> 
-	    <!--[if IE]><link rel="stylesheet" href="../styles/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
-	        
-	    <link rel="stylesheet" type="text/css" media="screen" href="../styles/tps.css" />
-	    
-	    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
-	    <!-- Some styles and scripts are served from spring-js-resources-{ver}.jar at -->
-	    <!-- runtime. Therefore not available for static prototyping. See the         -->
-	    <!-- layouts/standard.html template file for detail.                          -->
-	    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
-	    
-	</head>
 
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<!-- START of the content to be included in the execution result.  -->
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<!-- Only the markup inside this <body> would be required in this  -->
-	<!-- template if no static prototyping was intended.               -->
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<body>	
-	
-		<div class="span-24" id="header">
-	        <h1>
-	            <a href="/">[HEADER from intro.html]</a>
-	        </h1>
-	        <div id="navigation">
-	            <nav>
-	                <ul>
-	                    <li>Login</li>
-	                    <li>Register</li>
-	                </ul>
-	            </nav>    
-	        </div>
-		</div>
-		
-		<div id="content" tiles:fragment="content" class="prepend-4 span-16 append-4">
-			<div class="span-10">
-				<h1>
-					Dashboard
-				</h1>
-			</div>
-			<div class="span-5 last">
-				<h2>My projects</h2>
-				Text
-			</div>
-			<div class="span-5">
-				<h2>Activity feed</h2>
-				Text
-			</div>
-		</div>
-		
-		<div id="footer" class="prepend-4 span-16 append-4">
-        	<div class="span-16">
-                    [FOOTER TEXT]
-        	</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Daahboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        	<div class="span-16">
-	            <a href="http://www.springframework.org">
-    	            <img src="../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
-				</a>
-        	</div>
-        </div>	
+    <!-- Le styles -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
-	</body>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Time Reporting Server</a>
+          <div class="nav-collapse collapse pull-right">
+            <ul class="nav">
+              <li class="active"><a href="#">Dashboard</a></li>
+              <li><a href="#about">Time Entry</a></li>
+              <li><a href="#contact">Reports</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">User</a></li>
+                  <li><a href="#">Projects</a></li>
+                  <li><a href="#">Customers</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h2>Start Reporting Now!</h2>
+        <hr/>
+        <p>Simple and free registration.<br/>Generate invoices and track time.</p>
+        <p>
+        	<a href="#" class="btn btn-primary btn-large">Register &raquo;</a>
+			<a href="#" class="btn btn-primary btn-large">Login &raquo;</a>
+        </p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h4>Simple Registration</h4>
+          <p>Just enter email to get started! You will be up and reporting in a minute.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h4>Reporting</h4>
+          <p>Easily log time for the projects which you have defined.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+       <div class="span4">
+       	<img src="../images/photo_1824_20060728.jpg" style="width: 100%;"/>
+       </div>
+      </div>
+	  <div class="row">
+	  &nbsp;
+      </div>
+
+      <div class="row">
+        <div class="span4">
+	       	<img src="../images/diplomat.jpg" style="width: 100%;"/>
+        </div>
+        <div class="span4">
+          <h24Invoices</h4>
+          <p>Generate invoices.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h4>Corporate</h4>
+          <p>Invite employees to report time under the projects which you have defined.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
 </html>
