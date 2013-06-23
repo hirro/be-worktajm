@@ -12,7 +12,7 @@
   <spring:url var="home" value="/" />
   <spring:url var="login" value="/login" />
   <spring:url var="logout" value="/logout" />
-  <spring:url var="register" value="/registration" />
+  <spring:url var="register" value="/register" />
   <spring:message code="button_home" var="home_label" htmlEscape="false" />
   <a href="${home}" name="${fn:escapeXml(home_label)}" title="${fn:escapeXml(home_label)}">
     <img src="${banner}" />
