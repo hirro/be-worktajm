@@ -5,10 +5,14 @@
 	
 <tiles-definitions>
 	
-	<definition name="intro" extends="standardLayout">
-		<put-attribute name="body" value="/intro.html :: content" type="thymeleaf"/>
+	<definition name="landing" extends="standardLayout">
+		<put-attribute name="body" value="/landing.html :: content" type="thymeleaf"/>
 	</definition>
 	
+	<definition name="register" extends="standardLayout">
+		<put-attribute name="body" value="/register.html :: content" type="thymeleaf"/>
+	</definition>
+
 	<definition name="login" extends="standardLayout">
 		<put-attribute name="body" value="/login.html :: content" type="thymeleaf"/>
 	</definition>
