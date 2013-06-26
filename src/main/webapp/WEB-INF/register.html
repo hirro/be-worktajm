@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="utf-8"/>
     <title>Registration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,9 +10,9 @@
     <meta name="author" content=""/>
 
     <!-- Le styles -->
-    <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet"/>
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" th:href="@{/resources/assets/css/bootstrap.css}" />
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet" th:href="@{/resources/assets/cssbootstrap-responsive.css}" />
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" th:href="@{/resources/font-awesome/css/font-awesome.min.css}" />
     <style>
 
     /* GLOBAL STYLES
@@ -21,24 +23,24 @@
       color: #5a5a5a;
     }
 
-	/* Customize the footer, inverted black */
-	.footer {
-		background-color: black;
-		margin-top: 40px;
-		padding: 15px 50px;
-		margin-bottom: 0px;
-		color:gray; 
-		border-top: 1px solid #e5e5e5;
-	}
+  	/* Customize the footer, inverted black */
+  	.footer {
+  		background-color: black;
+  		margin-top: 40px;
+  		padding: 15px 50px;
+  		margin-bottom: 0px;
+  		color:gray; 
+  		border-top: 1px solid #e5e5e5;
+  	}
 
-	html {
-		background-color: black;
-	}
+  	html {
+  		background-color: black;
+  	}
 
-	#registrationForm {
-		margin-top: 100px;
-		min-height: 400px;
-	}
+  	#registrationForm {
+  		margin-top: 100px;
+  		min-height: 400px;
+  	}
 
     /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
@@ -162,8 +164,10 @@
   			<a class="brand" href="landing.html"><img src="../images/logo.png" alt="LOGO"/></a>
   		</div>
     </div>
+<!-- FROM START OF DOCUMENT -->
+<!-- header.html END -->
 
-    <div class="container">
+    <div class="container" tiles:fragment="content">
     	<div id="registrationForm">
 			<form class="form-horizontal">
 				<fieldset>
@@ -212,7 +216,7 @@
     	</div>
 	</div>
 
-	<!-- FOOTER -->
+	<!-- footer.html start -->
 	<footer class="footer">
 		<div class="container">
 			<div class="row">
@@ -230,31 +234,70 @@
 		</div>
 	</footer>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
-    <script>
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../assets/js/jquery.js" 
+          th:src="@{/resources/assets/js/jquery.js}" 
+          type="text/javascript">
+  </script>  
+  <script src="../assets/js/bootstrap-transition.js" 
+          th:src="@{/resources/assets/js/bootstrap-transition.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-alert.js" 
+          th:src="@{/resources/assets/js/bootstrap-alert.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-modal.js" 
+          th:src="@{/resources/assets/js/bootstrap-modal.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-dropdown.js" 
+          th:src="@{/resources/assets/js/bootstrap-dropdown.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-scrollspy.js" 
+          th:src="@{/resources/assets/js/bootstrap-scrollspy.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-tab.js" 
+          th:src="@{/resources/assets/js/bootstrap-tab.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-tooltip.js" 
+          th:src="@{/resources/assets/js/bootstrap-tooltip.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-popover.js" 
+          th:src="@{/resources/assets/js/bootstrap-popover.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-button.js" 
+          th:src="@{/resources/assets/js/bootstrap-button.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-collapse.js" 
+          th:src="@{/resources/assets/js/bootstrap-collapse.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-carousel.js" 
+          th:src="@{/resources/assets/js/bootstrap-carousel.js}" 
+          type="text/javascript">
+  </script>
+  <script src="../assets/js/bootstrap-typeahead.js" 
+          th:src="@{/resources/assets/js/bootstrap-typeahead.js}" 
+          type="text/javascript">
+  </script>
+  <script type="text/javascript">
       !function ($) {
         $(function(){
           // carousel demo
           $('#myCarousel').carousel()
         })
       }(window.jQuery)
-    </script>
-    <script src="../assets/js/holder/holder.js"></script>
-    
+  </script>
+  <script src="../assets/js/holder/holder.js" 
+          th:src="@{/resources/assets/js/holder/holder.js}" 
+          type="text/javascript">
+  </script>
   </body>
 </html>

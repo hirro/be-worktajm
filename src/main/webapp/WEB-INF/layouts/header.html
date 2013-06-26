@@ -1,15 +1,15 @@
 <body tiles:fragment="content">
-    <div id="header">
-        <h1>
-            <a href="/">[HEADER]</a>
-        </h1>
-        <div id="navigation">
-            <nav>
-                <ul>
-                    <li>Login</li>
-                    <li>Register</li>
-                </ul>
-            </nav>    
-        </div>
+  <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+      <a class="brand" href="#">
+         <img src="../images/logo.png" th:src="@{/resources/images/logo.png}" alt="&lt;LOGO&gt;"/>
+      </a>
+
+      <form class="navbar-form pull-right">
+        <input type="text" class="span2" placeholder="Login"/> 
+        <input type="text" class="span2" placeholder="Password"/> 
+        <input type="submit" value="Login" class="btn"/>
+      </form>
     </div>
+  </div> 
 </body>

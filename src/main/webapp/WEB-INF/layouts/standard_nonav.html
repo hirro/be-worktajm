@@ -21,8 +21,7 @@
           href="../font-awesome/css/font-awesome.min.css" 
           th:href="@{/resources/font-awesome/css/font-awesome.min.css}" />
 
-    <style type="text/css">
-
+    <style>
       /* GLOBAL STYLES
       -------------------------------------------------- */
       /* Padding below the footer and lighter body text */
@@ -33,84 +32,39 @@
 
       /* Customize the footer, inverted black */
       .footer {
-          background-color: black;
-          margin-top: 40px;
-          padding: 15px 50px;
-          margin-bottom: 0px;
-          color:gray; 
-          border-top: 1px solid #e5e5e5;
+        background-color: black;
+        margin-top: 40px;
+        padding: 15px 50px;
+        margin-bottom: 0px;
+        color:gray; 
+        border-top: 1px solid #e5e5e5;
       }
 
       html {
-      background-color: black;
-      }
-      
-      .thumbnail-picture {
+        background-color: black;
       }
 
+      #registrationForm {
+        margin-top: 100px;
+        min-height: 400px;
+      }
 
       /* CUSTOMIZE THE NAVBAR
       -------------------------------------------------- */
-      .navbar-form {
-        margin-right: 20px;
-        margin-top: 5px;
-      }
 
-      /* CUSTOMIZE THE CAROUSEL
+      /* CONTENT
       -------------------------------------------------- */
 
-      /* Carousel base class */
-      .carousel {
-        margin-bottom: 60px;
+      /* Center align the text within the three columns below the carousel */
+      .marketing .span4 {
+        text-align: center;
       }
-
-      .carousel .container {
-        position: relative;
-        z-index: 9;
+      .marketing h2 {
+        font-weight: normal;
       }
-
-      .carousel-control {
-        height: 80px;
-        margin-top: 0;
-        font-size: 120px;
-        text-shadow: 0 1px 1px rgba(0,0,0,.4);
-        background-color: transparent;
-        border: 0;
-        z-index: 10;
-      }
-
-      .carousel .item {
-        height: 500px;
-      }
-      .carousel img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        min-width: 100%;
-        height: 500px;
-      }
-
-      .carousel-caption {
-        background-color: transparent;
-        position: static;
-        max-width: 550px;
-        padding: 0 20px;
-        margin-top: 200px;
-      }
-      .carousel-caption h1,
-      .carousel-caption .lead {
-        margin: 0;
-        line-height: 1.25;
-        color: #fff;
-        text-shadow: 0 1px 1px rgba(0,0,0,.4);
-      }
-      .carousel-caption .btn {
-        margin-top: 10px;
-      }
-
-      /* Thumbnails even height */
-      .thumbnail .caption {
-        height: 200px;
+      .marketing .span4 p {
+        margin-left: 10px;
+        margin-right: 10px;
       }
 
 
@@ -148,6 +102,7 @@
           margin: 0 auto 20px;
         }
       }
+
 
       @media (max-width: 767px) {
 
@@ -192,8 +147,9 @@
           font-size: 18px;
           line-height: 1.5;
         }
+
       }
-    </style>
+      </style>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -221,22 +177,15 @@
   </head>
 
   <body>  
-      <div class="navbar navbar-fixed-top navbar-inverse">
-        <div class="navbar-inner">
-          <a class="brand" href="#">
-             <img src="../images/logo.png" th:src="@{/resources/images/logo.png}" alt="&lt;LOGO&gt;"/>
-          </a>
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <a class="brand" href="#">
+           <img src="../images/logo.png" th:src="@{/resources/images/logo.png}" alt="&lt;LOGO&gt;"/>
+        </a>
+      </div>
+    </div> 
 
-          <form class="navbar-form pull-right">
-            <input type="text" class="span2" placeholder="Login"/> 
-            <input type="text" class="span2" placeholder="Password"/> 
-            <input type="submit" value="Login" class="btn"/>
-          </form>
-        </div>
-      </div> 
-    </body>
-
-  	<div tiles:include="body" id="body"/>
+  	<div tiles:include="body" class="container"/>
 
     <footer class="footer" tiles:fragment="content">
       <div class="container">
@@ -252,71 +201,70 @@
       </div>
     </footer>
 
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="../assets/js/jquery.js" 
-          th:src="@{/resources/assets/js/jquery.js}" 
-          type="text/javascript">
-  </script>  
-  <script src="../assets/js/bootstrap-transition.js" 
-          th:src="@{/resources/assets/js/bootstrap-transition.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-alert.js" 
-          th:src="@{/resources/assets/js/bootstrap-alert.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-modal.js" 
-          th:src="@{/resources/assets/js/bootstrap-modal.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-dropdown.js" 
-          th:src="@{/resources/assets/js/bootstrap-dropdown.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-scrollspy.js" 
-          th:src="@{/resources/assets/js/bootstrap-scrollspy.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-tab.js" 
-          th:src="@{/resources/assets/js/bootstrap-tab.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-tooltip.js" 
-          th:src="@{/resources/assets/js/bootstrap-tooltip.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-popover.js" 
-          th:src="@{/resources/assets/js/bootstrap-popover.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-button.js" 
-          th:src="@{/resources/assets/js/bootstrap-button.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-collapse.js" 
-          th:src="@{/resources/assets/js/bootstrap-collapse.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-carousel.js" 
-          th:src="@{/resources/assets/js/bootstrap-carousel.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../assets/js/bootstrap-typeahead.js" 
-          th:src="@{/resources/assets/js/bootstrap-typeahead.js}" 
-          type="text/javascript">
-  </script>
-  <script type="text/javascript">
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
-  </script>
-  <script src="../assets/js/holder/holder.js" 
-          th:src="@{/resources/assets/js/holder/holder.js}" 
-          type="text/javascript">
-  </script>
-
- 
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js" 
+            th:src="@{/resources/assets/js/jquery.js}" 
+            type="text/javascript">
+    </script>  
+    <script src="../assets/js/bootstrap-transition.js" 
+            th:src="@{/resources/assets/js/bootstrap-transition.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-alert.js" 
+            th:src="@{/resources/assets/js/bootstrap-alert.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-modal.js" 
+            th:src="@{/resources/assets/js/bootstrap-modal.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-dropdown.js" 
+            th:src="@{/resources/assets/js/bootstrap-dropdown.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-scrollspy.js" 
+            th:src="@{/resources/assets/js/bootstrap-scrollspy.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-tab.js" 
+            th:src="@{/resources/assets/js/bootstrap-tab.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-tooltip.js" 
+            th:src="@{/resources/assets/js/bootstrap-tooltip.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-popover.js" 
+            th:src="@{/resources/assets/js/bootstrap-popover.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-button.js" 
+            th:src="@{/resources/assets/js/bootstrap-button.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-collapse.js" 
+            th:src="@{/resources/assets/js/bootstrap-collapse.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-carousel.js" 
+            th:src="@{/resources/assets/js/bootstrap-carousel.js}" 
+            type="text/javascript">
+    </script>
+    <script src="../assets/js/bootstrap-typeahead.js" 
+            th:src="@{/resources/assets/js/bootstrap-typeahead.js}" 
+            type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        !function ($) {
+          $(function(){
+            // carousel demo
+            $('#myCarousel').carousel()
+          })
+        }(window.jQuery)
+    </script>
+    <script src="../assets/js/holder/holder.js" 
+            th:src="@{/resources/assets/js/holder/holder.js}" 
+            type="text/javascript">
+    </script>
+  </body>
 </html>

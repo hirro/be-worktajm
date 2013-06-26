@@ -1,353 +1,432 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<html lang="en">
 <head>
-  <meta charset="utf-8"/>
+<meta charset="utf-8" />
 
-  <title>Landing page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content=""/>
-  <meta name="author" content=""/>
-  
-  <!-- Le styles -->
-  <link href="../assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-  <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
-  <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-  <style type="text/css">
+<title>Landing page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
 
-    /* GLOBAL STYLES
+<!-- Le styles -->
+<link rel="stylesheet" href="../assets/css/bootstrap.css"
+	th:href="@{/resources/assets/css/bootstrap.css}" />
+<link rel="stylesheet" href="../assets/css/bootstrap-responsive.css"
+	th:href="@{/resources/assets/css/bootstrap-responsive.css}" />
+<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css"
+	th:href="@{/resources/font-awesome/css/font-awesome.min.css}" />
+
+<style type="text/css">
+
+/* GLOBAL STYLES
     -------------------------------------------------- */
-    /* Padding below the footer and lighter body text */
+/* Padding below the footer and lighter body text */
+body {
+	color: #5a5a5a;
+}
 
-    body {
-      color: #5a5a5a;
-    }
+/* Customize the footer, inverted black */
+.footer {
+	background-color: black;
+	margin-top: 40px;
+	padding: 15px 50px;
+	margin-bottom: 0px;
+	color: gray;
+	border-top: 1px solid #e5e5e5;
+}
 
-    /* Customize the footer, inverted black */
-    .footer {
-        background-color: black;
-        margin-top: 40px;
-        padding: 15px 50px;
-        margin-bottom: 0px;
-        color:gray; 
-        border-top: 1px solid #e5e5e5;
-    }
+html {
+	background-color: black;
+}
 
-    html {
-    background-color: black;
-    }
-    
-    .thumbnail-picture {
-    }
+.thumbnail-picture {
+	
+}
 
-
-    /* CUSTOMIZE THE NAVBAR
+/* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
-	.navbar-form {
-		margin-right: 20px;
-		margin-top: 5px;
+.navbar-form {
+	margin-right: 20px;
+	margin-top: 5px;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+	margin-bottom: 60px;
+}
+
+.carousel .container {
+	position: relative;
+	z-index: 9;
+}
+
+.carousel-control {
+	height: 80px;
+	margin-top: 0;
+	font-size: 120px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+	background-color: transparent;
+	border: 0;
+	z-index: 10;
+}
+
+.carousel .item {
+	height: 500px;
+}
+
+.carousel img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	height: 500px;
+}
+
+.carousel-caption {
+	background-color: transparent;
+	position: static;
+	max-width: 550px;
+	padding: 0 20px;
+	margin-top: 200px;
+}
+
+.carousel-caption h1,.carousel-caption .lead {
+	margin: 0;
+	line-height: 1.25;
+	color: #fff;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+}
+
+.carousel-caption .btn {
+	margin-top: 10px;
+}
+
+/* Thumbnails even height */
+.thumbnail .caption {
+	height: 200px;
+}
+
+/* RESPONSIVE CSS
+    -------------------------------------------------- */
+@media ( max-width : 979px) {
+	.container.navbar-wrapper {
+		margin-bottom: 0;
+		width: auto;
 	}
-
-    /* CUSTOMIZE THE CAROUSEL
-    -------------------------------------------------- */
-
-    /* Carousel base class */
-    .carousel {
-      margin-bottom: 60px;
-    }
-
-    .carousel .container {
-      position: relative;
-      z-index: 9;
-    }
-
-    .carousel-control {
-      height: 80px;
-      margin-top: 0;
-      font-size: 120px;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-      background-color: transparent;
-      border: 0;
-      z-index: 10;
-    }
-
-    .carousel .item {
-      height: 500px;
-    }
-    .carousel img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      height: 500px;
-    }
-
-    .carousel-caption {
-      background-color: transparent;
-      position: static;
-      max-width: 550px;
-      padding: 0 20px;
-      margin-top: 200px;
-    }
-    .carousel-caption h1,
-    .carousel-caption .lead {
-      margin: 0;
-      line-height: 1.25;
-      color: #fff;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-    }
-    .carousel-caption .btn {
-      margin-top: 10px;
-    }
-
-	/* Thumbnails even height */
-	.thumbnail .caption {
-		height: 200px;
+	.navbar-inner {
+		border-radius: 0;
+		margin: -20px 0;
 	}
+	.carousel .item {
+		height: 500px;
+	}
+	.carousel img {
+		width: auto;
+		height: 500px;
+	}
+	.featurette {
+		height: auto;
+		padding: 0;
+	}
+	.featurette-image.pull-left,.featurette-image.pull-right {
+		display: block;
+		float: none;
+		max-width: 40%;
+		margin: 0 auto 20px;
+	}
+}
 
-
-    /* RESPONSIVE CSS
-    -------------------------------------------------- */
-
-    @media (max-width: 979px) {
-
-      .container.navbar-wrapper {
-        margin-bottom: 0;
-        width: auto;
-      }
-      .navbar-inner {
-        border-radius: 0;
-        margin: -20px 0;
-      }
-
-      .carousel .item {
-        height: 500px;
-      }
-      .carousel img {
-        width: auto;
-        height: 500px;
-      }
-
-      .featurette {
-        height: auto;
-        padding: 0;
-      }
-      .featurette-image.pull-left,
-      .featurette-image.pull-right {
-        display: block;
-        float: none;
-        max-width: 40%;
-        margin: 0 auto 20px;
-      }
-    }
-
-
-    @media (max-width: 767px) {
-
-      .navbar-inner {
-        margin: -20px;
-      }
-
-      .carousel {
-        margin-left: -20px;
-        margin-right: -20px;
-      }
-      .carousel .container {
-
-      }
-      .carousel .item {
-        height: 300px;
-      }
-      .carousel img {
-        height: 300px;
-      }
-      .carousel-caption {
-        width: 65%;
-        padding: 0 70px;
-        margin-top: 100px;
-      }
-      .carousel-caption h1 {
-        font-size: 30px;
-      }
-      .carousel-caption .lead,
-      .carousel-caption .btn {
-        font-size: 18px;
-      }
-
-      .marketing .span4 + .span4 {
-        margin-top: 40px;
-      }
-
-      .featurette-heading {
-        font-size: 30px;
-      }
-      .featurette .lead {
-        font-size: 18px;
-        line-height: 1.5;
-      }
-
-    }
-  </style><!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
+@media ( max-width : 767px) {
+	.navbar-inner {
+		margin: -20px;
+	}
+	.carousel {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+	.carousel .container {
+		
+	}
+	.carousel .item {
+		height: 300px;
+	}
+	.carousel img {
+		height: 300px;
+	}
+	.carousel-caption {
+		width: 65%;
+		padding: 0 70px;
+		margin-top: 100px;
+	}
+	.carousel-caption h1 {
+		font-size: 30px;
+	}
+	.carousel-caption .lead,.carousel-caption .btn {
+		font-size: 18px;
+	}
+	.marketing .span4+.span4 {
+		margin-top: 40px;
+	}
+	.featurette-heading {
+		font-size: 30px;
+	}
+	.featurette .lead {
+		font-size: 18px;
+		line-height: 1.5;
+	}
+}
+</style>
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png"/>
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png"/>
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png"/>
-  <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png"/>
-  <link rel="shortcut icon" href="../assets/ico/favicon.png"/>
+<!-- Fav and touch icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="../assets/ico/apple-touch-icon-144-precomposed.png"
+	th:href="@{/resources/assets/ico/apple-touch-icon-144-precomposed.png}" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="../assets/ico/apple-touch-icon-114-precomposed.png"
+	th:href="@{/resources/assets/ico/apple-touch-icon-114-precomposed.png}" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="../assets/ico/apple-touch-icon-72-precomposed.png"
+	th:href="@{/resources/assets/ico/apple-touch-icon-72-precomposed.png}" />
+<link rel="apple-touch-icon-precomposed"
+	href="../assets/ico/apple-touch-icon-57-precomposed.png"
+	th:href="@{/resources/assets/ico/apple-touch-icon-57-precomposed.png}" />
+<link rel="shortcut icon" href="../assets/ico/favicon.png"
+	th:href="@{/resources/assets/ico/favicon.png}" />
 </head>
 
 <body>
-  <div class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-inner">
-      <a class="brand" href="landing.html"><img src="../images/logo.png" alt="&lt;LOGO&gt;"/></a>
+	<div class="navbar navbar-fixed-top navbar-inverse">
+		<div class="navbar-inner">
+			<a class="brand" href="#"> <img src="../images/logo.png"
+				th:src="@{/resources/images/logo.png}" alt="&lt;LOGO&gt;" />
+			</a>
 
-      <form class="navbar-form pull-right">
-        <input type="text" class="span2" placeholder="Login"/> 
-        <input type="text" class="span2" placeholder="Password"/> 
-        <input type="submit" value="Login" class="btn"/>
-      </form>
-    </div>
-  </div><!-- /.navbar-wrapper -->
+			<form class="navbar-form pull-right">
+				<input type="text" class="span2" placeholder="Login" /> <input
+					type="text" class="span2" placeholder="Password" /> <input
+					type="submit" value="Login" class="btn" />
+			</form>
+		</div>
+	</div>
 
-  <div id="myCarousel" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="../assets/img/examples/slide-01.jpg" alt=""/>
+	<div id="myCarousel" class="carousel slide">
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="../assets/img/examples/slide-01.jpg"
+					th:src="@{/resources/assets/img/examples/slide-01.jpg}" alt="" />
 
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Time Tracking</h1>
+				<div class="container">
+					<div class="carousel-caption">
+						<h1>Time Tracking</h1>
 
-            <p class="lead">Start reporting your time now!</p>
+						<p class="lead">Start reporting your time now!</p>
 
-            <p>Report time in either web browser or on your mobile phone.</p>
+						<p>Report time in either web browser or on your mobile phone.</p>
 
-            <p>Generate printed invoices in seconds.</p>
+						<p>Generate printed invoices in seconds.</p>
 
-            <p>Add coworkers to your company</p><a class="btn btn-large btn-primary" href="register.html">Register now</a>
-          </div>
-        </div>
-      </div>
+						<p>Add coworkers to your company</p>
+						<a class="btn btn-large btn-primary" href="register.html"
+							th:href="@{/register}">Register now</a>
+					</div>
+				</div>
+			</div>
 
-      <div class="item">
-        <img src="../assets/img/examples/slide-02.jpg" alt=""/>
+			<div class="item">
+				<img src="../assets/img/examples/slide-02.jpg"
+					th:src="@{/resources/assets/img/examples/slide-02.jpg}" alt="" />
 
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Report Time</h1>
+				<div class="container">
+					<div class="carousel-caption">
+						<h1>Report Time</h1>
 
-            <p class="lead">Either enter your time using a web browser or a mobile phone.</p>
+						<p class="lead">Either enter your time using a web browser or
+							a mobile phone.</p>
 
-            <p>Supported clients</p>
+						<p>Supported clients</p>
 
-            <p>&middot; iPhone</p>
+						<p>&middot; iPhone</p>
 
-            <p><a class="btn btn-large btn-primary" href="register.html">Register now</a></p>
-          </div>
-        </div>
-      </div>
+						<p>
+							<a class="btn btn-large btn-primary" href="register.html"
+								th:href="@{/register}">Register now</a>
+						</p>
+					</div>
+				</div>
+			</div>
 
-      <div class="item">
-        <img src="../assets/img/examples/slide-03.jpg" alt=""/>
+			<div class="item">
+				<img src="../assets/img/examples/slide-03.jpg"
+					th:src="@{/resources/assets/img/examples/slide-03.jpg}" alt="" />
 
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Generate invoices</h1>
+				<div class="container">
+					<div class="carousel-caption">
+						<h1>Generate invoices</h1>
 
-            <p class="lead">Background picture a printed invoice.</p>
-            <a class="btn btn-large btn-primary" href="register.html">Register now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a> 
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-  </div>
-  
-  <!-- Marketing messaging and featurettes
+						<p class="lead">Background picture a printed invoice.</p>
+						<a class="btn btn-large btn-primary" href="register.html"
+							th:href="@{/register}">Register now</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	</div>
+
+	<!-- Marketing messaging and featurettes
     ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
+	<!-- Wrap the rest of the page in another container to center all the content. -->
 
-  <div class="container">
-  
-  	<ul class="thumbnails">
-  		<li class="span4">
-  			<div class="thumbnail">
-  				<img class="thumbnail-picture" alt="not found" src="../images/istockphotos/stock-photo-16890326-time-is-money.png" />
-  				<div class="caption">
-	  				<h3>Time Tracking</h3>
-			        <p>Enter time using a web browser or the mobile phone of your choice. Time Reporting Server has support for several clients.</p>
-			        <p>iPhone (native client).</p>		
-			        <p>Android (native client).</p>	  				
-  				</div>
-  			</div>
-  		</li>
-  		<li class="span4">
-  			<div class="thumbnail">
-  				<img class="thumbnail-picture" alt="not found" src="../images/istockphotos/stock-photo-16302243-invoicee.png" />
-  				<div class="caption">
-	  				<h3>Invoices</h3>
-	  				<p>Generate invoices.</p>	  				
-  				</div>
-  			</div>
-  		</li>
-  		<li class="span4">
-  			<div class="thumbnail">
-  				<img class="thumbnail-picture" alt="not found" src="../images/istockphotos/stock-photo-16890326-time-is-money.png" />
-  				<div class="caption">
-	  				<h3>Teams</h3>
-			        <p>Invite your coworkers to report time.</p>	  				
-  				</div>
-  			</div>
-  		</li>
-  	</ul>
+	<div class="container">
 
-  </div><!-- /.container -->
-  <!-- FOOTER -->
+		<ul class="thumbnails">
+			<li class="span4">
+				<div class="thumbnail">
+					<img class="thumbnail-picture" alt="not found"
+						src="../images/istockphotos/stock-photo-16890326-time-is-money.png"
+						th:src="@{/resources/images/istockphotos/stock-photo-16890326-time-is-money.png}" />
+					<div class="caption">
+						<h3>Time Tracking</h3>
+						<p>Enter time using a web browser or the mobile phone of your
+							choice. Time Reporting Server has support for several clients.</p>
+						<p>iPhone (native client).</p>
+						<p>Android (native client).</p>
+					</div>
+				</div>
+			</li>
+			<li class="span4">
+				<div class="thumbnail">
+					<img class="thumbnail-picture" alt="not found"
+						src="../images/istockphotos/stock-photo-16302243-invoicee.png"
+						th:src="@{/resources/images/istockphotos/stock-photo-16302243-invoicee.png}" />
+					<div class="caption">
+						<h3>Invoices</h3>
+						<p>Generate invoices.</p>
+					</div>
+				</div>
+			</li>
+			<li class="span4">
+				<div class="thumbnail">
+					<img class="thumbnail-picture" alt="not found"
+						src="../images/istockphotos/stock-photo-16890326-time-is-money.png"
+						th:src="@{/resources/images/istockphotos/stock-photo-16890326-time-is-money.png}" />
+					<div class="caption">
+						<h3>Teams</h3>
+						<p>Invite your coworkers to report time.</p>
+					</div>
+				</div>
+			</li>
+		</ul>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <p class="pull-left">&copy; 2013 Arnell Consulting AB &middot; <a href="#">Testar</a>&middot; <a href="#">Terms</a></p>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<p class="pull-left">
+					&copy; 2013 Arnell Consulting AB &middot; <a href="#">Testar</a>&middot;
+					<a href="#">Terms</a>
+				</p>
 
-        <p class="pull-right">
-          <a href="http://www.springframework.org">
-            <img src="../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring"/>
-          </a>
-        </p>
-      </div>
-    </div>
-  </footer>
-  
-  <!-- Le javascript
+				<p class="pull-right">
+					<a href="http://www.springframework.org"> <img
+						src="../images/powered-by-spring.png"
+						th:src="@{/resources/images/powered-by-spring.png}"
+						alt="Powered by Spring" />
+					</a>
+				</p>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Le javascript
     ================================================== 
   -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="../assets/js/jquery.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-transition.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-alert.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-modal.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-dropdown.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-scrollspy.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-tab.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-tooltip.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-popover.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-button.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-collapse.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-carousel.js" type="text/javascript"></script>
-  <script src="../assets/js/bootstrap-typeahead.js" type="text/javascript"></script>
-  <script type="text/javascript">
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
-  </script>
-  <script src="../assets/js/holder/holder.js" type="text/javascript"></script>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="../assets/js/jquery.js"
+		th:src="@{/resources/assets/js/jquery.js}" type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-transition.js"
+		th:src="@{/resources/assets/js/bootstrap-transition.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-alert.js"
+		th:src="@{/resources/assets/js/bootstrap-alert.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-modal.js"
+		th:src="@{/resources/assets/js/bootstrap-modal.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-dropdown.js"
+		th:src="@{/resources/assets/js/bootstrap-dropdown.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-scrollspy.js"
+		th:src="@{/resources/assets/js/bootstrap-scrollspy.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-tab.js"
+		th:src="@{/resources/assets/js/bootstrap-tab.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-tooltip.js"
+		th:src="@{/resources/assets/js/bootstrap-tooltip.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-popover.js"
+		th:src="@{/resources/assets/js/bootstrap-popover.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-button.js"
+		th:src="@{/resources/assets/js/bootstrap-button.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-collapse.js"
+		th:src="@{/resources/assets/js/bootstrap-collapse.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-carousel.js"
+		th:src="@{/resources/assets/js/bootstrap-carousel.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-typeahead.js"
+		th:src="@{/resources/assets/js/bootstrap-typeahead.js}"
+		type="text/javascript">
+		
+	</script>
+	<script type="text/javascript">
+		!function($) {
+			$(function() {
+				// carousel demo
+				$('#myCarousel').carousel()
+			})
+		}(window.jQuery)
+	</script>
+	<script src="../assets/js/holder/holder.js"
+		th:src="@{/resources/assets/js/holder/holder.js}"
+		type="text/javascript">
+		
+	</script>
 
 </body>
 </html>
