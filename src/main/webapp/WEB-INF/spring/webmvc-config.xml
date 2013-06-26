@@ -35,6 +35,8 @@
 		  class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 		<property name="prefix" value="/WEB-INF/" />
 		<property name="templateMode" value="HTML5" />
+		<!-- XXX: Remove in production -->
+		<property name="cacheable" value="false" />		
 	</bean>
 
 	<!-- Thymeleaf Template Engine -->
