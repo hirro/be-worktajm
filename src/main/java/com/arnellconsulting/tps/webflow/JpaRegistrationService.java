@@ -32,8 +32,8 @@ public class JpaRegistrationService implements RegistrationService {
    private static final String DEFAULT_PROJECT_NAME = "Project X";
    private static final String DEFAULT_CORPORATE_NAME = "Example corporate name";
 
-   @Autowired
-   private transient MailSender mailTemplate;
+//   @Autowired
+//   private transient MailSender mailTemplate;
 
    /** PersistanceContext */
    @SuppressWarnings("PMD.ShortVariable")

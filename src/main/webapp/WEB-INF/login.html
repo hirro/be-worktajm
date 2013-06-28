@@ -19,6 +19,7 @@
 
     body {
       color: #5a5a5a;
+      padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
     }
 
   	/* Customize the footer, inverted black */
@@ -167,7 +168,7 @@
 
     <div class="container" tiles:fragment="content">
     	<div class="row">
-			<form class="form-horizontal" action="#" th:action="@{/loginProcess}" method="post">
+			<form class="form-horizontal" action="#" th:action="@{/j_spring_security_check}" method="post">
 				<fieldset>
 				
 				<!-- Form Name -->

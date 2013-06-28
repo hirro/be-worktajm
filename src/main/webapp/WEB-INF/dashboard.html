@@ -1,17 +1,19 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Carousel Template &middot; Bootstrap</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
 
-<!-- Le styles -->
-<link href="../assets/css/bootstrap.css" rel="stylesheet">
-<link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
-<style>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <!-- Le styles -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" th:href="@{/resources/assets/css/bootstrap.css}" />
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet" th:href="@{/resources/assets/cssbootstrap-responsive.css}" />
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" th:href="@{/resources/font-awesome/css/font-awesome.min.css}" />
+    <style>
 
 /* GLOBAL STYLES
     -------------------------------------------------- */
@@ -145,14 +147,19 @@ body {
 
 <!-- Fav and touch icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="../assets/ico/apple-touch-icon-144-precomposed.png">
+	href="../assets/ico/apple-touch-icon-144-precomposed.png"
+	th:href="@{/resources/assets/ico/apple-touch-icon-144-precomposed.png}" />
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="../assets/ico/apple-touch-icon-114-precomposed.png">
+	href="../assets/ico/apple-touch-icon-114-precomposed.png"
+	th:href="@{/resources/assets/ico/apple-touch-icon-114-precomposed.png}" />
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="../assets/ico/apple-touch-icon-72-precomposed.png">
+	href="../assets/ico/apple-touch-icon-72-precomposed.png"
+	th:href="@{/resources/assets/ico/apple-touch-icon-72-precomposed.png}" />
 <link rel="apple-touch-icon-precomposed"
-	href="../assets/ico/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="../assets/ico/favicon.png">
+	href="../assets/ico/apple-touch-icon-57-precomposed.png"
+	th:href="@{/resources/assets/ico/apple-touch-icon-57-precomposed.png}" />
+<link rel="shortcut icon" href="../assets/ico/favicon.png"
+	th:href="@{/resources/assets/ico/favicon.png}" />
 </head>
 
 <body>
@@ -160,9 +167,9 @@ body {
 
 	<div class="navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar-inner">
-			<a class="brand" href="landing.html"><img
-				src="../images/logo.png" alt="&lt;LOGO&gt;"></a>
-
+			<a class="brand" href="#"> <img src="../images/logo.png"
+				th:src="@{/resources/images/logo.png}" alt="&lt;LOGO&gt;" />
+			</a>
 			<div class="nav-collapse collapse pull-right">
 				<ul class="nav">
 					<li class="active"><a href="#">Dashboard</a></li>
@@ -196,22 +203,74 @@ body {
 	</footer>
 
 	<!-- Le javascript
-    ================================================== -->
+    ================================================== 
+  -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="../assets/js/jquery.js"></script>
-	<script src="../assets/js/bootstrap-transition.js"></script>
-	<script src="../assets/js/bootstrap-alert.js"></script>
-	<script src="../assets/js/bootstrap-modal.js"></script>
-	<script src="../assets/js/bootstrap-dropdown.js"></script>
-	<script src="../assets/js/bootstrap-scrollspy.js"></script>
-	<script src="../assets/js/bootstrap-tab.js"></script>
-	<script src="../assets/js/bootstrap-tooltip.js"></script>
-	<script src="../assets/js/bootstrap-popover.js"></script>
-	<script src="../assets/js/bootstrap-button.js"></script>
-	<script src="../assets/js/bootstrap-collapse.js"></script>
-	<script src="../assets/js/bootstrap-carousel.js"></script>
-	<script src="../assets/js/bootstrap-typeahead.js"></script>
-	<script>
+	<script src="../assets/js/jquery.js"
+		th:src="@{/resources/assets/js/jquery.js}" type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-transition.js"
+		th:src="@{/resources/assets/js/bootstrap-transition.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-alert.js"
+		th:src="@{/resources/assets/js/bootstrap-alert.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-modal.js"
+		th:src="@{/resources/assets/js/bootstrap-modal.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-dropdown.js"
+		th:src="@{/resources/assets/js/bootstrap-dropdown.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-scrollspy.js"
+		th:src="@{/resources/assets/js/bootstrap-scrollspy.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-tab.js"
+		th:src="@{/resources/assets/js/bootstrap-tab.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-tooltip.js"
+		th:src="@{/resources/assets/js/bootstrap-tooltip.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-popover.js"
+		th:src="@{/resources/assets/js/bootstrap-popover.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-button.js"
+		th:src="@{/resources/assets/js/bootstrap-button.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-collapse.js"
+		th:src="@{/resources/assets/js/bootstrap-collapse.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-carousel.js"
+		th:src="@{/resources/assets/js/bootstrap-carousel.js}"
+		type="text/javascript">
+		
+	</script>
+	<script src="../assets/js/bootstrap-typeahead.js"
+		th:src="@{/resources/assets/js/bootstrap-typeahead.js}"
+		type="text/javascript">
+		
+	</script>
+	<script type="text/javascript">
 		!function($) {
 			$(function() {
 				// carousel demo
@@ -219,6 +278,10 @@ body {
 			})
 		}(window.jQuery)
 	</script>
-	<script src="../assets/js/holder/holder.js"></script>
+	<script src="../assets/js/holder/holder.js"
+		th:src="@{/resources/assets/js/holder/holder.js}"
+		type="text/javascript">		
+	</script>
+
 </body>
 </html>
