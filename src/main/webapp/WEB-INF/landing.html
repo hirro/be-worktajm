@@ -204,7 +204,7 @@ html {
 				th:src="@{/resources/images/logo.png}" alt="&lt;LOGO&gt;" />
 			</a>
 
-			<form class="navbar-form pull-right" name="f" action="#" th:action="@{/loginProcess}" method="post">
+			<form class="navbar-form pull-right" action="#" th:action="@{/j_spring_security_check}" method="post">
 				<input type="email" name="j_username" class="span3" placeholder="Login" /> 
 				<input type="password" name="j_password" class="span2" placeholder="Password" />
 				<input type="submit" value="Login" class="btn" />
@@ -420,8 +420,7 @@ html {
 	</script>
 	<script src="../assets/js/holder/holder.js"
 		th:src="@{/resources/assets/js/holder/holder.js}"
-		type="text/javascript">
-		
+		type="text/javascript">		
 	</script>
 
 </body>

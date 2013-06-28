@@ -6,6 +6,7 @@
 <tiles-definitions>
 	
 	<definition name="landing" template="/landing.html" templateType="thymeleaf"/>
+	<definition name="dashboard" template="/dashboard.html" templateType="thymeleaf"/>
 	
 	<definition name="register" extends="noNav">
 		<put-attribute name="body" value="/register.html :: content" type="thymeleaf"/>
