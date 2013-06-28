@@ -167,7 +167,7 @@
 
     <div class="container" tiles:fragment="content">
     	<div class="row">
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="#" th:action="@{/loginProcess}" method="post">
 				<fieldset>
 				
 				<!-- Form Name -->
@@ -175,18 +175,18 @@
 				
 				<!-- Text input-->
 				<div class="control-group">
-				  <label class="control-label" for="email">Email</label>
+				  <label class="control-label" for="j_username">Email</label>
 				  <div class="controls">
-				    <input id="email" name="email" type="email" placeholder="Enter email address" class="input-xlarge" required=""/>
+				    <input id="email" name="j_username" type="email" placeholder="Enter email address" class="input-xlarge" required=""/>
 				    <p class="help-block">Enter your email</p>
 				  </div>
 				</div>
 				
 				<!-- Password input-->
 				<div class="control-group">
-				  <label class="control-label" for="password">Password</label>
+				  <label class="control-label" for="j_password">Password</label>
 				  <div class="controls">
-				    <input id="password" name="password" type="password" placeholder="Enter your password" class="input-xlarge" required=""/>
+				    <input id="password" name="j_password" type="password" placeholder="Enter your password" class="input-xlarge" required=""/>
 				    <p class="help-block">Enter your password</p>
 				  </div>
 				</div>

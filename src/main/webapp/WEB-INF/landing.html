@@ -40,10 +40,6 @@ html {
 	background-color: black;
 }
 
-.thumbnail-picture {
-	
-}
-
 /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
 .navbar-form {
@@ -208,10 +204,10 @@ html {
 				th:src="@{/resources/images/logo.png}" alt="&lt;LOGO&gt;" />
 			</a>
 
-			<form class="navbar-form pull-right">
-				<input type="text" class="span2" placeholder="Login" /> <input
-					type="text" class="span2" placeholder="Password" /> <input
-					type="submit" value="Login" class="btn" />
+			<form class="navbar-form pull-right" name="f" action="#" th:action="@{/loginProcess}" method="post">
+				<input type="email" name="j_username" class="span3" placeholder="Login" /> 
+				<input type="password" name="j_password" class="span2" placeholder="Password" />
+				<input type="submit" value="Login" class="btn" />
 			</form>
 		</div>
 	</div>

@@ -11,7 +11,7 @@
 		<put-attribute name="body" value="/register.html :: content" type="thymeleaf"/>
 	</definition>
 
-	<definition name="login" extends="standardLayout">
+	<definition name="login" extends="noNav">
 		<put-attribute name="body" value="/login.html :: content" type="thymeleaf"/>
 	</definition>
 	
