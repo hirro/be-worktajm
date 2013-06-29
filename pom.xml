@@ -4,7 +4,7 @@
    <groupId>com.arnellconsulting.tps</groupId>
    <artifactId>tps</artifactId>
    <packaging>war</packaging>
-   <name>Arnell Consulting Time Reporting Server</name>
+   <name>tps</name>
    <version>2.0.2.BUILD-SNAPSHOT</version>
    <properties>
       <springframework-version>3.2.1.RELEASE</springframework-version>
@@ -286,7 +286,7 @@
       </dependency>
    </dependencies>
    <build>
-      <finalName>booking-mvc</finalName>
+      <finalName>tps</finalName>
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
