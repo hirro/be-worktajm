@@ -22,7 +22,7 @@
 		<level value="warn" />
 	</logger>	
 	<logger name="org.springframework.context">
-		<level value="warn" />
+		<level value="debug" />
 	</logger>
 	<logger name="org.springframework.core">
 		<level value="warn" />
