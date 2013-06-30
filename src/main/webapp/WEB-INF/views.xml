@@ -4,9 +4,12 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 	
 <tiles-definitions>
-	
+
 	<definition name="landing" template="/landing.html" templateType="thymeleaf"/>
-	<definition name="dashboard" template="/dashboard.html" templateType="thymeleaf"/>
+
+	<definition name="dashboard" extends="standardLayout">
+		<put-attribute name="body" value="/dashboard.html :: content" type="thymeleaf"/>
+	</definition>
 	
 	<definition name="register" extends="noNav">
 		<put-attribute name="body" value="/register.html :: content" type="thymeleaf"/>
