@@ -16,7 +16,7 @@
 		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.beans">
-		<level value="warn" />
+		<level value="debug" />
 	</logger>
 	<logger name="org.springframework.binding">
 		<level value="warn" />
@@ -25,7 +25,7 @@
 		<level value="debug" />
 	</logger>
 	<logger name="org.springframework.core">
-		<level value="warn" />
+		<level value="debug" />
 	</logger>
 	<logger name="org.springframework.jdbc">
 		<level value="warn" />
@@ -43,7 +43,7 @@
 		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.web">
-		<level value="warn" />
+		<level value="debug" />
 	</logger>
 	<logger name="org.springframework.webflow">
 		<level value="warn" />
