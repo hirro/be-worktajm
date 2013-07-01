@@ -46,7 +46,7 @@
 		<level value="debug" />
 	</logger>
 	<logger name="org.springframework.webflow">
-		<level value="warn" />
+		<level value="debug" />
 	</logger>
 
 	<logger name="org.hibernate">
