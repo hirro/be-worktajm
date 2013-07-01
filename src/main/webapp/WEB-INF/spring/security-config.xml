@@ -10,8 +10,8 @@
    <security:global-method-security secured-annotations="enabled"/>
    <security:http auto-config="true" use-expressions="true">
       <security:form-login login-page="/login" login-processing-url="/loginProcess" 
-                           default-target-url="/" authentication-failure-url="/login?login_error=1" />
-      <security:logout logout-url="/logout" logout-success-url="/logoutSuccess" />
+                           default-target-url="/dashboard" authentication-failure-url="/login?login_error=1" />
+      <security:logout logout-url="/logout" logout-success-url="/" />
 		<security:intercept-url pattern="/dashboard"  access="isAuthenticated()"/>
    </security:http>
 
