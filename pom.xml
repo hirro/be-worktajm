@@ -323,6 +323,7 @@
             <artifactId>jetty-maven-plugin</artifactId>
             <version>8.1.4.v20120524</version>
             <configuration>
+               <jvmArgs>-Xmx1024</jvmArgs>
                <scanIntervalSeconds>1</scanIntervalSeconds>
                <webAppConfig>
                   <contextPath>/${project.name}</contextPath>

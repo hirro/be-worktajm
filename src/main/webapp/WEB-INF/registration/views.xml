@@ -5,7 +5,7 @@
 	
 <tiles-definitions>
 
-	<definition name="registration/register" extends="noNav">
+	<definition name="registration/*" extends="noNav">
 		<put-attribute name="body" value="/registration/register.html :: content" type="thymeleaf"/>
 	</definition>
 	
