@@ -60,7 +60,11 @@
 	<logger name="org.apache.commons.digester">
 		<level value="warn" />
 	</logger>
-	<logger name="oorg.apache.tiles">
+
+	<logger name="odddrg.apache.tiles.definition.dao">
+		<level value="warn" />
+	</logger>
+	<logger name="org.apache.tiles">
 		<level value="warn" />
 	</logger>
 		

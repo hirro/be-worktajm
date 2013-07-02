@@ -26,7 +26,7 @@
 
     <div class="container" tiles:fragment="content">
     	<div id="registrationForm">
-			<form class="form-horizontal">
+			<form id="registration" class="form-horizontal" action="#" th:action="@{/registration/create}" method="post">
 				<fieldset>
 				
 				<!-- Form Name -->
@@ -69,6 +69,25 @@
 				
 				</fieldset>
 			</form>
+			<script type="text/javascript">
+				$("#registration").validate({
+				  rules: {
+				    email: {
+				      required: true,
+				      email: true,
+				      remote: {
+				        url: "check-email.php",
+				        type: "post",
+				        data: {
+				          username: function() {
+				            return $( "#username" ).val();
+				          }
+				        }
+				      }
+				    }
+				  }
+				});
+			</script>
 			 	
     	</div>
 	</div>
