@@ -16,16 +16,16 @@
 		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.beans">
-		<level value="debug" />
+		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.binding">
 		<level value="warn" />
 	</logger>	
 	<logger name="org.springframework.context">
-		<level value="debug" />
+		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.core">
-		<level value="debug" />
+		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.jdbc">
 		<level value="warn" />
@@ -37,16 +37,16 @@
 		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.security">
-		<level value="debug" />
+		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.transaction">
 		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.web">
-		<level value="debug" />
+		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.webflow">
-		<level value="debug" />
+		<level value="warn" />
 	</logger>
 
 	<logger name="org.hibernate">
@@ -54,6 +54,13 @@
 	</logger>
 
 	<logger name="org.thymeleaf">
+		<level value="warn" />
+	</logger>
+
+	<logger name="org.apache.commons.digester">
+		<level value="warn" />
+	</logger>
+	<logger name="oorg.apache.tiles">
 		<level value="warn" />
 	</logger>
 		

@@ -20,7 +20,6 @@
 
 	<!-- Map paths directly to view names without controller processing. Use the view-name attribute if necessary: by convention the view name equals the path without the leading slash -->
 	<mvc:view-controller path="/" view-name="landing" />
-	<mvc:view-controller path="/registration/register" />
 	<mvc:view-controller path="/login" />
 	<mvc:view-controller path="/logoutSuccess" />
 	<mvc:view-controller path="/dashboard" />

@@ -10,65 +10,9 @@
     <meta name="author" content=""/>
 
     <!-- Le styles -->
-    <link href="../../assets/css/bootstrap.css" rel="stylesheet" th:href="@{/resources/assets/css/bootstrap.css}" />
-    <link href="../../assets/css/bootstrap-responsive.css" rel="stylesheet" th:href="@{/resources/assets/cssbootstrap-responsive.css}" />
-    <link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" th:href="@{/resources/font-awesome/css/font-awesome.min.css}" />
-    <style>
-
-    /* GLOBAL STYLES
-    -------------------------------------------------- */
-    /* Padding below the footer and lighter body text */
-
-    body {
-      color: #5a5a5a;
-	    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-    }
-
-  	/* Customize the footer, inverted black */
-  	.footer {
-  		background-color: black;
-  		margin-top: 40px;
-  		padding: 15px 50px;
-  		margin-bottom: 0px;
-  		color:gray; 
-  		border-top: 1px solid #e5e5e5;
-  	}
-
-  	html {
-  		background-color: black;
-  	}
-
-
-    /* RESPONSIVE CSS
-    -------------------------------------------------- */
-
-    @media (max-width: 979px) {
-
-      .container.navbar-wrapper {
-        margin-bottom: 0;
-        width: auto;
-      }
-      .navbar-inner {
-        border-radius: 0;
-        margin: -20px 0;
-      }
-
-    }
-
-
-    @media (max-width: 767px) {
-
-      .navbar-inner {
-        margin: -20px;
-      }
-
-    }
-    </style>
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-    <![endif]-->
+    <link href="../../assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../assets/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../assets/ico/apple-touch-icon-144-precomposed.png"/>
@@ -79,14 +23,6 @@
   </head>
 
   <body>
-
-    <div class="navbar navbar-fixed-top navbar-inverse">      
-  		<div class="navbar-inner">
-  			<a class="brand" href="landing.html"><img src="../../images/logo.png" alt="LOGO"/></a>
-  		</div>
-    </div>
-<!-- FROM START OF DOCUMENT -->
-<!-- header.html END -->
 
     <div class="container" tiles:fragment="content">
     	<div id="registrationForm">
@@ -101,7 +37,7 @@
 				  <label class="control-label" for="email">Email</label>
 				  <div class="controls">
 				    <input id="email" name="email" type="email" placeholder="Enter email address" class="input-xlarge" required=""/>
-				    <p class="help-block">Enter your email</p>
+            <!-- <span class="help-inline">Enter your email</span> -->
 				  </div>
 				</div>
 				
@@ -110,7 +46,7 @@
 				  <label class="control-label" for="password">Password</label>
 				  <div class="controls">
 				    <input id="password" name="password" type="password" placeholder="Enter your password" class="input-xlarge" required=""/>
-				    <p class="help-block">Enter your password</p>
+            <!-- <span class="help-inline">Enter your new password</span> -->
 				  </div>
 				</div>
 				
@@ -119,7 +55,7 @@
 				  <label class="control-label" for="company">Company name</label>
 				  <div class="controls">
 				    <input id="company" name="company" type="text" placeholder="Enter company name" class="input-xlarge"/>
-				    <p class="help-block">Enter company name</p>
+            <!-- <span class="help-inline">Enter company name</span> -->
 				  </div>
 				</div>
 				
@@ -137,88 +73,5 @@
     	</div>
 	</div>
 
-	<!-- footer.html start -->
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<p class="pull-left">
-					&copy; 2013 Arnell Consulting AB &middot; 
-					<a href="#">Privacy</a>&middot; 
-					<a href="#">Terms</a>
-				</p>
-				<p class="pull-right">
-					<a href="http://www.springframework.org">
-						<img src="../../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
-					</a>
-				</p>
-			</div>
-		</div>
-	</footer>
-
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="../../assets/js/jquery.js" 
-          th:src="@{/resources/assets/js/jquery.js}" 
-          type="text/javascript">
-  </script>  
-  <script src="../../assets/js/bootstrap-transition.js" 
-          th:src="@{/resources/assets/js/bootstrap-transition.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-alert.js" 
-          th:src="@{/resources/assets/js/bootstrap-alert.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-modal.js" 
-          th:src="@{/resources/assets/js/bootstrap-modal.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-dropdown.js" 
-          th:src="@{/resources/assets/js/bootstrap-dropdown.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-scrollspy.js" 
-          th:src="@{/resources/assets/js/bootstrap-scrollspy.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-tab.js" 
-          th:src="@{/resources/assets/js/bootstrap-tab.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-tooltip.js" 
-          th:src="@{/resources/assets/js/bootstrap-tooltip.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-popover.js" 
-          th:src="@{/resources/assets/js/bootstrap-popover.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-button.js" 
-          th:src="@{/resources/assets/js/bootstrap-button.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-collapse.js" 
-          th:src="@{/resources/assets/js/bootstrap-collapse.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-carousel.js" 
-          th:src="@{/resources/assets/js/bootstrap-carousel.js}" 
-          type="text/javascript">
-  </script>
-  <script src="../../assets/js/bootstrap-typeahead.js" 
-          th:src="@{/resources/assets/js/bootstrap-typeahead.js}" 
-          type="text/javascript">
-  </script>
-  <script type="text/javascript">
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
-  </script>
-  <script src="../../assets/js/holder/holder.js" 
-          th:src="@{/resources/assets/js/holder/holder.js}" 
-          type="text/javascript">
-  </script>
   </body>
 </html>
