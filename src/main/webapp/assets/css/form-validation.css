@@ -1,0 +1,15 @@
+/* From http://alittlecode.com/files/jQuery-Validate-Demo/index.html */
+label.valid {
+  width: 24px;
+  height: 24px;
+  background: url("../img/kudos-for-webdesigntuts/Done.png") center center no-repeat;
+  background-size:24px 24px;
+  display: inline-block;
+  text-indent: -9999px;
+}
+label.error {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
