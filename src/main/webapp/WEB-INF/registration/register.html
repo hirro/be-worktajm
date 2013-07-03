@@ -69,23 +69,43 @@
 				
 				</fieldset>
 			</form>
-			<script type="text/javascript">
-				$("#registration").validate({
+
+    <script src="../../assets/js/jquery.js" 
+            th:src="@{/resources/assets/js/jquery.js}" 
+            type="text/javascript">
+    </script>  
+    <script src="../../assets/js/jquery.validate.js" 
+            th:src="@{/resources/assets/js/jquery.validate.js}" 
+            type="text/javascript">
+    </script>  
+    <script type="text/javascript">
+				$( "#registration" ).validate({
+          errorContainer: "hej",
 				  rules: {
+            password: {
+              required: true,
+              minlength: 8,
+            },
 				    email: {
 				      required: true,
 				      email: true,
 				      remote: {
-				        url: "check-email.php",
+				        url: location.href.substring(0,location.href.lastIndexOf('/'))+"/checkEmail.do",
 				        type: "post",
 				        data: {
-				          username: function() {
-				            return $( "#username" ).val();
+				          email: function() {
+				            return $( "#email" ).val();
 				          }
 				        }
 				      }
 				    }
-				  }
+				  },
+          messages: {
+            email: {
+              remote: jQuery.format("Email is already in use")
+            }
+          }
+
 				});
 			</script>
 			 	

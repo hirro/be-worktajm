@@ -66,5 +66,8 @@
 			</list>
 		</property>
 	</bean>
-  	
+
+	<!-- Enable JSON -->
+	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/> 
+
 </beans>
