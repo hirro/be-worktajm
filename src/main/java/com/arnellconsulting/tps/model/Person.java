@@ -20,19 +20,16 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @SuppressWarnings("PMD")
-public class Person implements Serializable {
+public class Person extends BaseEntity {
    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
    private Set<Contract> contracts = new HashSet<Contract>();
    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Person")
    private Set<TimeEntry> contract = new HashSet<TimeEntry>();
-   @Id
-   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-   private String id;
    private String firstName;
    private String lastName;
    private String password;
    @NotNull
-   private String username;
+   private String email;
    private String authority;
    @Enumerated
    private PersonStatus status;
@@ -73,10 +70,6 @@ public class Person implements Serializable {
       return firstName;
    }
 
-   public String getId() {
-      return id;
-   }
-
    public String getLastName() {
       return lastName;
    }
@@ -93,8 +86,8 @@ public class Person implements Serializable {
       return status;
    }
 
-   public String getUsername() {
-      return username;
+   public String getEmail() {
+      return email;
    }
 
    //~--- set methods ---------------------------------------------------------
@@ -123,10 +116,6 @@ public class Person implements Serializable {
       this.firstName = firstName;
    }
 
-   public void setId(String id) {
-      this.id = id;
-   }
-
    public void setLastName(String lastName) {
       this.lastName = lastName;
    }
@@ -143,7 +132,7 @@ public class Person implements Serializable {
       this.status = status;
    }
 
-   public void setUsername(String username) {
-      this.username = username;
+   public void setEmail(String email) {
+      this.email = email;
    }
 }

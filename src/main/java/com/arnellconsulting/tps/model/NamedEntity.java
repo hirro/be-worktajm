@@ -15,34 +15,35 @@
  */
 package com.arnellconsulting.tps.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+
 /**
- * Simple JavaBean domain object with an id property. Used as a base class for objects needing this property.
+ * Simple JavaBean domain object adds a name property to <code>BaseEntity</code>. Used as a base class for objects
+ * needing these properties.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
  */
 @MappedSuperclass
-public class BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id;
+public class NamedEntity extends BaseEntity {
+
+    @Column(name = "name")
+    private String name;
 
 
-    public void setId(final Integer id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public String getName() {
+        return this.name;
     }
 
-    public boolean isNew() {
-        return (this.id == null);
+    @Override
+    public String toString() {
+        return this.getName();
     }
 
 }
