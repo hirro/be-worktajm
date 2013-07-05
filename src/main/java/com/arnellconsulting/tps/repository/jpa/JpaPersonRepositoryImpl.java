@@ -74,12 +74,18 @@ public class JpaPersonRepositoryImpl implements PersonRepository {
 
    @Override
    public void save(final Person person) throws DataAccessException {
-      if (person.isNew()) {
-         log.debug("Creating new person object");
-         this.em.persist(person);
-      } else {
-         log.debug("Updating person object");
-         this.em.merge(person);
+      try {
+         if (person.isNew()) {
+            log.debug("Creating new person object");
+            this.em.persist(person);
+            em.flush();
+         } else {
+            log.debug("Updating person object");
+            this.em.merge(person);
+         }
+         log.debug("Successfully saved");
+      } catch (Exception e) {
+         log.debug("dfsdf@", e);
       }
    }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.transaction.annotation.Transactional;
 
 @Controller
 @RequestMapping("/registration/")
@@ -23,6 +24,7 @@ public class RegistrationController {
 
    //~--- methods -------------------------------------------------------------
 
+   @Transactional 
    @RequestMapping("/create")
    public String create(@RequestParam(value = "email", required = false) final String email,
                         @RequestParam(value = "password", required = false) final String password,
@@ -35,6 +37,8 @@ public class RegistrationController {
       person.setPassword(password);
       person.setLastName("Last name");
       person.setFirstName("First name");
+      
+      tpsService.create(person);
 
       return "redirect:/";
    }
