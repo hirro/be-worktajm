@@ -336,6 +336,12 @@
             <artifactId>jetty-maven-plugin</artifactId>
             <version>8.1.4.v20120524</version>
             <configuration>
+               <systemProperties>
+                  <systemProperty>
+                     <name>log4j.configurationFile</name>
+                     <value>file:${project.basedir}/src/main/resources/log4j.properties</value>
+                  </systemProperty>
+               </systemProperties>               
                <jvmArgs>-Xmx1024</jvmArgs>
                <scanIntervalSeconds>1</scanIntervalSeconds>
                <webAppConfig>
