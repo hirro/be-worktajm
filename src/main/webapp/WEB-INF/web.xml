@@ -7,9 +7,7 @@
 	<!-- The master configuration file for this Spring web application -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			/WEB-INF/spring/web-application-config.xml
-		</param-value>
+		<param-value>classpath:META-INF/spring/applicationContext.xml</param-value>
 	</context-param>
 
 	<!-- Loads the Spring web application context -->
