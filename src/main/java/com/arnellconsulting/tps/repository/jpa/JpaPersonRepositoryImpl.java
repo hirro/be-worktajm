@@ -8,15 +8,16 @@ package com.arnellconsulting.tps.repository.jpa;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.repository.PersonRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
 
 /**
  *
@@ -32,25 +33,53 @@ public class JpaPersonRepositoryImpl implements PersonRepository {
 
    @Override
    public Person findByEmail(final String email) {
-      log.debug("findByEmail: {}", email);
-      Query query = this.em.createQuery("SELECT p FROM Person WHERE username = :email");
+      final Query query = this.em.createQuery("SELECT p FROM Person p WHERE p.email = :email");
 
       query.setParameter("email", email);
 
-      return (Person) query.getSingleResult();
+      final List resultList = query.getResultList();
+      final Person result;
+
+      if (resultList.isEmpty()) {
+         log.debug("findByEmail: Failed to find {}", email);
+         result = null;
+      } else {
+         result = (Person) resultList.get(0);
+         log.debug("findByEmail: Looked up {}, firstName: {}, lastName: {}",
+                   email,
+                   result.getFirstName(),
+                   result.getLastName());
+      }
+
+      return result;
    }
 
    @Override
    public Person findById(final int id) throws DataAccessException {
-      Query query = this.em.createQuery("SELECT person FROM Person WHERE person.id =:id");
+      final Query query = this.em.createQuery("SELECT person FROM Person personWHERE person.id =:id");
 
       query.setParameter("id", id);
 
-      return (Person) query.getSingleResult();
+      final List resultList = query.getResultList();
+      final Person result;
+
+      if (resultList.isEmpty()) {
+         result = null;
+      } else {
+         result = (Person) resultList.get(0);
+      }
+
+      return result;
    }
 
    @Override
    public void save(final Person person) throws DataAccessException {
-        this.em.merge(person);
+      if (person.isNew()) {
+         log.debug("Creating new person object");
+         this.em.persist(person);
+      } else {
+         log.debug("Updating person object");
+         this.em.merge(person);
+      }
    }
 }

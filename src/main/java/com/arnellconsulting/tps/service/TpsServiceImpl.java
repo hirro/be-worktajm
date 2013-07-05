@@ -24,7 +24,8 @@ public class TpsServiceImpl implements TpsService {
 
    @Override
    public Person create(final Person person) {
-      throw new UnsupportedOperationException("Not supported yet.");    // To change body of generated methods, choose Tools | Templates.
+      this.personRepository.save(person);
+      return person;
    }
 
    @Override
