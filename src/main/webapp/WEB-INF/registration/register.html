@@ -36,7 +36,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="email">Email</label>
 					  <div class="controls">
-					    <input id="email" name="email" type="email" placeholder="Enter email address" class="input-xlarge" required="" autofocus="true" />
+					    <input id="email" name="email" type="email" placeholder="Enter email address" class="input-xlarge" required="" tabindex="1" autofocus="autofocus" />
 					  </div>
 					</div>
 					
@@ -44,7 +44,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="password">Password</label>
 					  <div class="controls">
-					    <input id="password" name="password" type="password" placeholder="Enter your password" class="input-xlarge" required=""/>
+					    <input id="password" name="password" type="password" placeholder="Enter your password" class="input-xlarge" required="" tabindex="2"/>
 					  </div>
 					</div>
 					
@@ -52,7 +52,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="company">Company name</label>
 					  <div class="controls">
-					    <input id="company" name="company" type="text" placeholder="Enter company name" class="input-xlarge"/>
+					    <input id="company" name="company" type="text" placeholder="Enter company name" class="input-xlarge" tabindex="3"/>
 							<span class="help-inline">Optional</span>
 					  </div>
 					</div>
@@ -61,7 +61,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="singlebutton"></label>
 					  <div class="controls">
-					    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Register</button>
+					    <button id="singlebutton" name="singlebutton" class="btn btn-primary" >Register</button>
 					  </div>
 					</div>
 					
@@ -76,44 +76,10 @@
 	            th:src="@{/resources/assets/js/jquery.validate.js}" 
 	            type="text/javascript">
 	    </script>  
-	    <script type="text/javascript">
-					$( "#registration" ).validate({
-	          errorContainer: "hej",
-					  rules: {
-	            password: {
-	              required: true,
-	              minlength: 8,
-	            },
-					    email: {
-					      required: true,
-					      email: true,
-					      remote: {
-					        url: location.href.substring(0,location.href.lastIndexOf('/'))+"/checkEmail.do",
-					        type: "post",
-					        data: {
-					          email: function() {
-					            return $( "#email" ).val();
-					          }
-					        }
-					      }
-					    }
-					  },
-	          messages: {
-	            email: {
-	              remote: jQuery.format("Email is already in use")
-	            }
-	          },
-					  highlight: function(element) {
-					    $(element).closest('.control-group').removeClass('success').addClass('error');
-					  },
-					  success: function(element) {
-					    element
-					    .text('OK!').addClass('valid')
-					    .closest('.control-group').removeClass('error').addClass('success');
-					  }	          
-
-					});
-				</script>				 	
+	    <script src="../../assets/js/registration.js" 
+	            th:src="@{/resources/assets/js/registration.js}" 
+	            type="text/javascript">
+	    </script>  
     	</div>
 		</div>
   </body>
