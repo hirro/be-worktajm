@@ -37,7 +37,7 @@
 		<level value="warn" />
 	</logger>
 	<logger name="org.springframework.security">
-		<level value="warn" />
+		<level value="debug" />
 	</logger>
 	<logger name="org.springframework.transaction">
 		<level value="warn" />

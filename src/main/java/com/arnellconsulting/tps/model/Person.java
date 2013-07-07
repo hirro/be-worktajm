@@ -2,10 +2,10 @@ package com.arnellconsulting.tps.model;
 
 import com.arnellconsulting.tps.common.PersonStatus;
 import com.arnellconsulting.tps.common.RegistrationStatus;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import lombok.Data;
-
-import java.io.Serializable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +13,9 @@ import java.util.Set;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * TBD
@@ -20,15 +23,17 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @SuppressWarnings("PMD")
-public class Person extends BaseEntity {
-   @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
-   private Set<Contract> contracts = new HashSet<Contract>();
-   @OneToMany(cascade = CascadeType.ALL, mappedBy = "Person")
-   private Set<TimeEntry> contract = new HashSet<TimeEntry>();
+@Data
+public class Person extends BaseEntity implements UserDetails {
+//   @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
+//   private Set<Contract> contracts = new HashSet<Contract>();
+//   @OneToMany(cascade = CascadeType.ALL, mappedBy = "Person")
+//   private Set<TimeEntry> contract = new HashSet<TimeEntry>();
    private String firstName;
    private String lastName;
    private String password;
    @NotNull
+   @Column(unique=true)
    private String email;
    private String authority;
    @Enumerated
@@ -44,95 +49,35 @@ public class Person extends BaseEntity {
       this.registrationStatus = RegistrationStatus.PENDING;
    }
 
-   //~--- get methods ---------------------------------------------------------
-
-   public String getAuthority() {
-      return authority;
+   @Override
+   public Collection<? extends GrantedAuthority> getAuthorities() {
+      ArrayList<GrantedAuthority> temp = new ArrayList<GrantedAuthority>();
+      temp.add(new SimpleGrantedAuthority("ROLE_USER"));
+      return temp;
    }
 
-   public Set<TimeEntry> getContract() {
-      return contract;
-   }
-
-   public Set<Contract> getContracts() {
-      return contracts;
-   }
-
-   public Corporate getEmployer() {
-      return employer;
-   }
-
-   public Boolean getEnabled() {
-      return enabled;
-   }
-
-   public String getFirstName() {
-      return firstName;
-   }
-
-   public String getLastName() {
-      return lastName;
-   }
-
-   public String getPassword() {
-      return password;
-   }
-
-   public RegistrationStatus getRegistrationStatus() {
-      return registrationStatus;
-   }
-
-   public PersonStatus getStatus() {
-      return status;
-   }
-
-   public String getEmail() {
+   @Override
+   public String getUsername() {
       return email;
    }
 
-   //~--- set methods ---------------------------------------------------------
-
-   public void setAuthority(String authority) {
-      this.authority = authority;
+   @Override
+   public boolean isAccountNonExpired() {
+      return true;
    }
 
-   public void setContract(Set<TimeEntry> contract) {
-      this.contract = contract;
+   @Override
+   public boolean isAccountNonLocked() {
+      return true;
    }
 
-   public void setContracts(Set<Contract> contracts) {
-      this.contracts = contracts;
+   @Override
+   public boolean isCredentialsNonExpired() {
+      return true;
    }
 
-   public void setEmployer(Corporate employer) {
-      this.employer = employer;
-   }
-
-   public void setEnabled(Boolean enabled) {
-      this.enabled = enabled;
-   }
-
-   public void setFirstName(String firstName) {
-      this.firstName = firstName;
-   }
-
-   public void setLastName(String lastName) {
-      this.lastName = lastName;
-   }
-
-   public void setPassword(String password) {
-      this.password = password;
-   }
-
-   public void setRegistrationStatus(RegistrationStatus registrationStatus) {
-      this.registrationStatus = registrationStatus;
-   }
-
-   public void setStatus(PersonStatus status) {
-      this.status = status;
-   }
-
-   public void setEmail(String email) {
-      this.email = email;
+   @Override
+   public boolean isEnabled() {
+      return true;
    }
 }
