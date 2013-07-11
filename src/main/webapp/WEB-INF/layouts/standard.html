@@ -30,23 +30,22 @@
       /* Padding below the footer and lighter body text */
 
       body {
-        color: #5a5a5a;
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         padding-left: 0px;
       }
 
       /* Customize the footer, inverted black */
       .footer {
-          background-color: black;
           margin-top: 40px;
           padding: 15px 50px;
           margin-bottom: 0px;
           color:gray; 
-          border-top: 1px solid #e5e5e5;
+      }
+      .footer-logo {
+        padding-right: 15px;
       }
 
       html {
-      background-color: black;
       }
       
       .thumbnail-picture {
@@ -191,6 +190,7 @@
             <li class="active"><a href="dashboard" th:href="@{/dashboard}">Dashboard</a></li>
             <li><a href="#contact">Projects</a></li>
             <li><a href="#contact">Reports</a></li>
+            <li><a href="#about">About</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <span sec:authentication="name">user@example.org</span>
@@ -207,16 +207,32 @@
       </div>
     </div> 
 
-  	<div tiles:include="body" class="container"/>
+  	<div tiles:include="body" class="container-fluid"/>
 
     <footer class="footer" tiles:fragment="content">
       <div class="container">
         <div class="row">
-          <p class="pull-left">&copy; 2013 Arnell Consulting AB &middot; <a href="#">Testar</a>&middot; <a href="#">Terms</a></p>
-
-          <p class="pull-right">
-            <a href="http://www.springframework.org">
-              <img src="../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring"/>
+          <p class="pull-left">&copy; 2013 Arnell Consulting AB </p>
+        </div>        
+        <div class="row">
+          <p>
+            <a href="http://www.springframework.org" class="footer-logo">
+              <img src="../images/powered-by-spring.png"  th:src="@{/resources/images/powered-by-spring.png}"  alt="Powered by Spring"/>
+            </a>
+            <a href="http://www.thymeleaf.org/" class="footer-logo">
+              <img src="../images/thymeleaf.png" th:src="@{/resources/images/thymeleaf.png}" alt="Thymeleaf"/>
+            </a>            
+            <a href="http://www.jquery.com" class="footer-logo">
+              <img src="../images/jquery.png"  th:src="@{/resources/images/jquery.png}" alt="Powered by jQuery"/>
+            </a>
+            <a href="http://twitter.github.io/bootstrap/" class="footer-logo">
+              <img src="../images/bootstrap.png"  th:src="@{/resources/images/bootstrap.png}" alt="Bootstrap"/>
+            </a>
+            <a href="http://yeoman.io/" class="footer-logo">
+              <img src="../images/yeoman.png"  th:src="@{/resources/images/yeoman.png}" alt="Bootstrap"/>
+            </a>            
+            <a href="http://angularjs.org/" class="footer-logo">
+              <img src="../images/angularjs.png"  th:src="@{/resources/images/angularjs.png}" alt="Bootstrap"/>
             </a>
           </p>
         </div>
