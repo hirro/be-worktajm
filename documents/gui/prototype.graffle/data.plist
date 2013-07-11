@@ -36,7 +36,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-07-10 17:25:30 +0000</string>
+	<string>2013-07-11 22:58:20 +0000</string>
 	<key>Modifier</key>
 	<string>Jim Arnell</string>
 	<key>NotesVisible</key>
@@ -70,12 +70,12 @@
 		<key>NSPaperName</key>
 		<array>
 			<string>string</string>
-			<string>Untitled</string>
+			<string>Borderless A4, 210x297mm</string>
 		</array>
 		<key>NSPaperSize</key>
 		<array>
 			<string>size</string>
-			<string>{850.3936767578125, 792}</string>
+			<string>{841.8900146484375, 595.28997802734375}</string>
 		</array>
 		<key>NSPrintReverseOrientation</key>
 		<array>
@@ -105,7 +105,7 @@
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {1628.787353515625, 733}}</string>
+				<string>{{0, 0}, {1611.780029296875, 1072.5799560546875}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -551,7 +551,7 @@ Margin\
 			<key>UniqueID</key>
 			<integer>1</integer>
 			<key>VPages</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>ActiveLayerIndex</key>
@@ -561,7 +561,7 @@ Margin\
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {1628.787353515625, 733}}</string>
+				<string>{{0, 0}, {1611.780029296875, 1072.5799560546875}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -2261,7 +2261,7 @@ Email}</string>
 			<key>UniqueID</key>
 			<integer>9</integer>
 			<key>VPages</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>ActiveLayerIndex</key>
@@ -2271,7 +2271,7 @@ Email}</string>
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {1628.787353515625, 733}}</string>
+				<string>{{0, 0}, {1611.780029296875, 1072.5799560546875}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -12800,7 +12800,7 @@ Margin\
 			<key>UniqueID</key>
 			<integer>3</integer>
 			<key>VPages</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>ActiveLayerIndex</key>
@@ -12810,7 +12810,7 @@ Margin\
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {1628.787353515625, 733}}</string>
+				<string>{{0, 0}, {1611.780029296875, 536.28997802734375}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -14560,7 +14560,7 @@ Logout}</string>
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {1628.787353515625, 733}}</string>
+				<string>{{0, 0}, {1611.780029296875, 536.28997802734375}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -15281,7 +15281,7 @@ Email}</string>
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {814.3936767578125, 733}}</string>
+				<string>{{0, 0}, {805.8900146484375, 536.28997802734375}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -17517,7 +17517,7 @@ Email}</string>
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {1628.787353515625, 733}}</string>
+				<string>{{0, 0}, {1611.780029296875, 536.28997802734375}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>FontInfo</key>
@@ -22793,7 +22793,7 @@ Project A}</string>
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {814.3936767578125, 733}}</string>
+				<string>{{0, 0}, {805.8900146484375, 536.28997802734375}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -23359,7 +23359,7 @@ Project A}</string>
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {814.3936767578125, 733}}</string>
+				<string>{{0, 0}, {805.8900146484375, 536.28997802734375}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -25874,7 +25874,7 @@ Project A}</string>
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {1628.787353515625, 733}}</string>
+				<string>{{0, 0}, {1611.780029296875, 536.28997802734375}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -26673,7 +26673,7 @@ Please check your jim@arnellconsulting inbox for a verification from TPS.}</stri
 		<key>ExpandedCanvases</key>
 		<array/>
 		<key>Frame</key>
-		<string>{{129, 376}, {1599, 1042}}</string>
+		<string>{{2623, 398}, {1599, 1042}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
