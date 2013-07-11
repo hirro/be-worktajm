@@ -24,26 +24,24 @@
       /* Padding below the footer and lighter body text */
 
       body {
-        color: #5a5a5a;
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         padding-left: 0px;
       }
 
+      .container-fluid {
+        min-height: 400px;
+      }
+
       /* Customize the footer, inverted black */
       .footer {
-          background-color: black;
           margin-top: 40px;
           padding: 15px 50px;
           margin-bottom: 0px;
           color:gray; 
-          border-top: 1px solid #e5e5e5;
       }
 
-      html {
-      	background-color: black;
-      }
-      
-      .thumbnail-picture {
+      .footer-logo {
+        padding-right: 15px;
       }
 
 
@@ -64,7 +62,6 @@
       -------------------------------------------------- */
 
       @media (max-width: 979px) {
-
         .container.navbar-wrapper {
           margin-bottom: 0;
           width: auto;
@@ -73,70 +70,11 @@
           border-radius: 0;
           margin: -20px 0;
         }
-
-        .carousel .item {
-          height: 500px;
-        }
-        .carousel img {
-          width: auto;
-          height: 500px;
-        }
-
-        .featurette {
-          height: auto;
-          padding: 0;
-        }
-        .featurette-image.pull-left,
-        .featurette-image.pull-right {
-          display: block;
-          float: none;
-          max-width: 40%;
-          margin: 0 auto 20px;
-        }
       }
 
       @media (max-width: 767px) {
-
         .navbar-inner {
           margin: -20px;
-        }
-
-        .carousel {
-          margin-left: -20px;
-          margin-right: -20px;
-        }
-        .carousel .container {
-
-        }
-        .carousel .item {
-          height: 300px;
-        }
-        .carousel img {
-          height: 300px;
-        }
-        .carousel-caption {
-          width: 65%;
-          padding: 0 70px;
-          margin-top: 100px;
-        }
-        .carousel-caption h1 {
-          font-size: 30px;
-        }
-        .carousel-caption .lead,
-        .carousel-caption .btn {
-          font-size: 18px;
-        }
-
-        .marketing .span4 + .span4 {
-          margin-top: 40px;
-        }
-
-        .featurette-heading {
-          font-size: 30px;
-        }
-        .featurette .lead {
-          font-size: 18px;
-          line-height: 1.5;
         }
       }
     </style>
@@ -191,10 +129,39 @@
     </div> 
 
 
-    <div class="container" tiles:fragment="content">
-    	<div class="row">
-    		hej
-    		<h1>Test</h1>
+    <div class="container-fluid" tiles:fragment="content">
+    	<div class="row-fluid">
+        <div class="span3">
+          <div class="row-fluid">
+            <ul class="thumbnails">
+              <li class="span3">
+                <li class="thumbnail">
+                  <h4>Logged hours</h4>
+                    <p>
+                      <strong>This week</strong><br/>
+                      100 hrs
+                    </p>
+                    <p>
+                      <strong>This month</strong><br/>
+                      400 hrs
+                    </p>
+                    <p>
+                      <strong>This year</strong><br/>
+                      10345 hrs
+                    </p>                                
+                </li>
+
+              </li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <div class="row">
+            <h1>Dashboard</h1>
+            Some stuff
+          </div>
+        </div>
     	</div>
     </div>
 
@@ -202,11 +169,35 @@
       <div class="container">
         <div class="row">
           <p class="pull-left">&copy; 2013 Arnell Consulting AB &middot; <a href="#">Testar</a>&middot; <a href="#">Terms</a></p>
-
-          <p class="pull-right">
-            <a href="http://www.springframework.org">
+        </div>
+        <div class="row">
+          <hr/>
+          <h4>Server Side Techology</h4>
+          <p>
+            <a href="http://www.springframework.org" class="footer-logo">
               <img src="../images/powered-by-spring.png" alt="Powered by Spring"/>
             </a>
+            <a href="http://www.thymeleaf.org/" class="footer-logo">
+              <img src="../images/thymeleaf.png" alt="Thymeleaf"/>
+            </a>            
+          </p>
+        </div>
+        <div class="row">
+          <hr/>
+          <h4>Client Side Techology</h4>
+          <p>
+            <a href="http://www.jquery.com" class="footer-logo">
+              <img src="../images/jquery.png" alt="Powered by jQuery"/>
+            </a>
+            <a href="http://twitter.github.io/bootstrap/" class="footer-logo">
+              <img src="../images/bootstrap.png" alt="Bootstrap"/>
+            </a>
+            <a href="http://yeoman.io/" class="footer-logo">
+              <img src="../images/yeoman.png" alt="Yeoman"/>
+            </a>
+            <a href="http://angularjs.org/" class="footer-logo">
+              <img src="../images/angularjs.png" alt="AngularJS"/>
+            </a>            
           </p>
         </div>
       </div>
