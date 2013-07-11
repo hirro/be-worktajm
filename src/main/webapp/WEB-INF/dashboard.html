@@ -44,6 +44,16 @@
         padding-right: 15px;
       }
 
+      .project {
+        border: 1px;
+        margin: 10px 0px;
+        padding: 10px 10px;
+        border-radius: 10px;
+        box-shadow: yes;
+        border-style:solid;
+        border-width: 2px;
+      }
+
 
       /* CUSTOMIZE THE NAVBAR
       -------------------------------------------------- */
@@ -131,35 +141,78 @@
 
     <div class="container-fluid" tiles:fragment="content">
     	<div class="row-fluid">
-        <div class="span3">
-          <div class="row-fluid">
-            <ul class="thumbnails">
-              <li class="span3">
-                <li class="thumbnail">
-                  <h4>Logged hours</h4>
-                    <p>
-                      <strong>This week</strong><br/>
-                      100 hrs
-                    </p>
-                    <p>
-                      <strong>This month</strong><br/>
-                      400 hrs
-                    </p>
-                    <p>
-                      <strong>This year</strong><br/>
-                      10345 hrs
-                    </p>                                
-                </li>
+        <div class="offset1 span3">
+          <ul class="thumbnails">
+            <li class="span11">
+              <div class="thumbnail">
+                <h4>Logged hours</h4>
+                  <p>
+                    <strong>This week</strong><br/>
+                    100 hrs
+                  </p>
+                  <p>
+                    <strong>This month</strong><br/>
+                    400 hrs
+                  </p>
+                  <p>
+                    <strong>This year</strong><br/>
+                    10345 hrs
+                  </p>                                                
+              </div>
+            </li>
+            <li class="span11">
+              <div class="thumbnail">
+                <h4>Available projects</h4>
+                <!-- Project A -->
+                <div class="project">
+                  <h5>Project A<span class="pull-right icon-cog"></span></h5>
 
-              </li>
-
-            </ul>
-          </div>
+                  <p class="pull-right">
+                    10:02:23
+                  </p>
+                  <div class="btn-toolbar">
+                    <btn-group>
+                      <a href="#" class="btn btn-mini">
+                        <i class="icon-play"></i>
+                      </a>
+                      <a href="" class="btn btn-mini">
+                        <i class="icon-pause"></i>                          
+                      </a>
+                      <a href="" class="btn btn-mini">
+                        <i class="icon-stop"></i>                          
+                      </a>
+                    </btn-group>
+                  </div>
+                </div>
+                <!-- Project B -->
+                <div class="project">
+                  <h5>Project B<span class="pull-right icon-cog"></span></h5>
+                  <p class="pull-right">
+                    12:02:23
+                  </p>
+                  <div class="btn-toolbar">
+                    <btn-group>
+                      <a href="#" class="btn btn-mini">
+                        <i class="icon-play"></i>
+                      </a>
+                      <a href="" class="btn btn-mini">
+                        <i class="icon-pause"></i>                          
+                      </a>
+                      <a href="" class="btn btn-mini">
+                        <i class="icon-stop"></i>                          
+                      </a>
+                    </btn-group>
+                  </div>
+                </div>
+                <!-- End of projects  -->
+              </div>
+            </li>
+          </ul>
         </div>
-        <div class="span9">
+        <div class="span5">
           <div class="row">
             <h1>Dashboard</h1>
-            Some stuff
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
           </div>
         </div>
     	</div>
