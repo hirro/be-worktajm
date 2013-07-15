@@ -24,10 +24,85 @@
     <!--[if lt IE 9]>
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
+    <![endif]-->\
+
+    <header>
+      <div class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar-inner">
+          <a class="brand" href="#" th:href="@{/}">
+             <img src="../images/logo.png" alt="&lt;LOGO&gt;"/>
+          </a>
+
+          <form class="navbar-form pull-right" action="#" method="post" ng-if="true">
+            <input type="email" class="span3" name="j_username" placeholder="Email"/> 
+            <input type="password" class="span2" name="j_password" placeholder="Password"/> 
+            <input type="submit" value="Login" class="btn"/>
+          </form>
+
+          <div class="nav-collapse collapse pull-right" ng-if="false">
+            <ul class="nav">
+              <li class="active"><a href="#/main">Home</a></li>
+              <li class=""><a href="#/dashboard">Dashboard</a></li>
+              <li><a href="#/reports">Reports</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span sec:authentication="name">user@example.org</span>
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Profile<i class="icon-user icon-black"></i></a></li>
+                  <li><a href="#">Settings<i class="icon-cog icon-black"></i></a></li>
+                  <li><a href="#">Logout<i class="icon-unlock icon-black"></i></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>        
+        </div>
+      </div> 
+    </header>
 
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <p class="pull-left">&copy; 2013 Arnell Consulting AB &middot; <a href="#">Testar</a>&middot; <a href="#">Terms</a></p>
+        </div>
+        <div class="row">
+          <hr/>
+          <h4>Server Side Techology</h4>
+          <p>
+            <a href="http://www.springframework.org" class="footer-logo">
+              <img src="../images/powered-by-spring.png" alt="Powered by Spring"/>
+            </a>
+<!--             <a href="http://www.thymeleaf.org/" class="footer-logo">
+              <img src="../images/thymeleaf.png" alt="Thymeleaf"/>
+            </a>     -->        
+          </p>
+        </div>
+        <div class="row">
+          <hr/>
+          <h4>Client Side Techology</h4>
+          <p>
+            <h5>Featuring</h5>
+            <a href="http://yeoman.io/" class="footer-logo">
+              <img src="../images/yeoman.png" alt="Yeoman"/>
+            </a>
+\            <h5>Featuring</h5>
+            <a href="http://www.jquery.com" class="footer-logo">
+              <img src="../images/jquery.png" alt="Powered by jQuery"/>
+            </a>
+            <a href="http://twitter.github.io/bootstrap/" class="footer-logo">
+              <img src="../images/bootstrap.png" alt="Bootstrap"/>
+            </a>
+            <a href="http://angularjs.org/" class="footer-logo">
+              <img src="../images/angularjs.png" alt="AngularJS"/>
+            </a>            
+          </p>
+        </div>
+      </div>
+    </footer>           
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

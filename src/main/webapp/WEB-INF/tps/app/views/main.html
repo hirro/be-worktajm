@@ -1,35 +1,3 @@
-<div class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <a class="brand" href="#" th:href="@{/}">
-       <img src="../images/logo.png" alt="&lt;LOGO&gt;"/>
-    </a>
-
-    <form class="navbar-form pull-right" action="#" method="post" ng-if="true">
-      <input type="email" class="span3" name="j_username" placeholder="Email"/> 
-      <input type="password" class="span2" name="j_password" placeholder="Password"/> 
-      <input type="submit" value="Login" class="btn"/>
-    </form>
-
-    <div class="nav-collapse collapse pull-right" ng-if="false">
-      <ul class="nav">
-        <li class="active"><a href="#/main">Home</a></li>
-        <li class=""><a href="#/dashboard">Dashboard</a></li>
-        <li><a href="#/reports">Reports</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <span sec:authentication="name">user@example.org</span>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Profile<i class="icon-user icon-black"></i></a></li>
-            <li><a href="#">Settings<i class="icon-cog icon-black"></i></a></li>
-            <li><a href="#">Logout<i class="icon-unlock icon-black"></i></a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>        
-  </div>
-</div> 
 
 <div id="myCarousel" class="carousel slide">
 	<div class="carousel-inner">
@@ -74,7 +42,7 @@
 		</div>
 
 		<div class="item">
-			<img src="../assets/img/examples/slide-03.jpg" alt="" />
+			<img src="../images/examples/slide-03.jpg"/>
 
 			<div class="container">
 				<div class="carousel-caption">
@@ -134,20 +102,3 @@
 	</ul>
 
 </div>
-<footer class="footer">
-	<div class="container">
-		<div class="row">
-			<p class="pull-left">
-				&copy; 2013 Arnell Consulting AB &middot; <a href="#">Testar</a>&middot;
-				<a href="#">Terms</a>
-			</p>
-
-			<p class="pull-right">
-				<a href="http://www.springframework.org"> <img
-					src="../images/powered-by-spring.png"
-					alt="Powered by Spring" />
-				</a>
-			</p>
-		</div>
-	</div>
-</footer>
