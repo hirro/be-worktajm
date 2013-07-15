@@ -1,29 +1,4 @@
-   <div class="navbar navbar-inverse">
-      <div class="navbar-inner">
-        <a class="brand" href="#/">
-           <img src="../images/logo.png"  alt="&lt;LOGO&gt;"/>
-        </a>
 
-        <div class="nav-collapse collapse pull-right">
-          <ul class="nav">
-            <li><a href="#/main">Home</a></li>
-            <li class="active"><a href="#contact">Dashboard</a></li>
-            <li><a href="#/reports">Reports</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span>{{user@example.org}}</span>
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Profile<i class="icon-user icon-black"></i></a></li>
-                <li><a href="#">Settings<i class="icon-cog icon-black"></i></a></li>
-                <li><a href="#">Logout<i class="icon-unlock icon-black"></i></a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>        
-      </div>
-    </div> 
 
 
     <div class="container">
@@ -39,78 +14,32 @@
                   <a class="btn btn-primary btn-small" href="#"><i class="icon-plus"></i> Add new project</a>                  
                 </div>        
 
-                <!-- Start project A -->
-                <div class="project">
-                  <div class="project-header in project-1" id="project-header-1">
-                      <a href="#/dashboard" data-toggle="collapse" data-target=".project-1">
-                        <i class="icon-chevron-right"></i>
-                      </a>
-                      Project A
-                      <a href="#" class="btn btn-small pull-right" >Start</a>                  
-                  </div>
-                  <div id="project-form-1" class="collapse project-form project-1">
-                    <form>
-                      <fieldset>
-                        <a href="#" data-toggle="collapse" data-target=".project-1">
-                          <i class="icon-chevron-down"></i>
-                        </a>
-                        <div class="control-group">
-                          <label>Project Name
-                            <span class="controls">
-                              <input type="text" placeholder="Project name">                            
-                            </span>
-                          </label>
-                        </div>
-                        <div class="control-group">
-                          <label>Customer Name
-                            <span class="controls">
-                              <input type="text" placeholder="Customer name">                            
-                            </span>
-                          </label>
-                        </div>
-
-                        <div class="control-group">
-                          <label>Rate
-                            <div class="controls">
-                              <input type="number" placeholder="Hourly rate">
-                            </div>
-                          </label>                      
-                        </div>
-                        <div class="btn-group">
-                          <button class="btn">Save</button>
-                          <button class="btn">Reset</button>
-                        </div>
-                      </fieldset>
-                    </form>                
-                  </div>                  
-                </div>
-                <!-- End project -->
                 <!-- Start project B -->
-                <div class="project">
-                  <div class="project-header in project-2" id="project-header-2">
-                      <a href="#" data-toggle="collapse" data-target=".project-2">
+                <div class="project" ng-repeat="project in projects">
+                  <div class="project-header in project-{{project.id}}" id="project-header-{{project.id}}">
+                      <a href="#" data-toggle="collapse" data-target=".project-{{project.id}}">
                         <i class="icon-chevron-right"></i>
                       </a>
-                      Project B
+                      {{project.name}}
                       <a href="#" class="btn btn-small pull-right" >Start</a>                  
                   </div>
-                  <div id="project-form-2" class="collapse project-form project-2">
+                  <div id="project-form-{{project.id}}" class="collapse project-form project-{{project.id}}">
                     <form>
                       <fieldset>
-                        <a href="#" class="collapse-arrowk" data-toggle="collapse" data-target=".project-2">
+                        <a href="#" class="collapse-arrowk" data-toggle="collapse" data-target=".project-{{project.id}}">
                           <i class="icon-chevron-down"></i>
                         </a>
                         <div class="control-group">
                           <label>Project Name
                             <span class="controls">
-                              <input type="text" placeholder="Project name">                            
+                              <input type="text" placeholder="Project name" value="{{project.name}}">                            
                             </span>
                           </label>
                         </div>
                         <div class="control-group">
                           <label>Customer Name
                             <span class="controls">
-                              <input type="text" placeholder="Customer name">                            
+                              <input type="text" placeholder="Customer name" value="{{project.customerName}}> 
                             </span>
                           </label>
                         </div>
@@ -118,7 +47,7 @@
                         <div class="control-group">
                           <label>Rate
                             <div class="controls">
-                              <input type="number" placeholder="Hourly rate">
+                              <input type="number" placeholder="Hourly rate" value="{{project.rate}}>
                             </div>
                           </label>                      
                         </div>
@@ -130,8 +59,7 @@
                     </form>                
                   </div>                  
                 </div>
-                <!-- End project -->
-
+                <!-- End project B -->
               </div>
             </li>
           </ul>
@@ -139,7 +67,8 @@
         <!-- Center column -->
         <div class="span6">
           <h1>Dashboard</h1>
-  Nothing here {{'yet' + '!'}}
+  Nothing here {{$welcome}}
+  {{$yet}}
         </div>
         <!-- Column 3 -->
         <div class="span3">
@@ -179,41 +108,3 @@
         </div>
     	</div>
     </div>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <p class="pull-left">&copy; 2013 Arnell Consulting AB &middot; <a href="#">Testar</a>&middot; <a href="#">Terms</a></p>
-        </div>
-        <div class="row">
-          <hr/>
-          <h4>Server Side Techology</h4>
-          <p>
-            <a href="http://www.springframework.org" class="footer-logo">
-              <img src="../images/powered-by-spring.png" alt="Powered by Spring"/>
-            </a>
-            <a href="http://www.thymeleaf.org/" class="footer-logo">
-              <img src="../images/thymeleaf.png" alt="Thymeleaf"/>
-            </a>            
-          </p>
-        </div>
-        <div class="row">
-          <hr/>
-          <h4>Client Side Techology</h4>
-          <p>
-            <a href="http://www.jquery.com" class="footer-logo">
-              <img src="../images/jquery.png" alt="Powered by jQuery"/>
-            </a>
-            <a href="http://twitter.github.io/bootstrap/" class="footer-logo">
-              <img src="../images/bootstrap.png" alt="Bootstrap"/>
-            </a>
-            <a href="http://yeoman.io/" class="footer-logo">
-              <img src="../images/yeoman.png" alt="Yeoman"/>
-            </a>
-            <a href="http://angularjs.org/" class="footer-logo">
-              <img src="../images/angularjs.png" alt="AngularJS"/>
-            </a>            
-          </p>
-        </div>
-      </div>
-    </footer>
