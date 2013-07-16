@@ -11,35 +11,34 @@
               <div class="thumbnail">
                 <div class="projecs-header">
                   <h4>Projects</h4>
-                  <a class="btn btn-primary btn-small" href="#"><i class="icon-plus"></i> Add new project</a>                  
+                    <a class="btn btn-primary btn-small"  ng-click="addProject()"><i class="icon-plus"></i> Add new project</a>
                 </div>        
 
-                <!-- Start project B -->
                 <div class="project" ng-repeat="project in projects">
                   <div class="project-header in project-{{project.id}}" id="project-header-{{project.id}}">
-                      <a href="#" data-toggle="collapse" data-target=".project-{{project.id}}">
+                      <a data-toggle="collapse" data-target=".project-{{project.id}}">
                         <i class="icon-chevron-right"></i>
                       </a>
                       {{project.name}}
-                      <a href="#" class="btn btn-small pull-right" >Start</a>                  
+                      <a ng-click="startTimer(project.id)" class="btn btn-small pull-right" >Start</a>                  
                   </div>
                   <div id="project-form-{{project.id}}" class="collapse project-form project-{{project.id}}">
                     <form>
                       <fieldset>
-                        <a href="#" class="collapse-arrowk" data-toggle="collapse" data-target=".project-{{project.id}}">
+                        <a class="collapse-arrow" data-toggle="collapse" data-target=".project-{{project.id}}">
                           <i class="icon-chevron-down"></i>
                         </a>
                         <div class="control-group">
                           <label>Project Name
                             <span class="controls">
-                              <input type="text" placeholder="Project name" value="{{project.name}}">                            
+                              <input type="text" placeholder="Project name" value="{{project.name}}" ng-model="project.name">
                             </span>
                           </label>
                         </div>
                         <div class="control-group">
                           <label>Customer Name
                             <span class="controls">
-                              <input type="text" placeholder="Customer name" value="{{project.customerName}}> 
+                              <input type="text" placeholder="Customer name" value="{{project.customerName}}"> 
                             </span>
                           </label>
                         </div>
@@ -47,28 +46,39 @@
                         <div class="control-group">
                           <label>Rate
                             <div class="controls">
-                              <input type="number" placeholder="Hourly rate" value="{{project.rate}}>
+                              <input type="number" placeholder="Hourly rate" value="{{project.rate}}">
                             </div>
                           </label>                      
-                        </div>
-                        <div class="btn-group">
-                          <button class="btn">Save</button>
-                          <button class="btn">Reset</button>
                         </div>
                       </fieldset>
                     </form>                
                   </div>                  
                 </div>
-                <!-- End project B -->
+
               </div>
             </li>
           </ul>
         </div>
         <!-- Center column -->
         <div class="span6">
-          <h1>Dashboard</h1>
-  Nothing here {{$welcome}}
-  {{$yet}}
+          <table  class="table table-bordered table-hover table-striped" >
+            <caption>Time Entries</caption>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Start time</th>
+                <th>End time</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="timeEntry in timeEntries">
+              <tr>
+                <td>{{getProjectById(timeEntry.projectId).name}}</td>
+                <td>{{timeEntry.startTime}}</td>
+                <td>{{timeEntry.endTime}}</td>
+                <td>{{timeEntry.comment}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <!-- Column 3 -->
         <div class="span3">
