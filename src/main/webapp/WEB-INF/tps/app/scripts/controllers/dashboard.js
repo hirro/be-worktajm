@@ -32,9 +32,9 @@ angular.module('tpsApp')
       $scope.projects.push( {
         name: 'Project name',
         customerName: '',
-        rating: '0',
+        rating: '0'
       });
-    }
+    };
 
     // Time entries
     $scope.timeEntries = [
@@ -43,22 +43,22 @@ angular.module('tpsApp')
         projectId: '1',
         startTime: '10:00:00',
         endTime: '10:30:00',
-        comment: '', 
+        comment: ''
       },
       {
         id: '2',
         projectId: '2',
         startTime: '11:00:00',
         endTime: '11:30:00',
-        comment: '', 
+        comment: ''
       },
       {
         id: '3',
         projectId: '1',
         startTime: '13:00:00',
         endTime: '17:30:00',
-        comment: '', 
-      },
+        comment: ''
+      }
     ];
     $scope.startTimer = function(projectId) {
       var project = $scope.getProjectById(projectId);
@@ -67,19 +67,19 @@ angular.module('tpsApp')
         projectId: project.id,
         startTime: '10:00:00',
         endTime: '10:30:00',
-        comment: '', 
-      });      
-    }
+        comment: ''
+      });
+    };
 
     // Finders
     $scope.getProjectById = function(id) {
-      var project = $.grep($scope.projects, function(e) { return e.id == id })[0];
-      return project;
+      var item = $.grep($scope.projects, function(e) { return e.id == id })[0];
+      return item;
     }
 
     $scope.getTimeEntryById = function(id) {
-      var project = $.grep($scope.timeEntries, function(e) { return e.id == id })[0];
-      return project;
+      var item = $.grep($scope.timeEntries, function(e) { return e.id == id })[0];
+      return item;
     }
 
   });
