@@ -21,5 +21,7 @@ angular.module('tpsApp', [])
       })
       .otherwise({
         redirectTo: '/dashboard'
-      });
-  });
+      })}
+  );
+
+
