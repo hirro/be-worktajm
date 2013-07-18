@@ -3,11 +3,10 @@
 angular.module('tpsApp')
   .controller('DashboardCtrl', function ($scope, tpsStorage) {
 
-    $scope.email = 'rr';
-
     $scope.user = {
       email: 'jim@arnellconsulting.com',
-      verified: false
+      verified: true,
+      authenticated: true
     };
 
     // Projects

@@ -63,15 +63,12 @@
         <div class="span6">
 
           <!-- Conditonal alert if user is not yet verified  -->
-          <div ng-include src="'views/partials/user.html'">
+          <div ng-include src="'views/partials/user.html'" ng-hide="user.verified">
           </div>
 
           <!-- Time entries table -->
+          <h3>Time Entries</h3>
           <table  class="table table-bordered table-hover table-striped" >
-            <caption>
-              <h3>Time Entries</h3>
-
-            </caption>
             <thead>
               <tr>
                 <th rowspan="2" class="span2">Project</th>
