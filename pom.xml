@@ -494,7 +494,7 @@
             <artifactId>tomcat7-maven-plugin</artifactId>
             <version>2.1</version>
             <configuration>
-<!--               <url>http://arnellconsulting.dyndns.org:8080/manager/text</url>-->
+               <url>http://arnellconsulting.dyndns.org:8080/manager/text</url>
                <username>maven</username>
                <password>licentio</password>
                <update>true</update>
@@ -513,7 +513,7 @@
          </plugin>
          
          <!-- Integrate with yeoman -->
-<!--         <plugin>    
+         <plugin>    
             <groupId>com.github.trecloux</groupId>
             <artifactId>yeoman-maven-plugin</artifactId>
             <version>0.1</version>
@@ -555,7 +555,7 @@
                   </fileset>
                </filesets>
             </configuration>
-         </plugin>                     -->
+         </plugin>                     
       </plugins>
    </build>
    <scm>
