@@ -10,23 +10,12 @@ package com.arnellconsulting.tps.repository;
 
 import com.arnellconsulting.tps.model.Person;
 
-import org.springframework.dao.DataAccessException;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author jiar
  */
-public interface PersonRepository {
-
-   /**
-    *
-    * @param email
-    * @return
-    */
-   Person findByEmail(final String email);
-
-   Person findById(int id) throws DataAccessException;
-
-   void save(Person person) throws DataAccessException;
+public interface PersonRepository extends JpaRepository<Person, Long> {
+   public Person findByEmail(String email);
 }

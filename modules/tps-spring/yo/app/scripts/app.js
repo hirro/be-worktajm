@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tpsApp', [])
+angular.module('tpsApp', ['ngResource'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/main', {
@@ -21,7 +21,8 @@ angular.module('tpsApp', [])
       })
       .otherwise({
         redirectTo: '/dashboard'
-      })}
+      });
+    }
   );
 
 

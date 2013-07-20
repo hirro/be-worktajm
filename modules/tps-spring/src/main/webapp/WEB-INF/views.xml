@@ -19,4 +19,6 @@
 		<put-attribute name="body" value="/logoutSuccess.html :: content" type="thymeleaf"/>
 	</definition>
 	
+	<definition name="index" template="../index.html" templateType="thymeleaf"/>
+
 </tiles-definitions>

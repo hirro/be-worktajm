@@ -9,6 +9,7 @@
    <properties>
       <springframework-version>3.2.1.RELEASE</springframework-version>
       <springsecurity-version>3.1.3.RELEASE</springsecurity-version>
+      <springdata-version>1.3.2.RELEASE</springdata-version>
       <webflow-version>2.4.0.M1</webflow-version>
       <slf4j-version>1.7.5</slf4j-version>
       <thymeleaf-version>2.0.15</thymeleaf-version>
@@ -16,6 +17,7 @@
       <thymeleaf-extras-springsecurity3-version>2.0.0</thymeleaf-extras-springsecurity3-version>
       <thymeleaf-extras-conditionalcomments-version>2.0.0</thymeleaf-extras-conditionalcomments-version>
       <tiles-version>2.2.2</tiles-version>
+      <tomcat.version>7.0.42</tomcat.version>
    </properties>
    <repositories>
       <repository>
@@ -121,6 +123,12 @@
          <version>3.2.2.RELEASE</version>
          <type>jar</type>
       </dependency>      
+      <dependency>
+         <groupId>org.springframework.data</groupId>
+         <artifactId>spring-data-jpa</artifactId>
+         <version>${springdata-version}</version>
+         <type>jar</type>
+      </dependency>
       <!-- Logging -->
       <dependency>
          <groupId>org.slf4j</groupId>
@@ -317,6 +325,120 @@
    </dependencies>
    <build>
       <finalName>tps</finalName>
+   <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2-SNAPSHOT</version>
+          <dependencies>
+          <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-util</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-coyote</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-api</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jsp-api</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper-el</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-el-api</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-tribes</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina-ha</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-annotations-api</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-juli</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+
+          <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-logging-juli</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-logging-log4j</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>      
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -366,6 +488,18 @@
                </webAppConfig>
             </configuration>
          </plugin>
+         <!-- Deploy to test server -->
+         <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <configuration>
+               <url>http://arnellconsulting.dyndns.org:8080/text</url>
+               <path>/tps</path>
+               <username>maven</username>
+               <password>licentio</password>
+               <update>true</update>
+            </configuration>
+         </plugin>   
          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
@@ -376,6 +510,51 @@
             <artifactId>maven-release-plugin</artifactId>
             <version>2.0-beta-9</version>
          </plugin>
+         
+         <!-- Integrate with yeoman -->
+         <plugin>    
+             <groupId>com.github.trecloux</groupId>
+             <artifactId>yeoman-maven-plugin</artifactId>
+             <version>0.1</version>
+             <executions>
+                 <execution>
+                     <goals>
+                         <goal>build</goal>
+                     </goals>
+                 </execution>
+             </executions>
+         </plugin>   
+         <plugin>
+             <artifactId>maven-war-plugin</artifactId>
+             <version>2.3</version>
+                     <configuration>
+                 <webResources>
+                     <resource>
+                         <directory>yo/dist</directory>
+                     </resource>
+                 </webResources>
+             </configuration>
+         </plugin>   
+         <plugin>
+             <artifactId>maven-clean-plugin</artifactId>
+             <version>2.5</version>
+             <configuration>
+                 <filesets>
+                     <fileset>
+                         <directory>yo/dist</directory>
+                     </fileset>
+                     <fileset>
+                         <directory>yo/.tmp</directory>
+                     </fileset>
+                     <fileset>
+                         <directory>yo/app/components</directory>
+                     </fileset>
+                     <fileset>
+                       <directory>yo/node_modules</directory>
+                     </fileset>
+                 </filesets>
+             </configuration>
+         </plugin>                     
       </plugins>
    </build>
    <scm>

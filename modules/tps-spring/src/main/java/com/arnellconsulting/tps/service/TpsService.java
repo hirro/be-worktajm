@@ -1,6 +1,8 @@
 package com.arnellconsulting.tps.service;
 
 import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.model.Project;
+import java.util.List;
 
 /**
  *
@@ -36,5 +38,9 @@ public interface TpsService {
     * @param person
     */
    Person update(final Person person);
+
+   public List<Project> getProjets();
+      
+   public Project getProjectById(Long id);
    
 }

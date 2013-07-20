@@ -1,6 +1,5 @@
 package com.arnellconsulting.tps.web;
 
-import com.arnellconsulting.tps.model.Corporate;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
 

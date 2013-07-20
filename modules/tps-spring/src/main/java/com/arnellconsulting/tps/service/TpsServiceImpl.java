@@ -1,7 +1,10 @@
 package com.arnellconsulting.tps.service;
 
 import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.repository.PersonRepository;
+import com.arnellconsulting.tps.repository.ProjectRepository;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +20,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class TpsServiceImpl implements TpsService {
    private final PersonRepository personRepository;
+   private final ProjectRepository projectRepository;
 
    @Autowired
-   public TpsServiceImpl(final PersonRepository personRepository) {
+   public TpsServiceImpl(final PersonRepository personRepository,
+                         final ProjectRepository projectRepository) {
       this.personRepository = personRepository;
+      this.projectRepository = projectRepository;
    }
 
    //~--- methods -------------------------------------------------------------
@@ -54,5 +60,15 @@ public class TpsServiceImpl implements TpsService {
       this.personRepository.save(person);
 
       return person;
+   }
+
+   @Override
+   public List<Project> getProjets() {
+      return projectRepository.findAll();
+   }
+
+   @Override
+   public Project getProjectById(Long id) {
+      return projectRepository.findOne(id);
    }
 }
