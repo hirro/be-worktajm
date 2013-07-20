@@ -42,8 +42,8 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
    private Boolean enabled;
    @Enumerated
    private RegistrationStatus registrationStatus;
-   @ManyToOne
-   private Corporate employer;
+//   @ManyToOne
+//   private Corporate employer;
 
    public Person() {
       this.status = PersonStatus.NORMAL;
