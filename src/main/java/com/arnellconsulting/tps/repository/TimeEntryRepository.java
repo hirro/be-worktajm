@@ -6,12 +6,12 @@
 
 package com.arnellconsulting.tps.repository;
 
-import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.model.TimeEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author jiar
  */
-public interface ProjectRepository extends JpaRepository<Project, Long> {
+public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {   
 }

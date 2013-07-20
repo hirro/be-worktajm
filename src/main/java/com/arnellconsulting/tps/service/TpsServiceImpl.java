@@ -1,9 +1,16 @@
+/*
+ * Time Reporing Server.
+ *
+ * Copyright 2013 Arnell Consulting AB
+ */
 package com.arnellconsulting.tps.service;
 
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
+import com.arnellconsulting.tps.repository.TimeEntryRepository;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,12 +28,15 @@ import org.springframework.stereotype.Service;
 public class TpsServiceImpl implements TpsService {
    private final PersonRepository personRepository;
    private final ProjectRepository projectRepository;
+   private final TimeEntryRepository timeEntryRepository;
 
    @Autowired
    public TpsServiceImpl(final PersonRepository personRepository,
-                         final ProjectRepository projectRepository) {
+                         final ProjectRepository projectRepository,
+                         final TimeEntryRepository timeEntryReposistory) {
       this.personRepository = personRepository;
       this.projectRepository = projectRepository;
+      this.timeEntryRepository = timeEntryReposistory;
    }
 
    //~--- methods -------------------------------------------------------------
@@ -70,5 +80,10 @@ public class TpsServiceImpl implements TpsService {
    @Override
    public Project getProjectById(Long id) {
       return projectRepository.findOne(id);
+   }
+
+   @Override
+   public List<TimeEntry> getTimeEntries() {
+      return timeEntryRepository.findAll();
    }
 }
