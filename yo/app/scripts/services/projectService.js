@@ -4,7 +4,7 @@
 
 angular.module('tpsApp')
   .factory('Project', function ($resource) {
-    return $resource('http://localhost\\:8080/tps/project/:operation/:projectId', {}, {
+    return $resource('http://localhost\\:8080/tps/api/project/:operation/:projectId', {}, {
       query: {
         method: 'GET',
         params: {
