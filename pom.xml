@@ -498,6 +498,7 @@
                <username>maven</username>
                <password>licentio</password>
                <update>true</update>
+               <port>8080</port>
             </configuration>
          </plugin>   
          <plugin>
@@ -512,7 +513,7 @@
          </plugin>
          
          <!-- Integrate with yeoman -->
-         <plugin>    
+<!--         <plugin>    
             <groupId>com.github.trecloux</groupId>
             <artifactId>yeoman-maven-plugin</artifactId>
             <version>0.1</version>
@@ -554,7 +555,7 @@
                   </fileset>
                </filesets>
             </configuration>
-         </plugin>                     
+         </plugin>                     -->
       </plugins>
    </build>
    <scm>
