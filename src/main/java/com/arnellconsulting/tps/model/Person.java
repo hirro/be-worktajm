@@ -7,9 +7,6 @@ import java.util.Collection;
 
 import lombok.Data;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
