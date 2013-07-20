@@ -13,6 +13,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,7 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @SuppressWarnings("PMD")
 @Data
-public class Person extends BaseEntity implements UserDetails {
+public class Person extends AbstractPersistable<Long> implements UserDetails {
 //   @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
 //   private Set<Contract> contracts = new HashSet<Contract>();
 //   @OneToMany(cascade = CascadeType.ALL, mappedBy = "Person")
