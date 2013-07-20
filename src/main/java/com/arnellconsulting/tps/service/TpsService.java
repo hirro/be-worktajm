@@ -1,7 +1,13 @@
+/*
+ * Time Reporing Server.
+ *
+ * Copyright 2013 Arnell Consulting AB
+ */
 package com.arnellconsulting.tps.service;
 
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.model.TimeEntry;
 import java.util.List;
 
 /**
@@ -42,5 +48,7 @@ public interface TpsService {
    public List<Project> getProjets();
       
    public Project getProjectById(Long id);
+
+   public List<TimeEntry> getTimeEntries();
    
 }
