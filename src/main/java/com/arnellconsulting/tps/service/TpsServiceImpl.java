@@ -12,9 +12,11 @@ import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -25,19 +27,11 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
+@AllArgsConstructor(onConstructor = @_(@Autowired))
 public class TpsServiceImpl implements TpsService {
-   private final PersonRepository personRepository;
-   private final ProjectRepository projectRepository;
-   private final TimeEntryRepository timeEntryRepository;
-
-   @Autowired
-   public TpsServiceImpl(final PersonRepository personRepository,
-                         final ProjectRepository projectRepository,
-                         final TimeEntryRepository timeEntryReposistory) {
-      this.personRepository = personRepository;
-      this.projectRepository = projectRepository;
-      this.timeEntryRepository = timeEntryReposistory;
-   }
+   private final transient @NonNull PersonRepository personRepository;
+   private final transient @NonNull ProjectRepository projectRepository;
+   private final transient @NonNull TimeEntryRepository timeEntryRepository;
 
    //~--- methods -------------------------------------------------------------
 
