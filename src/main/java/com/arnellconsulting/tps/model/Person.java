@@ -47,9 +47,13 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
 // @ManyToOne
 // private Corporate employer;
 
+   @Transient
    private transient Boolean credentialsNonExpired;
+   @Transient
    private transient Boolean credentialsNonLocked;
+   @Transient
    private transient boolean accountNonLocked;
+   @Transient
    private transient boolean accountNonExpired;
 
    public Person() {
