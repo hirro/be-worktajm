@@ -42,7 +42,7 @@ public class ApiController {
    //~--- get methods ---------------------------------------------------------
 
    @Transactional
-   @RequestMapping(value = "projects", method = RequestMethod.GET)
+   @RequestMapping(value = "project", method = RequestMethod.GET)
    @ResponseBody
    public List<Project> getAllProjects() {
       log.debug("getAllProjects");
@@ -64,7 +64,7 @@ public class ApiController {
       tpsService.updateProject(project);
    }
    
-   @RequestMapping(value = "project", method = RequestMethod.GET)
+   @RequestMapping(value = "project", method = RequestMethod.GET, consumes="application/json")
    @ResponseBody
    public Project readProject(@RequestParam Long id) {
       log.debug("readProject {}", id);
