@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.Parameter;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  * test
@@ -40,22 +42,48 @@ public class ApiController {
    //~--- get methods ---------------------------------------------------------
 
    @Transactional
-   @RequestMapping("project/list")
-   public @ResponseBody
-   List<Project> getAllProjects() {
+   @RequestMapping(value = "projects", method = RequestMethod.GET)
+   @ResponseBody
+   public List<Project> getAllProjects() {
+      log.debug("getAllProjects");
       return tpsService.getProjets();
    }
 
    @Transactional
    @RequestMapping("timeentry/list")
-   public @ResponseBody
-   List<TimeEntry> getAllTimeEntries() {
+   @ResponseBody 
+   public List<TimeEntry> getAllTimeEntries() {
+      log.debug("getAllTimeEntries");
       return tpsService.getTimeEntries();
    }
-
-   @RequestMapping("project/{id}")
+   
+   @RequestMapping(value = "project", method = RequestMethod.POST)
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void createProject(@RequestBody Project project) {
+      log.debug("createProject {}", project.getName());
+      tpsService.updateProject(project);
+   }
+   
+   @RequestMapping(value = "project", method = RequestMethod.GET)
    @ResponseBody
-   public Project getById(@PathVariable Long id) {
+   public Project readProject(@RequestParam Long id) {
+      log.debug("readProject {}", id);
       return tpsService.getProjectById(id);
    }
+    
+   @RequestMapping(value = "project", method = RequestMethod.PUT)
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   @ResponseBody
+   public void updateProject(@RequestBody Project project) {
+      log.debug("updateProject {}", project.getId());
+      tpsService.updateProject(project);
+   }
+   
+   @RequestMapping(value = "project", method = RequestMethod.DELETE)
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void deleteProject(@RequestParam Long id) {
+      log.debug("deleteProject {}", id);
+      tpsService.deleteProject(id);
+   }
+
 }

@@ -1,6 +1,4 @@
 
-
-
     <div class="container">
     	<div class="row">
 
@@ -11,47 +9,77 @@
               <div class="thumbnail">
                 <div class="projecs-header">
                   <h4>Projects</h4>
-                    <a class="btn btn-primary btn-small"  ng-click="addProject()"><i class="icon-plus"></i> Add new project</a>
+                    <a class="btn btn-primary btn-small"  href="#newProjectModal" data-toggle="modal"><i class="icon-plus"></i> Add new project</a>
                 </div>        
 
-                <div class="project" ng-repeat="project in projects">
-                  <div class="project-header in project-{{project.id}}" id="project-header-{{project.id}}">
-                      <a data-toggle="collapse" data-target=".project-{{project.id}}">
-                        <i class="icon-chevron-right"></i>
-                      </a>
-                      {{project.name}}
-                      <a ng-click="startTimer(project.id)" class="btn btn-small pull-right" >Start</a>                  
-                  </div>
-                  <div id="project-form-{{project.id}}" class="collapse project-form project-{{project.id}}">
-                    <form>
-                      <fieldset>
-                        <a class="collapse-arrow" data-toggle="collapse" data-target=".project-{{project.id}}">
-                          <i class="icon-chevron-down"></i>
+                <div class="projects" id="projects">
+                  <div class="project" ng-repeat="project in projects">
+                    <div class="project-header in project-{{project.id}}" id="project-header-{{project.id}}">
+                        <a data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects">
+                          <i class="icon-chevron-right"></i>
                         </a>
-                        <div class="control-group">
-                          <label>Project Name
-                            <span class="controls">
-                              <input type="text" placeholder="Project name" value="{{project.name}}" ng-model="project.name">
-                            </span>
-                          </label>
-                        </div>
-                        <div class="control-group">
-                          <label>Customer Name
-                            <span class="controls">
-                              <input type="text" placeholder="Customer name" value="{{project.customerName}}"> 
-                            </span>
-                          </label>
-                        </div>
+                        {{project.name}}
+                        <a ng-click="startTimer(project.id)" class="btn btn-small pull-right" >Start</a>                  
+                    </div>
+                    <div id="project-form-{{project.id}}" class="collapse project-form project-{{project.id}}">
+                      <form>
+                        <fieldset>
+                          <a class="collapse-arrow" data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects">
+                            <i class="icon-chevron-down"></i>
+                          </a>
+                          <div class="control-group">
+                            <label>Project Name
+                              <span class="controls">
+                                <input type="text" placeholder="Project name" value="{{project.name}}" ng-model="project.name">
+                              </span>
+                            </label>
+                          </div>
+                          <div class="control-group">
+                            <label>Customer Name
+                              <span class="controls">
+                                <input type="text" placeholder="Customer name" value="{{project.customerName}}"> 
+                              </span>
+                            </label>
+                          </div>
 
-                        <div class="control-group">
-                          <label>Rate
+                          <div class="control-group">
+                            <label>Rate
+                              <div class="controls">
+                                <input type="number" placeholder="Hourly rate" value="{{project.rate}}">
+                              </div>
+                            </label>                      
+                          </div>
+
+                          <div class="control-group">
                             <div class="controls">
-                              <input type="number" placeholder="Hourly rate" value="{{project.rate}}">
+                              <div class="btn-group">
+                                <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                                  More
+                                  <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                  <li class="mini ">
+                                    <small>
+                                      <a ng-click="removeProject(project)">Delete Project</a>                                    
+                                    </small>
+                                  </li>
+                                </ul>
+                              </div>
                             </div>
-                          </label>                      
-                        </div>
-                      </fieldset>
-                    </form>                
+                          </div>
+
+                          <div class="control-group">
+                            <div class="controls">
+                              <div class=" btn-group">
+                                <button class="btn btn-small icon-ok" ng-click="saveProject(project)"> Save</button>
+                                <button class="btn btn-small icon-remove" ng-click="cancelProject(project)"> Close</button>
+                              </div>
+                            </div>
+                          </div>
+
+                        </fieldset>
+                      </form>                
+                    </div>                  
                   </div>                  
                 </div>
 
@@ -65,7 +93,8 @@
           <!-- Conditonal alert if user is not yet verified  -->
           <div ng-include src="'views/partials/user.html'" ng-hide="user.verified">
           </div>
-
+          <div ng-include src="'views/partials/project.html'"/>            
+          </div>
           <!-- Time entries table -->
           <h3>Time Entries</h3>
           <table  class="table table-bordered table-hover table-striped" >

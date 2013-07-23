@@ -37,9 +37,7 @@
       <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
     </filter-mapping>
 
-<!-- CORS configuration for Tomcat -->
-	
-	
+   <!-- CORS configuration for Tomcat -->	
 	<filter>
 	  <filter-name>CorsFilter</filter-name>
 	  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
@@ -49,7 +47,7 @@
 	  </init-param>
 	  <init-param>
 	    <param-name>cors.allowed.methods</param-name>
-	    <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
+	    <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
 	  </init-param>
 	  <init-param>
 	    <param-name>cors.allowed.headers</param-name>

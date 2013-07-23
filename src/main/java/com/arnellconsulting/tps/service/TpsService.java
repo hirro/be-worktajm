@@ -50,5 +50,9 @@ public interface TpsService {
    public Project getProjectById(Long id);
 
    public List<TimeEntry> getTimeEntries();
+
+   public void deleteProject(Long id);
+
+   public void updateProject(Project project);
    
 }

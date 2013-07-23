@@ -80,4 +80,14 @@ public class TpsServiceImpl implements TpsService {
    public List<TimeEntry> getTimeEntries() {
       return timeEntryRepository.findAll();
    }
+
+   @Override
+   public void deleteProject(Long id) {
+      projectRepository.delete(id);
+   }
+
+   @Override
+   public void updateProject(Project project) {
+      projectRepository.save(project);
+   }
 }
