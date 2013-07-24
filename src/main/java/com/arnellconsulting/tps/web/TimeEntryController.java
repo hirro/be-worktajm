@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * JSON interface.
@@ -84,9 +85,9 @@ public class TimeEntryController {
       tpsService.updateTimeEntry(timeEntry);
    }
 
-   @RequestMapping(method = RequestMethod.DELETE)
+   @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public final void delete(@RequestParam final Long id) {
+   public final void delete(@PathVariable final long id) {
       log.debug("delete id: {}", id);
       tpsService.deleteTimeEntry(id);
    }

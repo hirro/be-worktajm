@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tpsApp', ['ngResource'])
+angular.module('tpsApp', ['ngResource', 'restangular'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/main', {
@@ -23,6 +23,8 @@ angular.module('tpsApp', ['ngResource'])
         redirectTo: '/dashboard'
       });
     }
-  );
+  ).config(function(RestangularProvider) {
+    RestangularProvider.setBaseUrl('http://localhost:8080/tps/api');
+  });
 
 
