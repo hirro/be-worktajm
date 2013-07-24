@@ -37,6 +37,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project extends AbstractPersistable<Long> {
    private static final long serialVersionUID = -3902305943341540214L;
+   @NotNull
    private String name;
    private String description;
    private BigDecimal rate;

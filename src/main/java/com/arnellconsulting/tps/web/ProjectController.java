@@ -23,19 +23,19 @@ import com.arnellconsulting.tps.service.TpsService;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * JSON API for Project.
@@ -53,38 +53,51 @@ public class ProjectController {
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
-   public List<Project> findAll() {
-      log.debug("findAll");
+   public List<Project> list() {
+      log.debug("list");
 
       return tpsService.getProjets();
    }
 
    @Transactional
-   @RequestMapping(
-      method = RequestMethod.POST
-   )
-   @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void save(@RequestBody final Project project) {
-      log.debug("save name: {}", project.getName());
+   @RequestMapping(method = RequestMethod.POST)
+   @ResponseBody
+   public Project create(@RequestBody final Project project) {
+      log.debug("create name: {}", project.getName());
       tpsService.saveProject(project);
+
+      return project;
    }
 
    @Transactional
    @RequestMapping(
-      method = RequestMethod.GET,
-      consumes = "application/json"
+      value = "/{id}",
+      method = RequestMethod.GET
    )
    @ResponseBody
-   public Project read(@RequestParam final long id) {
+   public Project read(@PathVariable final long id) {
       log.debug("read id: {}", id);
 
       return tpsService.getProjectById(id);
    }
-
+   
    @Transactional
-   @RequestMapping(method = RequestMethod.DELETE)
+   @RequestMapping(
+      value = "/{id}",
+      method = RequestMethod.PUT
+   )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void delete(@RequestParam final long id) {
+   public void update(@PathVariable final long id, @RequestBody final Project project) {
+      log.debug("update name: {}");
+      tpsService.saveProject(project);
+   }
+
+   @RequestMapping(
+      value = "/{id}",
+      method = RequestMethod.DELETE
+   )
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void delete(@PathVariable final long id) {
       log.debug("delete id: {}", id);
       tpsService.deleteProject(id);
    }
