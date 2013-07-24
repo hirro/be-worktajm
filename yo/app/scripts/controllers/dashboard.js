@@ -64,8 +64,10 @@ angular.module('tpsApp')
       project.get().then(function(originalProject) {
         project = originalProject;
         console.log('originalProject(id: %d, name: %s)', originalProject.id, originalProject.name);
-        project.name = 'JIM WAS HERE';
       }); 
+      baseProjects.getList().then(function(projects) {
+        $scope.projects = projects;
+      });
     };
 
     // Time entries

@@ -71,8 +71,8 @@
                           <div class="control-group">
                             <div class="controls">
                               <div class=" btn-group">
-                                <button class="btn btn-small icon-ok" ng-click="updateProject(project)"> Save</button>
-                                <button class="btn btn-small icon-remove" ng-click="restoreProject(project)"> Close</button>
+                                <button class="btn btn-small icon-ok" ng-click="updateProject(project)"  data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects"> Save</button>
+                                <button class="btn btn-small icon-remove" ng-click="restoreProject(project)" data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects"> Close</button>
                               </div>
                             </div>
                           </div>
