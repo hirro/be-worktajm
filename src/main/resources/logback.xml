@@ -10,7 +10,7 @@
   <logger name="com.arnellconsulting" level="DEBUG"/>
    
  
-  <root level="debug">
+  <root level="error">
     <appender-ref ref="STDOUT" />
   </root>
 </configuration>

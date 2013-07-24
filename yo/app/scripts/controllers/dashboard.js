@@ -53,6 +53,10 @@ angular.module('tpsApp')
       console.log('removeProject(%s)', project.id); 
       project.$save();
     };
+    $scope.restoreProject = function (project) {
+      console.log('restoreProject(%s)', project.id); 
+      project = project.$get({id: project.id});
+    };
 
     // Time entries
     $scope.timeEntries = tpsStorage.getTimeEntries();

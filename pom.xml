@@ -20,7 +20,12 @@
       <tomcat.version>7.0.42</tomcat.version>
       <logback.version>0.9.26</logback.version>
       <slf4j.version>1.7.5</slf4j.version>
+      <netbeans.hint.license>apache20</netbeans.hint.license>
    </properties>
+  <organization>
+    <name>Arnell Consulting AB</name>
+    <url>http://arnellconsulting.com</url>
+  </organization>   
    <profiles>
       <profile>
          <id>yo</id>
