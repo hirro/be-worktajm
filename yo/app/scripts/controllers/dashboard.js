@@ -11,8 +11,8 @@ angular.module('tpsApp')
       authenticated: true
     };
     $scope.project = {
-      name: 'a',
-      rate: 0,
+      name: '',
+      rate: '',
       description: ''
     };
 
@@ -40,6 +40,11 @@ angular.module('tpsApp')
     $scope.createProject = function () {
       console.log('createProject(name: %s, id: %d)', $scope.project.name, $scope.project.id);
       $scope.updateProject($scope.project);
+      $scope.project = {
+        name: '',
+        rate: '',
+        description: ''
+      };      
     };
     $scope.removeProject = function (project) {
       console.log('removeProject(name: %s, id: %d)', project.name, project.id);
@@ -104,4 +109,9 @@ angular.module('tpsApp')
       });
     };
 
+    $scope.showNewProject = function () {
+      console.log('showNewProject');
+      $('#newProjectModal').modal('show');
+    };
   });
+

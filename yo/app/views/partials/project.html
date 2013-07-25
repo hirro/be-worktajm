@@ -1,24 +1,24 @@
 <div class="modal hide fade" id="newProjectModal" tabindex="-1" role="dialog" aria-labelledby="newProjectModal" aria-hidden="true">
-	<div class="modal-body">
+	<div class="modal-body" >
 	  <p>
 	    <form>
 	      <fieldset>
 	        <label>Name</label>
-	        <input type="name" placeholder="Enter project name" ng-model="project.name">
+	        <input type="name" id="newProjcetFocus" placeholder="Enter project name" ng-model="project.name" autofocus="autofocus"/>
 	      </fieldset>
 	      <fieldset>
 	        <label>Rate</label>
-	        <input type="name" placeholder="Enter rate" ng-model="project.rate">
+	        <input type="name" placeholder="Enter rate" ng-model="project.rate"/>
 	      </fieldset>
 	      <fieldset>
 	        <label>Description</label>
-	        <input type="name" placeholder="Enter project description" ng-model="project.description">
+	        <input type="name" placeholder="Enter project description" ng-model="project.description"/>
 	      </fieldset>
 	    </form>                
 	  </p>
 	</div>
 	<div class="modal-footer">
 	  <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-	  <button class="btn btn-primary" data-dismiss="modal" ng-click="createProject(hej, 23)">Create Project</button>
+	  <button class="btn btn-primary" data-dismiss="modal" ng-click="createProject()">Create Project</button>
 	</div>
 </div>
