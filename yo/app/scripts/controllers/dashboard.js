@@ -5,11 +5,15 @@
 angular.module('tpsApp')
   .controller('DashboardCtrl', function ($scope, $resource, tpsStorage, Restangular) {
 
-    $scope.user = {
-      email: 'jim@arnellconsulting.com',
-      verified: false,
-      authenticated: true
-    };
+    Restangular.one('person', 1).get().then(function(person) {
+      $scope.user = person;
+    });
+    // $scope.user = Restangular.{
+    //   email: 'jim@arnellconsulting.com',
+    //   verified: false,
+    //   authenticated: true,
+    //   activeProject: 3
+    // };
     $scope.project = {
       name: '',
       rate: '',
@@ -77,15 +81,25 @@ angular.module('tpsApp')
 
     // Time entries
     $scope.timeEntries = tpsStorage.getTimeEntries();
-    $scope.startTimer = function (projectId) {
-      var project = $scope.getProjectById(projectId);
-      $scope.timeEntries.push({
-        id: 1,
-        projectId: project.id,
-        startTime: '10:00:00',
-        endTime: '10:30:00',
-        comment: ''
-      });
+    $scope.startTimer = function (project) {
+      console.log('startTimer');
+
+      // Check if no previous project is active
+      if ($scope.activeProject == null) {
+        console.log('No previous active proejct');
+        $scope.activeProject = project;
+        $scope.activeProject.active = true;
+      } else {
+        if ($scope.activeProject.id !== project.id) {
+          console.log('Changed project');
+          $scope.activeProject.active = false;
+          $scope.activeProject = project;
+          $scope.activeProject.active = true;
+        } else {
+          $scope.activeProject.active = false;
+          $scope.activeProject = null;
+        }
+      }
     };
     $scope.removeTimeEntry = function (timeEntry) {
       console.log('removeTimeEntry(%s)', timeEntry.id);

@@ -23,21 +23,22 @@ import com.arnellconsulting.tps.service.TpsService;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
 /**
- * JSON interface.
+ * JSON API for Person.
  *
  * @author jiar
  */
@@ -50,51 +51,53 @@ public class PersonController {
    private transient TpsService tpsService;
 
    @Transactional
-   @RequestMapping(
-      method = RequestMethod.GET
-   )
+   @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
-   public List<Person> findAll() {
-      log.debug("findAll");
+   public List<Person> list() {
+      log.debug("list");
 
       return tpsService.getPersons();
    }
 
-   @RequestMapping(
-      method = RequestMethod.POST
-   )
-   @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void create(@RequestBody final Person person) {
-      log.debug("create name: {}", person.getUsername());
-      tpsService.updatePerson(person);
+   @Transactional
+   @RequestMapping(method = RequestMethod.POST)
+   @ResponseBody
+   public Person create(@RequestBody final Person person) {
+      log.debug("create name: {}", person.getEmail());
+      tpsService.savePerson(person);
+
+      return person;
    }
 
+   @Transactional
    @RequestMapping(
-      method = RequestMethod.GET,
-      consumes = "application/json"
+      value = "/{id}",
+      method = RequestMethod.GET
    )
    @ResponseBody
-   public final Person read(@RequestParam final Long id) {
+   public Person read(@PathVariable final long id) {
       log.debug("read id: {}", id);
 
-      return tpsService.getPersonById(id);
+      return tpsService.getPerson(id);
    }
-
+   
+   @Transactional
    @RequestMapping(
+      value = "/{id}",
       method = RequestMethod.PUT
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   @ResponseBody
-   public final void update(@RequestBody final Person person) {
-      log.debug("update id: {}", person.getId());
-      tpsService.updatePerson(person);
+   public void update(@PathVariable final long id, @RequestBody final Person person) {
+      log.debug("update name: {}");
+      tpsService.savePerson(person);
    }
 
    @RequestMapping(
+      value = "/{id}",
       method = RequestMethod.DELETE
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public final void delete(@RequestParam final Long id) {
+   public void delete(@PathVariable final long id) {
       log.debug("delete id: {}", id);
       tpsService.deletePerson(id);
    }

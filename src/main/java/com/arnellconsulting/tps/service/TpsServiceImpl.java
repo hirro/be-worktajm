@@ -63,52 +63,16 @@ public class TpsServiceImpl implements TpsService {
       this.timeEntryRepository = timeEntryRepository;
    }
 
-   @Override
-   public Person create(final Person person) {
-      try {
-         log.debug("Create person");
-         this.personRepository.save(person);
-      } catch (DataAccessException e) {
-         log.debug("Failed to create entry", e);
-      }
-
-      return person;
-   }
-
-   @Override
-   public Person delete(final int id) {
-      throw new UnsupportedOperationException("Not supported yet.");
-   }
-
-   @Override
-   public Person findPersonByEmail(final String email) {
-      log.debug("Find person by email");
-
-      return this.personRepository.findByEmail(email);
-   }
-
-   @Override
-   public Person update(final Person person) {
-      log.debug("Update person");
-      this.personRepository.save(person);
-
-      return person;
-   }
-
+   // ~ Project
    @Override
    public List<Project> getProjets() {
       return projectRepository.findAll();
    }
 
    @Override
-   public Project getProjectById(final long id) {
+   public Project getProject(final long id) {
       log.debug("getProjectById");
       return projectRepository.findOne(id);
-   }
-
-   @Override
-   public List<TimeEntry> getTimeEntries() {
-      return timeEntryRepository.findAll();
    }
 
    @Override
@@ -120,39 +84,52 @@ public class TpsServiceImpl implements TpsService {
    public void saveProject(final Project project) {
       projectRepository.save(project);
    }
+   
+   // ~ Person
+   @Override
+   public List<Person> getPersons() {
+      return personRepository.findAll();
+   }
 
    @Override
-   public void updatePerson(final Person person) {
-      throw new UnsupportedOperationException("Not supported yet.");
+   public Person getPerson(final long id) {
+      return personRepository.findOne(id);
    }
 
    @Override
    public void deletePerson(final long id) {
-      throw new UnsupportedOperationException("Not supported yet.");
+      personRepository.delete(id);
    }
 
    @Override
-   public Person getPersonById(final long id) {
-      throw new UnsupportedOperationException("Not supported yet.");
+   public void savePerson(final Person person) {
+      personRepository.save(person);
    }
 
    @Override
-   public List<Person> getPersons() {
-      throw new UnsupportedOperationException("Not supported yet.");
+   public Person findPersonByEmail(String email) {
+      return personRepository.findByEmail(email);
+   }
+   
+   // ~ TimeEntry
+   @Override
+   public List<TimeEntry> getTimeEntries() {
+      return timeEntryRepository.findAll();
+   }
+
+   @Override
+   public TimeEntry getTimeEntry(final long id) {
+      return timeEntryRepository.findOne(id);
    }
 
    @Override
    public void deleteTimeEntry(final long id) {
-      throw new UnsupportedOperationException("Not supported yet.");
+      timeEntryRepository.delete(id);
    }
 
    @Override
-   public void updateTimeEntry(final TimeEntry timeEntry) {
-      throw new UnsupportedOperationException("Not supported yet.");
-   }
+   public void saveTimeEntry(final TimeEntry person) {
+      timeEntryRepository.save(person);
+   }   
 
-   @Override
-   public TimeEntry getTimeEntryById(final long id) {
-      throw new UnsupportedOperationException("Not supported yet.");
-   }
 }

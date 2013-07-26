@@ -78,7 +78,7 @@ public class ProjectController {
    public Project read(@PathVariable final long id) {
       log.debug("read id: {}", id);
 
-      return tpsService.getProjectById(id);
+      return tpsService.getProject(id);
    }
    
    @Transactional
