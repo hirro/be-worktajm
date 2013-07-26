@@ -20,7 +20,8 @@
                           <i class="icon-chevron-right"></i>
                         </a>
                         {{project.name}}
-                        <a ng-click="startTimer(project.id)" class="btn btn-small pull-right" >Start</a>                  
+                        <a ng-click="startTimer(project)" class="btn btn-small pull-right" ng-show="project.active" >Stop</a>                  
+                        <a ng-click="startTimer(project)" class="btn btn-small pull-right" ng-hide="project.active">Start</a>                  
                     </div>
                     <div id="project-form-{{project.id}}" class="collapse project-form project-{{project.id}}">
                       <form>
@@ -92,7 +93,7 @@
         <div class="span6">
 
           <!-- Conditonal alert if user is not yet verified  -->
-          <div ng-include src="'views/partials/user.html'" ng-hide="user.verified">
+          <div ng-include src="'views/partials/user.html'" ng-hide="user.emailVerified">
           </div>
           <div ng-include src="'views/partials/project.html'"/>            
           </div>

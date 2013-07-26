@@ -27,18 +27,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.PathVariable;
 
 /**
- * JSON interface.
+ * JSON API for TimeEntry.
  *
  * @author jiar
  */
@@ -53,41 +52,51 @@ public class TimeEntryController {
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
-   public List<TimeEntry> findAll() {
-      log.debug("findAll");
+   public List<TimeEntry> list() {
+      log.debug("list");
 
       return tpsService.getTimeEntries();
    }
 
+   @Transactional
    @RequestMapping(method = RequestMethod.POST)
+   @ResponseBody
+   public TimeEntry create(@RequestBody final TimeEntry timeEntry) {
+      log.debug("create: ");
+      tpsService.saveTimeEntry(timeEntry);
+
+      return timeEntry;
+   }
+
+   @Transactional
+   @RequestMapping(
+      value = "/{id}",
+      method = RequestMethod.GET
+   )
+   @ResponseBody
+   public TimeEntry read(@PathVariable final long id) {
+      log.debug("read id: {}", id);
+
+      return tpsService.getTimeEntry(id);
+   }
+
+   @Transactional
+   @RequestMapping(
+      value = "/{id}",
+      method = RequestMethod.PUT
+   )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void create(@RequestBody final TimeEntry timeEntry) {
-      log.debug("create name: {}", timeEntry.getStartTime());
-      tpsService.updateTimeEntry(timeEntry);
+   public void update(@PathVariable final long id, @RequestBody final TimeEntry timeEntry) {
+      log.debug("update name: {}");
+      tpsService.saveTimeEntry(timeEntry);
    }
 
    @RequestMapping(
-      method = RequestMethod.GET,
-      consumes = "application/json"
+      value = "/{id}",
+      method = RequestMethod.DELETE
    )
-   @ResponseBody
-   public final TimeEntry read(@RequestParam final Long id) {
-      log.debug("read id: {}", id);
-
-      return tpsService.getTimeEntryById(id);
-   }
-
-   @RequestMapping(method = RequestMethod.PUT)
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   @ResponseBody
-   public final void update(@RequestBody final TimeEntry timeEntry) {
-      log.debug("update id: {}", timeEntry.getId());
-      tpsService.updateTimeEntry(timeEntry);
-   }
-
-   @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-   @ResponseStatus(HttpStatus.NO_CONTENT)
-   public final void delete(@PathVariable final long id) {
+   public void delete(@PathVariable final long id) {
       log.debug("delete id: {}", id);
       tpsService.deleteTimeEntry(id);
    }

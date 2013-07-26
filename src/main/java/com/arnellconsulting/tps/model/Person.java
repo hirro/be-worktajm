@@ -1,7 +1,24 @@
+/*
+ * Copyright 2013 Arnell Consulting AB.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+
 package com.arnellconsulting.tps.model;
 
 import com.arnellconsulting.tps.common.PersonStatus;
-import com.arnellconsulting.tps.common.RegistrationStatus;
 
 import lombok.Data;
 
@@ -16,6 +33,7 @@ import java.util.Collection;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * TBD
@@ -24,6 +42,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @SuppressWarnings("PMD")
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Person extends AbstractPersistable<Long> implements UserDetails {
    private static final long serialVersionUID = -3902301243341660214L;
 
@@ -38,27 +57,16 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
    @Column(unique = true)
    private String email;
    private String authority;
-   @Enumerated
-   private PersonStatus status;
-   private Boolean enabled;
-   @Enumerated
-   private RegistrationStatus registrationStatus;
+   
+   private boolean emailVerified = false;
+   @ManyToOne
+   Project activeProject;
 
 // @ManyToOne
 // private Corporate employer;
 
-   @Transient
-   private transient Boolean credentialsNonExpired;
-   @Transient
-   private transient Boolean credentialsNonLocked;
-   @Transient
-   private transient boolean accountNonLocked;
-   @Transient
-   private transient boolean accountNonExpired;
-
    public Person() {
-      this.status = PersonStatus.NORMAL;
-      this.registrationStatus = RegistrationStatus.PENDING;
+      this.emailVerified = false;
    }
 
    @Override
@@ -77,21 +85,21 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
 
    @Override
    public boolean isAccountNonExpired() {
-      return accountNonExpired;
+      return true;
    }
 
    @Override
    public boolean isAccountNonLocked() {
-      return accountNonLocked;
+      return true;
    }
 
    @Override
    public boolean isCredentialsNonExpired() {
-      return credentialsNonExpired;
+      return true;
    }
 
    @Override
    public boolean isEnabled() {
-      return enabled;
+      return true;
    }
 }
