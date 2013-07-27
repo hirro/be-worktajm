@@ -1,5 +1,8 @@
-insert into Project (id, name) value (1, 'Project A');
-insert into Project (id, name) value (2, 'Project B');
-insert into Project (id, name) value (3, 'Project C');	
+insert into project (id, name) value (1, 'Project A');
+insert into project (id, name) value (2, 'Project B');
+insert into project (id, name) value (3, 'Project C');	
 
-insert into Person (id, email, first_name, last_name, password, email_verified, active_project) values (1, 'jim@arnellconsulting.com', 'Jim', 'Arnell', 'password', 1, 2);
+insert into person (id, email, first_name, last_name, password, email_verified, active_time_entry) values (1, 'jim@arnellconsulting.com', 'Jim', 'Arnell', 'password', 1, NULL);
+
+insert into time_entry (id, start_time, end_time, comment) values (1,'2001-02-03 20:00:00', NULL, NULL);	
+
