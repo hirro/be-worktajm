@@ -7,6 +7,8 @@ angular.module('tpsApp')
 
     Restangular.one('person', 1).get().then(function(person) {
       $scope.user = person;
+      console.log('Current user name %s', $scope.user.email);
+      //console.log('Active project %s', $scope.user.);
     });
     // $scope.user = Restangular.{
     //   email: 'jim@arnellconsulting.com',
@@ -19,6 +21,7 @@ angular.module('tpsApp')
       rate: '',
       description: ''
     };
+    $scope.activeProject = null;
 
     // Projects
     var baseProjects = Restangular.all('project');
@@ -81,24 +84,28 @@ angular.module('tpsApp')
 
     // Time entries
     $scope.timeEntries = tpsStorage.getTimeEntries();
+
     $scope.startTimer = function (project) {
       console.log('startTimer');
-
-      // Check if no previous project is active
-      if ($scope.activeProject == null) {
-        console.log('No previous active proejct');
-        $scope.activeProject = project;
-        $scope.activeProject.active = true;
+      if ($scope.activeProject === null) {
+        console.log('No active project');
       } else {
-        if ($scope.activeProject.id !== project.id) {
-          console.log('Changed project');
-          $scope.activeProject.active = false;
-          $scope.activeProject = project;
-          $scope.activeProject.active = true;
-        } else {
-          $scope.activeProject.active = false;
-          $scope.activeProject = null;
-        }
+        console.log('Stopping active project');
+        $scope.stopTimer(project);
+      }
+      $scope.activeProject = project;
+      $scope.activeProject.active = true;
+    };
+    $scope.stopTimer = function () {
+      console.log('stopTimer');
+      if ($scope.activeProjectt === null) {
+        console.log('No active project');
+      } else {
+        console.log('Stopping active project');
+        $scope.activeProject.active = false;
+        $scope.activeProject = null;
+
+        // Persist time entry
       }
     };
     $scope.removeTimeEntry = function (timeEntry) {

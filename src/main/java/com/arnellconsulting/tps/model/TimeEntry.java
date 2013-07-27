@@ -41,7 +41,6 @@ public class TimeEntry  extends AbstractPersistable<Long> {
     @DateTimeFormat(style = "M-")
     private Date startTime;
 
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     private Date endTime;

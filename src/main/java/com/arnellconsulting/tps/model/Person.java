@@ -60,7 +60,7 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
    
    private boolean emailVerified = false;
    @ManyToOne
-   Project activeProject;
+   TimeEntry activeTimeEntry;
 
 // @ManyToOne
 // private Corporate employer;
