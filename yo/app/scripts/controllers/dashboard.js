@@ -7,8 +7,12 @@ angular.module('tpsApp')
 
     Restangular.one('person', 1).get().then(function(person) {
       $scope.user = person;
-      console.log('Current user name %s', $scope.user.email);
-      //console.log('Active project %s', $scope.user.);
+      console.log('Current user name %s', person.email);
+      if (person.activeTimeEntry != null) {
+        console.log('Active timer %s', person.activeTimeEntry);
+      } else {
+        console.log('No active timer');
+      }
     });
     // $scope.user = Restangular.{
     //   email: 'jim@arnellconsulting.com',

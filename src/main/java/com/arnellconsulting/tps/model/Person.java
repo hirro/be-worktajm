@@ -34,6 +34,7 @@ import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
  * TBD
@@ -60,6 +61,7 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
    
    private boolean emailVerified = false;
    @ManyToOne
+   @JsonManagedReference
    TimeEntry activeTimeEntry;
 
 // @ManyToOne
