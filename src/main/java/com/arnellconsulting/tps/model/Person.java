@@ -18,8 +18,6 @@
 
 package com.arnellconsulting.tps.model;
 
-import com.arnellconsulting.tps.common.PersonStatus;
-
 import lombok.Data;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -58,11 +56,10 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
    @Column(unique = true)
    private String email;
    private String authority;
-   
-   private boolean emailVerified = false;
+   private Boolean emailVerified = true;
    @ManyToOne
    @JsonManagedReference
-   TimeEntry activeTimeEntry;
+   TimeEntry activeTimeEntry = null;
 
 // @ManyToOne
 // private Corporate employer;

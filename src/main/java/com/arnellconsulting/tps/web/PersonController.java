@@ -63,7 +63,7 @@ public class PersonController {
    @RequestMapping(method = RequestMethod.POST)
    @ResponseBody
    public Person create(@RequestBody final Person person) {
-      log.debug("create name: {}", person.getEmail());
+      log.debug("create");
       tpsService.savePerson(person);
 
       return person;

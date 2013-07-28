@@ -42,7 +42,7 @@ public class PersonTest {
    private static final String FIRST_NAME = "Firstname";
    private static final String LAST_NAME = "Lastname";
    private static final String PASSWORD = "Lastname";
-   private static final boolean EMAIL_VERIFIED = true;
+   private static final Boolean EMAIL_VERIFIED = true;
 
    @Before
    public void setUp() {
@@ -65,7 +65,7 @@ public class PersonTest {
       assertEquals(FIRST_NAME, person.getFirstName());
       assertEquals(LAST_NAME, person.getLastName());
       assertEquals(PASSWORD, person.getPassword());
-      assertEquals(EMAIL_VERIFIED, person.isEmailVerified());
+      assertEquals(EMAIL_VERIFIED, person.getEmailVerified());
       assertEquals(null, person.getAuthority());
    }
 }
