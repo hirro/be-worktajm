@@ -25,6 +25,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import lombok.Data;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
@@ -47,9 +49,11 @@ public class TimeEntry  extends AbstractPersistable<Long> {
 
     private String comment;
 
-//    @ManyToOne
-//    private Person Person;
-//
-//    @ManyToOne
-//    private Project project;
+    @ManyToOne
+    @JsonBackReference
+    private Person Person;
+
+    @ManyToOne
+    @JsonManagedReference
+    private Project project;
 }
