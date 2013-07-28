@@ -50,8 +50,7 @@ public class TimeEntry  extends AbstractPersistable<Long> {
     private String comment;
 
     @ManyToOne
-    @JsonBackReference
-    private Person Person;
+    @JsonBackReference private Person person;
 
     @ManyToOne
     @JsonManagedReference

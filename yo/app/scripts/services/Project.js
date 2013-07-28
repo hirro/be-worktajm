@@ -3,13 +3,13 @@
 'use strict';
 
 angular.module('tpsApp')
-  .service('timeEntryService', function timeEntryService($resource) {
-    return $resource('http://localhost\\:8080/tps/api/timeEntry/:operation/:id', {}, {
+  .factory('Project', function ($resource) {
+    return $resource('http://localhost\\:8080/tps/api/project/:operation/:projectId', {}, {
       query: {
         method: 'GET',
         params: {
           operation: 'list'
-        },  
+        },
         isArray: true
       }
     });

@@ -20,8 +20,8 @@
                           <i class="icon-chevron-right"></i>
                         </a>
                         {{project.name}}
-                        <a ng-click="stopTimer(project)" class="btn btn-small pull-right" ng-show="project.active" >Stop</a>                  
-                        <a ng-click="startTimer(project)" class="btn btn-small pull-right" ng-hide="project.active">Start</a>                  
+                        <a ng-click="stopProjectTimer(project)" class="btn btn-small pull-right" ng-show="project.active" >Stop</a>                  
+                        <a ng-click="startProjectTimer(project)" class="btn btn-small pull-right" ng-hide="project.active">Start</a>                  
                     </div>
                     <div id="project-form-{{project.id}}" class="collapse project-form project-{{project.id}}">
                       <form>
@@ -99,6 +99,7 @@
           </div>
           <!-- Time entries table -->
           <h3>Time Entries</h3>
+          
           <table  class="table table-bordered table-hover table-striped" >
             <thead>
               <tr>
@@ -114,10 +115,10 @@
             </thead>
             <tbody ng-repeat="timeEntry in timeEntries">
               <tr>
-                <td>{{getProjectById(timeEntry.projectId).name}}</td>
-                <td>{{timeEntry.startTime}}</td>
-                <td>{{timeEntry.endTime}}</td>
-                <td>{{timeEntry.duration}}</td>
+                <td>{{timeEntry.project.name}}</td>
+                <td>{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
+                <td>{{getEndTime(timeEntry)}}</td>
+                <td>{{getDuration(timeEntry)}}</td>
                 <td>
                   <div class="btn-group">
                     <button class="btn btn-link icon-edit" ng-click="editTimeEntry(timeEntry)"></button>
