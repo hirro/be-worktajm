@@ -100,4 +100,16 @@ public class ITProjectControllerTest {
               .accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
    }
+
+   @Test
+   public void testGetBadPath() throws Exception {
+      Project projectA = new Project();
+
+      projectA.setName("Project A");
+      when(tpsServiceMock.getProject(1)).thenReturn(projectA);
+      mockMvc.perform(get("/api2/project/1")
+              .accept(MediaType.APPLICATION_JSON))
+              .andExpect(status().isOk());
+   }
+
 }
