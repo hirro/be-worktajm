@@ -36,7 +36,7 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {
-        "com.arnellconsulting.tps.controller"
+        "com.arnellconsulting.tps.web"
 })
 public class WebAppContext extends WebMvcConfigurerAdapter {
 
