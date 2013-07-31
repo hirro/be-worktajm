@@ -22,7 +22,6 @@ import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.service.TpsService;
-import com.arnellconsulting.tps.util.TestUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
