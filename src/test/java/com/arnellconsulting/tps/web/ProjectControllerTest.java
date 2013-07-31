@@ -22,6 +22,7 @@ import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.service.TpsService;
+import com.arnellconsulting.tps.util.TestUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -91,7 +92,18 @@ public class ProjectControllerTest {
    }
 
    @Test
-   public void testGet() throws Exception {
+   public void testCreate() throws Exception {
+      //when(tpsServiceMock.getProject(1)).thenReturn(projectA);
+      mockMvc.perform(post("/api/project")
+              .content(PROJECT_1)
+              .contentType(MediaType.APPLICATION_JSON))
+              .andExpect(status().isOk());
+      verify(tpsServiceMock, times(1)).saveProject(projectA);
+      verifyNoMoreInteractions(tpsServiceMock);      
+   } 
+   
+   @Test
+   public void testRead() throws Exception {
       when(tpsServiceMock.getProject(1)).thenReturn(projectA);
       mockMvc.perform(get("/api/project/1")
               .accept(MediaType.APPLICATION_JSON))
@@ -100,6 +112,27 @@ public class ProjectControllerTest {
       verify(tpsServiceMock, times(1)).getProject(1L);
       verifyNoMoreInteractions(tpsServiceMock);      
    }
+   
+   @Test
+   public void testUpdate() throws Exception {
+      //when(tpsServiceMock.saveProject(projectA)).thenReturn(projectA);
+      mockMvc.perform(put("/api/project/1")
+              .content(PROJECT_1)
+              .contentType(MediaType.APPLICATION_JSON))
+              .andExpect(status().isNoContent());
+      verify(tpsServiceMock, times(1)).saveProject(projectA);
+      verifyNoMoreInteractions(tpsServiceMock);      
+   } 
+   
+   @Test
+   public void testDelete() throws Exception {
+      when(tpsServiceMock.getProject(1)).thenReturn(projectA);
+      mockMvc.perform(delete("/api/project/1")
+              .accept(MediaType.APPLICATION_JSON))
+              .andExpect(status().isNoContent());
+      verify(tpsServiceMock, times(1)).deleteProject(1L);
+      verifyNoMoreInteractions(tpsServiceMock);      
+   }     
 
    @Test
    public void testList() throws Exception {
