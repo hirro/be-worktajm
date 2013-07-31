@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-
 package com.arnellconsulting.tps.web;
 
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
+import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.service.TpsService;
+import static com.arnellconsulting.tps.web.ProjectControllerTest.PROJECT_1;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -47,27 +47,39 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.math.BigDecimal;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import org.joda.time.DateTime;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  *
  * @author jiar
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestContext.class, WebAppContext.class })
 @WebAppConfiguration
 @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
-public class ProjectControllerTest {
-   public static final String PROJECT_1 =
-      "{\"id\":null,\"name\":\"Project A\",\"description\":\"desc\",\"rate\":10.3,\"new\":true}";
+public class TimeEntryControllerTest {
+   public static final String TIMEENTRY_1 =
+      "{\"id\":null,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Comment\",\"project\":{\"id\":null,\"name\":\"Project Name\",\"description\":\"Project descri\",\"rate\":0,\"new\":true},\"new\":true}";
    private transient MockMvc mockMvc;
-   private transient Project projectA;
-   private transient List<Project> projects;
+   private transient TimeEntry timeEntryA;
+   private transient Person person;
+   private transient Project project;
+   private transient List<TimeEntry> timeEntries;
    @Autowired
    private transient TpsService tpsServiceMock;
    @Autowired
    private transient WebApplicationContext webApplicationContext;
+   private static final DateTime END_TIME = new DateTime("2010-01-01");
+   private static final DateTime START_TIME = new DateTime("2010-05-21");
+   private static final String COMMENT = "Comment";
+   private static final String FIRST_NAME = "First";
+   private static final String LAST_NAME = "Last";
+   private static final String EMAIL = "user@example.com";
+   private static final String PROJECT_NAME = "Project Name";
+   private static final String  PROJECT_DESCRIPTION = "Project descri";
 
    @Before
    public void setUp() {
@@ -77,71 +89,69 @@ public class ProjectControllerTest {
       // stubbing and verified behavior would "leak" from one test to another.
       Mockito.reset(tpsServiceMock);
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-      projectA = new Project();
-      projectA.setName("Project A");
-      projectA.setRate(new BigDecimal("10.3"));
-      projectA.setDescription("desc");
-      projects = new ArrayList<Project>();
-      projects.add(projectA);
+
+      person = new Person();
+      person.setFirstName(FIRST_NAME);
+      person.setLastName(LAST_NAME);
+      person.setEmail(EMAIL);
+      person.setEmailVerified(Boolean.TRUE);
+      
+      project = new Project();
+      project.setName(PROJECT_NAME);
+      project.setDescription(PROJECT_DESCRIPTION);
+      project.setRate(BigDecimal.ZERO);
+      
+      timeEntryA = new TimeEntry();
+      timeEntryA.setEndTime(END_TIME.toDate());
+      timeEntryA.setStartTime(START_TIME.toDate());
+      timeEntryA.setComment(COMMENT);
+      timeEntryA.setPerson(person);
+      timeEntryA.setProject(project);
+      
+      timeEntries = new ArrayList<TimeEntry>();
+      timeEntries.add(timeEntryA);
+   }
+
+   @Test
+   public void testList() throws Exception {
+      when(tpsServiceMock.getTimeEntries()).thenReturn(timeEntries);
+      mockMvc.perform(get("/api/timeEntry").accept(MediaType.APPLICATION_JSON))
+              .andExpect(status().isOk());
+      verify(tpsServiceMock, times(1)).getTimeEntries();
+      verifyNoMoreInteractions(tpsServiceMock);      
    }
 
    @Test
    public void testCreate() throws Exception {
-
-      // when(tpsServiceMock.getProject(1)).thenReturn(projectA);
-      mockMvc.perform(post("/api/project").content(PROJECT_1).contentType(MediaType.APPLICATION_JSON))
+      mockMvc.perform(post("/api/timeEntry").content(TIMEENTRY_1).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).saveProject(projectA);
+      verify(tpsServiceMock, times(1)).saveTimeEntry(timeEntryA);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
    @Test
    public void testRead() throws Exception {
-      when(tpsServiceMock.getProject(1)).thenReturn(projectA);
-      mockMvc.perform(get("/api/project/1").accept(MediaType.APPLICATION_JSON))
+      when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntryA);
+      mockMvc.perform(get("/api/timeEntry/1").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk())
-              .andExpect(content().string(PROJECT_1));
-      verify(tpsServiceMock, times(1)).getProject(1L);
+              .andExpect(content().string(TIMEENTRY_1));
+      verify(tpsServiceMock, times(1)).getTimeEntry(1L);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
    @Test
    public void testUpdate() throws Exception {
-      mockMvc.perform(put("/api/project/1").content(PROJECT_1).contentType(MediaType.APPLICATION_JSON))
+      mockMvc.perform(put("/api/timeEntry/1").content(PROJECT_1).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
-      verify(tpsServiceMock, times(1)).saveProject(projectA);
+      verify(tpsServiceMock, times(1)).saveTimeEntry(timeEntryA);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
    @Test
    public void testDelete() throws Exception {
-      mockMvc.perform(delete("/api/project/1").accept(MediaType.APPLICATION_JSON))
+      mockMvc.perform(delete("/api/timeEntry/1").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
-      verify(tpsServiceMock, times(1)).deleteProject(1L);
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   @Test
-   public void testList() throws Exception {
-      when(tpsServiceMock.getProjets()).thenReturn(projects);
-      mockMvc.perform(get("/api/project").accept(MediaType.APPLICATION_JSON))
-              .andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).getProjets();
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   @Test
-   public void testGetBadPath() throws Exception {
-      mockMvc.perform(get("/api2/project/1").accept(MediaType.APPLICATION_JSON))
-              .andExpect(status().isOk());
-      verifyZeroInteractions(tpsServiceMock);
-   }
-
-   @Test
-   public void testGetInvalidProject() throws Exception {
-      mockMvc.perform(get("/api/project/2").accept(MediaType.APPLICATION_JSON))
-              .andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).getProject(2L);
+      verify(tpsServiceMock, times(1)).deleteTimeEntry(1L);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 }
