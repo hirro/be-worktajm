@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+
+
 package com.arnellconsulting.tps.service;
 
 import com.arnellconsulting.tps.model.Person;
@@ -21,58 +24,52 @@ import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import org.junit.After;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static junit.framework.Assert.assertNull;
+
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import static org.hamcrest.Matchers.is;
+
 import static org.junit.Assert.assertThat;
+
 import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author jiar
  */
+@SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
 public class TpsServiceImplTest {
-   
-   private TpsServiceImpl service;
-   private PersonRepository personRepository;
-   private ProjectRepository projectRepository;
-   private TimeEntryRepository timeEntryRepository;
-   private Project projectA;
-   private ArrayList<Project> projects;
-   private Project projectB;
-   private Person personA;
-   private Person personB;
-   private ArrayList<Person> persons;
-   private TimeEntry timeEntryA;
-   private Date dateA;
-   
-   public TpsServiceImplTest() {
-   }
-   
-   @BeforeClass
-   public static void setUpClass() {
-   }
-   
-   @AfterClass
-   public static void tearDownClass() {
-   }
-   
+   private static final String EMAIL = "a@ab.com";
+   private transient TpsServiceImpl service;
+   private transient PersonRepository personRepository;
+   private transient ProjectRepository projectRepository;
+   private transient TimeEntryRepository timeEntryRepository;
+   private transient Project projectA;
+   private transient Project projectB;
+   private transient List<Project> projects;
+   private transient Person personA;
+   private transient Person personB;
+   private transient List<Person> persons;
+   private transient TimeEntry timeEntryA;
+   private transient List<TimeEntry> timeEntriesA;
+   private transient Date dateA;
+
    @Before
    public void setUp() {
       personRepository = mock(PersonRepository.class);
       projectRepository = mock(ProjectRepository.class);
-      timeEntryRepository = mock(TimeEntryRepository.class);      
+      timeEntryRepository = mock(TimeEntryRepository.class);
       service = new TpsServiceImpl(personRepository, projectRepository, timeEntryRepository);
-      
       projectA = new Project();
       projectA.setName("Project A");
       projectB = new Project();
@@ -80,25 +77,19 @@ public class TpsServiceImplTest {
       projects = new ArrayList<Project>();
       projects.add(projectA);
       projects.add(projectB);
-      
       personA = new Person();
       personA.setEmail("a@test.com");
-
       personB = new Person();
       personB.setEmail("b@test.com");
-      
       persons = new ArrayList<Person>();
       persons.add(personA);
       persons.add(personB);
-      
       timeEntryA = new TimeEntry();
       timeEntryA.setPerson(personA);
+      timeEntriesA = new ArrayList<TimeEntry>();
+      timeEntriesA.add(timeEntryA);
       dateA = new Date(0);
-      timeEntryA.setEndTime(dateA);      
-}
-   
-   @After
-   public void tearDown() {
+      timeEntryA.setEndTime(dateA);
    }
 
    /**
@@ -107,9 +98,11 @@ public class TpsServiceImplTest {
    @Test
    public void testGetProjets() {
       when(projectRepository.findAll()).thenReturn(this.projects);
-      List<Project> projects = service.getProjets();
-      assertThat(projectA.getName(), is(projects.get(0).getName()));
-      assertThat(projectB.getName(), is(projects.get(1).getName()));
+
+      final List<Project> projs = service.getProjets();
+
+      assertThat(projectA.getName(), is(projs.get(0).getName()));
+      assertThat(projectB.getName(), is(projs.get(1).getName()));
       verify(projectRepository, times(1)).findAll();
       verifyNoMoreInteractions(projectRepository);
    }
@@ -120,7 +113,10 @@ public class TpsServiceImplTest {
    @Test
    public void testGetProject() {
       when(projectRepository.findOne(1L)).thenReturn(projectA);
-      Project project = service.getProject(1L);
+
+      final Project project = service.getProject(1L);
+      assertThat(projectA.getName(), is(project.getName()));
+
       verify(projectRepository, times(1)).findOne(1L);
       verifyNoMoreInteractions(projectRepository);
    }
@@ -151,9 +147,11 @@ public class TpsServiceImplTest {
    @Test
    public void testGetPersons() {
       when(personRepository.findAll()).thenReturn(this.persons);
-      final List<Person> ps = service.getPersons();
-      assertThat(personA.getEmail(), is(ps.get(0).getEmail()));
-      assertThat(personB.getEmail(), is(ps.get(1).getEmail()));
+
+      final List<Person> projs = service.getPersons();
+
+      assertThat(personA.getEmail(), is(projs.get(0).getEmail()));
+      assertThat(personB.getEmail(), is(projs.get(1).getEmail()));
       verify(personRepository, times(1)).findAll();
       verifyNoMoreInteractions(personRepository);
    }
@@ -164,7 +162,10 @@ public class TpsServiceImplTest {
    @Test
    public void testGetPerson() {
       when(personRepository.findOne(1L)).thenReturn(personA);
-      Person person = service.getPerson(1L);
+
+      final Person person = service.getPerson(1L);
+      assertThat(personA.getEmail(), is(person.getEmail()));
+
       verify(personRepository, times(1)).findOne(1L);
       verifyNoMoreInteractions(personRepository);
    }
@@ -194,6 +195,11 @@ public class TpsServiceImplTest {
     */
    @Test
    public void testFindPersonByEmail() {
+      when(personRepository.findByEmail(EMAIL)).thenReturn(personA);
+      final Person person = service.findPersonByEmail(EMAIL);
+      assertThat(personA.getEmail(), is(person.getEmail()));
+      verify(personRepository, times(1)).findByEmail(EMAIL);
+      verifyNoMoreInteractions(personRepository);
    }
 
    /**
@@ -201,6 +207,11 @@ public class TpsServiceImplTest {
     */
    @Test
    public void testGetTimeEntries() {
+      when(timeEntryRepository.findAll()).thenReturn(timeEntriesA);
+      final List<TimeEntry> timeEntries = service.getTimeEntries();
+      assertThat(timeEntriesA.size(), is(timeEntries.size()));
+      verify(timeEntryRepository, times(1)).findAll();
+      verifyNoMoreInteractions(timeEntryRepository);
    }
 
    /**
@@ -209,7 +220,9 @@ public class TpsServiceImplTest {
    @Test
    public void testGetTimeEntry() {
       when(timeEntryRepository.findOne(1L)).thenReturn(timeEntryA);
-      TimeEntry t = service.getTimeEntry(1L);
+
+      final TimeEntry timeEntry = service.getTimeEntry(1L);
+      assertThat(timeEntryA.getComment(), is(timeEntry.getComment()));
       verify(timeEntryRepository, times(1)).findOne(1L);
       verifyNoMoreInteractions(timeEntryRepository);
    }
@@ -232,6 +245,5 @@ public class TpsServiceImplTest {
       service.saveTimeEntry(timeEntryA);
       verify(timeEntryRepository, times(1)).save(timeEntryA);
       verifyNoMoreInteractions(timeEntryRepository);
-      
    }
 }
