@@ -29,23 +29,25 @@ import org.junit.runners.JUnit4;
  */
 @RunWith(JUnit4.class)
 public class ProjectTest {
-   private Project project;
-  
+   public static final String PROJECT_NAME = "Project name";
+   public static final String DESCRIPTION = "Description";
+   private transient Project project;
+
    @Before
-   public void setup() {
+   public void setUp() {
       project = new Project();
-      project.setName("Project name");
-      project.setDescription("Description");
+      project.setName(PROJECT_NAME);
+      project.setDescription(DESCRIPTION);
    }
 
    @Test
    public void testGetName() {
-      assertEquals("Project name", project.getName());
+      assertEquals(PROJECT_NAME, project.getName());
    }
 
    @Test
    public void testGetDescription() {
-      assertEquals("Description", project.getDescription());
+      assertEquals(DESCRIPTION, project.getDescription());
    }
 
 }

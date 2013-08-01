@@ -47,9 +47,9 @@ import java.util.List;
 @Slf4j
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class ProjectController {
-   
+
    @Autowired
-   transient TpsService tpsService;
+   private transient TpsService tpsService;
 
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
@@ -81,7 +81,7 @@ public class ProjectController {
 
       return tpsService.getProject(id);
    }
-   
+ 
    @Transactional
    @RequestMapping(
       value = "/{id}",
