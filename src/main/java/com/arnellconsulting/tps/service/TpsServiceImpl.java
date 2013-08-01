@@ -84,7 +84,7 @@ public class TpsServiceImpl implements TpsService {
    public void saveProject(final Project project) {
       projectRepository.save(project);
    }
-   
+
    // ~ Person
    @Override
    public List<Person> getPersons() {
@@ -107,10 +107,10 @@ public class TpsServiceImpl implements TpsService {
    }
 
    @Override
-   public Person findPersonByEmail(String email) {
+   public Person findPersonByEmail(final String email) {
       return personRepository.findByEmail(email);
    }
-   
+
    // ~ TimeEntry
    @Override
    public List<TimeEntry> getTimeEntries() {
@@ -130,6 +130,6 @@ public class TpsServiceImpl implements TpsService {
    @Override
    public void saveTimeEntry(final TimeEntry person) {
       timeEntryRepository.save(person);
-   }   
+   }
 
 }

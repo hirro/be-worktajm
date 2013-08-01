@@ -87,7 +87,7 @@ public class RegistrationControllerTest {
 
    @Test
    public void testIndex() throws Exception {
-      mockMvc.perform(get("/registration").accept(MediaType.APPLICATION_JSON))
+      mockMvc.perform(get("/registration/").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
       verifyNoMoreInteractions(tpsServiceMock);
    }
