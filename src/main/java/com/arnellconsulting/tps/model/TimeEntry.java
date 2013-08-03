@@ -34,9 +34,50 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  * @author jiar
  */
 @Entity
-@Data
 @SuppressWarnings("PMD")
 public class TimeEntry  extends AbstractPersistable<Long> {
+
+   public TimeEntry() {
+   }
+   public Date getStartTime() {
+      return startTime;
+   }
+
+   public void setStartTime(Date startTime) {
+      this.startTime = startTime;
+   }
+
+   public Date getEndTime() {
+      return endTime;
+   }
+
+   public void setEndTime(Date endTime) {
+      this.endTime = endTime;
+   }
+
+   public String getComment() {
+      return comment;
+   }
+
+   public void setComment(String comment) {
+      this.comment = comment;
+   }
+
+   public Person getPerson() {
+      return person;
+   }
+
+   public void setPerson(Person person) {
+      this.person = person;
+   }
+
+   public Project getProject() {
+      return project;
+   }
+
+   public void setProject(Project project) {
+      this.project = project;
+   }
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)

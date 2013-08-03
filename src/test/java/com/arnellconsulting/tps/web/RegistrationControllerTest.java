@@ -28,6 +28,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -81,7 +82,9 @@ public class RegistrationControllerTest {
       when(tpsServiceMock.findPersonByEmail(EMAIL)).thenReturn(person);
       final String path = String.format(CREATE_PATH, EMAIL, PASSWORD, COMPANY);
       mockMvc.perform(get(path).accept(MediaType.APPLICATION_JSON))
-              .andExpect(status().isOk());
+              .andExpect(status().isMovedTemporarily());
+      verify(tpsServiceMock, times(1)).findPersonByEmail(EMAIL);
+      verify(tpsServiceMock, times(1)).savePerson(any(Person.class));
       verifyNoMoreInteractions(tpsServiceMock);
    }
 

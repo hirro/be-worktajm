@@ -60,7 +60,7 @@ public class PersonController {
    }
 
    @Transactional
-   @RequestMapping(method = RequestMethod.POST)
+   @RequestMapping(method = RequestMethod.POST, headers ={"Accept=application/json"})
    @ResponseBody
    public Person create(@RequestBody final Person person) {
       log.debug("create");

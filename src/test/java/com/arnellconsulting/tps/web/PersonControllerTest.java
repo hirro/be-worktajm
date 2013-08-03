@@ -18,16 +18,12 @@ package com.arnellconsulting.tps.web;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.model.Project;
-import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.service.TpsService;
 import static com.arnellconsulting.tps.web.ProjectControllerTest.PROJECT_1;
 import static com.arnellconsulting.tps.web.TimeEntryControllerTest.TIMEENTRY_1;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -73,7 +69,7 @@ public class PersonControllerTest {
 
    private transient Person person;
    private transient List<Person> persons;
-   
+
    @Before
    public void setUp() {
 
@@ -132,5 +128,6 @@ public class PersonControllerTest {
       mockMvc.perform(delete("/api/person/1").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
       verify(tpsServiceMock, times(1)).deleteTimeEntry(1L);
-      verifyNoMoreInteractions(tpsServiceMock);   }
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
 }

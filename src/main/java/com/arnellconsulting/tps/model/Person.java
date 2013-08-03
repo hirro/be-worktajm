@@ -40,9 +40,64 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
  */
 @Entity
 @SuppressWarnings("PMD")
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person extends AbstractPersistable<Long> implements UserDetails {
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }
+
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
+   }
+
+   public String getPassword() {
+      return password;
+   }
+
+   public void setPassword(String password) {
+      this.password = password;
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
+
+   public String getAuthority() {
+      return authority;
+   }
+
+   public void setAuthority(String authority) {
+      this.authority = authority;
+   }
+
+   public Boolean getEmailVerified() {
+      return emailVerified;
+   }
+
+   public void setEmailVerified(Boolean emailVerified) {
+      this.emailVerified = emailVerified;
+   }
+
+   public TimeEntry getActiveTimeEntry() {
+      return activeTimeEntry;
+   }
+
+   public void setActiveTimeEntry(TimeEntry activeTimeEntry) {
+      this.activeTimeEntry = activeTimeEntry;
+   }
    private static final long serialVersionUID = -3902301243341660214L;
 
 // @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")

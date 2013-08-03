@@ -59,7 +59,7 @@ public class TimeEntryController {
    }
 
    @Transactional
-   @RequestMapping(method = RequestMethod.POST)
+   @RequestMapping(method = RequestMethod.POST, headers ={"Accept=application/json"})
    @ResponseBody
    public TimeEntry create(@RequestBody final TimeEntry timeEntry) {
       log.debug("create: ");
