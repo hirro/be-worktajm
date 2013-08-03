@@ -41,25 +41,24 @@ public class RegistrationController {
 
    @Transactional
    @RequestMapping("/create")
-   public String create(@RequestParam(
-      value = "email",
-      required = false
-   ) final String email, @RequestParam(
-      value = "password",
-      required = false
-   ) final String password, @RequestParam(
-      value = "company",
-      required = false
-   ) final String company) {
+   public String create(
+           @RequestParam(value = "email", required = false) final String email, 
+           @RequestParam(value = "password", required = false) final String password, 
+           @RequestParam(value = "company", required = false) final String company) throws Exception {
       log.debug("create: email {}, password: {}, company: {}  ", email, password, company);
 
-      final Person person = new Person();
-
-      person.setEmail(email);
-      person.setPassword(password);
-      person.setLastName("Last name");
-      person.setFirstName("First name");
-      tpsService.savePerson(person);
+      // Make sure person is not already registered
+      if (tpsService.findPersonByEmail(email) == null) {
+         // XXX
+         throw new Exception("Person exists");
+      } else {
+         final Person person = new Person();
+         person.setEmail(email);
+         person.setPassword(password);
+         person.setLastName("Last name");
+         person.setFirstName("First name");         
+         tpsService.savePerson(person);
+      }
 
       return "redirect:/";
    }

@@ -335,16 +335,10 @@
 
       <!-- Jackson -->
       <dependency>
-         <groupId>com.cedarsoft.serialization</groupId>
-         <artifactId>jackson</artifactId>
-         <version>4.0.6</version>
-         <classifier>jar-with-dependencies</classifier>
-      </dependency>
-      <dependency>
          <groupId>org.codehaus.jackson</groupId>
          <artifactId>jackson-mapper-lgpl</artifactId>
          <version>1.9.3</version>
-      </dependency>   
+      </dependency> 
 
       <!--Logging-->      
       <dependency>
