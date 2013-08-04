@@ -39,15 +39,15 @@ public final class TestConstants {
    public static final String PERSON_A_EMAIL = "a@example.com";
    public static final String PERSON_A_FIRST_NAME = "A";
    public static final String PERSON_A_LAST_NAME = "Ason";
-   public static final String PERSON_A_PASSWORD = "PasswordB";
+   public static final String PERSON_A_PASSWORD = "PasswordA";
+   public static final String PERSON_A_AUTHORITY = "Person A Auth";
    public static final String PROJECT_A = "{\"id\":null,\"name\":\"Project A\",\"description\":\"Project A description\",\"rate\":10.3,\"new\":true}";
    public static final String PROJECT_A_DESCRIPTION = "Project A description";
    public static final String PROJECT_A_NAME = "Project A";
    public static final String TIMEENTRY_A = "{\"id\":null,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"project\":{\"id\":null,\"name\":\"Project A\",\"description\":\"Project A description\",\"rate\":10.3,\"new\":true},\"new\":true}";
    public static final String TIMEENTRY_A_COMMENT = "Time Entry A comment";
-   public static final String PERSON_A = "{\"id\":null,\"firstName\":\"A\",\"lastName\":\"Ason\",\"password\":\"PasswordB\",\"email\":\"a@example.com\",\"authority\":null,\"emailVerified\":true,\"activeTimeEntry\":null,\"authorities\":[{\"authority\":\"ROLE_USER\"}],\"username\":\"a@example.com\",\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true,\"enabled\":true,\"new\":true}";
-
-   private TestConstants() {
+   public static final String PERSON_A = "{\"id\":null,\"emailVerified\":true,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
+      private TestConstants() {
    }
 
    public static Person createPersonA() {

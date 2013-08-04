@@ -13,52 +13,73 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+
+
 package com.arnellconsulting.tps.security;
 
+import com.arnellconsulting.tps.model.PersonUserDetails;
 import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.model.TestConstants;
 import com.arnellconsulting.tps.repository.PersonRepository;
-import org.junit.Test;
+import com.arnellconsulting.tps.repository.PersonUserDetailsRepository;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Before;
-import org.junit.runner.RunWith;
+import org.junit.Test;
+
 import org.mockito.Mockito;
+
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author jiar
  */
 public class TpsUserDetailsServiceTest {
-   
    private static final String EMAIL = "a@example.com";
    private static final String UNKNOWN_EMAIL = "b@example.com";
-   private transient PersonRepository repositoryMock =  Mockito.mock(PersonRepository.class);
+
+   private transient PersonUserDetailsRepository repositoryMock = Mockito.mock(PersonUserDetailsRepository.class);
    private transient TpsUserDetailsService tps;
-   private transient Person userDetails;
-   
+   private transient PersonUserDetails userDetails;
+
    @Before
    public void setUp() {
       tps = new TpsUserDetailsService(repositoryMock);
-      userDetails = new Person();
+
+      final Person person = TestConstants.createPersonA();
+
+      userDetails = new PersonUserDetails(person);
+      userDetails.setAuthority(TestConstants.PERSON_A_AUTHORITY);
+      userDetails.setPassword(TestConstants.PERSON_A_PASSWORD);
    }
-   
+
    @Test
    public void testLoadUserByUsername() {
       when(repositoryMock.findByEmail(EMAIL)).thenReturn(userDetails);
-      tps.loadUserByUsername(EMAIL);
+      final PersonUserDetails person = (PersonUserDetails) tps.loadUserByUsername(EMAIL);
+      assertThat(person, notNullValue());
+      assertThat(person.getFirstName(), is(TestConstants.PERSON_A_FIRST_NAME));
+      assertThat(person.getAuthority(), is(TestConstants.PERSON_A_AUTHORITY));
+      assertThat(person.getEmail(), is(TestConstants.PERSON_A_EMAIL));
+      assertThat(person.getPassword(), is(TestConstants.PERSON_A_PASSWORD));
       verify(repositoryMock, times(1)).findByEmail(EMAIL);
       verifyNoMoreInteractions(repositoryMock);
    }
-   
-   @Test(expected=UsernameNotFoundException.class)
+
+   @Test(expected = UsernameNotFoundException.class)
    public void testLoadUserByUsernameButNotFound() {
       when(repositoryMock.findByEmail(UNKNOWN_EMAIL)).thenReturn(null);
       tps.loadUserByUsername(EMAIL);
       verify(repositoryMock, times(1)).findByEmail(UNKNOWN_EMAIL);
       verifyNoMoreInteractions(repositoryMock);
-   }   
+   }
+
 }
