@@ -18,21 +18,15 @@
 
 package com.arnellconsulting.tps.model;
 
-import lombok.Data;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * TBD
@@ -42,48 +36,12 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person extends AbstractPersistable<Long> {
-
    private static final long serialVersionUID = -3902301243341660214L;
 
-   public String getFirstName() {
-      return firstName;
-   }
-
-   public void setFirstName(String firstName) {
-      this.firstName = firstName;
-   }
-
-   public String getLastName() {
-      return lastName;
-   }
-
-   public void setLastName(String lastName) {
-      this.lastName = lastName;
-   }
-
-   public String getEmail() {
-      return email;
-   }
-
-   public void setEmail(String email) {
-      this.email = email;
-   }
-
-   public Boolean getEmailVerified() {
-      return emailVerified;
-   }
-
-   public void setEmailVerified(Boolean emailVerified) {
-      this.emailVerified = emailVerified;
-   }
-
-   public TimeEntry getActiveTimeEntry() {
-      return activeTimeEntry;
-   }
-
-   public void setActiveTimeEntry(TimeEntry activeTimeEntry) {
-      this.activeTimeEntry = activeTimeEntry;
-   }
+   private Boolean emailVerified = true;
+   @ManyToOne
+   @JsonIgnore
+   TimeEntry activeTimeEntry = null;
 
 // @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
 // private Set<Contract> contracts = new HashSet<Contract>();
@@ -94,15 +52,54 @@ public class Person extends AbstractPersistable<Long> {
    @NotNull
    @Column(unique = true)
    private String email;
-   private Boolean emailVerified = true;
-   @ManyToOne
-   @JsonManagedReference
-   TimeEntry activeTimeEntry = null;
 
 // @ManyToOne
 // private Corporate employer;
-
    public Person() {
       this.emailVerified = false;
+   }
+
+   //~--- get methods ---------------------------------------------------------
+
+   public TimeEntry getActiveTimeEntry() {
+      return activeTimeEntry;
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public Boolean getEmailVerified() {
+      return emailVerified;
+   }
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }
+
+   //~--- set methods ---------------------------------------------------------
+
+   public void setActiveTimeEntry(TimeEntry activeTimeEntry) {
+      this.activeTimeEntry = activeTimeEntry;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
+
+   public void setEmailVerified(Boolean emailVerified) {
+      this.emailVerified = emailVerified;
+   }
+
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
+
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
    }
 }

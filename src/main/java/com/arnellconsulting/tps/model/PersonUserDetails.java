@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.arnellconsulting.tps.security;
 
-import com.arnellconsulting.tps.model.Person;
-import java.util.ArrayList;
-import java.util.Collection;
+
+
+package com.arnellconsulting.tps.model;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -30,29 +33,24 @@ public class PersonUserDetails extends Person implements UserDetails {
    private String password;
    private String authority;
 
+   public PersonUserDetails(final Person person) {
+      super();
+      this.setFirstName(person.getFirstName());
+      this.setLastName(person.getLastName());
+      this.setEmail(person.getEmail());
+      this.setEmailVerified(person.getEmailVerified());
+      this.setActiveTimeEntry(person.getActiveTimeEntry());
+   }
+
+   //~--- get methods ---------------------------------------------------------
+
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
-      ArrayList<GrantedAuthority> temp = new ArrayList<GrantedAuthority>();
+      final ArrayList<GrantedAuthority> temp = new ArrayList<GrantedAuthority>();
 
       temp.add(new SimpleGrantedAuthority("ROLE_USER"));
 
       return temp;
-   }
-
-   public String getPassword() {
-      return password;
-   }
-
-   public void setPassword(String password) {
-      this.password = password;
-   }
-   
-   public String getAuthority() {
-      return authority;
-   }
-
-   public void setAuthority(String authority) {
-      this.authority = authority;
    }
 
    @Override
@@ -79,5 +77,22 @@ public class PersonUserDetails extends Person implements UserDetails {
    public boolean isEnabled() {
       return true;
    }
-   
+
+   public String getAuthority() {
+      return authority;
+   }
+
+   public String getPassword() {
+      return password;
+   }
+
+   //~--- set methods ---------------------------------------------------------
+
+   public void setAuthority(String authority) {
+      this.authority = authority;
+   }
+
+   public void setPassword(String password) {
+      this.password = password;
+   }
 }
