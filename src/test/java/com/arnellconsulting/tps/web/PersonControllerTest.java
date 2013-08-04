@@ -18,9 +18,8 @@ package com.arnellconsulting.tps.web;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.model.TestConstants;
 import com.arnellconsulting.tps.service.TpsService;
-import static com.arnellconsulting.tps.web.ProjectControllerTest.PROJECT_1;
-import static com.arnellconsulting.tps.web.TimeEntryControllerTest.TIMEENTRY_1;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -55,11 +54,6 @@ import org.springframework.web.context.WebApplicationContext;
 @WebAppConfiguration
 @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
 public class PersonControllerTest {
-   public static final String PERSON_1 =
-      "{\"id\":null,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Comment\",\"project\":{\"id\":null,\"name\":\"Project Name\",\"description\":\"Project descri\",\"rate\":0,\"new\":true},\"new\":true}";
-   private static final String FIRST_NAME = "First";
-   private static final String LAST_NAME = "Last";
-   private static final String EMAIL = "user@example.com";
 
    private transient MockMvc mockMvc;
    @Autowired
@@ -79,11 +73,7 @@ public class PersonControllerTest {
       Mockito.reset(tpsServiceMock);
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
-      person = new Person();
-      person.setFirstName(FIRST_NAME);
-      person.setLastName(LAST_NAME);
-      person.setEmail(EMAIL);
-      person.setEmailVerified(Boolean.TRUE);
+      person = TestConstants.createPersonA();
 
       persons = new ArrayList<Person>();
       persons.add(person);
@@ -100,7 +90,7 @@ public class PersonControllerTest {
 
    @Test
    public void testCreate() throws Exception  {
-      mockMvc.perform(post("/api/person").content(PERSON_1).contentType(MediaType.APPLICATION_JSON))
+      mockMvc.perform(post("/api/person").content(TestConstants.PERSON_A).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
       verify(tpsServiceMock, times(1)).savePerson(person);
       verifyNoMoreInteractions(tpsServiceMock);   }
@@ -110,14 +100,14 @@ public class PersonControllerTest {
       when(tpsServiceMock.getPerson(1)).thenReturn(person);
       mockMvc.perform(get("/api/person/1").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk())
-              .andExpect(content().string(TIMEENTRY_1));
-      verify(tpsServiceMock, times(1)).getTimeEntry(1L);
+              .andExpect(content().string(TestConstants.PERSON_A));
+      verify(tpsServiceMock, times(1)).getPerson(1L);
       verifyNoMoreInteractions(tpsServiceMock);   
    }
 
    @Test
    public void testUpdate() throws Exception {
-      mockMvc.perform(put("/api/person/1").content(PROJECT_1).contentType(MediaType.APPLICATION_JSON))
+      mockMvc.perform(put("/api/person/1").content(TestConstants.PROJECT_A).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
       verify(tpsServiceMock, times(1)).savePerson(person);
       verifyNoMoreInteractions(tpsServiceMock);   
@@ -127,7 +117,7 @@ public class PersonControllerTest {
    public void testDelete() throws Exception {
       mockMvc.perform(delete("/api/person/1").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
-      verify(tpsServiceMock, times(1)).deleteTimeEntry(1L);
+      verify(tpsServiceMock, times(1)).deletePerson(1L);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 }

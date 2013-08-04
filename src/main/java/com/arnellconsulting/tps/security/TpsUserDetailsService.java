@@ -36,6 +36,6 @@ public class TpsUserDetailsService implements UserDetailsService {
          throw new UsernameNotFoundException(username);
       }
 
-      return person;
+      return null;
    }
 }

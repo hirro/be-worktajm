@@ -54,7 +54,7 @@ public class RegistrationController {
       } else {
          final Person person = new Person();
          person.setEmail(email);
-         person.setPassword(password);
+         //person.setPassword(password);
          person.setLastName("Last name");
          person.setFirstName("First name");         
          tpsService.savePerson(person);
