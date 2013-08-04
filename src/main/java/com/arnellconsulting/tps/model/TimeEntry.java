@@ -25,6 +25,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import lombok.Data;
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -35,6 +37,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 @Data
 @SuppressWarnings("PMD")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntry  extends AbstractPersistable<Long> {
 
     @NotNull
@@ -49,10 +52,12 @@ public class TimeEntry  extends AbstractPersistable<Long> {
     private String comment;
 
     @ManyToOne
-    @JsonBackReference private Person person;
+    @JsonIgnore
+    private Person person;
 
     @ManyToOne
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnore
     private Project project;
 
    public TimeEntry() {

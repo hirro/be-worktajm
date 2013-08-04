@@ -59,7 +59,7 @@ public class TimeEntryTest {
       final TimeEntry timeEntry = TestConstants.createTimeEntryA(person, project);
       final String actorsAsJson = objectMapper.writeValueAsString(timeEntry);
 
-      assertThat(actorsAsJson, is(TestConstants.TIMEENTRY_A));
+      assertThat(actorsAsJson, is(TestConstants.TIMEENTRY_A_READ));
    }
 
    //~--- set methods ---------------------------------------------------------

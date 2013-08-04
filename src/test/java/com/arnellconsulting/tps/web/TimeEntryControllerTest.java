@@ -46,6 +46,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.List;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+import org.mockito.ArgumentCaptor;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -95,9 +98,11 @@ public class TimeEntryControllerTest {
 
    @Test
    public void testCreate() throws Exception {
-      mockMvc.perform(post("/api/timeEntry").content(TestConstants.TIMEENTRY_A).contentType(MediaType.APPLICATION_JSON))
+      mockMvc.perform(post("/api/timeEntry").content(TestConstants.TIMEENTRY_A_CREATE).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).saveTimeEntry(timeEntryA);
+      final ArgumentCaptor<TimeEntry> argument = ArgumentCaptor.forClass(TimeEntry.class);
+      verify(tpsServiceMock, times(1)).saveTimeEntry(argument.capture());
+      assertThat(argument.getValue().getComment(), is(TestConstants.TIMEENTRY_A_COMMENT));
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
@@ -106,7 +111,7 @@ public class TimeEntryControllerTest {
       when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntryA);
       mockMvc.perform(get("/api/timeEntry/1").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk())
-              .andExpect(content().string(TestConstants.TIMEENTRY_A));
+              .andExpect(content().string(TestConstants.TIMEENTRY_A_READ));
       verify(tpsServiceMock, times(1)).getTimeEntry(1L);
       verifyNoMoreInteractions(tpsServiceMock);
    }
@@ -115,7 +120,8 @@ public class TimeEntryControllerTest {
    public void testUpdate() throws Exception {
       mockMvc.perform(put("/api/timeEntry/1").content(TestConstants.PROJECT_A).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
-      verify(tpsServiceMock, times(1)).saveTimeEntry(timeEntryA);
+      final ArgumentCaptor<TimeEntry> argument = ArgumentCaptor.forClass(TimeEntry.class);
+      verify(tpsServiceMock, times(1)).saveTimeEntry(argument.capture());
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
