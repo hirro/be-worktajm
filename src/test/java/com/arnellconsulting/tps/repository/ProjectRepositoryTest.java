@@ -18,14 +18,23 @@
 
 package com.arnellconsulting.tps.repository;
 
+import com.arnellconsulting.tps.config.PersistenceContext;
+import com.arnellconsulting.tps.config.TestContext;
+import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.model.TestConstants;
+
 import junit.framework.TestCase;
+
 import lombok.extern.slf4j.Slf4j;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -33,18 +42,21 @@ import org.springframework.transaction.annotation.Transactional;
  * @author jiar
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:META-INF/spring/testContext.xml")
+@ContextConfiguration(classes = { TestContext.class, WebAppContext.class, PersistenceContext.class })
+@WebAppConfiguration
 @Transactional
 @Slf4j
+@SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
 public class ProjectRepositoryTest extends TestCase {
-   
-	@Autowired
-	ProjectRepository repository;   
+   @Autowired
+   private transient ProjectRepository repository;
 
-	@Test
+   //~--- methods -------------------------------------------------------------
+
+   @Test
    public void testInsert() {
-      Project p = new Project();
-      p.setName("Name");
-      repository.save(p);
+      final Project p = TestConstants.createProjectA();
+     Project persistedProject = repository.save(p);     
+     assertEquals(p.getName(), persistedProject.getName());
    }
 }

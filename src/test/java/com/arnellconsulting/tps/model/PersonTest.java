@@ -33,39 +33,16 @@ import java.util.Collection;
  */
 public class PersonTest {
    private transient Person person;
-   private static final Boolean ACCOUNT_NON_EXPIRED = Boolean.TRUE;
-   private static final Boolean ACCOUNT_NON_LOCKED = Boolean.TRUE;
-   private static final Boolean CREDENTIALS_NON_EXPIRED = Boolean.TRUE;
-   private static final Boolean ENABLED = Boolean.TRUE;
-   private static final PersonStatus PERSON_STATUS = PersonStatus.NORMAL;
-   private static final String EMAIL = "a@sdf.com";
-   private static final String FIRST_NAME = "Firstname";
-   private static final String LAST_NAME = "Lastname";
-   private static final String PASSWORD = "Lastname";
-   private static final Boolean EMAIL_VERIFIED = true;
 
    @Before
    public void setUp() {
-      person = new Person();
-      person.setEmail(EMAIL);
-      person.setFirstName(FIRST_NAME);
-      person.setLastName(LAST_NAME);
-      person.setPassword(PASSWORD);
-      person.setEmailVerified(EMAIL_VERIFIED);
+      person = TestConstants.createPersonA();
    }
 
    @Test
    public void testGetters() {
-      assertEquals(ACCOUNT_NON_EXPIRED, person.isAccountNonExpired());
-      assertEquals(ACCOUNT_NON_LOCKED, person.isAccountNonLocked());
-      assertEquals(CREDENTIALS_NON_EXPIRED, person.isCredentialsNonExpired());
-      assertEquals(PASSWORD, person.getPassword());
-      assertEquals(EMAIL, person.getUsername());
-      assertEquals(ENABLED, person.isEnabled());
-      assertEquals(FIRST_NAME, person.getFirstName());
-      assertEquals(LAST_NAME, person.getLastName());
-      assertEquals(PASSWORD, person.getPassword());
-      assertEquals(EMAIL_VERIFIED, person.getEmailVerified());
-      assertEquals(null, person.getAuthority());
-   }
+     assertEquals(TestConstants.PERSON_A_FIRST_NAME, person.getFirstName());
+      assertEquals(TestConstants.PERSON_A_LAST_NAME, person.getLastName());
+     assertEquals(TestConstants.PERSON_A_EMAIL_VERIFIED, person.getEmailVerified());
+  }
 }

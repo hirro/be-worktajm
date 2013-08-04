@@ -19,7 +19,7 @@ import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
-import static com.arnellconsulting.tps.web.TimeEntryControllerTest.TIMEENTRY_1;
+import com.arnellconsulting.tps.model.TestConstants;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -50,13 +50,6 @@ import org.springframework.web.context.WebApplicationContext;
 @WebAppConfiguration
 @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
 public class RegistrationControllerTest {
-   private static final String EMAIL = "a@example.com";
-   private static final String FIRST_NAME = "Jim";
-   private static final String LAST_NAME = "Arnell";
-   private static final String PASSWORD = "password";
-   private static final String COMPANY = "company";
-   public static final String CREATE_PATH = "/registration/create?email=%s&password=%s&company=%s";
-   public static final String CHECK_EMAIL_PATH = "/registration/checkEmail.do?email=%s";
 
    private transient MockMvc mockMvc;
    @Autowired
@@ -71,19 +64,19 @@ public class RegistrationControllerTest {
       Mockito.reset(tpsServiceMock);
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
       person = new Person();
-      person.setFirstName(FIRST_NAME);
-      person.setLastName(LAST_NAME);
-      person.setEmail(EMAIL);
+      person.setFirstName(TestConstants.PERSON_A_FIRST_NAME);
+      person.setLastName(TestConstants.PERSON_A_LAST_NAME);
+      person.setEmail(TestConstants.PERSON_A_EMAIL);
       person.setEmailVerified(Boolean.TRUE);
    }
 
    @Test
    public void testCreate() throws Exception {
-      when(tpsServiceMock.findPersonByEmail(EMAIL)).thenReturn(person);
-      final String path = String.format(CREATE_PATH, EMAIL, PASSWORD, COMPANY);
+      when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(person);
+      final String path = String.format(TestConstants.CREATE_PATH, TestConstants.PERSON_A_EMAIL, TestConstants.PERSON_A_PASSWORD, TestConstants.COMPANY_A);
       mockMvc.perform(get(path).accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isMovedTemporarily());
-      verify(tpsServiceMock, times(1)).findPersonByEmail(EMAIL);
+      verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verify(tpsServiceMock, times(1)).savePerson(any(Person.class));
       verifyNoMoreInteractions(tpsServiceMock);
    }
@@ -104,23 +97,23 @@ public class RegistrationControllerTest {
 
    @Test
    public void testIsEmailUniqueFound() throws Exception {
-      when(tpsServiceMock.findPersonByEmail(EMAIL)).thenReturn(person);
-      final String path = String.format(CHECK_EMAIL_PATH, EMAIL);
+      when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(person);
+      final String path = String.format(TestConstants.CHECK_EMAIL_PATH, TestConstants.PERSON_A_EMAIL);
       mockMvc.perform(get(path).accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk())
               .andExpect(content().string("false"));
-      verify(tpsServiceMock, times(1)).findPersonByEmail(EMAIL);
+      verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
    @Test
    public void testIsEmailUniqueNotFound() throws Exception {
-      when(tpsServiceMock.findPersonByEmail(EMAIL)).thenReturn(null);
-      final String path = String.format(CHECK_EMAIL_PATH, EMAIL);
+      when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(null);
+      final String path = String.format(TestConstants.CHECK_EMAIL_PATH, TestConstants.PERSON_A_EMAIL);
       mockMvc.perform(get(path).accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk())
               .andExpect(content().string("true"));
-      verify(tpsServiceMock, times(1)).findPersonByEmail(EMAIL);
+      verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 }

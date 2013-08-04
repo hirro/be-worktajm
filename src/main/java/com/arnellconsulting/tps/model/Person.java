@@ -41,7 +41,9 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Person extends AbstractPersistable<Long> implements UserDetails {
+public class Person extends AbstractPersistable<Long> {
+
+   private static final long serialVersionUID = -3902301243341660214L;
 
    public String getFirstName() {
       return firstName;
@@ -59,28 +61,12 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
       this.lastName = lastName;
    }
 
-   public String getPassword() {
-      return password;
-   }
-
-   public void setPassword(String password) {
-      this.password = password;
-   }
-
    public String getEmail() {
       return email;
    }
 
    public void setEmail(String email) {
       this.email = email;
-   }
-
-   public String getAuthority() {
-      return authority;
-   }
-
-   public void setAuthority(String authority) {
-      this.authority = authority;
    }
 
    public Boolean getEmailVerified() {
@@ -98,7 +84,6 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
    public void setActiveTimeEntry(TimeEntry activeTimeEntry) {
       this.activeTimeEntry = activeTimeEntry;
    }
-   private static final long serialVersionUID = -3902301243341660214L;
 
 // @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
 // private Set<Contract> contracts = new HashSet<Contract>();
@@ -106,11 +91,9 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
 // private Set<TimeEntry> contract = new HashSet<TimeEntry>();
    private String firstName;
    private String lastName;
-   private String password;
    @NotNull
    @Column(unique = true)
    private String email;
-   private String authority;
    private Boolean emailVerified = true;
    @ManyToOne
    @JsonManagedReference
@@ -121,39 +104,5 @@ public class Person extends AbstractPersistable<Long> implements UserDetails {
 
    public Person() {
       this.emailVerified = false;
-   }
-
-   @Override
-   public Collection<? extends GrantedAuthority> getAuthorities() {
-      ArrayList<GrantedAuthority> temp = new ArrayList<GrantedAuthority>();
-
-      temp.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-      return temp;
-   }
-
-   @Override
-   public String getUsername() {
-      return email;
-   }
-
-   @Override
-   public boolean isAccountNonExpired() {
-      return true;
-   }
-
-   @Override
-   public boolean isAccountNonLocked() {
-      return true;
-   }
-
-   @Override
-   public boolean isCredentialsNonExpired() {
-      return true;
-   }
-
-   @Override
-   public boolean isEnabled() {
-      return true;
    }
 }

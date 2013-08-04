@@ -21,6 +21,7 @@ package com.arnellconsulting.tps.web;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.model.TestConstants;
 import com.arnellconsulting.tps.service.TpsService;
 
 import org.junit.Before;
@@ -44,8 +45,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.math.BigDecimal;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,14 +52,11 @@ import java.util.List;
  *
  * @author jiar
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestContext.class, WebAppContext.class })
 @WebAppConfiguration
 @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
 public class ProjectControllerTest {
-   public static final String PROJECT_1 =
-      "{\"id\":null,\"name\":\"Project A\",\"description\":\"desc\",\"rate\":10.3,\"new\":true}";
    private transient MockMvc mockMvc;
    private transient Project projectA;
    private transient List<Project> projects;
@@ -77,19 +73,14 @@ public class ProjectControllerTest {
       // stubbing and verified behavior would "leak" from one test to another.
       Mockito.reset(tpsServiceMock);
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-      projectA = new Project();
-      projectA.setName("Project A");
-      projectA.setRate(new BigDecimal("10.3"));
-      projectA.setDescription("desc");
+      projectA = TestConstants.createProjectA();
       projects = new ArrayList<Project>();
       projects.add(projectA);
    }
 
    @Test
    public void testCreate() throws Exception {
-
-      // when(tpsServiceMock.getProject(1)).thenReturn(projectA);
-      mockMvc.perform(post("/api/project").content(PROJECT_1).contentType(MediaType.APPLICATION_JSON))
+      mockMvc.perform(post("/api/project").content(TestConstants.PROJECT_A).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
       verify(tpsServiceMock, times(1)).saveProject(projectA);
       verifyNoMoreInteractions(tpsServiceMock);
@@ -100,14 +91,14 @@ public class ProjectControllerTest {
       when(tpsServiceMock.getProject(1)).thenReturn(projectA);
       mockMvc.perform(get("/api/project/1").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk())
-              .andExpect(content().string(PROJECT_1));
+              .andExpect(content().string(TestConstants.PROJECT_A));
       verify(tpsServiceMock, times(1)).getProject(1L);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
    @Test
    public void testUpdate() throws Exception {
-      mockMvc.perform(put("/api/project/1").content(PROJECT_1).contentType(MediaType.APPLICATION_JSON))
+      mockMvc.perform(put("/api/project/1").content(TestConstants.PROJECT_A).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
       verify(tpsServiceMock, times(1)).saveProject(projectA);
       verifyNoMoreInteractions(tpsServiceMock);
