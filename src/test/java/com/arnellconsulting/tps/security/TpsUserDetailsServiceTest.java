@@ -70,6 +70,13 @@ public class TpsUserDetailsServiceTest {
       assertThat(person.getAuthority(), is(TestConstants.PERSON_A_AUTHORITY));
       assertThat(person.getEmail(), is(TestConstants.PERSON_A_EMAIL));
       assertThat(person.getPassword(), is(TestConstants.PERSON_A_PASSWORD));
+      assertThat(person.getUsername(), is(TestConstants.PERSON_A_EMAIL));
+      assertThat(person.isAccountNonExpired(), is(true));
+      assertThat(person.isAccountNonLocked(), is(true));
+      assertThat(person.isCredentialsNonExpired(), is(true));
+      assertThat(person.isEnabled(), is(true));
+      assertThat(person.isNew(), is(true));
+      assertThat(person.getAuthorities(), notNullValue());
       verify(repositoryMock, times(1)).findByEmail(EMAIL);
       verifyNoMoreInteractions(repositoryMock);
    }
