@@ -94,7 +94,7 @@ public class PersonControllerTest {
    @Test
    public void testCreate() throws Exception {
       mockMvc.perform(
-      post("/api/person").content(TestConstants.PERSON_A).contentType(MediaType.APPLICATION_JSON)).andExpect(
+      post("/api/person").content(TestConstants.PERSON_A_CREATE).contentType(MediaType.APPLICATION_JSON)).andExpect(
       status().isOk());
       final ArgumentCaptor<Person> argument = ArgumentCaptor.forClass(Person.class);
       verify(tpsServiceMock, times(1)).savePerson(argument.capture());
@@ -128,12 +128,12 @@ public class PersonControllerTest {
 
    @Test
    public void testUpdate() throws Exception {
-      mockMvc.perform(put("/api/person/1").content(TestConstants.PROJECT_A).contentType(MediaType.APPLICATION_JSON)).andExpect(
+      mockMvc.perform(put("/api/person/1").content(TestConstants.PERSON_A).contentType(MediaType.APPLICATION_JSON)).andExpect(
       status().isNoContent());
       final ArgumentCaptor<Person> argument = ArgumentCaptor.forClass(Person.class);
       verify(tpsServiceMock, times(1)).savePerson(argument.capture());
       final Person a = argument.getValue();
-      //assertThat(a.getEmail(), is(TestConstants.PERSON_A_EMAIL));
+      assertThat(a.getEmail(), is(TestConstants.PERSON_A_EMAIL));
       verifyNoMoreInteractions(tpsServiceMock);
    }
 }

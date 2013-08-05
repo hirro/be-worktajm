@@ -17,9 +17,13 @@ package com.arnellconsulting.tps.web;
 
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
+import com.arnellconsulting.tps.exception.EmailNotUniqueException;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
 import com.arnellconsulting.tps.model.TestConstants;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -72,12 +76,26 @@ public class RegistrationControllerTest {
 
    @Test
    public void testCreate() throws Exception {
-      when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(person);
+      when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(null);
       final String path = String.format(TestConstants.CREATE_PATH, TestConstants.PERSON_A_EMAIL, TestConstants.PERSON_A_PASSWORD, TestConstants.COMPANY_A);
       mockMvc.perform(get(path).accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isMovedTemporarily());
       verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verify(tpsServiceMock, times(1)).savePerson(any(Person.class));
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testCreateDuplicate() {
+      when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(person);
+      final String path = String.format(TestConstants.CREATE_PATH, TestConstants.PERSON_A_EMAIL, TestConstants.PERSON_A_PASSWORD, TestConstants.COMPANY_A);
+      try {
+         mockMvc.perform(get(path).accept(MediaType.APPLICATION_JSON))
+                 .andExpect(status().isInternalServerError());
+      } catch (Exception ex) {
+         fail("Should not throw here? Controller exception is not visible");
+      }
+      verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
