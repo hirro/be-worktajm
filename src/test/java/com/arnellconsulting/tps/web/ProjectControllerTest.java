@@ -47,6 +47,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.List;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+import org.mockito.ArgumentCaptor;
 
 /**
  *
@@ -82,7 +85,9 @@ public class ProjectControllerTest {
    public void testCreate() throws Exception {
       mockMvc.perform(post("/api/project").content(TestConstants.PROJECT_A).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).saveProject(projectA);
+      final ArgumentCaptor<Project> argument = ArgumentCaptor.forClass(Project.class);
+      verify(tpsServiceMock, times(1)).saveProject(argument.capture());
+      assertThat(argument.getValue().getDescription(), is(TestConstants.PROJECT_A_DESCRIPTION)); 
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
@@ -100,7 +105,10 @@ public class ProjectControllerTest {
    public void testUpdate() throws Exception {
       mockMvc.perform(put("/api/project/1").content(TestConstants.PROJECT_A).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
-      verify(tpsServiceMock, times(1)).saveProject(projectA);
+      final ArgumentCaptor<Project> argument = ArgumentCaptor.forClass(Project.class);
+      verify(tpsServiceMock, times(1)).saveProject(argument.capture());
+      final Project project = argument.getValue();
+      assertThat(project.getDescription(), is(TestConstants.PROJECT_A_DESCRIPTION));
       verifyNoMoreInteractions(tpsServiceMock);
    }
 

@@ -39,18 +39,7 @@ import java.util.Date;
  * @author jiar
  */
 public class TimeEntryTest {
-   private static final Date START_TIME = new Date();
-   private static ObjectMapper objectMapper;
-
-   public TimeEntryTest() {}
-
-   //~--- methods -------------------------------------------------------------
-
-   @After
-   public void tearDown() {}
-
-   @AfterClass
-   public static void tearDownClass() {}
+   private static ObjectMapper objectMapper = new ObjectMapper();
 
    @Test
    public void testDeserialization() throws IOException {
@@ -60,12 +49,5 @@ public class TimeEntryTest {
       final String actorsAsJson = objectMapper.writeValueAsString(timeEntry);
 
       assertThat(actorsAsJson, is(TestConstants.TIMEENTRY_A_READ));
-   }
-
-   //~--- set methods ---------------------------------------------------------
-
-   @BeforeClass
-   public static void setUpClass() {
-      objectMapper = new ObjectMapper();
    }
 }

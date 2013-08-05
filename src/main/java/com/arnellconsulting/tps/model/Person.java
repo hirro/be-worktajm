@@ -19,6 +19,9 @@
 package com.arnellconsulting.tps.model;
 
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -26,7 +29,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
  * TBD
@@ -45,8 +50,10 @@ public class Person extends AbstractPersistable<Long> {
 
 // @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
 // private Set<Contract> contracts = new HashSet<Contract>();
-// @OneToMany(cascade = CascadeType.ALL, mappedBy = "Person")
-// private Set<TimeEntry> contract = new HashSet<TimeEntry>();
+   @OneToMany
+   @JsonBackReference(value="timeentry->person")
+   //@JsonIgnore
+   private Collection<TimeEntry> contract;
    private String firstName;
    private String lastName;
    @NotNull
