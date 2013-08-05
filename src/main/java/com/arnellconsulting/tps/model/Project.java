@@ -14,26 +14,28 @@
  * limitations under the License.
  */
 
+
+
 package com.arnellconsulting.tps.model;
 
-import lombok.Data;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.math.BigDecimal;
 
+import java.util.Collection;
+
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * TBD
  * @author jiar
  */
 @Entity
-@Data
-@SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project extends AbstractPersistable<Long> {
    private static final long serialVersionUID = -3902305943341540214L;
@@ -41,4 +43,34 @@ public class Project extends AbstractPersistable<Long> {
    private String name;
    private String description;
    private BigDecimal rate;
+   @OneToMany
+   @JsonBackReference(value = "timeentry->project")
+   private Collection<TimeEntry> timeEntries;
+
+   public Project() {}
+
+   public String getDescription() {
+      return description;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public BigDecimal getRate() {
+      return rate;
+   }
+
+   public void setDescription(final String description) {
+      this.description = description;
+   }
+
+   public void setName(final String name) {
+      this.name = name;
+   }
+
+   public void setRate(final BigDecimal rate) {
+      this.rate = rate;
+   }
+
 }

@@ -18,48 +18,86 @@
 
 package com.arnellconsulting.tps.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 import lombok.Data;
+
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
+import javax.persistence.*;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * TBD
  * @author jiar
  */
 @Entity
-@Data
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TimeEntry  extends AbstractPersistable<Long> {
+public class TimeEntry extends AbstractPersistable<Long> {
+   @NotNull
+   @Temporal(TemporalType.TIMESTAMP)
+   @DateTimeFormat(style = "M-")
+   private Date  startTime;
+   @Temporal(TemporalType.TIMESTAMP)
+   @DateTimeFormat(style = "M-")
+   private Date endTime;
+   private String comment;
+   @ManyToOne
+   @JsonIgnore
+   //@JsonManagedReference(value = "timeentry->person")
+   private Person person;
+   @ManyToOne
+   @JsonIgnore
+   //@JsonManagedReference(value = "timeentry->project")
+   private Project project;
 
-    @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
-    private Date startTime;
+   public TimeEntry() {}
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
-    private Date endTime;
+   public String getComment() {
+      return comment;
+   }
 
-    private String comment;
+   public Date getEndTime() {
+      return endTime;
+   }
 
-    @ManyToOne
-    @JsonIgnore
-    private Person person;
+   public Person getPerson() {
+      return person;
+   }
 
-    @ManyToOne
-//    @JsonManagedReference
-    @JsonIgnore
-    private Project project;
+   public Project getProject() {
+      return project;
+   }
 
-   public TimeEntry() {
+   public Date getStartTime() {
+      return startTime;
+   }
+
+   public void setComment(final String comment) {
+      this.comment = comment;
+   }
+
+   public void setEndTime(final Date endTime) {
+      this.endTime = endTime;
+   }
+
+   public void setPerson(final Person person) {
+      this.person = person;
+   }
+
+   public void setProject(final Project project) {
+      this.project = project;
+   }
+
+   public void setStartTime(final Date startTime) {
+      this.startTime = startTime;
    }
 }
