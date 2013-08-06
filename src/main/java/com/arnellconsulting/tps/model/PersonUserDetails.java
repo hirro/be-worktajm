@@ -24,11 +24,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.persistence.Entity;
 
 /**
  *
  * @author jiar
  */
+@Entity
 public class PersonUserDetails extends Person implements UserDetails {
    private String password;
    private String authority;
