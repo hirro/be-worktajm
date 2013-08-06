@@ -39,7 +39,6 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project extends AbstractPersistable<Long> {
    private static final long serialVersionUID = -3902305943341540214L;
-   @NotNull
    private String name;
    private String description;
    private BigDecimal rate;
@@ -47,12 +46,15 @@ public class Project extends AbstractPersistable<Long> {
    @JsonBackReference(value = "timeentry->project")
    private Collection<TimeEntry> timeEntries;
 
-   public Project() {}
+   public Collection<TimeEntry> getTimeEntries() {
+      return timeEntries;
+   }
 
    public String getDescription() {
       return description;
    }
 
+   @NotNull
    public String getName() {
       return name;
    }
@@ -73,4 +75,7 @@ public class Project extends AbstractPersistable<Long> {
       this.rate = rate;
    }
 
+   public void setTimeEntries(final Collection<TimeEntry> timeEntries) {
+      this.timeEntries = timeEntries;
+   }
 }

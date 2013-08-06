@@ -18,20 +18,20 @@
 
 package com.arnellconsulting.tps.model;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
-import org.codehaus.jackson.annotate.JsonBackReference;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 /**
  * TBD
@@ -42,34 +42,41 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person extends AbstractPersistable<Long> {
    private static final long serialVersionUID = -3902301243341660214L;
-
    private Boolean emailVerified = true;
+   
+   // Active time entry
    @ManyToOne
    @JsonIgnore
    TimeEntry activeTimeEntry = null;
-
-// @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
-// private Set<Contract> contracts = new HashSet<Contract>();
+   
+   // All time entreis associated with the person.
    @OneToMany
-   @JsonBackReference(value="timeentry->person")
-   //@JsonIgnore
-   private Collection<TimeEntry> contract;
+   @JsonBackReference(value = "timeentry->person")
+   private Collection<TimeEntry> timeEntries;
+   
+   // First name
    private String firstName;
+   
+   // Last name
    private String lastName;
    @NotNull
    @Column(unique = true)
    private String email;
 
+// @ManyToMany(cascade = CascadeType.ALL, mappedBy = "contracters")
+// private Set<Contract> contracts = new HashSet<Contract>();
 // @ManyToOne
 // private Corporate employer;
    public Person() {
       this.emailVerified = false;
    }
 
-   //~--- get methods ---------------------------------------------------------
-
    public TimeEntry getActiveTimeEntry() {
       return activeTimeEntry;
+   }
+
+   public Collection<TimeEntry> getTimeEntries() {
+      return timeEntries;
    }
 
    public String getEmail() {
@@ -88,10 +95,12 @@ public class Person extends AbstractPersistable<Long> {
       return lastName;
    }
 
-   //~--- set methods ---------------------------------------------------------
-
    public void setActiveTimeEntry(TimeEntry activeTimeEntry) {
       this.activeTimeEntry = activeTimeEntry;
+   }
+
+   public void setTimeEntries(Collection<TimeEntry> timeEntries) {
+      this.timeEntries = timeEntries;
    }
 
    public void setEmail(String email) {

@@ -118,7 +118,7 @@ public class TimeEntryControllerTest {
 
    @Test
    public void testUpdate() throws Exception {
-      mockMvc.perform(put("/api/timeEntry/1").content(TestConstants.PROJECT_A).contentType(MediaType.APPLICATION_JSON))
+      mockMvc.perform(put("/api/timeEntry/1").content(TestConstants.TIMEENTRY_A_CREATE).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
       final ArgumentCaptor<TimeEntry> argument = ArgumentCaptor.forClass(TimeEntry.class);
       verify(tpsServiceMock, times(1)).saveTimeEntry(argument.capture());
