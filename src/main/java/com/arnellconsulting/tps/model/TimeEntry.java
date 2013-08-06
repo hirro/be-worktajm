@@ -35,17 +35,24 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * TBD
+ * Time entries.
  * @author jiar
  */
 @Entity
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntry extends AbstractPersistable<Long> {
+   @NotNull
+   @Temporal(TemporalType.TIMESTAMP)
+   @DateTimeFormat(style = "M-")
    private Date  startTime;
+   @Temporal(TemporalType.TIMESTAMP)
+   @DateTimeFormat(style = "M-")
    private Date endTime;
    private String comment;
+   @ManyToOne
    private Person person;
+   @ManyToOne
    private Project project;
 
    public TimeEntry() {}
@@ -54,25 +61,18 @@ public class TimeEntry extends AbstractPersistable<Long> {
       return comment;
    }
 
-   @Temporal(TemporalType.TIMESTAMP)
-   @DateTimeFormat(style = "M-")
    public Date getEndTime() {
       return endTime;
    }
 
-   @ManyToOne
    public Person getPerson() {
       return person;
    }
 
-   @ManyToOne
    public Project getProject() {
       return project;
    }
 
-   @NotNull
-   @Temporal(TemporalType.TIMESTAMP)
-   @DateTimeFormat(style = "M-")
    public Date getStartTime() {
       return startTime;
    }
