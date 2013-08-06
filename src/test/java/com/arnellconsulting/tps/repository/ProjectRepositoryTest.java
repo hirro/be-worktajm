@@ -51,12 +51,11 @@ public class ProjectRepositoryTest extends TestCase {
    @Autowired
    private transient ProjectRepository repository;
 
-   //~--- methods -------------------------------------------------------------
-
    @Test
    public void testInsert() {
-      final Project p = TestConstants.createProjectA();
-     Project persistedProject = repository.save(p);     
-     assertEquals(p.getName(), persistedProject.getName());
+      final Project project = TestConstants.createProjectA();
+      final Project persistedProject = repository.save(project);
+
+      assertEquals(project.getName(), persistedProject.getName());
    }
 }
