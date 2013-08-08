@@ -100,7 +100,7 @@ angular.module('tpsApp')
       }
       $scope.activeProject = project;
       $scope.activeProject.active = true;
-      $scope.activeTimeEntry = { project: $scope.activeProject, person: $scope.user.id, startTime: $.now()};
+      $scope.activeTimeEntry = { project: $scope.activeProject, startTime: $.now()};
       $scope.timeEntries.push($scope.activeTimeEntry);
     };
     $scope.stopProjectTimer = function () {
@@ -122,14 +122,20 @@ angular.module('tpsApp')
     // Time entries
     $scope.removeTimeEntry = function (timeEntry) {
       console.log('removeTimeEntry(%s)', timeEntry.id);
-      var i = -1;
-      $.each($scope.timeEntries, function (index, value) {
-        if (value.id === timeEntry.id) {
-          i = index;
-        }
+
+      timeEntry.remove().then(function () {
+        console.log('Project deleted from backend');
+        $scope.timeEntries = _.without($scope.timeEntries, timeEntry);
       });
-      $scope.timeEntries.splice(i, 1);
-      console.log('Removing index ', i);
+            
+      // var i = -1;
+      // $.each($scope.timeEntries, function (index, value) {
+      //   if (value.id === timeEntry.id) {
+      //     i = index;
+      //   }
+      // });
+      // $scope.timeEntries.splice(i, 1);
+      // console.log('Removing index ', i);
     };
     $scope.getTimeEntryById = function (id) {
       var item = $.grep($scope.timeEntries, function (e) { return e.id === id; })[0];
