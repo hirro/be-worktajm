@@ -45,6 +45,9 @@
    <filter-mapping>
      <filter-name>CorsFilter</filter-name>
      <url-pattern>/*</url-pattern>
+     <cors.allowed.origins>*</cors.allowed.origins>
+     <cors.allowed.methods>POST, GET, OPTIONS, PUT, DELETE</cors.allowed.methods>
+     <cors.allowed.headers>Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers</cors.allowed.headers>
    </filter-mapping>
 
 	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
