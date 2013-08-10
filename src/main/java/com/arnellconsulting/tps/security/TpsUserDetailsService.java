@@ -4,8 +4,8 @@
  */
 package com.arnellconsulting.tps.security;
 
-import com.arnellconsulting.tps.model.PersonUserDetails;
-import com.arnellconsulting.tps.repository.PersonUserDetailsRepository;
+import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  */
 @Slf4j
 public class TpsUserDetailsService implements UserDetailsService {
-   private final transient PersonUserDetailsRepository repository;
+   private final transient PersonRepository repository;
 
    @Autowired
-   public TpsUserDetailsService(final PersonUserDetailsRepository repository) {
+   public TpsUserDetailsService(final PersonRepository repository) {
       this.repository = repository;
    }
 
@@ -31,11 +31,11 @@ public class TpsUserDetailsService implements UserDetailsService {
    @Override
    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
       log.debug("loadUserByUsername({}(", username);
-      final PersonUserDetails person = repository.findByEmail(username);
+      final Person person = repository.findByEmail(username);
       if (person == null) {
          throw new UsernameNotFoundException(username);
       }
 
-      return person;
+      return null;
    }
 }
