@@ -16,8 +16,9 @@
 
 
 
-package com.arnellconsulting.tps.model;
+package com.arnellconsulting.tps.security;
 
+import com.arnellconsulting.tps.model.Person;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,24 +26,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  *
  * @author jiar
  */
-@Entity
-public class PersonUserDetails extends Person implements UserDetails {
+public class PersonUserDetails implements UserDetails {
    private String password;
    private String authority;
+   private Person person;
+
+   public PersonUserDetails() {
+      super();
+   }
 
    public PersonUserDetails(final Person person) {
       super();
-      this.setFirstName(person.getFirstName());
-      this.setLastName(person.getLastName());
-      this.setEmail(person.getEmail());
-      this.setEmailVerified(person.getEmailVerified());
-      this.setActiveTimeEntry(person.getActiveTimeEntry());
-   }
+  }
 
    //~--- get methods ---------------------------------------------------------
 
@@ -57,7 +58,7 @@ public class PersonUserDetails extends Person implements UserDetails {
 
    @Override
    public String getUsername() {
-      return this.getEmail();
+      return person.getEmail();
    }
 
    @Override

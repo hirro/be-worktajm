@@ -18,14 +18,9 @@
 
 package com.arnellconsulting.tps.security;
 
-import com.arnellconsulting.tps.model.PersonUserDetails;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.TestConstants;
 import com.arnellconsulting.tps.repository.PersonRepository;
-import com.arnellconsulting.tps.repository.PersonUserDetailsRepository;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +28,12 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+
+import static org.junit.Assert.assertThat;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -46,40 +47,12 @@ public class TpsUserDetailsServiceTest {
    private static final String EMAIL = "a@example.com";
    private static final String UNKNOWN_EMAIL = "b@example.com";
 
-   private transient PersonUserDetailsRepository repositoryMock = Mockito.mock(PersonUserDetailsRepository.class);
+   private transient PersonRepository repositoryMock = Mockito.mock(PersonRepository.class);
    private transient TpsUserDetailsService tps;
    private transient PersonUserDetails userDetails;
+   public Person person;
 
-   @Before
-   public void setUp() {
-      tps = new TpsUserDetailsService(repositoryMock);
-
-      final Person person = TestConstants.createPersonA();
-
-      userDetails = new PersonUserDetails(person);
-      userDetails.setAuthority(TestConstants.PERSON_A_AUTHORITY);
-      userDetails.setPassword(TestConstants.PERSON_A_PASSWORD);
-   }
-
-   @Test
-   public void testLoadUserByUsername() {
-      when(repositoryMock.findByEmail(EMAIL)).thenReturn(userDetails);
-      final PersonUserDetails person = (PersonUserDetails) tps.loadUserByUsername(EMAIL);
-      assertThat(person, notNullValue());
-      assertThat(person.getFirstName(), is(TestConstants.PERSON_A_FIRST_NAME));
-      assertThat(person.getAuthority(), is(TestConstants.PERSON_A_AUTHORITY));
-      assertThat(person.getEmail(), is(TestConstants.PERSON_A_EMAIL));
-      assertThat(person.getPassword(), is(TestConstants.PERSON_A_PASSWORD));
-      assertThat(person.getUsername(), is(TestConstants.PERSON_A_EMAIL));
-      assertThat(person.isAccountNonExpired(), is(true));
-      assertThat(person.isAccountNonLocked(), is(true));
-      assertThat(person.isCredentialsNonExpired(), is(true));
-      assertThat(person.isEnabled(), is(true));
-      assertThat(person.isNew(), is(true));
-      assertThat(person.getAuthorities(), notNullValue());
-      verify(repositoryMock, times(1)).findByEmail(EMAIL);
-      verifyNoMoreInteractions(repositoryMock);
-   }
+   //~--- methods -------------------------------------------------------------
 
    @Test(expected = UsernameNotFoundException.class)
    public void testLoadUserByUsernameButNotFound() {
@@ -89,4 +62,34 @@ public class TpsUserDetailsServiceTest {
       verifyNoMoreInteractions(repositoryMock);
    }
 
+   //~--- set methods ---------------------------------------------------------
+
+   @Before
+   public void setUp() {
+      tps = new TpsUserDetailsService(repositoryMock);
+      person = TestConstants.createPersonA();
+      userDetails = new PersonUserDetails(person);
+      userDetails.setAuthority(TestConstants.PERSON_A_AUTHORITY);
+      userDetails.setPassword(TestConstants.PERSON_A_PASSWORD);
+   }
+
+   //~--- methods -------------------------------------------------------------
+
+   public void testLoadUserByUsername() {
+      when(repositoryMock.findByEmail(EMAIL)).thenReturn(person);
+
+      final PersonUserDetails person = (PersonUserDetails) tps.loadUserByUsername(EMAIL);
+
+      assertThat(person, notNullValue());
+      assertThat(person.getAuthority(), is(TestConstants.PERSON_A_AUTHORITY));
+      assertThat(person.getPassword(), is(TestConstants.PERSON_A_PASSWORD));
+      assertThat(person.getUsername(), is(TestConstants.PERSON_A_EMAIL));
+      assertThat(person.isAccountNonExpired(), is(true));
+      assertThat(person.isAccountNonLocked(), is(true));
+      assertThat(person.isCredentialsNonExpired(), is(true));
+      assertThat(person.isEnabled(), is(true));
+      assertThat(person.getAuthorities(), notNullValue());
+      verify(repositoryMock, times(1)).findByEmail(EMAIL);
+      verifyNoMoreInteractions(repositoryMock);
+   }
 }
