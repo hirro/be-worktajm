@@ -65,6 +65,8 @@ public class TimeEntry extends AbstractPersistable<Long> {
       return endTime;
    }
 
+   @JsonBackReference("activeTimeEntry")
+   @JsonManagedReference("timeEntries")
    public Person getPerson() {
       return person;
    }

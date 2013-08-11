@@ -5,7 +5,7 @@ angular.module('tpsApp', ['ngResource', 'restangular'])
     $routeProvider
       .when('/main', {
         templateUrl: 'views/main.html',
-        controller: 'DashboardCtrl'
+        controller: 'MainCtrl'
       })
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',

@@ -5,6 +5,8 @@
 angular.module('tpsApp')
   .controller('DashboardCtrl', function ($scope, $resource, $filter, $q, Restangular) {
 
+    console.log('Initiating DashboardCtrl');
+
     // Initialize variables
     $scope.activeProject = null;
     $scope.project = {};
@@ -20,14 +22,15 @@ angular.module('tpsApp')
 
     // Joined promises
     $scope.user.then(function (person) {
+      console.log('User loaded from backend: %s', person.email);
       $scope.user = person;
-      console.log('Current user name %s', person.email);
       if (person.activeTimeEntry !== null) {
-        console.log('User has an active project: %s', person.activeTimeEntry.project.name);
+        console.log('User has an active project, %s', person.activeTimeEntry.project.name);
         $scope.activeProject = person.activeTimeEntry.project;
       } else {
-        console.log('No active timer');
+        console.log('No active project');
       }
+      console.log('User load complete');
     });
     $scope.projects.then(function (projects) {
       $scope.projects = projects;
@@ -71,10 +74,12 @@ angular.module('tpsApp')
       } else {
         if ($scope.user.activeTimeEntry !== null) {
           $.each($scope.projects, function (index, project) {
-            if ($scope.user.activeTimeEntry.project.id === project.id) {
-              project.active = true;
-              $scope.activeProject = project;
-              console.log('Project at index %d is active (%s)', index, project.name);
+            if ($scope.activeProject !== null) {
+              if ($scope.user.activeTimeEntry.project.id === project.id) {
+                project.active = true;
+                $scope.activeProject = project;
+                console.log('Project at index %d is active (%s)', index, project.name);
+              }
             }
           });
         }
@@ -92,30 +97,46 @@ angular.module('tpsApp')
     };
     $scope.startProjectTimer = function (project) {
       console.log('startTimer');
-      if ($scope.activeProject === null) {
+      if ($scope.user.activeTimeEntry === null) {
         console.log('No active project');
       } else {
         console.log('Stopping active project');
-        $scope.stopProjectTimer(project);
+        $scope.stopProjectTimer($scope.user.activeTimeEntry.project);
       }
-      $scope.activeProject = project;
-      $scope.activeProject.active = true;
-      $scope.activeTimeEntry = { project: $scope.activeProject, startTime: $.now()};
-      $scope.timeEntries.push($scope.activeTimeEntry);
-    };
-    $scope.stopProjectTimer = function () {
-      console.log('stopTimer');
-      if ($scope.activeProjectt === null) {
-        console.log('No active project');
-      } else {
-        console.log('Stopping active project');
-        $scope.activeProject.active = false;
-        $scope.activeProject = null;
+      project.active = true;
 
+      // Create a new time entry
+      var timeEntry = { person: $scope.user, project: project, startTime: $.now()};
+      baseTimeEntries.post(timeEntry).then(function (newTimeEntry) {
+        console.log('Time entry created');
+        newTimeEntry.active = true;
+        $scope.timeEntries.push(newTimeEntry);
+        $scope.user.activeTimeEntry = newTimeEntry;
+        $scope.user.put();
+      }, function (timeEntry) {
+        console.error('Failed to add time entry');
+      });
+    };
+    $scope.stopProjectTimer = function (project) {
+      console.log('stopTimer %s', project);
+      project.active = false;
+      if ($scope.user.activeTimeEntry === null) {
+        console.log('No active time entry');
+      } else {
+        console.log('Stopping active project, %s', $scope.user.activeTimeEntry.project.name);
+        // Find project in list and mark it as non active
+        var oldProject = _.find($scope.projects, function (val) {
+          console.log('%s === %s', val.id, $scope.user.activeTimeEntry.project.id);
+          return val.id === $scope.user.activeTimeEntry.project.id;
+        });
+        console.log('Found matching active project, %s', oldProject);
+        oldProject.active = false;
         // Persist time entry
-        $scope.activeTimeEntry.endTime = $.now();
-        baseTimeEntries.post($scope.activeTimeEntry);
-        $scope.activeTimeEntry = null;
+        $scope.user.activeTimeEntry.endTime = $.now();
+        $scope.user.activeTimeEntry.project.active = false;
+        //$scope.user.activeTimeEntry.put();
+        $scope.user.activeTimeEntry = null;
+        $scope.user.put();
       }
     };
 
@@ -127,7 +148,7 @@ angular.module('tpsApp')
         console.log('Project deleted from backend');
         $scope.timeEntries = _.without($scope.timeEntries, timeEntry);
       });
-            
+
       // var i = -1;
       // $.each($scope.timeEntries, function (index, value) {
       //   if (value.id === timeEntry.id) {
