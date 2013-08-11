@@ -45,12 +45,10 @@ public class Person extends AbstractPersistable<Long> {
 
    // Active time entry
    @ManyToOne
-   @JsonIgnore
    TimeEntry activeTimeEntry = null;
 
    // All time entreis associated with the person.
    @OneToMany
-   @JsonBackReference(value = "timeentry->person")
    private Collection<TimeEntry> timeEntries;
 
    // First name
@@ -72,6 +70,7 @@ public class Person extends AbstractPersistable<Long> {
 
    //~--- get methods ---------------------------------------------------------
 
+   @JsonManagedReference("activeTimeEntry")
    public TimeEntry getActiveTimeEntry() {
       return activeTimeEntry;
    }
@@ -92,6 +91,7 @@ public class Person extends AbstractPersistable<Long> {
       return lastName;
    }
 
+   @JsonBackReference("timeEntries")
    public Collection<TimeEntry> getTimeEntries() {
       return timeEntries;
    }

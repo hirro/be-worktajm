@@ -121,7 +121,7 @@ public class PersonControllerTest {
    public void testRead() throws Exception {
       when(tpsServiceMock.getPerson(1)).thenReturn(person);
       mockMvc.perform(get("/api/person/1").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(
-      content().string(TestConstants.PERSON_A));
+      content().string(TestConstants.PERSON_A_READ));
       verify(tpsServiceMock, times(1)).getPerson(1L);
       verifyNoMoreInteractions(tpsServiceMock);
    }
