@@ -70,8 +70,7 @@ public class Person extends AbstractPersistable<Long> {
 
    //~--- get methods ---------------------------------------------------------
 
-   @JsonManagedReference("activeTimeEntry")
-   public TimeEntry getActiveTimeEntry() {
+  public TimeEntry getActiveTimeEntry() {
       return activeTimeEntry;
    }
 
@@ -91,7 +90,7 @@ public class Person extends AbstractPersistable<Long> {
       return lastName;
    }
 
-   @JsonBackReference("timeEntries")
+   @JsonIgnore
    public Collection<TimeEntry> getTimeEntries() {
       return timeEntries;
    }
