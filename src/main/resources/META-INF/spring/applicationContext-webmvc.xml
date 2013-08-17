@@ -10,6 +10,7 @@
 	<mvc:annotation-driven/>
 
 	<mvc:resources mapping="/resources/**" location="/, classpath:/META-INF/web-resources/" />
+   <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>   
 	<mvc:default-servlet-handler />
     
 	<!-- Maps request paths to flows in the flowRegistry; e.g. a path of /hotels/booking looks for a flow with id "hotels/booking". -->
@@ -20,7 +21,7 @@
 
 	<!-- Map paths directly to view names without controller processing. Use the view-name attribute if necessary: by convention the view name equals the path without the leading slash -->
 	<mvc:view-controller path="/" view-name="landing" />
-	<mvc:view-controller path="/index" />
+	<mvc:view-controller path="/landing" view-name="landing"/>
 	<mvc:view-controller path="/login" />
 	<mvc:view-controller path="/logoutSuccess" />
 	<mvc:view-controller path="/dashboard" />
@@ -35,6 +36,7 @@
 	<bean id="templateResolver"
 		  class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 		<property name="prefix" value="/WEB-INF/" />
+      <property name="suffix" value=".html" />
 		<property name="templateMode" value="HTML5" />
 		<!-- XXX: Remove in production -->
 		<property name="cacheable" value="false" />		
@@ -46,29 +48,51 @@
         <property name="templateResolver" ref="templateResolver" />
         <property name="additionalDialects">
             <set>
-                <bean class="org.thymeleaf.extras.tiles2.dialect.TilesDialect"/>
                 <bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect"/>
                 <bean class="org.thymeleaf.extras.conditionalcomments.dialect.ConditionalCommentsDialect"/>
             </set>
         </property>
     </bean>
 
-	<!-- Resolves logical view names returned by Controllers to Tiles; a view name to resolve is treated as the name of a tiles definition -->
-	<bean id="tilesViewResolver" class="org.thymeleaf.spring3.view.AjaxThymeleafViewResolver">
-		<property name="viewClass" value="org.thymeleaf.extras.tiles2.spring.web.view.FlowAjaxThymeleafTilesView"/>
-		<property name="templateEngine" ref="templateEngine"/>
-	</bean>
-  
-	<!-- Configures the Tiles layout system using a specific thymeleaf-enabled Tiles Configurer -->
-	<bean id="tilesConfigurer" class="org.thymeleaf.extras.tiles2.spring.web.configurer.ThymeleafTilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/**/views.xml</value>
-			</list>
-		</property>
-	</bean>
+    <!--
+    - The ContentNegotiatingViewResolver delegates to the InternalResourceViewResolver and BeanNameViewResolver,
+    - and uses the requested media type (determined by the path extension) to pick a matching view. 
+    - When the media type is 'text/html', it will delegate to the InternalResourceViewResolver's JstlView, 
+    - otherwise to the BeanNameViewResolver.
+    -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="contentNegotiationManager" ref="cnManager"/>
+        
+        <property name="viewResolvers">
+        	<list>            
+			    <!-- Used here for 'xml' and 'atom' views  -->
+			    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+                    <property name="order" value="1"/>
+                </bean>
+                <bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+                    <property name="templateEngine" ref="templateEngine" />
+                    <property name="order" value="2"/>
+                </bean>                
+        	</list>
+        </property>
+    </bean>
 
-	<!-- Enable JSON -->
+   <!-- Simple strategy: only path extension is taken into account -->
+    <bean id="cnManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="true"/>
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="defaultContentType" value="text/html"/>
+        
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html" />
+                <entry key="xml" value="application/xml" />
+                <entry key="atom" value="application/atom+xml" />
+            </map>
+        </property>
+    </bean>        
+
+    <!-- Enable JSON -->
 	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/> 
 
 </beans>
