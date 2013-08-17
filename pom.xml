@@ -13,10 +13,8 @@
       <webflow-version>2.4.0.M1</webflow-version>
       <slf4j-version>1.7.5</slf4j-version>
       <thymeleaf-version>2.0.15</thymeleaf-version>
-      <thymeleaf-extras-tiles2-version>2.0.0</thymeleaf-extras-tiles2-version>
       <thymeleaf-extras-springsecurity3-version>2.0.0</thymeleaf-extras-springsecurity3-version>
       <thymeleaf-extras-conditionalcomments-version>2.0.0</thymeleaf-extras-conditionalcomments-version>
-      <tiles-version>2.2.2</tiles-version>
       <tomcat.version>7.0.42</tomcat.version>
       <logback.version>0.9.26</logback.version>
       <slf4j.version>1.7.5</slf4j.version>
@@ -29,11 +27,11 @@
       <hibernate-version>4.2.3.Final</hibernate-version>
       <hibernate-validator-version>5.0.1.Final</hibernate-validator-version>
    </properties>
-  <organization>
-    <name>Arnell Consulting AB</name>
-    <url>http://arnellconsulting.com</url>
-  </organization>
-  <profiles>
+   <organization>
+      <name>Arnell Consulting AB</name>
+      <url>http://arnellconsulting.com</url>
+   </organization>
+   <profiles>
       <profile>
          <id>yo</id>
          <build>
@@ -104,11 +102,6 @@
          <groupId>org.thymeleaf</groupId>
          <artifactId>thymeleaf-spring3</artifactId>
          <version>${thymeleaf-version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.thymeleaf.extras</groupId>
-         <artifactId>thymeleaf-extras-tiles2</artifactId>
-         <version>${thymeleaf-extras-tiles2-version}</version>
       </dependency>
       <dependency>
          <groupId>org.thymeleaf.extras</groupId>
@@ -233,32 +226,6 @@
          <artifactId>jstl</artifactId>
          <version>1.2</version>
       </dependency>
-      <!-- Apache Tiles -->
-      <dependency>
-         <groupId>org.apache.tiles</groupId>
-         <artifactId>tiles-core</artifactId>
-         <version>${tiles-version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.apache.tiles</groupId>
-         <artifactId>tiles-api</artifactId>
-         <version>${tiles-version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.apache.tiles</groupId>
-         <artifactId>tiles-template</artifactId>
-         <version>${tiles-version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.apache.tiles</groupId>
-         <artifactId>tiles-servlet</artifactId>
-         <version>${tiles-version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.apache.tiles</groupId>
-         <artifactId>tiles-jsp</artifactId>
-         <version>${tiles-version}</version>
-      </dependency>
       <!-- JSR 303 with Hibernate Validator -->
       <dependency>
          <groupId>org.hibernate</groupId>
@@ -347,9 +314,9 @@
 
       <!--Logging-->      
       <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-api</artifactId>
-          <version>${slf4j.version}</version>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-api</artifactId>
+         <version>${slf4j.version}</version>
       </dependency>
       <dependency>
          <groupId>log4j</groupId>
@@ -359,36 +326,36 @@
       <dependency>
          <groupId>org.slf4j</groupId>
          <artifactId>jcl-over-slf4j</artifactId>
-          <version>${slf4j.version}</version>
+         <version>${slf4j.version}</version>
       </dependency>
       <dependency>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-classic</artifactId>
-          <version>${logback.version}</version>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-classic</artifactId>
+         <version>${logback.version}</version>
       </dependency>
       <dependency>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-core</artifactId>
-          <version>${logback.version}</version>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-core</artifactId>
+         <version>${logback.version}</version>
       </dependency>
       <dependency>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-access</artifactId>
-          <version>${logback.version}</version>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-access</artifactId>
+         <version>${logback.version}</version>
       </dependency>       
       
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>      
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
+      <dependency>
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-core</artifactId>
+         <version>${mockito.version}</version>
+         <scope>test</scope>
+      </dependency>      
+      <dependency>
+         <groupId>org.hamcrest</groupId>
+         <artifactId>hamcrest-all</artifactId>
+         <version>1.3</version>
+         <scope>test</scope>
+      </dependency>
       <dependency>
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-annotations</artifactId>
@@ -397,19 +364,50 @@
          <type>jar</type>
       </dependency>
      
-        <!-- H2 Database -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
-        </dependency>
-        <!-- BoneCP -->
-        <dependency>
-            <groupId>com.jolbox</groupId>
-            <artifactId>bonecp</artifactId>
-            <version>${bonecp.version}</version>
-        </dependency>
-      
+      <!-- H2 Database -->
+      <dependency>
+         <groupId>com.h2database</groupId>
+         <artifactId>h2</artifactId>
+         <version>${h2.version}</version>
+      </dependency>
+      <!-- BoneCP -->
+      <dependency>
+         <groupId>com.jolbox</groupId>
+         <artifactId>bonecp</artifactId>
+         <version>${bonecp.version}</version>
+      </dependency>
+      <!--web jars-->
+      <dependency>
+         <groupId>org.webjars</groupId>
+         <artifactId>bootstrap</artifactId>
+         <version>2.1.1</version>
+      </dependency>      
+      <dependency>
+         <groupId>org.webjars</groupId>
+         <artifactId>angularjs</artifactId>
+         <version>1.2.0rc1</version>
+      </dependency>      
+      <dependency>
+         <groupId>org.webjars</groupId>
+         <artifactId>lodash</artifactId>
+         <version>1.3.1</version>
+      </dependency>     
+      <dependency>
+         <groupId>org.webjars</groupId>
+         <artifactId>restangular</artifactId>
+         <version>0.6.3</version>
+      </dependency>     
+      <dependency>
+         <groupId>org.webjars</groupId>
+         <artifactId>font-awesome</artifactId>
+         <version>3.2.1</version>
+      </dependency>   
+      <dependency>
+         <groupId>org.webjars</groupId>
+         <artifactId>jquery</artifactId>
+         <version>1.10.2</version>
+      </dependency>   
+
    </dependencies>
    <build>
       <finalName>tps</finalName>

@@ -1,4 +1,4 @@
-/*globals angular, $, timeEntries, json, filter, _ */
+/*globals angular, $, timeEntries, _ */
 
 'use strict';
 
@@ -113,7 +113,7 @@ angular.module('tpsApp')
         $scope.timeEntries.push(newTimeEntry);
         $scope.user.activeTimeEntry = newTimeEntry;
         $scope.user.put();
-      }, function (timeEntry) {
+      }, function () {
         console.error('Failed to add time entry');
       });
     };
@@ -179,16 +179,6 @@ angular.module('tpsApp')
         result = $filter('date')(timeEntry.endTime, 'HH:mm:ss');
       }
       return result;
-    };
-    $scope.getDuration = function (timeEntry) {
-      var currentTime = new Date();
-      var duration;
-      if (timeEntry.endTime === null) {
-        duration = '';
-      } else {
-        duration = $filter('date')(timeEntry.endTime - timeEntry.startTime, 'HH:mm:ss');
-      }
-      return duration;
     };
   });
 

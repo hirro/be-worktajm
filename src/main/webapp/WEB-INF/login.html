@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:tiles="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org"
-      lang="en">
+<html lang="en">
   <head>
     <meta charset="utf-8"/>
     <title>Login</title>
@@ -12,9 +8,13 @@
     <meta name="author" content=""/>
 
     <!-- Le styles -->
-    <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet"/>
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel='stylesheet' 
+          href='http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css'
+          th:href='@{/webjars/bootstrap/2.1.1/css/bootstrap.min.css}'/>
+    <link rel='stylesheet' 
+          href="/webjars/font-awesome/3.2.1/css/font-awesome.min.css" 
+          th:href="@{/webjars/font-awesome/3.2.1/css/font-awesome.min.css}" />
+    
     <style>
 
     /* GLOBAL STYLES
@@ -73,12 +73,6 @@
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
 
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png"/>
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png"/>
-    <link rel="shortcut icon" href="../assets/ico/favicon.png"/>
   </head>
 
   <body>
@@ -86,7 +80,7 @@
     <div class="navbar navbar-fixed-top navbar-inverse">      
   		<div class="navbar-inner">
   			<a class="brand" href="landing.html">
-          <img src="../images/logo.png" alt="LOGO"/>
+          <img src="../images/logo.png" th:src="@{/images/logo.png}" alt="LOGO"/>
         </a>
   		</div>
     </div>
@@ -164,27 +158,6 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
-    <script>
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
-    </script>
-    <script src="../assets/js/holder/holder.js"></script>    
+   
   </body>
 </html>
