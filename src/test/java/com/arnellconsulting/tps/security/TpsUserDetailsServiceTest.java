@@ -68,7 +68,8 @@ public class TpsUserDetailsServiceTest {
    public void setUp() {
       tps = new TpsUserDetailsService(repositoryMock);
       person = TestConstants.createPersonA();
-      userDetails = new PersonUserDetails(person);
+      userDetails = new PersonUserDetails();
+      userDetails.setPerson(person);
       userDetails.setAuthority(TestConstants.PERSON_A_AUTHORITY);
       userDetails.setPassword(TestConstants.PERSON_A_PASSWORD);
    }
