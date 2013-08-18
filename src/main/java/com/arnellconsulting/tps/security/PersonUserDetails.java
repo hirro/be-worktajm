@@ -19,14 +19,13 @@
 package com.arnellconsulting.tps.security;
 
 import com.arnellconsulting.tps.model.Person;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.persistence.Entity;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  *
@@ -37,16 +36,6 @@ public class PersonUserDetails implements UserDetails {
    private String authority;
    private Person person;
 
-   public PersonUserDetails() {
-      super();
-   }
-
-   public PersonUserDetails(final Person person) {
-      super();
-  }
-
-   //~--- get methods ---------------------------------------------------------
-
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
       final ArrayList<GrantedAuthority> temp = new ArrayList<GrantedAuthority>();
@@ -54,6 +43,11 @@ public class PersonUserDetails implements UserDetails {
       temp.add(new SimpleGrantedAuthority("ROLE_USER"));
 
       return temp;
+   }
+
+   @Override
+   public String getPassword() {
+      return password;
    }
 
    @Override
@@ -85,17 +79,19 @@ public class PersonUserDetails implements UserDetails {
       return authority;
    }
 
-   public String getPassword() {
-      return password;
+   public Person getPerson() {
+      return person;
    }
 
-   //~--- set methods ---------------------------------------------------------
-
-   public void setAuthority(String authority) {
+   public void setAuthority(final String authority) {
       this.authority = authority;
    }
 
-   public void setPassword(String password) {
+   public void setPassword(final String password) {
       this.password = password;
+   }
+
+   public void setPerson(final Person person) {
+      this.person = person;
    }
 }

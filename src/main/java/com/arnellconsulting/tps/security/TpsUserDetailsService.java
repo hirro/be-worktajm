@@ -36,6 +36,10 @@ public class TpsUserDetailsService implements UserDetailsService {
          throw new UsernameNotFoundException(username);
       }
 
-      return null;
+      log.debug("Loaded the user, firstName: {}, lastName: {}", person.getFirstName(), person.getLastName());
+      final PersonUserDetails details = new PersonUserDetails();
+      details.setPerson(person);
+      details.setPassword("password");
+      return details;
    }
 }
