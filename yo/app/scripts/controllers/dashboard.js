@@ -7,6 +7,13 @@ angular.module('tpsApp')
 
     console.log('Initiating DashboardCtrl');
 
+    // Show loading modal
+    console.log('Showing load modal');
+    $scope.spinner = { 
+      show: true, 
+      message: 'Contacting backend',
+    };
+
     // Initialize variables
     $scope.activeProject = null;
     $scope.project = {};
@@ -20,7 +27,10 @@ angular.module('tpsApp')
     $scope.projects = baseProjects.getList();
     $scope.timeEntries = baseTimeEntries.getList();
 
+    ///////////////////////////////////////////////////////////////////////////
     // Joined promises
+    ///////////////////////////////////////////////////////////////////////////
+    // Person
     $scope.user.then(function (person) {
       console.log('User loaded from backend: %s', person.email);
       $scope.user = person;
@@ -31,16 +41,44 @@ angular.module('tpsApp')
         console.log('No active project');
       }
       console.log('User load complete');
+    }, function(reason) {
+      $scope.spinner.message = 'No contact with server (person)';
+      console.log('Failed to retrieve person %s', reason.status);
+      $scope.user = Restangular.one('person', 1).get();
+      // return $q.reject(reason);      
     });
+    // Projects
     $scope.projects.then(function (projects) {
       $scope.projects = projects;
+    }, function(reason) {
+      $scope.spinner.message = 'No contact with server (project)';
+      console.log('Failed to retrieve project list %s', reason.status);
+      // $scope.projects = baseProjects.getList();
+      return $q.reject(reason);      
     });
+    // Time Entries
     $scope.timeEntries.then(function (timeEntries) {
       $scope.timeEntries = timeEntries;
+    }, function(reason) {
+      $scope.spinner.message = 'No contact with server (timeEntries)';
+      console.log('Failed to retrieve time entry list %s', reason.status);
+      return $q.reject(reason);
+      // $scope.timeEntries = baseTimeEntries.getList();
     });
+    // Full join
     $q.all([$scope.user, $scope.projects]).then(function () {
+      console.log('All promisises fullfilled, closing load modal');
+      $('#loadingModal').modal('hide');
       $scope.updateActiveProject();
+      $scope.spinner.show=false;
+    }, function(reason) {
+      $scope.spinner.message = 'No contact with server';
+      console.log('Failed to initialize page %s', reason.status);
+      return $q.reject(reason);      
     });
+    ///////////////////////////////////////////////////////////////////////////
+    // End of joined promises
+    ///////////////////////////////////////////////////////////////////////////
 
     // create
     $scope.createProject = function () {

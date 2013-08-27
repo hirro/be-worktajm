@@ -19,6 +19,10 @@ angular.module('tpsApp', ['ngResource', 'restangular'])
         templateUrl: 'views/reports.html',
         controller: 'ReportsCtrl'
       })
+      .when('/loading', {
+        templateUrl: 'views/loading.html',
+        controller: 'ReportsCtrl'
+      })
       .otherwise({
         redirectTo: '/dashboard'
       });

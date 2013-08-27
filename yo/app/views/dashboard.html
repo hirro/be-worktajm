@@ -1,5 +1,6 @@
 
     <div class="container">
+
     	<div class="row">
 
         <!-- Column 1 -->
@@ -92,11 +93,17 @@
         <!-- Center column -->
         <div class="span6">
 
+          <div ng-include src="'views/partials/loading.html'" >
+          </div>
+
           <!-- Conditonal alert if user is not yet verified  -->
           <div ng-include src="'views/partials/user.html'" ng-hide="user.emailVerified">
           </div>
+
+          <!-- Projects -->
           <div ng-include src="'views/partials/project.html'"/>            
           </div>
+
           <!-- Time entries table -->
           <h3>Time Entries</h3>
           
