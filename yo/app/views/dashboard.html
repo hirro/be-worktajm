@@ -1,8 +1,12 @@
 
     <div class="container">
 
-    	<div class="row">
+      <div class="row">
+          <div ng-include src="'views/partials/loading.html'" >
+          </div>        
+      </div>
 
+    	<div class="row">
         <!-- Column 1 -->
         <div class="span3">
           <ul class="thumbnails">
@@ -92,9 +96,6 @@
         </div>
         <!-- Center column -->
         <div class="span6">
-
-          <div ng-include src="'views/partials/loading.html'" >
-          </div>
 
           <!-- Conditonal alert if user is not yet verified  -->
           <div ng-include src="'views/partials/user.html'" ng-hide="user.emailVerified">
