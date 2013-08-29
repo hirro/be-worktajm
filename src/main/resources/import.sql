@@ -19,4 +19,4 @@ insert into time_entry (id, start_time, end_time, person, project, comment) valu
 -- ----------------------------------------------------------------------------------------------------------------------
 -- Person time entry
 -- ----------------------------------------------------------------------------------------------------------------------
-update person set active_time_entry=3 where id=1
+--update person set active_time_entry=3 where id=1

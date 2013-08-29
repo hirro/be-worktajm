@@ -60,7 +60,7 @@ public class PersonController {
    }
 
    @Transactional
-   @RequestMapping(method = RequestMethod.POST, headers ={"Accept=application/json"})
+   @RequestMapping(method = RequestMethod.POST, headers = {"Accept=application/json"})
    @ResponseBody
    public Person create(@RequestBody final Person person) {
       log.debug("create");
@@ -80,7 +80,7 @@ public class PersonController {
 
       return tpsService.getPerson(id);
    }
-   
+
    @Transactional
    @RequestMapping(
       value = "/{id}",
@@ -88,7 +88,7 @@ public class PersonController {
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void update(@PathVariable final long id, @RequestBody final Person person) {
-      log.debug("update name: {}");
+      log.debug("update - email: {}", person.getEmail());
       tpsService.savePerson(person);
    }
 

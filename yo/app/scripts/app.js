@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tpsApp', ['ngResource', 'restangular'])
+angular.module('tpsApp', ['ngResource', 'restangular', 'tokenauth'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/main', {
@@ -27,8 +27,10 @@ angular.module('tpsApp', ['ngResource', 'restangular'])
         redirectTo: '/dashboard'
       });
     }
-  ).config(function(RestangularProvider) {
+  ).config(function (RestangularProvider) {
     RestangularProvider.setBaseUrl('http://localhost:8080/tps/api');
+  }).config(function ($AuthProvider) {
+    $AuthProvider.setUrl('http://localhost:8080/api/token');
   });
 
 

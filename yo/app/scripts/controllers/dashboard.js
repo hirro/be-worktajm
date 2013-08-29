@@ -27,6 +27,9 @@ angular.module('tpsApp')
     $scope.projects = baseProjects.getList();
     $scope.timeEntries = baseTimeEntries.getList();
 
+    // Selected date
+    $scope.date = new Date();
+
     ///////////////////////////////////////////////////////////////////////////
     // Joined promises
     ///////////////////////////////////////////////////////////////////////////
@@ -58,7 +61,11 @@ angular.module('tpsApp')
     });
     // Time Entries
     $scope.timeEntries.then(function (timeEntries) {
-      $scope.timeEntries = timeEntries;
+      $scope.timeEntries = _.filter(timeEntries, function (item) {
+        var startDate = new Date(item.startTime);
+        console.log('Start date %s, current date: %s', startDate, $scope.date);
+        return ($scope.date.getDate() === startDate.getDate()) && ($scope.date.getMonth() === startDate.getMonth() && ($scope.date.getFullYear() === startDate.getFullYear()));
+      });
     }, function(reason) {
       $scope.spinner.message = 'No contact with server (timeEntries)';
       console.log('Failed to retrieve time entry list %s', reason.status);
@@ -172,7 +179,7 @@ angular.module('tpsApp')
         // Persist time entry
         $scope.user.activeTimeEntry.endTime = $.now();
         $scope.user.activeTimeEntry.project.active = false;
-        //$scope.user.activeTimeEntry.put();
+        $scope.user.activeTimeEntry.put();
         $scope.user.activeTimeEntry = null;
         $scope.user.put();
       }
