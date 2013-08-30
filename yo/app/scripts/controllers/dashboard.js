@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardCtrl', function ($scope, $resource, $filter, $q, Restangular) {
+  .controller('DashboardCtrl', function ($scope, $resource, $filter, $q, Restangular, Auth) {
 
     console.log('Initiating DashboardCtrl');
 
@@ -29,6 +29,15 @@ angular.module('tpsApp')
 
     // Selected date
     $scope.date = new Date();
+
+    // Sample token auth stuff
+    angular.module('tpsApp').config(function ($AuthProvider) {
+        $AuthProvider.setUrl('http://locatlhost:8080/api/login');
+    });
+    if (!Auth.logged()) {
+      console.log('User is not logged in.');
+      Auth.login('hej', 'ho');
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Joined promises
