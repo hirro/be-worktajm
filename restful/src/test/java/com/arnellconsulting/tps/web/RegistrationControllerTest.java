@@ -15,12 +15,12 @@
  */
 package com.arnellconsulting.tps.web;
 
+import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.exception.EmailNotUniqueException;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
-import com.arnellconsulting.tps.model.TestConstants;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.fail;
