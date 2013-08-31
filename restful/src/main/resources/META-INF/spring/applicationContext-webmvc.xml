@@ -33,66 +33,6 @@
 		<property name="saveOutputToFlashScopeOnRedirect" value="true"/>
 	</bean>
 		
-	<!-- Thymeleaf template resolver -->
-	<bean id="templateResolver"
-		  class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
-		<property name="prefix" value="/WEB-INF/" />
-      <property name="suffix" value=".html" />
-		<property name="templateMode" value="HTML5" />
-		<!-- XXX: Remove in production -->
-		<property name="cacheable" value="false" />		
-	</bean>
-
-	<!-- Thymeleaf Template Engine -->
-    <bean id="templateEngine"
-          class="org.thymeleaf.spring3.SpringTemplateEngine">
-        <property name="templateResolver" ref="templateResolver" />
-        <property name="additionalDialects">
-            <set>
-                <bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect"/>
-                <bean class="org.thymeleaf.extras.conditionalcomments.dialect.ConditionalCommentsDialect"/>
-            </set>
-        </property>
-    </bean>
-
-    <!--
-    - The ContentNegotiatingViewResolver delegates to the InternalResourceViewResolver and BeanNameViewResolver,
-    - and uses the requested media type (determined by the path extension) to pick a matching view. 
-    - When the media type is 'text/html', it will delegate to the InternalResourceViewResolver's JstlView, 
-    - otherwise to the BeanNameViewResolver.
-    -->
-    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="contentNegotiationManager" ref="cnManager"/>
-        
-        <property name="viewResolvers">
-        	<list>            
-			    <!-- Used here for 'xml' and 'atom' views  -->
-			    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-                    <property name="order" value="1"/>
-                </bean>
-                <bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
-                    <property name="templateEngine" ref="templateEngine" />
-                    <property name="order" value="2"/>
-                </bean>                
-        	</list>
-        </property>
-    </bean>
-
-   <!-- Simple strategy: only path extension is taken into account -->
-    <bean id="cnManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-        <property name="favorPathExtension" value="true"/>
-        <property name="ignoreAcceptHeader" value="true"/>
-        <property name="defaultContentType" value="text/html"/>
-        
-        <property name="mediaTypes">
-            <map>
-                <entry key="html" value="text/html" />
-                <entry key="xml" value="application/xml" />
-                <entry key="atom" value="application/atom+xml" />
-            </map>
-        </property>
-    </bean>        
-
     <!-- Enable JSON -->
 	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/> 
 
