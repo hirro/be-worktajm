@@ -14,10 +14,10 @@
 	<mvc:default-servlet-handler />
     
 	<!-- Maps request paths to flows in the flowRegistry; e.g. a path of /hotels/booking looks for a flow with id "hotels/booking". -->
-	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+<!--	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
 		<property name="order" value="-1"/>
 		<property name="flowRegistry" ref="flowRegistry" />
-	</bean>
+	</bean>-->
 
 	<!-- Map paths directly to view names without controller processing. Use the view-name attribute if necessary: by convention the view name equals the path without the leading slash -->
 	<mvc:view-controller path="/" view-name="landing" />
@@ -28,10 +28,10 @@
 	<mvc:view-controller path="/index" />
 
 	<!-- Dispatches requests mapped to flows to FlowHandler implementations -->
-	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+<!--	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
 		<property name="flowExecutor" ref="flowExecutor"/>
 		<property name="saveOutputToFlashScopeOnRedirect" value="true"/>
-	</bean>
+	</bean>-->
 		
     <!-- Enable JSON -->
 	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/> 
