@@ -18,10 +18,10 @@
 
 package com.arnellconsulting.tps.web;
 
+import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.model.TestConstants;
 import com.arnellconsulting.tps.service.TpsService;
 
 import org.junit.Before;
