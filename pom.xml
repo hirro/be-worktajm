@@ -39,7 +39,6 @@
       <module>core</module>
       <module>thymeleaf</module>
       <module>restful</module>
-      <module>all</module>
    </modules>
 
    <repositories>
