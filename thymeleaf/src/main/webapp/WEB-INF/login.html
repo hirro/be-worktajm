@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <!-- Le styles -->
+   <link rel='stylesheet' 
+         href='http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css'
+         th:href='@{/webjars/bootstrap/2.3.0/css/bootstrap.min.css}'/>
+   <link rel='stylesheet' 
+         href='http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-responsive.min.css'
+         th:href='@{/webjars/bootstrap/2.3.0/css/bootstrap-responsive.min.css}'/>
+   <link rel='stylesheet' 
+         href="/webjars/font-awesome/3.2.1/css/font-awesome.min.css" 
+         th:href="@{/webjars/font-awesome/3.2.1/css/font-awesome.min.css}" />
+
+    
+    <style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+
+  	/* Customize the footer, inverted black */
+  	.footer {
+  		margin-top: 40px;
+  		padding: 15px 50px;
+  		margin-bottom: 0px;
+  		color:gray; 
+  		border-top: 1px solid #e5e5e5;
+  	}
+
+  	html {
+  	}
+
+  	#registrationForm {
+  		margin-top: 100px;
+  		min-height: 400px;
+  	}
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+    @media (max-width: 979px) {
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+    }
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+    }
+    </style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top navbar-inverse">      
+  		<div class="navbar-inner">
+  			<a class="brand" href="landing.html">
+          <img src="../images/logo.png" th:src="@{/images/logo.png}" alt="LOGO"/>
+        </a>
+  		</div>
+    </div>
+
+    <div class="container" tiles:fragment="content">
+    	<div class="row" 
+           th:with="lastUsernameKey=${T(org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter).SPRING_SECURITY_LAST_USERNAME_KEY},
+              lastExceptionKey=${T(org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter).SPRING_SECURITY_LAST_EXCEPTION_KEY}">       
+         
+         <div class="alert alert-block alert-error" th:if="${param.login_error}">
+            <h4>Login failed</h4>
+            <span th:text="${session[__${lastExceptionKey}__].message}">Error message</span> 
+         </div>
+
+         <form class="form-horizontal" action="#" th:action="@{/loginProcess}" method="post">
+				<fieldset>
+				
+               <!-- Form Name -->
+               <legend>Login</legend>                             
+ 
+               <!-- Text input-->
+               <div class="control-group">
+                 <label class="control-label" for="j_username">Email</label>
+                 <div class="controls">
+                   <input id="email" 
+                          name="j_username" 
+                          type="email" 
+                          placeholder="Enter email address" 
+                          class="input-xlarge" 
+                          autofocus="autofocus"
+                          th:value="${param.login_error} ? ${session[__${lastUsernameKey}__]} : ''" />
+                 </div>
+               </div>
+
+               <!-- Password input-->
+               <div class="control-group">
+                 <label class="control-label" for="j_password">Password</label>
+                 <div class="controls">
+                   <input id="password" name="j_password" type="password" placeholder="Enter your password" class="input-xlarge" required=""/>
+                 </div>
+               </div>
+
+               <!-- Button -->
+               <div class="control-group">
+                 <label class="control-label" for="singlebutton"></label>
+                 <div class="controls">
+                   <button id="singlebutton" name="singlebutton" class="btn btn-primary">Login</button>
+                 </div>
+               </div>
+				
+				</fieldset>
+			</form>
+			 	
+    	</div>
+	</div>
+
+	<!-- FOOTER -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<p class="pull-left">
+					&copy; 2013 Arnell Consulting AB &middot; 
+					<a href="#">Privacy</a>&middot; 
+					<a href="#">Terms</a>
+				</p>
+				<p class="pull-right">
+					<a href="http://www.springframework.org">
+						<img src="../images/powered-by-spring.png" th:src="@{/resources/images/powered-by-spring.png}" alt="Powered by Spring" />
+					</a>
+				</p>
+			</div>
+		</div>
+	</footer>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   
+  </body>
+</html>
