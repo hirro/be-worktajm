@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8"/>
+    <title>Landing page</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    
+    <!-- Le styles -->
+   <link rel='stylesheet' 
+         href='http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css'
+         th:href='@{/webjars/bootstrap/2.3.0/css/bootstrap.min.css}'/>
+   <link rel='stylesheet' 
+         href='http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-responsive.min.css'
+         th:href='@{/webjars/bootstrap/2.3.0/css/bootstrap-responsive.min.css}'/>
+   <link rel='stylesheet' 
+         href="/webjars/font-awesome/3.2.1/css/font-awesome.min.css" 
+         th:href="@{/webjars/font-awesome/3.2.1/css/font-awesome.min.css}" />
+
+    <style type="text/css">
+
+      /* GLOBAL STYLES
+      -------------------------------------------------- */
+      /* Padding below the footer and lighter body text */
+
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-left: 0px;
+      }
+
+      .container {
+        min-height: 400px;
+      }
+
+      /* Customize the footer, inverted black */
+      .footer {
+          margin-top: 40px;
+          padding: 15px 50px;
+          margin-bottom: 0px;
+          color:gray; 
+      }
+
+      .footer-logo {
+        padding-right: 15px;
+      }
+
+      .projects {
+        border: 1px solid;
+      }
+      .projecs-header {
+        padding: 10px;
+      }
+      .project {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 5px;
+        margin: 0px;
+        border: 1px solid;
+      }
+      .project .controls {
+      }
+      .project a:hover {
+        text-decoration: none;
+      }
+      .project input {
+        width: 80%;
+      }
+
+
+      /* CUSTOMIZE THE NAVBAR
+      -------------------------------------------------- */
+      .navbar-form {
+        margin-right: 20px;
+        margin-top: 5px;
+      }
+
+      /* Thumbnails even height */
+      .thumbnail .caption {
+        height: 200px;
+      }
+
+
+      /* RESPONSIVE CSS
+      -------------------------------------------------- */
+
+      @media (max-width: 979px) {
+        .container.navbar-wrapper {
+          margin-bottom: 0;
+          width: auto;
+        }
+        .navbar-inner {
+          border-radius: 0;
+          margin: 0px 0;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .navbar-inner {
+          margin: 0px;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>  
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <a class="brand" href="#" th:href="@{/}">
+           <img src="../images/logo.png" th:src="@{/resources/images/logo.png}" alt="&lt;LOGO&gt;"/>
+        </a>
+
+        <div class="nav-collapse collapse pull-right">
+          <ul class="nav">
+            <li class="active"><a href="#">Dashboard</a></li>
+            <li><a href="#contact">Projects</a></li>
+            <li><a href="#contact">Reports</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span sec:authentication="name">user@example.org</span>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Profile<i class="icon-user icon-black"></i></a></li>
+                <li><a href="#">Settings<i class="icon-cog icon-black"></i></a></li>
+                <li><a href="#" th:href="@{/logout}">Logout<i class="icon-unlock icon-black"></i></a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>        
+      </div>
+    </div> 
+
+
+    <div class="container" tiles:fragment="content">
+    	<div class="row">
+
+        <!-- Column 1 -->
+        <div class="span3">
+          <ul class="thumbnails">
+            <li class="span3">
+              <div class="thumbnail">
+                <div class="projecs-header">
+                  <h4>Projects</h4>
+                  <a class="btn btn-primary btn-small" href="#"><i class="icon-plus"></i> Add new project</a>                  
+                </div>        
+
+                <!-- Start project A -->
+                <div class="project">
+                  <div class="project-header in project-1" id="project-header-1">
+                      <a href="#" data-toggle="collapse" data-target=".project-1">
+                        <i class="icon-chevron-right"></i>
+                      </a>
+                      Project A
+                      <a href="#" class="btn btn-small pull-right" >Start</a>                  
+                  </div>
+                  <div id="project-form-1" class="collapse project-form project-1">
+                    <form>
+                      <fieldset>
+                        <a href="#" data-toggle="collapse" data-target=".project-1">
+                          <i class="icon-chevron-down"></i>
+                        </a>
+                        <div class="control-group">
+                          <label>Project Name
+                            <span class="controls">
+                              <input type="text" placeholder="Project name"/>                            
+                            </span>
+                          </label>
+                        </div>
+                        <div class="control-group">
+                          <label>Customer Name
+                            <span class="controls">
+                              <input type="text" placeholder="Customer name"/>                            
+                            </span>
+                          </label>
+                        </div>
+
+                        <div class="control-group">
+                          <label>Rate
+                            <span class="controls">
+                              <input type="number" placeholder="Hourly rate"/>
+                            </span>
+                          </label>                      
+                        </div>
+                        <div class="btn-group">
+                          <button class="btn">Save</button>
+                          <button class="btn">Reset</button>
+                        </div>
+                      </fieldset>
+                    </form>                
+                  </div>                  
+                </div>
+                <!-- End project -->
+                <!-- Start project B -->
+                <div class="project">
+                  <div class="project-header in project-2" id="project-header-2">
+                      <a href="#" data-toggle="collapse" data-target=".project-2">
+                        <i class="icon-chevron-right"></i>
+                      </a>
+                      Project B
+                      <a href="#" class="btn btn-small pull-right" >Start</a>                  
+                  </div>
+                  <div id="project-form-2" class="collapse project-form project-2">
+                    <form>
+                      <fieldset>
+                        <a href="#" class="collapse-arrowk" data-toggle="collapse" data-target=".project-2">
+                          <i class="icon-chevron-down"></i>
+                        </a>
+                        <div class="control-group">
+                          <label>Project Name
+                            <span class="controls">
+                              <input type="text" placeholder="Project name"/>                            
+                            </span>
+                          </label>
+                        </div>
+                        <div class="control-group">
+                          <label>Customer Name
+                            <span class="controls">
+                              <input type="text" placeholder="Customer name"/>                            
+                            </span>
+                          </label>
+                        </div>
+
+                        <div class="control-group">
+                          <label>Rate
+                            <span class="controls">
+                              <input type="number" placeholder="Hourly rate"/>
+                            </span>
+                          </label>                      
+                        </div>
+                        <div class="btn-group">
+                          <button class="btn">Save</button>
+                          <button class="btn">Reset</button>
+                        </div>
+                      </fieldset>
+                    </form>                
+                  </div>                  
+                </div>
+                <!-- End project -->
+
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- Center column -->
+        <div class="span6">
+          <h1>Dashboard</h1>
+  Nothing here {{'yet' + '!'}}
+        </div>
+        <!-- Column 3 -->
+        <div class="span3">
+          <ul class="thumbnails">
+            <li class="span3">
+              <div class="thumbnail">
+                <h4>Company name</h4>
+                  <p>
+                    <strong>This week</strong><br/>
+                    100 hrs
+                  </p>
+                  <p>
+                    <strong>This month</strong><br/>
+                    400 hrs
+                  </p>
+                  <p>
+                    <strong>This year</strong><br/>
+                    10345 hrs
+                  </p>                                                
+              </div>
+            </li>
+            <li class="span3">
+              <div class="thumbnail">
+                <div class="">                
+                  <img src="../images/avatar-32x32.png" alt=""/>
+                </div>
+                <div class="">
+                  <strong>Jim Arnell</strong>
+                  <ul>
+                    <li>Project A</li>
+                    <li>12:00 (3h42m)</li>
+                  </ul>
+                </div>                                              
+              </div>
+            </li>
+          </ul>
+        </div>
+    	</div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <p class="pull-left">&copy; 2013 Arnell Consulting AB &middot; <a href="#">Testar</a>&middot; <a href="#">Terms</a></p>
+        </div>
+        <div class="row">
+          <hr/>
+          <h4>Server Side Techology</h4>
+          <p>
+            <a href="http://www.springframework.org" class="footer-logo">
+              <img src="../images/powered-by-spring.png" th:src="@{/images/powered-by-spring.png}" alt="Powered by Spring"/>
+            </a>
+            <a href="http://www.thymeleaf.org/" class="footer-logo">
+              <img src="../images/thymeleaf.png"  th:src="@{/images/thymeleaf.png}" alt="Thymeleaf"/>
+            </a>            
+          </p>
+        </div>
+        <div class="row">
+          <hr/>
+          <h4>Client Side Techology</h4>
+          <p>
+            <a href="http://www.jquery.com" class="footer-logo">
+              <img src="../images/jquery.png" th:src="@{/images/jquery.png}" alt="Powered by jQuery"/>
+            </a>
+            <a href="http://twitter.github.io/bootstrap/" class="footer-logo">
+              <img src="../images/bootstrap.png" th:src="@{/images/bootstrap.png}" alt="Bootstrap"/>
+            </a>
+            <a href="http://yeoman.io/" class="footer-logo">
+              <img src="../images/yeoman.png" 
+                   th:src="@{/images/yeoman.png}" 
+                   alt="Yeoman"/>
+            </a>
+            <a href="http://angularjs.org/" class="footer-logo">
+              <img src="../images/angularjs.png" th:src="@{/images/angularjs.png}" alt="AngularJS"/>
+            </a>            
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript"
+            src="http://code.jquery.com/jquery-1.9.1.js" 
+            th:src="@{/webjars/jquery/1.9.1/jquery.min.js}">
+    </script>
+    <script type="text/javascript" 
+            src="/webjars/bootstrap/2.3.0/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/2.3.0/js/bootstrap.min.js}">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>    
+    <script src="../js/tps.js"></script>
+    <script type="text/javascript">
+        !function ($) {
+          $(function(){
+            // carousel demo
+            $('#myCarousel').carousel()
+          })
+        }(window.jQuery)
+    </script>
+  </body>
+</html>

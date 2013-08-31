@@ -1,0 +1,209 @@
+#header {
+	color: white;
+	height:30px;
+	width: 100%;
+	background: #256188;
+	display: block;
+	position: relative;
+	z-index: 12;
+	overflow: visible;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#header > a {
+	padding: 0px;
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-indent: -9999em;
+	background: url(../images/logo.png) no-repeat left top;
+}
+
+#navigation {
+	float: right;
+	position: relative;
+	margin-top: 17px;
+	display: block;
+}
+
+.background_dark {
+	width: 100%;
+	background: black;	
+	color: white;
+}
+.background_dark h2 {
+	font-weight: bold;
+	color:white;
+	font-weight: normal;
+	font-family: "myriad-pro-1","myriad-pro-2",Arial,Helvetica,sans-serif;	
+	text-shadow: 1px 2px 3px rgb(0, 0, 0);
+}
+.background_dark h4 {
+	font-weight:lighter;
+	color: white;
+	font-family: "myriad-pro-1","myriad-pro-2",Arial,Helvetica,sans-serif;
+	font-weight: 200;
+}
+
+.background_grey {
+	width: 100%;
+	background: gray;	
+	color: white;
+}
+.background_grey h2 {
+	font-weight: bold;
+	color:white;
+}
+.background_grey h4 {
+   font-family: "myriad-pro-semi-condensed-1","myriad-pro-semi-condensed-2",Arial,Helvetica,sans-serif;
+    font-size: 1.6em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2em;
+	color:#321f1f;
+	-webkit-margin: 0em;
+	margin: 0em;
+}
+.background_white {
+	width: 100%;
+	background: white;	
+	color: black;
+}
+
+.error_text {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+	height: 100%;		
+}
+
+.section {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-family: "myriad-pro-1","myriad-pro-2",Arial,Helvetica,sans-serif;
+}
+
+.kolumn {
+	padding-left: 10px;	
+}
+
+/* From cool menu
+See http://www.onextrapixel.com/2011/06/03/how-to-create-a-horizontal-dropdown-menu-with-html-css-and-jquery/
+*/
+
+#navigation ul {
+    list-style: none;
+}
+#navigation {
+    float: left;
+}
+#navigation > li {
+    float: left;
+}
+#navigation li a {
+	display: block;
+    height: 2em;
+    line-height: 2em;
+    padding: 0 1.5em;
+    text-decoration: none;
+}
+#navigation ul {
+    position: absolute;
+    display: none;
+	z-index: 999;
+}
+#navigation ul li a {
+    width: 80px;
+}
+#navigation li:hover ul {
+    display: block;
+}
+
+.promo-picture {	
+	background: url(../images/photo_1824_20060728.jpg) no-repeat left top;	
+	background-size: 100%;
+	height: 260px;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+}
+
+.ios {
+	background: url(../images/ios.png)  no-repeat left top;
+	background-size:100%;	
+	background-position: center center;
+	width: 168px;
+	height: 61px;
+	padding-top: 10px;
+	display:inline-block;
+	margin-right: 10px;
+}
+
+.android {
+	padding-top: 10px;
+	background: url(../images/andriod.png)  no-repeat left top;
+	background-size:100%;	
+	background-position: center center;
+	width: 168px;
+	height: 61px;
+	display:inline-block;
+}
+
+#registration {
+	padding-top: 20px;
+	min-height: 400px;
+vertical-align: top;
+}
+#registration-form {
+	vertical-align:bottom;
+	margin-top: 5em;	
+}
+#registration-form li {
+	list-style: none;
+}
+#registration-form input[type=text], input[type=password] {
+	display: block;	
+}
+#registration-form input[type=submit] {
+	margin-top: 1em;
+}
+.error {
+	display: none;
+}
+
+.button-blue:before {
+	content: '';
+	position: absolute;
+	top: -25%;
+	bottom: -25%;
+	left: -20%;
+	right: -20%;
+	border-radius: 50%;
+	background: transparent;
+	-webkit-box-shadow: inset 0 0 38px rgba(255, 255, 255, 0.5);
+	box-shadow: inset 0 0 38px rgba(255, 255, 255, 0.5);
+}
+.button-blue {	
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	overflow: hidden;
+	min-width: 96px;
+	line-height: 46px;
+	padding: 0 24px;
+	font-size: 14px;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 1px #154c86;
+	background-color: #247edd;
+	background-clip: padding-box;
+	border: 1px solid;
+	border-color: #1c65b2 #18589c #18589c;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+/* 	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.12) 51%, rgba(0, 0, 0, 0.04));	 */
+}
