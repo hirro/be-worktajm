@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <parent>
-    <artifactId>tps-parent</artifactId>
-    <groupId>com.arnellconsulting.tps</groupId>
-    <version>2.0.5.BUILD-SNAPSHOT</version>
+      <artifactId>tps-parent</artifactId>
+      <groupId>com.arnellconsulting.tps</groupId>
+      <version>2.0.5.BUILD-SNAPSHOT</version>
    </parent>   
    <groupId>com.arnellconsulting.tps</groupId>
    <artifactId>core</artifactId>
@@ -13,17 +13,6 @@
    <version>2.0.5.BUILD-SNAPSHOT</version>
    <properties>
    </properties>
-   <organization>
-      <name>Arnell Consulting AB</name>
-      <url>http://arnellconsulting.com</url>
-   </organization>
-   <repositories>
-      <repository>
-         <id>spring-repository</id>
-         <name>SpringSource Repository</name>
-         <url>http://repo.springsource.org/milestone</url>
-      </repository>
-   </repositories>
    <dependencies>
       <!-- Spring -->
       <dependency>
@@ -102,6 +91,14 @@
          <type>jar</type>
       </dependency>
 
+      <!-- Servlet -->
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>servlet-api</artifactId>
+         <version>2.5</version>
+         <scope>test</scope>
+      </dependency>
+
       <!-- Database, JPA -->
       <dependency>
          <groupId>org.hsqldb</groupId>
@@ -120,24 +117,6 @@
          <artifactId>hibernate-entitymanager</artifactId>
          <version>${hibernate-version}</version>
       </dependency>
-      <!-- Servlet -->
-      <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>servlet-api</artifactId>
-         <version>2.5</version>
-         <scope>provided</scope>
-      </dependency>
-      <dependency>
-         <groupId>javax.servlet.jsp</groupId>
-         <artifactId>jsp-api</artifactId>
-         <version>2.1</version>
-         <scope>provided</scope>
-      </dependency>
-      <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>jstl</artifactId>
-         <version>1.2</version>
-      </dependency>
       <!-- JSR 303 with Hibernate Validator -->
       <dependency>
          <groupId>org.hibernate</groupId>
@@ -154,68 +133,6 @@
          <artifactId>jaxb-api</artifactId>
          <version>2.1</version>
       </dependency>
-      <!--  Joda Time -->
-      <dependency>
-         <groupId>joda-time</groupId>
-         <artifactId>joda-time</artifactId>
-         <version>1.6</version>
-      </dependency>
-      <dependency>
-         <groupId>joda-time</groupId>
-         <artifactId>joda-time-jsptags</artifactId>
-         <version>1.0.2</version>
-         <scope>runtime</scope>
-      </dependency>
-      <!-- Test -->
-      <dependency>
-         <groupId>org.easymock</groupId>
-         <artifactId>easymock</artifactId>
-         <version>2.5.2</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>${junit.version}</version>
-         <scope>test</scope>
-         <type>jar</type>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-test</artifactId>
-         <version>${springframework-version}</version>
-         <scope>test</scope>
-      </dependency>
-      <!-- Apache commons -->
-      <dependency>
-         <groupId>org.apache.commons</groupId>
-         <artifactId>commons-lang3</artifactId>
-         <version>3.1</version>
-         <type>jar</type>
-      </dependency>
-      <dependency>
-         <groupId>commons-dbcp</groupId>
-         <artifactId>commons-dbcp</artifactId>
-         <version>1.3</version>
-         <exclusions>
-            <exclusion>
-               <groupId>commons-logging</groupId>
-               <artifactId>commons-logging</artifactId>
-            </exclusion>
-            <exclusion>
-               <groupId>xml-apis</groupId>
-               <artifactId>xml-apis</artifactId>
-            </exclusion>
-         </exclusions>
-      </dependency>      
-
-      <!-- Autogenerate getters and setters -->
-      <dependency>
-         <groupId>org.projectlombok</groupId>
-         <artifactId>lombok</artifactId>
-         <version>0.12.0</version>
-         <scope>provided</scope>
-      </dependency>
 
       <!-- Jackson -->
       <dependency>
@@ -224,50 +141,6 @@
          <version>1.9.3</version>
       </dependency> 
 
-      <!--Logging-->      
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>slf4j-api</artifactId>
-         <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>log4j</groupId>
-         <artifactId>log4j</artifactId>
-         <version>1.2.16</version>
-      </dependency>
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>jcl-over-slf4j</artifactId>
-         <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>ch.qos.logback</groupId>
-         <artifactId>logback-classic</artifactId>
-         <version>${logback.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>ch.qos.logback</groupId>
-         <artifactId>logback-core</artifactId>
-         <version>${logback.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>ch.qos.logback</groupId>
-         <artifactId>logback-access</artifactId>
-         <version>${logback.version}</version>
-      </dependency>       
-      
-      <dependency>
-         <groupId>org.mockito</groupId>
-         <artifactId>mockito-core</artifactId>
-         <version>${mockito.version}</version>
-         <scope>test</scope>
-      </dependency>      
-      <dependency>
-         <groupId>org.hamcrest</groupId>
-         <artifactId>hamcrest-all</artifactId>
-         <version>1.3</version>
-         <scope>test</scope>
-      </dependency>
       <dependency>
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-annotations</artifactId>
@@ -287,42 +160,6 @@
          <groupId>com.jolbox</groupId>
          <artifactId>bonecp</artifactId>
          <version>${bonecp.version}</version>
-      </dependency>
-      <!--web jars-->
-      <dependency>
-         <groupId>org.webjars</groupId>
-         <artifactId>bootstrap</artifactId>
-         <version>2.3.0</version>
-      </dependency>      
-      <dependency>
-         <groupId>org.webjars</groupId>
-         <artifactId>angularjs</artifactId>
-         <version>1.2.0rc1</version>
-      </dependency>      
-      <dependency>
-         <groupId>org.webjars</groupId>
-         <artifactId>lodash</artifactId>
-         <version>1.3.1</version>
-      </dependency>     
-      <dependency>
-         <groupId>org.webjars</groupId>
-         <artifactId>restangular</artifactId>
-         <version>0.6.3</version>
-      </dependency>     
-      <dependency>
-         <groupId>org.webjars</groupId>
-         <artifactId>font-awesome</artifactId>
-         <version>3.2.1</version>
-      </dependency>   
-      <dependency>
-         <groupId>org.webjars</groupId>
-         <artifactId>jquery</artifactId>
-         <version>1.9.1</version>
-      </dependency>   
-      <dependency>
-         <groupId>org.webjars</groupId>
-         <artifactId>jqbootstrapvalidation</artifactId>
-         <version>1.3.6</version>         
       </dependency>
 
    </dependencies>
@@ -357,24 +194,6 @@
                <downloadSources>true</downloadSources>
                <downloadJavadocs>false</downloadJavadocs>
                <wtpversion>2.0</wtpversion>
-            </configuration>
-         </plugin>
-         <plugin>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
-            <version>8.1.4.v20120524</version>
-            <configuration>
-               <systemProperties>
-                  <systemProperty>
-                     <name>log4j.configurationFile</name>
-                     <value>file:${project.basedir}/src/main/resources/log4j.properties</value>
-                  </systemProperty>
-               </systemProperties>               
-               <jvmArgs>-Xmx1024</jvmArgs>
-               <scanIntervalSeconds>1</scanIntervalSeconds>
-               <webAppConfig>
-                  <contextPath>/${project.name}</contextPath>
-               </webAppConfig>
             </configuration>
          </plugin>
          <plugin>
