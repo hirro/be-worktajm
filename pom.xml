@@ -38,7 +38,7 @@
    <modules>
       <module>core</module>
       <module>web</module>
-      <module>api</module>
+      <module>rest-api</module>
    </modules>
 
    <repositories>

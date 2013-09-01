@@ -7,7 +7,7 @@
       <version>2.0.5.BUILD-SNAPSHOT</version>
    </parent>   
    <groupId>com.arnellconsulting.tps</groupId>
-   <artifactId>core</artifactId>
+   <artifactId>tps-core</artifactId>
    <packaging>jar</packaging>
    <name>core</name>
    <version>2.0.5.BUILD-SNAPSHOT</version>
