@@ -9,7 +9,7 @@
    <groupId>com.arnellconsulting.tps</groupId>
    <artifactId>restful</artifactId>
    <packaging>war</packaging>
-   <name>restful</name>
+   <name>rest-api</name>
    <properties>
       <tps-version>2.0.5.BUILD-SNAPSHOT</tps-version>
    </properties>
