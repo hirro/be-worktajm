@@ -37,8 +37,8 @@
 
    <modules>
       <module>core</module>
-      <module>thymeleaf</module>
-      <module>restful</module>
+      <module>web</module>
+      <module>api</module>
    </modules>
 
    <repositories>
