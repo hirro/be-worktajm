@@ -19,7 +19,6 @@
 
     <!-- Imports the configurations of the different infrastructure systems of the application -->
     <import resource="applicationContext-webmvc.xml" />
-    <!--<import resource="applicationContext-webflow.xml" />-->
     <import resource="applicationContext-datasource.xml" />
     <import resource="applicationContext-security.xml" />
     <!-- <import resource="applicationContext-mail.xml" /> -->
