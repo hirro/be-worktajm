@@ -32,16 +32,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/registration/")
+@RequestMapping("/api/registration/")
 @Slf4j
 public class RegistrationController {
    @Autowired
    private transient TpsService tpsService;
 
    @Transactional
-   @RequestMapping("/create")
+   @RequestMapping(method = RequestMethod.GET)
+   @ResponseBody
    public String create(
            @RequestParam(value = "email", required = false) final String email,
            @RequestParam(value = "password", required = false) final String password,
@@ -61,20 +63,6 @@ public class RegistrationController {
       }
 
       return "redirect:/";
-   }
-
-   @RequestMapping("/")
-   public String index() {
-      log.debug("index");
-
-      return null;
-   }
-
-   @RequestMapping("/register")
-   public String register() {
-      log.debug("register");
-
-      return null;
    }
 
    @RequestMapping(value = "/checkEmail.do")

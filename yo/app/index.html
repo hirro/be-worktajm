@@ -32,17 +32,17 @@
     <![endif]-->
 
     <header>
-      <div class="navbar navbar-fixed-top navbar-inverse" ng-controller="DashboardCtrl">
+      <div class="navbar navbar-fixed-top navbar-inverse" ng-controller="LoginCtrl">
         <div class="navbar-inner">
           <a class="brand" href="#" th:href="@{/}" tabindex="-1">
              <img src="../images/logo.png" alt="&lt;LOGO&gt;"/>
           </a>
 
-          <form class="navbar-form pull-right" action="#" method="post" ng-hide="user">
-            <input type="email" class="span3" name="j_username" placeholder="Email"/> 
-            <input type="password" class="span2" name="j_password" placeholder="Password"/> 
-            <input type="submit" value="Login" class="btn btn-primary"/>
-            <input type="submit" value="Register" class="btn btn-primary"/>
+          <form class="navbar-form pull-right" ng-hide="user">
+            <input type="email" class="span3" name="username" ng-model="username" placeholder="Email"/> 
+            <input type="password" class="span2" ng-model="password" name="password" placeholder="Password"/> 
+            <input type="submit" value="Login" class="btn btn-primary" ng-click="login()" />
+            <input type="submit" value="Register" class="btn btn-primary"  ng-click="register()"/>
           </form>
 
           <div class="nav-collapse collapse pull-right" ng-show="user">

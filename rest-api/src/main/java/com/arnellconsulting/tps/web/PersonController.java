@@ -23,9 +23,10 @@ import com.arnellconsulting.tps.service.TpsService;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,22 +52,35 @@ public class PersonController {
    private transient TpsService tpsService;
 
    @Transactional
-   @RequestMapping(method = RequestMethod.GET)
-   @ResponseBody
-   public List<Person> list() {
-      log.debug("list");
-
-      return tpsService.getPersons();
-   }
-
-   @Transactional
-   @RequestMapping(method = RequestMethod.POST, headers = {"Accept=application/json"})
+   @RequestMapping(
+      method = RequestMethod.POST,
+      headers = { "Accept=application/json" }
+   )
    @ResponseBody
    public Person create(@RequestBody final Person person) {
       log.debug("create");
       tpsService.savePerson(person);
 
       return person;
+   }
+
+   @RequestMapping(
+      value = "/{id}",
+      method = RequestMethod.DELETE
+   )
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void delete(@PathVariable final long id) {
+      log.debug("delete id: {}", id);
+      tpsService.deletePerson(id);
+   }
+
+   @Transactional
+   @RequestMapping(method = RequestMethod.GET)
+   @ResponseBody
+   public List<Person> list() {
+      log.debug("list");
+
+      return tpsService.getPersons();
    }
 
    @Transactional
@@ -77,6 +91,15 @@ public class PersonController {
    @ResponseBody
    public Person read(@PathVariable final long id) {
       log.debug("read id: {}", id);
+
+      final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+      if (auth == null) {
+         log.debug("No user");
+      } else {
+         final String name = auth.getName();
+         log.debug("Current user is {}", name);
+      }
 
       return tpsService.getPerson(id);
    }
@@ -90,15 +113,5 @@ public class PersonController {
    public void update(@PathVariable final long id, @RequestBody final Person person) {
       log.debug("update - email: {}", person.getEmail());
       tpsService.savePerson(person);
-   }
-
-   @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.DELETE
-   )
-   @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void delete(@PathVariable final long id) {
-      log.debug("delete id: {}", id);
-      tpsService.deletePerson(id);
    }
 }
