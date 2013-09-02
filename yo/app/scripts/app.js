@@ -24,7 +24,7 @@ angular.module('tpsApp', ['ngResource', 'restangular', 'tokenauth'])
         controller: 'ReportsCtrl'
       })
       .otherwise({
-        redirectTo: '/dashboard'
+        redirectTo: '/main'
       });
     }
   )
