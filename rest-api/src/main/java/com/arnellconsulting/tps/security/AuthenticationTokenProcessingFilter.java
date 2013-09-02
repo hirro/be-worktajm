@@ -33,7 +33,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 
    //
@@ -54,7 +57,10 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
                         ServletResponse response,
                         FilterChain chain)
            throws IOException, ServletException {
+      
+      log.debug("doFilter");
       if (!(request instanceof HttpServletRequest)) {
+         log.debug("Invalid request");
          throw new RuntimeException("Expecting a http request");
       }
 
@@ -63,6 +69,7 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
       String userName = TokenUtils.getUserNameFromToken(authToken);
 
       if (userName != null) {
+         log.debug("Read user name {} from token", userName);
          UserDetails userDetails = this.userService.loadUserByUsername(userName);
 
          if (TokenUtils.validateToken(authToken, userDetails)) {
@@ -72,6 +79,8 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails((HttpServletRequest) request));
             SecurityContextHolder.getContext().setAuthentication(this.authManager.authenticate(authentication));
+         } else {
+            log.debug("Provided token was not valid, username {}", userName);
          }
       }
 
