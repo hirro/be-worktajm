@@ -21,6 +21,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
@@ -42,5 +44,13 @@ public class TestContext {
     @Bean
     public TpsService tpsService() {
         return Mockito.mock(TpsService.class);
-    }   
+    }
+    @Bean
+    public UserDetailsService userService() {
+       return Mockito.mock(UserDetailsService.class);
+    }
+    @Bean
+    public AuthenticationManager authenticationManager() {
+       return Mockito.mock(AuthenticationManager.class);
+    }
 }
