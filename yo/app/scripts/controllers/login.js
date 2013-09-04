@@ -1,20 +1,14 @@
-/* globals angular, $, LoginService, $http, $rootScope, $location */
+/* globals angular */
 'use strict';
 
 angular.module('tpsApp')
-  .controller('LoginCtrl', function ($scope, LoginService) {
-	
-	$scope.login = function () {
-		LoginService.authenticate(
-			$.param({
-				username: $scope.username, 
-				password: $scope.password
-			}),
-			function(user) {
-				$rootScope.user = user;
-				$http.defaults.headers.common['Auth-Token'] = user.token;
-				$location.path('/');
-			});
-	};
+  .controller('LoginCtrl', function ($scope, Restangular) {
 
+	$scope.login = function () {
+
+		Restangular.one('authenticate').get({
+			username: $scope.username,
+			password: $scope.password
+		});
+	};
 });
