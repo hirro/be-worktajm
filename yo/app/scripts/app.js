@@ -29,7 +29,7 @@ angular.module('tpsApp', ['ngResource', 'restangular', 'tokenauth'])
     }
   )
   .config(function (RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://localhost:8080/tps/api');
+    RestangularProvider.setBaseUrl('http://localhost:8080/api/api');
   })
   .config(function (AuthProvider) {
     AuthProvider.setUrl('http://localhost:8080/tps/api/token');
