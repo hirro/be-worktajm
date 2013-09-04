@@ -2,13 +2,14 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('LoginCtrl', function ($scope) {
+  .controller('LoginCtrl', function ($scope, LoginService) {
 	
 	$scope.login = function () {
 		LoginService.authenticate(
-			$.param( {
+			$.param({
 				username: $scope.username, 
-				password: $scope.password}),
+				password: $scope.password
+			}),
 			function(user) {
 				$rootScope.user = user;
 				$http.defaults.headers.common['Auth-Token'] = user.token;
