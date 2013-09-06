@@ -56,7 +56,6 @@ public class ProjectController {
    @ResponseBody
    public List<Project> list() throws InterruptedException {
       log.debug("list");
-      Thread.sleep(1000*2);
       return tpsService.getProjets();
    }
 
