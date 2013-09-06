@@ -3,9 +3,19 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardCtrl', function ($scope, $resource, $filter, $q, Restangular, Auth) {
+  .controller('DashboardCtrl', function ($scope, $rootScope, $resource, $filter, $q, Restangular,  $http, Auth) {
 
     console.log('Initiating DashboardCtrl');
+
+    if ($rootScope.user) {
+      console.log('User has a token, user name: %s', $rootScope.user.name);
+      // Restangular.setDefaultHeaders({
+      //   'Auth-Token': $rootScope.user.token
+      // });
+      //$http.defaults.headers.common['Auth-Token'] = $rootScope.user.token;
+    } else {
+      console.log('Token missing, redirecting to login');
+    }
 
     // Show loading modal
     console.log('Showing load modal');
@@ -23,21 +33,21 @@ angular.module('tpsApp')
     var baseTimeEntries = Restangular.all('timeEntry');
 
     // Promises
-    $scope.user = Restangular.one('person', 1).get();
-    $scope.projects = baseProjects.getList();
+    $scope.user = Restangular.one('person', 1).get(undefined, { 'Auth-Token': $rootScope.user.token});
+    $scope.projects = baseProjects.getList(undefined, { 'Jim': $rootScope.user.token});
     $scope.timeEntries = baseTimeEntries.getList();
 
     // Selected date
     $scope.date = new Date();
 
     // Sample token auth stuff
-    angular.module('tpsApp').config(function ($AuthProvider) {
-        $AuthProvider.setUrl('http://locatlhost:8080/api/login');
-    });
-    if (!Auth.logged()) {
-      console.log('User is not logged in.');
-      Auth.login('hej', 'ho');
-    }
+    // angular.module('tpsApp').config(function ($AuthProvider) {
+    //     $AuthProvider.setUrl('http://localhost:8080/api/login');
+    // });
+    // if (!Auth.logged()) {
+    //   console.log('User is not logged in.');
+    //   Auth.login('jim@arnellconsulting.com', 'password');
+    // }
 
     ///////////////////////////////////////////////////////////////////////////
     // Joined promises
