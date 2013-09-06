@@ -16,6 +16,7 @@
       entry-point-ref="unauthorizedEntryPoint"
       authentication-manager-ref="authenticationManager">
       <security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
+      <security:intercept-url pattern="/api/registration/**"  access="permitAll"/>
       <security:intercept-url pattern="/api/authenticate/**"  access="permitAll"/>
       <security:intercept-url method="GET" pattern="/api/person/**"  access="isAuthenticated()"/>
    </security:http>

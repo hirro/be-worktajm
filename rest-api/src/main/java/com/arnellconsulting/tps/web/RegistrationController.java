@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/api/registration/")
+@RequestMapping("/api/registration")
 @Slf4j
 public class RegistrationController {
    @Autowired
