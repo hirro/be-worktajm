@@ -33,7 +33,7 @@ angular.module('tpsApp')
     var baseTimeEntries = Restangular.all('timeEntry');
 
     // Promises
-    $scope.user = Restangular.one('person', 1).get();
+    $scope.person = Restangular.one('person', 1).get();
     $scope.projects = baseProjects.getList();
     $scope.timeEntries = baseTimeEntries.getList();
 
@@ -53,9 +53,9 @@ angular.module('tpsApp')
     // Joined promises
     ///////////////////////////////////////////////////////////////////////////
     // Person
-    $scope.user.then(function (person) {
+    $scope.person.then(function (person) {
       console.log('User loaded from backend: %s', person.email);
-      $scope.user = person;
+      $scope.person = person;
       if (person.activeTimeEntry !== null) {
         console.log('User has an active project, %s', person.activeTimeEntry.project.name);
         $scope.activeProject = person.activeTimeEntry.project;
@@ -66,7 +66,7 @@ angular.module('tpsApp')
     }, function(reason) {
       $scope.spinner.message = 'No contact with server (person)';
       console.log('Failed to retrieve person %s', reason.status);
-      $scope.user = Restangular.one('person', 1).get();
+      $scope.person = Restangular.one('person', 1).get();
       // return $q.reject(reason);      
     });
     // Projects
@@ -92,7 +92,7 @@ angular.module('tpsApp')
       // $scope.timeEntries = baseTimeEntries.getList();
     });
     // Full join
-    $q.all([$scope.user, $scope.projects]).then(function () {
+    $q.all([$scope.person, $scope.projects]).then(function () {
       console.log('All promisises fullfilled, closing load modal');
       $('#loadingModal').modal('hide');
       $scope.updateActiveProject();
@@ -133,13 +133,13 @@ angular.module('tpsApp')
     $scope.updateActiveProject = function () {
       if ($scope.projects === null) {
         console.log('projects not yet updated.');
-      } else if ($scope.user === null) {
-        console.log('user not yet updated');
+      } else if ($scope.person === null) {
+        console.log('person not yet updated');
       } else {
-        if ($scope.user.activeTimeEntry !== null) {
+        if ($scope.person.activeTimeEntry !== null) {
           $.each($scope.projects, function (index, project) {
             if ($scope.activeProject !== null) {
-              if ($scope.user.activeTimeEntry.project.id === project.id) {
+              if ($scope.person.activeTimeEntry.project.id === project.id) {
                 project.active = true;
                 $scope.activeProject = project;
                 console.log('Project at index %d is active (%s)', index, project.name);
@@ -161,22 +161,22 @@ angular.module('tpsApp')
     };
     $scope.startProjectTimer = function (project) {
       console.log('startTimer');
-      if ($scope.user.activeTimeEntry === null) {
-        console.log('No active project');
-      } else {
+      if ($scope.person.activeTimeEntry) {
         console.log('Stopping active project');
-        $scope.stopProjectTimer($scope.user.activeTimeEntry.project);
+        $scope.stopProjectTimer($scope.person.activeTimeEntry.project);
+      } else {
+        console.log('No active project');
       }
       project.active = true;
 
       // Create a new time entry
-      var timeEntry = { person: $scope.user, project: project, startTime: $.now()};
+      var timeEntry = { person: $scope.person, project: project, startTime: $.now()};
       baseTimeEntries.post(timeEntry).then(function (newTimeEntry) {
         console.log('Time entry created');
         newTimeEntry.active = true;
         $scope.timeEntries.push(newTimeEntry);
-        $scope.user.activeTimeEntry = newTimeEntry;
-        $scope.user.put();
+        $scope.person.activeTimeEntry = newTimeEntry;
+        $scope.person.put();
       }, function () {
         console.error('Failed to add time entry');
       });
@@ -184,23 +184,22 @@ angular.module('tpsApp')
     $scope.stopProjectTimer = function (project) {
       console.log('stopTimer %s', project);
       project.active = false;
-      if ($scope.user.activeTimeEntry === null) {
-        console.log('No active time entry');
-      } else {
-        console.log('Stopping active project, %s', $scope.user.activeTimeEntry.project.name);
+      if ($scope.person.activeTimeEntry) {
+        console.log('Stopping active project, %s', $scope.person.activeTimeEntry.project.name);
         // Find project in list and mark it as non active
         var oldProject = _.find($scope.projects, function (val) {
-          console.log('%s === %s', val.id, $scope.user.activeTimeEntry.project.id);
-          return val.id === $scope.user.activeTimeEntry.project.id;
+          return val.id === $scope.person.activeTimeEntry.project.id;
         });
-        console.log('Found matching active project, %s', oldProject);
+        console.log('Found matching active project, { id: %s, name: %s}', oldProject.id, oldProject.name);
         oldProject.active = false;
         // Persist time entry
-        $scope.user.activeTimeEntry.endTime = $.now();
-        $scope.user.activeTimeEntry.project.active = false;
-        $scope.user.activeTimeEntry.put();
-        $scope.user.activeTimeEntry = null;
-        $scope.user.put();
+        $scope.person.activeTimeEntry.endTime = $.now();
+        $scope.person.activeTimeEntry.project.active = false;
+        $scope.person.activeTimeEntry.put();
+        $scope.person.activeTimeEntry = null;
+        $scope.person.put();
+      } else {
+        console.log('No active time entry');
       }
     };
 

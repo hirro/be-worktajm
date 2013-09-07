@@ -27,7 +27,7 @@ exclude = [];
 reporters = ['progress'];
 
 // web server port
-port = 8080;
+port = 8081;
 
 // cli runner port
 runnerPort = 9100;
@@ -57,4 +57,11 @@ captureTimeout = 5000;
 
 // Continuous Integration mode
 // if true, it capture browsers, run tests and exit
-singleRun = false;
+//singleRun = false;
+
+// CI intergration
+singleRun = true;
+reporters = ['dots', 'junit'];
+junitReporter = {
+  outputFile: 'test-results.xml'
+};
