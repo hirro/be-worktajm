@@ -18,7 +18,6 @@
 
 package com.arnellconsulting.tps.web;
 
-import com.arnellconsulting.tps.exception.EmailNotUniqueException;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
 
@@ -28,11 +27,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/api/registration")
@@ -41,20 +40,26 @@ public class RegistrationController {
    @Autowired
    private transient TpsService tpsService;
 
+   //~--- methods -------------------------------------------------------------
+
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
-   public String create(
-           @RequestParam(value = "email", required = false) final String email,
-           @RequestParam(value = "password", required = false) final String password,
-           @RequestParam(value = "company", required = false) final String company) throws EmailNotUniqueException {
+   public String create(@RequestParam(value = "email", required = false) final String email,
+                        @RequestParam(value = "password", required = false) final String password,
+                        @RequestParam(value = "company", required = false) final String company)
+           throws Exception {
       log.debug("create: email {}, password: {}, company: {}  ", email, password, company);
 
       // Make sure person is not already registered
-      if (tpsService.findPersonByEmail(email) == null) {
+      if (email == null) {
+         throw new InvalidParameterExeception("Person must be specified exists ");
+      } else if (tpsService.findPersonByEmail(email) == null) {
          final Person person = new Person();
+
          person.setEmail(email);
-         //person.setPassword(password);
+
+         // person.setPassword(password);
          person.setLastName("Last name");
          person.setFirstName("First name");
          tpsService.savePerson(person);
@@ -64,6 +69,8 @@ public class RegistrationController {
 
       return "redirect:/";
    }
+
+   //~--- get methods ---------------------------------------------------------
 
    @RequestMapping(value = "/checkEmail.do")
    @ResponseBody
