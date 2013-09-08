@@ -35,9 +35,8 @@ public final class TestConstants {
    public static final DateTime TIMEENTRY_A_END_TIME = new DateTime("2010-01-01");
    public static final DateTime TIMEENTRY_A_START_TIME = new DateTime("2010-05-21");
    public static final PersonStatus PERSON_A_STATUS = PersonStatus.NORMAL;
-   public static final String CHECK_EMAIL_PATH = "/registration/checkEmail.do?email=%s";
+   public static final String CHECK_EMAIL_PATH = "/api/registration/checkEmail.do?email=%s";
    public static final String COMPANY_A = "company A";
-   public static final String CREATE_PATH = "/registration/create?email=%s&password=%s&company=%s";
    public static final String PERSON_A_EMAIL = "a@example.com";
    public static final String PERSON_A_FIRST_NAME = "A";
    public static final String PERSON_A_LAST_NAME = "Ason";
