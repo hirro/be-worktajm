@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.arnellconsulting.tps.web;
+package com.arnellconsulting.tps.exception;
 
 /**
  *

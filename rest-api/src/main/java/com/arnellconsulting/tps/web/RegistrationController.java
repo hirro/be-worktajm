@@ -18,6 +18,8 @@
 
 package com.arnellconsulting.tps.web;
 
+import com.arnellconsulting.tps.exception.EmailNotUniqueException;
+import com.arnellconsulting.tps.exception.InvalidParameterExeception;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
 
