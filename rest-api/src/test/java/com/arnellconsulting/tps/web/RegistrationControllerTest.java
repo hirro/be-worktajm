@@ -52,7 +52,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- *
+ * Test
  * @author jiar
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -72,9 +72,12 @@ public class RegistrationControllerTest {
    @Test
    public void testCreate() throws Exception {
       when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(null);
-      mockMvc.perform(get("/api/registration").param("password", TestConstants.PERSON_A_PASSWORD).param("email",
-                          TestConstants.PERSON_A_EMAIL).param("company",
-                             TestConstants.COMPANY_A).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+      mockMvc.perform(get("/api/registration")
+              .param("password", TestConstants.PERSON_A_PASSWORD)
+              .param("email", TestConstants.PERSON_A_EMAIL)
+              .param("company", TestConstants.COMPANY_A)
+              .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
       verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verify(tpsServiceMock, times(1)).savePerson(any(Person.class));
       verifyNoMoreInteractions(tpsServiceMock);
@@ -86,10 +89,12 @@ public class RegistrationControllerTest {
 
       try {
          mockMvc.perform(
-         get("/api/registration").param("password", TestConstants.PERSON_A_PASSWORD).param("email",
-             TestConstants.PERSON_A_EMAIL).param("company",
-                TestConstants.COMPANY_A).accept(MediaType.APPLICATION_JSON)).andExpect(
-                status().isInternalServerError());
+         get("/api/registration")
+                 .param("password", TestConstants.PERSON_A_PASSWORD)
+                 .param("email", TestConstants.PERSON_A_EMAIL)
+                 .param("company", TestConstants.COMPANY_A)
+                 .accept(MediaType.APPLICATION_JSON))
+               .andExpect(status().isInternalServerError());
       } catch (Exception ex) {
          fail("Should not throw here? Controller exception is not visible");
       }
