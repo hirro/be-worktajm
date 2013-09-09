@@ -55,7 +55,8 @@ public class RegistrationController {
 
       // Make sure person is not already registered
       if (email == null) {
-         throw new InvalidParameterExeception("Person must be specified exists ");
+         log.warn("Person must be specified");
+         throw new InvalidParameterExeception("Person must be specified!");
       } else if (tpsService.findPersonByEmail(email) == null) {
          final Person person = new Person();
 

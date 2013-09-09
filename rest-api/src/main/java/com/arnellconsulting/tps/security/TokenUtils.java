@@ -24,13 +24,14 @@ import org.springframework.security.crypto.codec.Hex;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class TokenUtils {
+public final class TokenUtils {
    public static final String MAGIC_KEY = "obfuscate";
 
-   //~--- methods -------------------------------------------------------------
+   private TokenUtils() {}
 
-   public static String computeSignature(UserDetails userDetails, long expires) {
-      StringBuilder signatureBuilder = new StringBuilder();
+   ;
+   public static String computeSignature(final UserDetails userDetails, final long expires) {
+      final StringBuilder signatureBuilder = new StringBuilder();
 
       signatureBuilder.append(userDetails.getUsername());
       signatureBuilder.append(":");
@@ -51,11 +52,11 @@ public class TokenUtils {
       return new String(Hex.encode(digest.digest(signatureBuilder.toString().getBytes())));
    }
 
-   public static String createToken(UserDetails userDetails) {
+   public static String createToken(final UserDetails userDetails) {
 
       /* Expires in one hour */
-      long expires = System.currentTimeMillis() + 1000L * 60 * 60;
-      StringBuilder tokenBuilder = new StringBuilder();
+      final long expires = System.currentTimeMillis() + 1000L * 60 * 60;
+      final StringBuilder tokenBuilder = new StringBuilder();
 
       tokenBuilder.append(userDetails.getUsername());
       tokenBuilder.append(":");
@@ -66,10 +67,10 @@ public class TokenUtils {
       return tokenBuilder.toString();
    }
 
-   public static boolean validateToken(String authToken, UserDetails userDetails) {
-      String[] parts = authToken.split(":");
-      long expires = Long.parseLong(parts[1]);
-      String signature = parts[2];
+   public static boolean validateToken(final String authToken, final UserDetails userDetails) {
+      final String[] parts = authToken.split(":");
+      final long expires = Long.parseLong(parts[1]);
+      final String signature = parts[2];
 
       if (expires < System.currentTimeMillis()) {
          return false;
@@ -78,14 +79,12 @@ public class TokenUtils {
       return signature.equals(TokenUtils.computeSignature(userDetails, expires));
    }
 
-   //~--- get methods ---------------------------------------------------------
-
-   public static String getUserNameFromToken(String authToken) {
+   public static String getUserNameFromToken(final String authToken) {
       if (null == authToken) {
          return null;
       }
 
-      String[] parts = authToken.split(":");
+      final String[] parts = authToken.split(":");
 
       return parts[0];
    }

@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+
+
 package com.arnellconsulting.tps.security;
 
 import java.util.Map;
@@ -22,37 +25,25 @@ import java.util.Map;
  * @author jiar
  */
 public class UserTransfer {
+   private final transient String name;
+   private final transient Map<String, Boolean> roles;
+   private final transient String token;
 
-	private final String name;
+   public UserTransfer(final String userName, final Map<String, Boolean> roles, final String token) {
+      this.name = userName;
+      this.roles = roles;
+      this.token = token;
+   }
 
-	private final Map<String, Boolean> roles;
+   public String getName() {
+      return this.name;
+   }
 
-	private final String token;
+   public Map<String, Boolean> getRoles() {
+      return this.roles;
+   }
 
-
-	public UserTransfer(String userName, Map<String, Boolean> roles, String token) {
-
-		this.name = userName;
-		this.roles = roles;
-		this.token = token;
-	}
-
-
-	public String getName() {
-
-		return this.name;
-	}
-
-
-	public Map<String, Boolean> getRoles() {
-
-		return this.roles;
-	}
-
-
-	public String getToken() {
-
-		return this.token;
-	}
+   public String getToken() {
+      return this.token;
+   }
 }
-

@@ -2,7 +2,7 @@
 
     <div class="container">
     	<div id="registrationForm">
-			<form id="registration" class="form-horizontal" action="#" th:action="@{/registration/create}" method="post">
+			<form id="registration" class="form-horizontal">
 				<fieldset>
 				
 					<!-- Form Name -->
@@ -12,7 +12,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="email">Email</label>
 					  <div class="controls">
-					    <input id="email" name="email" type="email" placeholder="Enter email address" class="input-xlarge" required="" tabindex="1" autofocus="autofocus" />
+					    <input id="email" name="email" type="email" placeholder="Enter email address" class="input-xlarge" required="" tabindex="1" autofocus="autofocus" ng-model="email" ensureUserNameUnique="ensureUserNameUnique"/>
 					  </div>
 					</div>
 					
@@ -20,7 +20,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="password">Password</label>
 					  <div class="controls">
-					    <input id="password" name="password" type="password" placeholder="Enter your password" class="input-xlarge" required="" tabindex="2"/>
+					    <input id="password" name="password" type="password" placeholder="Enter your password" class="input-xlarge" required="" tabindex="2" ng-model="password" />
 					  </div>
 					</div>
 					
@@ -28,7 +28,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="company">Company name</label>
 					  <div class="controls">
-					    <input id="company" name="company" type="text" placeholder="Enter company name" class="input-xlarge" tabindex="3"/>
+					    <input id="company" name="company" type="text" placeholder="Enter company name" class="input-xlarge" tabindex="3" ng-model="company"/>
 							<span class="help-inline">Optional</span>
 					  </div>
 					</div>
@@ -37,7 +37,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="singlebutton"></label>
 					  <div class="controls">
-					    <button id="singlebutton" name="singlebutton" class="btn btn-primary" >Register</button>
+					    <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-click="register()" >Register</button>
 					  </div>
 					</div>
 					

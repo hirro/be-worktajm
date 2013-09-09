@@ -15,18 +15,15 @@
  */
 package com.arnellconsulting.tps.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 /**
  *
  * @author jiar
  */
+@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason="Invalid parameter")
 public class InvalidParameterExeception extends Exception {
-
-   /**
-    * Creates a new instance of
-    * <code>InvalidParameterExeception</code> without detail message.
-    */
-   public InvalidParameterExeception() {
-   }
 
    /**
     * Constructs an instance of
@@ -34,7 +31,7 @@ public class InvalidParameterExeception extends Exception {
     *
     * @param msg the detail message.
     */
-   public InvalidParameterExeception(String msg) {
+   public InvalidParameterExeception(final String msg) {
       super(msg);
    }
 }

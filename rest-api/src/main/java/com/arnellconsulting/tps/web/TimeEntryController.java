@@ -19,6 +19,7 @@
 package com.arnellconsulting.tps.web;
 
 import com.arnellconsulting.tps.model.TimeEntry;
+import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * JSON API for TimeEntry.
@@ -52,17 +57,22 @@ public class TimeEntryController {
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
+   @Secured("ROLE_USER")
    public List<TimeEntry> list() {
       log.debug("list");
+      final PersonUserDetails userDetails = getUserDetails();
 
-      return tpsService.getTimeEntries();
+      return tpsService.getTimeEntriesForPerson(userDetails.getPerson().getId());
    }
 
    @Transactional
    @RequestMapping(method = RequestMethod.POST, headers ={"Accept=application/json"})
    @ResponseBody
+   @Secured("ROLE_USER")
    public TimeEntry create(@RequestBody final TimeEntry timeEntry) {
       log.debug("create: ");
+      log.debug("User details {}", getUserDetails().getPerson());
+
       tpsService.saveTimeEntry(timeEntry);
 
       return timeEntry;
@@ -99,5 +109,10 @@ public class TimeEntryController {
    public void delete(@PathVariable final long id) {
       log.debug("delete id: {}", id);
       tpsService.deleteTimeEntry(id);
+   }
+
+   private PersonUserDetails getUserDetails() {
+      final PersonUserDetails userDetails = (PersonUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      return userDetails;
    }
 }

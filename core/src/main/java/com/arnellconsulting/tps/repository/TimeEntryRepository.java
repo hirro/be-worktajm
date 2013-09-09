@@ -20,10 +20,12 @@ package com.arnellconsulting.tps.repository;
 
 import com.arnellconsulting.tps.model.TimeEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
 /**
  *
  * @author jiar
  */
-public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {   
+public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {
+     List<TimeEntry> findByPerson(final long personId);
 }

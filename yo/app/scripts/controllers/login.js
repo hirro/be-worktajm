@@ -21,4 +21,8 @@ angular.module('tpsApp')
 			console.error('Login failed');
 		});
 	};
+
+	$scope.register = function () {
+		$location.path( '/register');
+	}
 });
