@@ -46,7 +46,7 @@ public interface TpsService {
    Person findPersonByEmail(final String email);
 
    // TimeEntry
-   public List<TimeEntry> getTimeEntries();
+   public List<TimeEntry> getTimeEntriesForPerson(final long userId);
    public TimeEntry getTimeEntry(final long id);
    public void deleteTimeEntry(final long id);
    public void saveTimeEntry(final TimeEntry timeEntry);

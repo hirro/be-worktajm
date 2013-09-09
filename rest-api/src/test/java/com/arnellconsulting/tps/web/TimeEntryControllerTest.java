@@ -89,10 +89,10 @@ public class TimeEntryControllerTest {
 
    @Test
    public void testList() throws Exception {
-      when(tpsServiceMock.getTimeEntries()).thenReturn(timeEntries);
+      when(tpsServiceMock.getTimeEntriesForPerson(1)).thenReturn(timeEntries);
       mockMvc.perform(get("/api/timeEntry").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).getTimeEntries();
+      verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(1);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 

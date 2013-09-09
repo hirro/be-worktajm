@@ -203,12 +203,12 @@ public class TpsServiceImplTest {
    }
 
    /**
-    * Test of getTimeEntries method, of class TpsServiceImpl.
+    * Test of getTimeEntriesForPerson method, of class TpsServiceImpl.
     */
    @Test
    public void testGetTimeEntries() {
-      when(timeEntryRepository.findAll()).thenReturn(timeEntriesA);
-      final List<TimeEntry> timeEntries = service.getTimeEntries();
+      when(timeEntryRepository.findByPerson(1)).thenReturn(timeEntriesA);
+      final List<TimeEntry> timeEntries = service.getTimeEntriesForPerson(1);
       assertThat(timeEntriesA.size(), is(timeEntries.size()));
       verify(timeEntryRepository, times(1)).findAll();
       verifyNoMoreInteractions(timeEntryRepository);

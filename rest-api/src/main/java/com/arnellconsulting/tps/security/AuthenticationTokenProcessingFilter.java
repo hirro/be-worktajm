@@ -18,6 +18,8 @@
 
 package com.arnellconsulting.tps.security;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,8 +35,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
-
 
 @Slf4j
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
@@ -42,38 +42,40 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
    //
    // @Autowired
    // private TokenUtils tokenUtils;
-   private final AuthenticationManager authManager;
-   private final UserDetailsService userService;
+   private final transient AuthenticationManager authManager;
+   private final transient UserDetailsService userService;
 
-   public AuthenticationTokenProcessingFilter(AuthenticationManager authManager, UserDetailsService userService) {
+   public AuthenticationTokenProcessingFilter(final AuthenticationManager authManager,
+           final UserDetailsService userService) {
+      super();
       this.authManager = authManager;
       this.userService = userService;
    }
 
-   //~--- methods -------------------------------------------------------------
-
    @Override
-   public void doFilter(ServletRequest request,
-                        ServletResponse response,
-                        FilterChain chain)
+   public void doFilter(final ServletRequest request,
+                        final ServletResponse response,
+                        final FilterChain chain)
            throws IOException, ServletException {
-      
       log.debug("doFilter");
+
       if (!(request instanceof HttpServletRequest)) {
          log.debug("Invalid request");
+
          throw new RuntimeException("Expecting a http request");
       }
 
-      HttpServletRequest httpRequest = (HttpServletRequest) request;
-      String authToken = httpRequest.getHeader("Auth-Token");
-      String userName = TokenUtils.getUserNameFromToken(authToken);
+      final HttpServletRequest httpRequest = (HttpServletRequest) request;
+      final String authToken = httpRequest.getHeader("Auth-Token");
+      final String userName = TokenUtils.getUserNameFromToken(authToken);
 
       if (userName != null) {
          log.debug("Read user name {} from token", userName);
-         UserDetails userDetails = this.userService.loadUserByUsername(userName);
+
+         final UserDetails userDetails = this.userService.loadUserByUsername(userName);
 
          if (TokenUtils.validateToken(authToken, userDetails)) {
-            UsernamePasswordAuthenticationToken authentication =
+            final UsernamePasswordAuthenticationToken authentication =
                new UsernamePasswordAuthenticationToken(userDetails.getUsername(),
                     userDetails.getPassword());
 
