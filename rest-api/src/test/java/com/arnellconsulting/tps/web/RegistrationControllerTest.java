@@ -94,7 +94,7 @@ public class RegistrationControllerTest {
                  .param("email", TestConstants.PERSON_A_EMAIL)
                  .param("company", TestConstants.COMPANY_A)
                  .accept(MediaType.APPLICATION_JSON))
-               .andExpect(status().isInternalServerError());
+               .andExpect(status().isBadRequest());
       } catch (Exception ex) {
          fail("Should not throw here? Controller exception is not visible");
       }
@@ -106,7 +106,7 @@ public class RegistrationControllerTest {
    @Test
    public void testIndex() throws Exception {
       mockMvc.perform(get("/api/registration").accept(MediaType.APPLICATION_JSON)).andExpect(
-      status().isInternalServerError());
+      status().isBadRequest());
       verifyNoMoreInteractions(tpsServiceMock);
    }
 

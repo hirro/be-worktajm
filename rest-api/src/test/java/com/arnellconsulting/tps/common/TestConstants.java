@@ -69,7 +69,7 @@ public final class TestConstants {
       project.setName(PROJECT_A_NAME);
       project.setDescription(PROJECT_A_DESCRIPTION);
       project.setRate(PROJECTA_A_RATE);
-      return project;
+     return project;
    }
 
    public static TimeEntry createTimeEntryA(final Person person, final Project project) {
