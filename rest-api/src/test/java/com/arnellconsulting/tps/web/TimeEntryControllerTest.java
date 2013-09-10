@@ -43,14 +43,12 @@ import static org.mockito.Mockito.*;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import org.mockito.ArgumentCaptor;
-import org.springframework.context.annotation.Bean;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -64,7 +62,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TimeEntryControllerTest {
    private transient MockMvc mockMvc;
    private transient TimeEntry timeEntryA;
-   private transient Person person;
+   private transient Person person1;
+   private transient Person person2;
    private transient Project project;
    private transient List<TimeEntry> timeEntries;
    @Autowired
@@ -83,19 +82,22 @@ public class TimeEntryControllerTest {
       Mockito.reset(tpsServiceMock);
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
-      person = spy(TestConstants.createPersonA());
+      person1 = spy(TestConstants.createPersonA());
+      person2 = spy(TestConstants.createPersonA());
       project = TestConstants.createProjectA();
-      timeEntryA = TestConstants.createTimeEntryA(person, project);
+      timeEntryA = TestConstants.createTimeEntryA(person1, project);
       
       timeEntries = new ArrayList<TimeEntry>();
       timeEntries.add(timeEntryA);
+      
+      when(person1.getId()).thenReturn(1L);
+      when(person2.getId()).thenReturn(2L);
+      when(personUserDetails.getPerson()).thenReturn(person1);      
    }
 
    @Test
    public void testList() throws Exception {
-      when(person.getId()).thenReturn(1L);
       when(tpsServiceMock.getTimeEntriesForPerson(1)).thenReturn(timeEntries);
-      when(personUserDetails.getPerson()).thenReturn(person);
       mockMvc.perform(get("/api/timeEntry").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
       verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(1);
@@ -124,10 +126,39 @@ public class TimeEntryControllerTest {
 
    @Test
    public void testUpdate() throws Exception {
-      mockMvc.perform(put("/api/timeEntry/1").content(TestConstants.TIMEENTRY_A_CREATE).contentType(MediaType.APPLICATION_JSON))
+      final TimeEntry timeEntry = spy(timeEntryA);
+      when(timeEntry.getId()).thenReturn(1L);
+      when(timeEntry.getPerson()).thenReturn(person1);
+      when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntry);
+      mockMvc.perform(put("/api/timeEntry/1").content(TestConstants.TIMEENTRY_A_UPDATE).contentType(MediaType.APPLICATION_JSON))
               .andExpect(status().isNoContent());
       final ArgumentCaptor<TimeEntry> argument = ArgumentCaptor.forClass(TimeEntry.class);
       verify(tpsServiceMock, times(1)).saveTimeEntry(argument.capture());
+      verify(tpsServiceMock, times(1)).getTimeEntry(1);
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testUpdateNotOwned() throws Exception {
+      final TimeEntry timeEntry = spy(timeEntryA);
+      when(timeEntry.getId()).thenReturn(1L);
+      when(timeEntry.getPerson()).thenReturn(person2);
+      when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntry);
+      mockMvc.perform(put("/api/timeEntry/1").content(TestConstants.TIMEENTRY_A_UPDATE).contentType(MediaType.APPLICATION_JSON))
+              .andExpect(status().isUnauthorized());
+      verify(tpsServiceMock, times(1)).getTimeEntry(1);
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testUpdateNotExisting() throws Exception {
+      final TimeEntry timeEntry = spy(timeEntryA);
+      when(timeEntry.getId()).thenReturn(1L);
+      when(timeEntry.getPerson()).thenReturn(person2);
+      when(tpsServiceMock.getTimeEntry(1)).thenReturn(null);
+      mockMvc.perform(put("/api/timeEntry/1").content(TestConstants.TIMEENTRY_A_UPDATE).contentType(MediaType.APPLICATION_JSON))
+              .andExpect(status().isInternalServerError());
+      verify(tpsServiceMock, times(1)).getTimeEntry(1);
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
