@@ -47,6 +47,7 @@ public final class TestConstants {
    public static final String PROJECT_A_NAME = "Project A";
    public static final String TIMEENTRY_A_READ = "{\"id\":null,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"project\":{\"id\":null,\"name\":\"Project A\",\"description\":\"Project A description\",\"rate\":10.3,\"new\":true},\"new\":true}";
    public static final String TIMEENTRY_A_CREATE = "{\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
+   public static final String TIMEENTRY_A_UPDATE = "{\"id\":1,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
    public static final String TIMEENTRY_A_COMMENT = "Time Entry A comment";
    public static final String PERSON_A_CREATE = "{\"emailVerified\":true,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
    public static final String PERSON_A = "{\"id\":null,\"emailVerified\":true,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
