@@ -18,6 +18,7 @@
 
 package com.arnellconsulting.tps.web;
 
+import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
@@ -26,6 +27,10 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,10 +41,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * JSON API for TimeEntry.
@@ -53,6 +54,29 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class TimeEntryController {
    @Autowired
    private transient TpsService tpsService;
+   @Autowired
+   private transient PersonUserDetails userDetails;
+
+   //~--- methods -------------------------------------------------------------
+
+   @Transactional
+   @RequestMapping(method = RequestMethod.POST, headers = { "Accept=application/json" })
+   @ResponseBody
+   @Secured("ROLE_USER")
+   public TimeEntry create(@RequestBody final TimeEntry timeEntry) {
+      log.debug("create: ");
+      log.debug("User details {}", userDetails.getPerson());
+      tpsService.saveTimeEntry(timeEntry);
+
+      return timeEntry;
+   }
+
+   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void delete(@PathVariable final long id) {
+      log.debug("delete id: {}", id);
+      tpsService.deleteTimeEntry(id);
+   }
 
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
@@ -60,29 +84,14 @@ public class TimeEntryController {
    @Secured("ROLE_USER")
    public List<TimeEntry> list() {
       log.debug("list");
-      final PersonUserDetails userDetails = getUserDetails();
+      
+      Person person = userDetails.getPerson();
 
-      return tpsService.getTimeEntriesForPerson(userDetails.getPerson().getId());
+      return tpsService.getTimeEntriesForPerson(person.getId());
    }
 
    @Transactional
-   @RequestMapping(method = RequestMethod.POST, headers ={"Accept=application/json"})
-   @ResponseBody
-   @Secured("ROLE_USER")
-   public TimeEntry create(@RequestBody final TimeEntry timeEntry) {
-      log.debug("create: ");
-      log.debug("User details {}", getUserDetails().getPerson());
-
-      tpsService.saveTimeEntry(timeEntry);
-
-      return timeEntry;
-   }
-
-   @Transactional
-   @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.GET
-   )
+   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
    @ResponseBody
    public TimeEntry read(@PathVariable final long id) {
       log.debug("read id: {}", id);
@@ -91,28 +100,10 @@ public class TimeEntryController {
    }
 
    @Transactional
-   @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.PUT
-   )
+   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void update(@PathVariable final long id, @RequestBody final TimeEntry timeEntry) {
       log.debug("update name: {}");
       tpsService.saveTimeEntry(timeEntry);
-   }
-
-   @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.DELETE
-   )
-   @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void delete(@PathVariable final long id) {
-      log.debug("delete id: {}", id);
-      tpsService.deleteTimeEntry(id);
-   }
-
-   private PersonUserDetails getUserDetails() {
-      final PersonUserDetails userDetails = (PersonUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      return userDetails;
    }
 }

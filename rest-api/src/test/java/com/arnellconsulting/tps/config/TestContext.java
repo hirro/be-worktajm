@@ -15,6 +15,7 @@
  */
 package com.arnellconsulting.tps.config;
 
+import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
 import org.mockito.Mockito;
 import org.springframework.context.MessageSource;
@@ -52,5 +53,9 @@ public class TestContext {
     @Bean
     public AuthenticationManager authenticationManager() {
        return Mockito.mock(AuthenticationManager.class);
+    }
+    @Bean
+    public PersonUserDetails personUserDetails() {
+       return Mockito.mock(PersonUserDetails.class);
     }
 }

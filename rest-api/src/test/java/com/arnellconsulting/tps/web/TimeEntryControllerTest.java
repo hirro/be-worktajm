@@ -21,6 +21,7 @@ import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
+import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
 
 import org.junit.Before;
@@ -49,6 +50,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import org.mockito.ArgumentCaptor;
+import org.springframework.context.annotation.Bean;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -69,6 +71,8 @@ public class TimeEntryControllerTest {
    private transient TpsService tpsServiceMock;
    @Autowired
    private transient WebApplicationContext webApplicationContext;
+   @Autowired
+   private transient PersonUserDetails personUserDetails;
 
    @Before
    public void setUp() {
@@ -79,7 +83,7 @@ public class TimeEntryControllerTest {
       Mockito.reset(tpsServiceMock);
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
-      person = TestConstants.createPersonA();
+      person = spy(TestConstants.createPersonA());
       project = TestConstants.createProjectA();
       timeEntryA = TestConstants.createTimeEntryA(person, project);
       
@@ -89,7 +93,9 @@ public class TimeEntryControllerTest {
 
    @Test
    public void testList() throws Exception {
+      when(person.getId()).thenReturn(1L);
       when(tpsServiceMock.getTimeEntriesForPerson(1)).thenReturn(timeEntries);
+      when(personUserDetails.getPerson()).thenReturn(person);
       mockMvc.perform(get("/api/timeEntry").accept(MediaType.APPLICATION_JSON))
               .andExpect(status().isOk());
       verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(1);

@@ -210,7 +210,7 @@ public class TpsServiceImplTest {
       when(timeEntryRepository.findByPerson(1)).thenReturn(timeEntriesA);
       final List<TimeEntry> timeEntries = service.getTimeEntriesForPerson(1);
       assertThat(timeEntriesA.size(), is(timeEntries.size()));
-      verify(timeEntryRepository, times(1)).findAll();
+      verify(timeEntryRepository, times(1)).findByPerson(1);
       verifyNoMoreInteractions(timeEntryRepository);
    }
 
