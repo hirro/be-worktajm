@@ -33,7 +33,7 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {
-        "com.arnellconsulting.tps.web"
+        "com.arnellconsulting.tps.api"
 })
 public class WebAppContext extends WebMvcConfigurerAdapter {
 

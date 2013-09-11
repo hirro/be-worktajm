@@ -16,7 +16,7 @@
 
 
 
-package com.arnellconsulting.tps.web;
+package com.arnellconsulting.tps.api;
 
 import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;

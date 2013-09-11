@@ -16,17 +16,16 @@
 
 
 
-package com.arnellconsulting.tps.web;
+package com.arnellconsulting.tps.api;
 
-import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.service.TpsService;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,29 +38,58 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 
 /**
- * JSON API for Person.
+ * JSON API for Project.
  *
  * @author jiar
  */
 @Controller
-@RequestMapping("api/person")
+@RequestMapping("api/project")
 @Slf4j
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
-public class PersonController {
+public class ProjectController {
+
    @Autowired
    private transient TpsService tpsService;
 
    @Transactional
+   @RequestMapping(method = RequestMethod.GET)
+   @ResponseBody
+   public List<Project> list() throws InterruptedException {
+      log.debug("list");
+      return tpsService.getProjets();
+   }
+
+   @Transactional
+   @RequestMapping(method = RequestMethod.POST)
+   @ResponseBody
+   public Project create(@RequestBody final Project project) {
+      log.debug("create: {}", project.toString());
+      tpsService.saveProject(project);
+
+      return project;
+   }
+
+   @Transactional
    @RequestMapping(
-      method = RequestMethod.POST,
-      headers = { "Accept=application/json" }
+      value = "/{id}",
+      method = RequestMethod.GET
    )
    @ResponseBody
-   public Person create(@RequestBody final Person person) {
-      log.debug("create");
-      tpsService.savePerson(person);
+   public Project read(@PathVariable final long id) {
+      log.debug("read id: {}", id);
 
-      return person;
+      return tpsService.getProject(id);
+   }
+ 
+   @Transactional
+   @RequestMapping(
+      value = "/{id}",
+      method = RequestMethod.PUT
+   )
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void update(@PathVariable final long id, @RequestBody final Project project) {
+      log.debug("update name: {}");
+      tpsService.saveProject(project);
    }
 
    @RequestMapping(
@@ -71,47 +99,6 @@ public class PersonController {
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void delete(@PathVariable final long id) {
       log.debug("delete id: {}", id);
-      tpsService.deletePerson(id);
-   }
-
-   @Transactional
-   @RequestMapping(method = RequestMethod.GET)
-   @ResponseBody
-   public List<Person> list() {
-      log.debug("list");
-
-      return tpsService.getPersons();
-   }
-
-   @Transactional
-   @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.GET
-   )
-   @ResponseBody
-   public Person read(@PathVariable final long id) {
-      log.debug("read id: {}", id);
-
-      final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-      if (auth == null) {
-         log.debug("No user");
-      } else {
-         final String name = auth.getName();
-         log.debug("Current user is {}", name);
-      }
-
-      return tpsService.getPerson(id);
-   }
-
-   @Transactional
-   @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.PUT
-   )
-   @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void update(@PathVariable final long id, @RequestBody final Person person) {
-      log.debug("update - email: {}", person.getEmail());
-      tpsService.savePerson(person);
+      tpsService.deleteProject(id);
    }
 }

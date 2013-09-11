@@ -16,7 +16,7 @@
 
 
 
-package com.arnellconsulting.tps.web;
+package com.arnellconsulting.tps.api;
 
 import com.arnellconsulting.tps.exception.EmailNotUniqueException;
 import com.arnellconsulting.tps.exception.InvalidParameterExeception;
