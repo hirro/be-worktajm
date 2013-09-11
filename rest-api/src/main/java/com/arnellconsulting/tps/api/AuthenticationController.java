@@ -55,7 +55,7 @@ public class AuthenticationController {
    private transient UserDetailsService userDetailsService;
    @Autowired
    @Qualifier("authenticationManager")
-   private transient AuthenticationManager authManager;
+   private transient AuthenticationManager authenticationManager;
 
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
@@ -67,7 +67,7 @@ public class AuthenticationController {
 
       try {
          token = new UsernamePasswordAuthenticationToken(username, password);
-         authentication = authManager.authenticate(token);
+         authentication = authenticationManager.authenticate(token);
 
          SecurityContextHolder.getContext().setAuthentication(authentication);
 
