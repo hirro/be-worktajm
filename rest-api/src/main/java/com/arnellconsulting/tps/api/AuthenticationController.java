@@ -40,6 +40,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.security.core.AuthenticationException;
 
 /**
  *
@@ -51,7 +52,7 @@ import java.util.Map;
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class AuthenticationController {
    @Autowired
-   private transient UserDetailsService userService;
+   private transient UserDetailsService userDetailsService;
    @Autowired
    @Qualifier("authenticationManager")
    private transient AuthenticationManager authManager;
@@ -59,31 +60,35 @@ public class AuthenticationController {
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
    public UserTransfer authenticate(@RequestParam final String username, @RequestParam final String password) {
+      final UsernamePasswordAuthenticationToken token;
+      final Authentication authentication;
+      
       log.debug("authenticate, username: {}, password: ******", username);
 
-      final UsernamePasswordAuthenticationToken authenticationToken;
+      try {
+         token = new UsernamePasswordAuthenticationToken(username, password);
+         authentication = authManager.authenticate(token);
 
-      authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-      log.debug("Authenticating...");
+         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-      final Authentication authentication = this.authManager.authenticate(authenticationToken);
+         /*
+          * Reload user as password of authentication principal will be null after authorization and
+          * password is needed for token generation
+          */
+         log.debug("Authenticaton succeeded, loading user details");
 
-      SecurityContextHolder.getContext().setAuthentication(authentication);
+         final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+         final Map<String, Boolean> roles = new HashMap<String, Boolean>();
 
-      /*
-       * Reload user as password of authentication principal will be null after authorization and
-       * password is needed for token generation
-       */
-      log.debug("Reloading user details");
+         for (GrantedAuthority authority : userDetails.getAuthorities()) {
+            log.debug("  authority: {}", authority);
+            roles.put(authority.toString(), Boolean.TRUE);
+         }
 
-      final UserDetails userDetails = this.userService.loadUserByUsername(username);
-      final Map<String, Boolean> roles = new HashMap<String, Boolean>();
-
-      for (GrantedAuthority authority : userDetails.getAuthorities()) {
-         log.debug("  authority: {}", authority);
-         roles.put(authority.toString(), Boolean.TRUE);
+         return new UserTransfer(userDetails.getUsername(), roles, TokenUtils.createToken(userDetails));
+      } catch (AuthenticationException e) {
+         log.error("Failed to authenticate user: {}", username);
+         throw e;
       }
-
-      return new UserTransfer(userDetails.getUsername(), roles, TokenUtils.createToken(userDetails));
    }
 }
