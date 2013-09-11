@@ -50,4 +50,7 @@ public interface TpsService {
    public TimeEntry getTimeEntry(final long id);
    public void deleteTimeEntry(final long id);
    public void saveTimeEntry(final TimeEntry timeEntry);
+
+   // Corporate
+   public boolean findCorporate(String company);
 }

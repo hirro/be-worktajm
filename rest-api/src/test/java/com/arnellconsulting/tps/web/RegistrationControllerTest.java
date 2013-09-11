@@ -80,6 +80,7 @@ public class RegistrationControllerTest {
             .andExpect(status().isOk());
       verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verify(tpsServiceMock, times(1)).savePerson(any(Person.class));
+      verify(tpsServiceMock, times(1)).findCorporate(any(String.class));
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
