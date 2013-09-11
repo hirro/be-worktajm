@@ -80,7 +80,7 @@ public class TimeEntryController {
 
       return timeEntry;
    }
-
+   
    /**
     * Deletes a time entry owner by the logged in person.
     * @param id logged in person

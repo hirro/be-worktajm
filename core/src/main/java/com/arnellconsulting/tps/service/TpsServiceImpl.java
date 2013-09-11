@@ -132,4 +132,10 @@ public class TpsServiceImpl implements TpsService {
       timeEntryRepository.save(person);
    }
 
+   @Override
+   public boolean findCorporate(String company) {
+      // No suppert for this yet
+      return false;
+   }
+
 }

@@ -20,6 +20,7 @@ package com.arnellconsulting.tps.web;
 
 import com.arnellconsulting.tps.exception.EmailNotUniqueException;
 import com.arnellconsulting.tps.exception.InvalidParameterExeception;
+import com.arnellconsulting.tps.model.Corporate;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
 
@@ -35,6 +36,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Handles registration of new users.
+ * 
+ * @author jiar
+ */
 @Controller
 @RequestMapping("/api/registration")
 @Slf4j
@@ -53,22 +59,35 @@ public class RegistrationController {
            throws Exception {
       log.debug("create: email {}, password: {}, company: {}  ", email, password, company);
 
-      // Make sure person is not already registered
+      // Check all required values
       if (email == null) {
-         log.warn("Person must be specified");
+         log.warn("Email must be specified");
          throw new InvalidParameterExeception("Person must be specified!");
-      } else if (tpsService.findPersonByEmail(email) == null) {
-         final Person person = new Person();
-
-         person.setEmail(email);
-
-         // person.setPassword(password);
-         person.setLastName("Last name");
-         person.setFirstName("First name");
-         tpsService.savePerson(person);
-      } else {
-         throw new EmailNotUniqueException("Person already exists " + email);
       }
+      
+      // Check uniqueness
+      if (tpsService.findPersonByEmail(email) != null) {
+         throw new InvalidParameterExeception("Email is already registered");
+      }      
+      if ((company != null) && tpsService.findCorporate(company)) {
+         throw new InvalidParameterExeception("Company is already registered");
+      }
+      
+      // Normal processing
+      final Person person = new Person();
+
+      person.setEmail(email);
+      person.setLastName("Last name");
+      person.setFirstName("First name");
+
+      if (company != null) {
+         // Create company
+         final Corporate corporate = new Corporate();
+         corporate.setName(company);
+         //person.setCorporate(corporate);
+      }
+
+      tpsService.savePerson(person);
 
       return "redirect:/";
    }
