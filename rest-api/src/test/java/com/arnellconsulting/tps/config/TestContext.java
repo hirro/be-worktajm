@@ -58,8 +58,4 @@ public class TestContext {
     public PersonUserDetails personUserDetails() {
        return Mockito.mock(PersonUserDetails.class);
     }
-    @Bean
-    public AuthenticationManager authManager() {
-       return Mockito.mock(AuthenticationManager.class);
-    }
 }
