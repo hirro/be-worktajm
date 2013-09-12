@@ -16,6 +16,7 @@ insert into time_entry (id, start_time, end_time, person, project, comment) valu
 insert into time_entry (id, start_time, end_time, person, project, comment) values (2,'2001-02-04 10:00:00', '2001-02-04 20:10:00', 1, 2, NULL);
 insert into time_entry (id, start_time, end_time, person, project, comment) values (3,'2001-02-05 10:00:00', '2001-02-05 20:10:00', 1, 3, NULL);
 insert into time_entry (id, start_time, end_time, person, project, comment) values (4,'2005-02-05 10:00:00', '2005-02-05 20:10:00', 2, 1, NULL);
+insert into time_entry (id, start_time, end_time, person, project, comment) values (5,'2012-02-05 10:00:00', '2012-02-05 20:10:00', 1, 1, NULL);
 -- ----------------------------------------------------------------------------------------------------------------------
 -- Person time entry
 -- ----------------------------------------------------------------------------------------------------------------------

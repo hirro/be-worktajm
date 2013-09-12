@@ -80,11 +80,7 @@ angular.module('tpsApp')
     });
     // Time Entries
     $scope.timeEntries.then(function (timeEntries) {
-      $scope.timeEntries = _.filter(timeEntries, function (item) {
-        var startDate = new Date(item.startTime);
-        console.log('Start date %s, current date: %s', startDate, $scope.date);
-        return ($scope.date.getDate() === startDate.getDate()) && ($scope.date.getMonth() === startDate.getMonth() && ($scope.date.getFullYear() === startDate.getFullYear()));
-      });
+      $scope.timeEntries = timeEntries;
     }, function(reason) {
       $scope.spinner.message = 'No contact with server (timeEntries)';
       console.log('Failed to retrieve time entry list %s', reason.status);

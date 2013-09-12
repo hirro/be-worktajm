@@ -27,5 +27,5 @@ import java.util.List;
  * @author jiar
  */
 public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {
-     List<TimeEntry> findByPerson(final long personId);
+     List<TimeEntry> findByPersonId(final long personId);
 }

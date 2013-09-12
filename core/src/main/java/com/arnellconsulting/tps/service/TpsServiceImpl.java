@@ -114,7 +114,7 @@ public class TpsServiceImpl implements TpsService {
    // ~ TimeEntry
    @Override
    public List<TimeEntry> getTimeEntriesForPerson(final long userId) {
-      return timeEntryRepository.findByPerson(userId);
+      return timeEntryRepository.findByPersonId(userId);
    }
 
    @Override
