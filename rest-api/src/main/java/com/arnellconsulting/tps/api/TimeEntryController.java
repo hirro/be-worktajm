@@ -19,7 +19,6 @@
 package com.arnellconsulting.tps.api;
 
 import com.arnellconsulting.tps.exception.AccessDeniedException;
-import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
@@ -30,8 +29,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
