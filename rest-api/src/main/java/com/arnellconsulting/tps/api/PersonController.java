@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
+import org.springframework.security.access.annotation.Secured;
 
 /**
  * JSON API for Person.
@@ -57,6 +58,7 @@ public class PersonController {
       headers = { "Accept=application/json" }
    )
    @ResponseBody
+   @Secured("ROLE_USER")
    public Person create(@RequestBody final Person person) {
       log.debug("create");
       tpsService.savePerson(person);
@@ -69,6 +71,7 @@ public class PersonController {
       method = RequestMethod.DELETE
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
+   @Secured("ROLE_USER")
    public void delete(@PathVariable final long id) {
       log.debug("delete id: {}", id);
       tpsService.deletePerson(id);
@@ -77,6 +80,7 @@ public class PersonController {
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
+   @Secured("ROLE_USER")
    public List<Person> list() {
       log.debug("list");
 
@@ -89,6 +93,7 @@ public class PersonController {
       method = RequestMethod.GET
    )
    @ResponseBody
+   @Secured("ROLE_USER")
    public Person read(@PathVariable final long id) {
       log.debug("read id: {}", id);
 
@@ -104,13 +109,21 @@ public class PersonController {
       return tpsService.getPerson(id);
    }
 
+   /**
+    * Lets the logged in user update user profile information.
+    * 
+    * Obviously, user may only update its own user information.
+    * 
+    * @param person the updated user information
+    */
    @Transactional
    @RequestMapping(
       value = "/{id}",
       method = RequestMethod.PUT
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void update(@PathVariable final long id, @RequestBody final Person person) {
+   @Secured("ROLE_USER")
+   public void update(@RequestBody final Person person) {
       log.debug("update - email: {}", person.getEmail());
       tpsService.savePerson(person);
    }
