@@ -24,5 +24,17 @@ angular.module('tpsApp')
 
 	$scope.register = function () {
 		$location.path( '/register');
+	};
+
+	$scope.logout = function () {
+		$scope.user = null;
+	};
+
+	$scope.settings = function () {
+		// TBD
+	};
+
+	$scope.profile = function () {
+		// TBD
 	}
 });

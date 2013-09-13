@@ -7,6 +7,8 @@ angular.module('tpsApp')
 
     console.log('Initiating DashboardCtrl');
 
+    $scope.selectedDate = new Date();
+
     if ($rootScope.user) {
       console.log('User has a token, user name: %s', $rootScope.user.name);
       Restangular.setDefaultHeaders({
