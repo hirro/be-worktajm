@@ -26,7 +26,6 @@ import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
-import java.security.Principal;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -55,9 +54,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import org.joda.time.DateTime;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  *
@@ -104,9 +104,22 @@ public class TimeEntryControllerTest {
 
    @Test
    public void testList() throws Exception {
-      when(tpsServiceMock.getTimeEntriesForPerson(1)).thenReturn(timeEntries);
+      when(tpsServiceMock.getTimeEntriesForPerson(Mockito.anyLong(), Mockito.any(DateTime.class), Mockito.any(DateTime.class))).thenReturn(timeEntries);
       mockMvc.perform(get("/api/timeEntry").principal(principal).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(1);
+      verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(Mockito.anyLong(), Mockito.any(DateTime.class), Mockito.any(DateTime.class));
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testListWithDefinedRange() throws Exception {
+      final DateTime fromDate = new DateTime(0);
+      final DateTime toDate = new DateTime(1);
+      when(tpsServiceMock.getTimeEntriesForPerson(Mockito.anyLong(), Mockito.any(DateTime.class), Mockito.any(DateTime.class))).thenReturn(timeEntries);
+      mockMvc.perform(get("/api/timeEntry")
+              .param("from", fromDate.toString())
+              .param("to", toDate.toString())
+              .principal(principal).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+      verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(Mockito.anyLong(), Mockito.any(DateTime.class), Mockito.any(DateTime.class));
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
@@ -146,7 +159,7 @@ public class TimeEntryControllerTest {
       when(tpsServiceMock.getTimeEntry(1)).thenReturn(null);
       mockMvc.perform(
       put("/api/timeEntry/1").principal(principal).content(TestConstants.TIMEENTRY_A_UPDATE).contentType(MediaType.APPLICATION_JSON)).andExpect(
-      status().isInternalServerError());
+      status().isBadRequest());
       verify(tpsServiceMock, times(1)).getTimeEntry(1);
       verifyNoMoreInteractions(tpsServiceMock);
    }

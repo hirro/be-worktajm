@@ -19,6 +19,8 @@
 package com.arnellconsulting.tps.api;
 
 import com.arnellconsulting.tps.exception.AccessDeniedException;
+import com.arnellconsulting.tps.exception.InvalidParameterExeception;
+import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
@@ -35,12 +37,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.security.Principal;
+import java.util.Date;
 
 import java.util.List;
+import org.joda.time.DateTime;
 
 /**
  * JSON API for TimeEntry.
@@ -51,135 +56,143 @@ import java.util.List;
 @RequestMapping("api/timeEntry")
 @Slf4j
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
-public class TimeEntryController {
+public class TimeEntryController extends BaseController {
+
    @Autowired
    private transient TpsService tpsService;
 
+   //~--- methods -------------------------------------------------------------
+
    /**
-    * Creates a new time entry.
+    * Creates a new time entry for the logged in user.
+    *
     * @param timeEntry
     * @return TimeEntry
     */
    @Transactional
-   @RequestMapping(
-      method = RequestMethod.POST,
-      headers = { "Accept=application/json" }
-   )
+   @RequestMapping(method = RequestMethod.POST, headers = { "Accept=application/json" })
    @ResponseBody
    @Secured("ROLE_USER")
    public TimeEntry create(@RequestBody final TimeEntry timeEntry, final Principal principal) {
-      final PersonUserDetails userDetails;
-      userDetails = (PersonUserDetails) ((Authentication) principal).getPrincipal();
-      final Long userId = userDetails.getPerson().getId();
-      log.debug("create TimeEntry as user: {}", userId);
-      timeEntry.setPerson(userDetails.getPerson());
+      // Logged in person
+      final Person person = getAuthenticatedPerson(principal);
+
+      log.debug("create TimeEntry as user: {}", person.getId());
+      timeEntry.setPerson(person);
       tpsService.saveTimeEntry(timeEntry);
 
       return timeEntry;
    }
-   
+
    /**
-    * Deletes a time entry owner by the logged in person.
+    * Deletes a time entry belonging to the logged in user.
+    * It may only be deleted by the person owning it.
+    *
     * @param id logged in person
     */
-   @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.DELETE
-   )
+   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
    @ResponseStatus(HttpStatus.NO_CONTENT)
    @Secured("ROLE_USER")
    public void delete(@PathVariable final long id, final Principal principal) {
-      final PersonUserDetails userDetails;
-      userDetails = (PersonUserDetails) ((Authentication) principal).getPrincipal();      
-      final Long userId = userDetails.getPerson().getId();
-      log.debug("delete time entry with id: {} as user: {}", id, userId);
+      // Logged in person
+      final Person person = getAuthenticatedPerson(principal);
+
+      log.debug("delete time entry with id: {} as user: {}", id, person.getId());
       tpsService.deleteTimeEntry(id);
    }
 
    /**
-    * List all time entries owned by the logged in user.
+    * List all time entries belonging to the logged in user.
+    *
+    * @param from optional from date
+    * @param to optional to date
     * @return list of TimeEntry
     */
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
    @Secured("ROLE_USER")
-   public List<TimeEntry> list(final Principal principal) {
-      final PersonUserDetails userDetails;
-      userDetails = (PersonUserDetails) ((Authentication) principal).getPrincipal();
-      final Long userId = userDetails.getPerson().getId();
+   public List<TimeEntry> list(@RequestParam(value = "from", required = false) final String fromDate,
+                               @RequestParam(value = "to", required = false) final String toDate,
+                               final Principal principal) {
+      // Logged in person
+      final Person person = getAuthenticatedPerson(principal);
+   
+      // Parse start time, default to 0
+      DateTime from = new DateTime(0);
+      if (fromDate != null) {
+         from = DateTime.parse(fromDate);
+      }
 
-      log.debug("list time entries as user: {}", userId);
+      // Parse to time, default to current time
+      DateTime to = new DateTime();
+      if (toDate != null) {
+         to = DateTime.parse(toDate);
+      }
+      log.debug("list time entries as user: {}", person.getId());
 
-      return tpsService.getTimeEntriesForPerson(userId);
+      return tpsService.getTimeEntriesForPerson(person.getId(), from, to);
    }
 
    /**
-    * Read a time entry. May only be read by owner.
+    * Reads a time entry.
+    *
     * @param id of logged in user
     * @return TimeEntry
     * @throws AccessDeniedException if user is not authorized.
     */
    @Transactional
-   @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.GET
-   )
+   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
    @ResponseBody
    @Secured("ROLE_USER")
    public TimeEntry read(@PathVariable final long id, final Principal principal) throws AccessDeniedException {
-      final PersonUserDetails userDetails;
-      userDetails = (PersonUserDetails) ((Authentication) principal).getPrincipal();
-      final Long userId = userDetails.getPerson().getId();
+      final Person person = getAuthenticatedPerson(principal);
 
-      log.debug("read id: {} as user: {}", id, userId);
+      log.debug("read id: {} as user: {}", id, person.getId());
 
+      // Only return time entry if logged in person is the owner of the object.
       final TimeEntry timeEntry = tpsService.getTimeEntry(id);
-
-      if (timeEntry.getPerson().getId() == userId) {
+      if (timeEntry.getPerson().getId() == person.getId()) {
          return timeEntry;
       } else {
-
-         // Acccess denied
          log.error("Tried to access unauthorized item");
-
          throw new AccessDeniedException("Tried to access unauthorized item");
       }
    }
 
    /**
-    * Update a time entry. A time entry may only be modified by a person which owns it.
+    * Update a time entry.
+    * A time entry may only be modified by a person which owns it.
+    *
     * @param id the id of the person
     * @param timeEntry the time entry to be updated
     * @throws AccessDeniedException if time entry does not belong to user.
     */
    @Transactional
-   @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.PUT
-   )
+   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
    @ResponseStatus(HttpStatus.NO_CONTENT)
    @Secured("ROLE_USER")
    public void update(@PathVariable final long id,
                       @RequestBody final TimeEntry timeEntry,
                       final Principal principal)
-           throws AccessDeniedException {
-      final PersonUserDetails userDetails;
-      userDetails = (PersonUserDetails) ((Authentication) principal).getPrincipal();
-      final Long userId = userDetails.getPerson().getId();
+           throws AccessDeniedException, InvalidParameterExeception {
+      final Person person = getAuthenticatedPerson(principal);
 
-      log.debug("update time entry with id: {} as person: {}", timeEntry.getId(), userId);
-
+      // Make sure it if the time entry already exists, it is owned by the person logged in
+      // before it is updated.
       final TimeEntry existingTimeEntry = tpsService.getTimeEntry(timeEntry.getId());
-
-      if (existingTimeEntry.getPerson().getId() == userId) {
+      if (existingTimeEntry == null) {
+         log.debug("No item to update");
+         throw new InvalidParameterExeception("No item to update");
+      } else if (existingTimeEntry.getPerson().getId() == person.getId()) {
+         log.debug("Updating time entry with id: {} as person: {}", timeEntry.getId(), person.getId());
+         timeEntry.setPerson(person);
          tpsService.saveTimeEntry(timeEntry);
       } else {
-
          // Acccess denied
          log.error("Tried to access unauthorized item");
-
          throw new AccessDeniedException("Tried to access unauthorized item");
       }
    }
+
 }
