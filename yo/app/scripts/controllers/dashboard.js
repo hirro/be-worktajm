@@ -7,7 +7,7 @@ angular.module('tpsApp')
 
     console.log('Initiating DashboardCtrl');
 
-    $scope.selectedDate = new Date();
+    $scope.selectedDate = new Date().toISOString().substring(0, 10);
 
     if ($rootScope.user) {
       console.log('User has a token, user name: %s', $rootScope.user.name);
@@ -241,5 +241,12 @@ angular.module('tpsApp')
       }
       return result;
     };
+
+    $scope.updateTimeEntries = function() {
+      console.log('updateTimeEntries');
+    };
+
+    $scope.$watch('selectedDate', $scope.updateTimeEntries);
+
   });
 

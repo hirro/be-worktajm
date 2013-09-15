@@ -42,6 +42,7 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -207,10 +208,13 @@ public class TpsServiceImplTest {
     */
    @Test
    public void testGetTimeEntries() {
-      when(timeEntryRepository.findByPersonId(1)).thenReturn(timeEntriesA);
-      final List<TimeEntry> timeEntries = service.getTimeEntriesForPerson(1);
+      final DateTime startTime = new DateTime(0);
+      final DateTime endTime = new DateTime();
+
+      when(timeEntryRepository.findByPersonIdAndStartTimeBetween(1, startTime.toDate(), endTime.toDate())).thenReturn(timeEntriesA);
+      final List<TimeEntry> timeEntries = service.getTimeEntriesForPerson(1, startTime, endTime);
       assertThat(timeEntriesA.size(), is(timeEntries.size()));
-      verify(timeEntryRepository, times(1)).findByPersonId(1);
+      verify(timeEntryRepository, times(1)).findByPersonIdAndStartTimeBetween(1, startTime.toDate(), endTime.toDate());
       verifyNoMoreInteractions(timeEntryRepository);
    }
 

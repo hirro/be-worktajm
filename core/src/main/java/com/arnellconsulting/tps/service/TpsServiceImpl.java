@@ -24,6 +24,7 @@ import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 
@@ -36,6 +37,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import org.joda.time.DateTime;
 
 /**
  * Implements the TpsService interface.
@@ -113,8 +115,10 @@ public class TpsServiceImpl implements TpsService {
 
    // ~ TimeEntry
    @Override
-   public List<TimeEntry> getTimeEntriesForPerson(final long userId) {
-      return timeEntryRepository.findByPersonId(userId);
+   public List<TimeEntry> getTimeEntriesForPerson(final long userId,
+                                                  final DateTime from,
+                                                  final DateTime to) {
+     return timeEntryRepository.findByPersonIdAndStartTimeBetween(userId, from.toDate(), to.toDate());
    }
 
    @Override
@@ -133,7 +137,7 @@ public class TpsServiceImpl implements TpsService {
    }
 
    @Override
-   public boolean findCorporate(String company) {
+   public boolean findCorporate(final String company) {
       // No suppert for this yet
       return false;
    }

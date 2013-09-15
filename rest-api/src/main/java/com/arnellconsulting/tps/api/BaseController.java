@@ -13,23 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.arnellconsulting.tps.api;
 
-
-
-package com.arnellconsulting.tps.repository;
-
-import com.arnellconsulting.tps.model.TimeEntry;
-import java.util.Date;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
+import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.security.PersonUserDetails;
+import java.security.Principal;
+import org.springframework.security.core.Authentication;
 
 /**
  *
  * @author jiar
  */
-public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {
-   public List<TimeEntry> findByPersonIdAndStartTimeBetween(long userId, Date from, Date to);
-   List<TimeEntry> findByPersonId(final long personId);
+public class BaseController {
+
+   //~--- get methods ---------------------------------------------------------
+   public Person getAuthenticatedPerson(final Principal principal) {
+      PersonUserDetails userDetails;
+      userDetails = (PersonUserDetails) ((Authentication) principal).getPrincipal();
+      return userDetails.getPerson();
+   }
+   
 }

@@ -30,7 +30,7 @@ public class TpsUserDetailsService implements UserDetailsService {
 
    @Override
    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-      log.debug("loadUserByUsername({}(", username);
+      log.debug("loadUserByUsername({})", username);
       final Person person = repository.findByEmail(username);
       if (person == null) {
          throw new UsernameNotFoundException(username);

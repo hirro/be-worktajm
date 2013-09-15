@@ -21,8 +21,10 @@ package com.arnellconsulting.tps.service;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
+import java.util.Date;
 
 import java.util.List;
+import org.joda.time.DateTime;
 
 /**
  * Separation between repositories.
@@ -46,7 +48,7 @@ public interface TpsService {
    Person findPersonByEmail(final String email);
 
    // TimeEntry
-   public List<TimeEntry> getTimeEntriesForPerson(final long userId);
+   public List<TimeEntry> getTimeEntriesForPerson(final long userId, final DateTime from, final DateTime to);
    public TimeEntry getTimeEntry(final long id);
    public void deleteTimeEntry(final long id);
    public void saveTimeEntry(final TimeEntry timeEntry);
