@@ -4,6 +4,29 @@
 angular.module('tpsApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, $http) {
 
+  	var devMode = true;
+
+  	// Dev mode, using backdoor token
+  	if (devMode) {
+	  	$rootScope.user = {
+	  		name: 'jim@arnellconsulting.com',
+	  		token: 'jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107',
+	  		verified: true
+	  	};
+		$location.path( '/dashboard' );  		
+  	}
+
+  	// If user is logged in, the Restangular call must contain the token
+    if ($rootScope.user) {
+      console.log('User has a token, user name: %s', $rootScope.user.name);
+      Restangular.setDefaultHeaders({
+        'Auth-Token': $rootScope.user.token
+      });
+    } else {
+      console.log('Token missing, redirecting to login');
+      $location.path( '/main' );
+    }
+	
 	$scope.login = function () {
 
 		$scope.token = Restangular.one('authenticate').get({

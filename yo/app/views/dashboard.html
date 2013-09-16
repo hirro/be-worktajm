@@ -6,174 +6,29 @@
           </div>        
       </div>
 
+      <!-- Projects -->
     	<div class="row">
         <!-- Column 1 -->
         <div class="span3">
-          <ul class="thumbnails">
-            <li class="span3">
-              <div class="thumbnail">
-                <div class="projecs-header">
-                  <h4>Projects</h4>
-                    <a class="btn btn-primary btn-small" ng-click="showNewProject()">
-                      <i class="icon-plus"></i> Add new project</a>
-                </div>        
-
-                <div class="projects" id="projects">
-                  <div class="project" ng-repeat="project in projects">
-                    <div class="project-header in project-{{project.id}}" id="project-header-{{project.id}}">
-                        <a data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects">
-                          <i class="icon-chevron-right"></i>
-                        </a>
-                        {{project.name}}
-                        <a ng-click="stopProjectTimer(project)" class="btn btn-small pull-right" ng-show="project.active" >Stop</a>                  
-                        <a ng-click="startProjectTimer(project)" class="btn btn-small pull-right" ng-hide="project.active">Start</a>                  
-                    </div>
-                    <div id="project-form-{{project.id}}" class="collapse project-form project-{{project.id}}">
-                      <form>
-                        <fieldset>
-                          <a class="collapse-arrow" data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects">
-                            <i class="icon-chevron-down"></i>
-                          </a>
-                          <div class="control-group">
-                            <label>Project Name
-                              <span class="controls">
-                                <input type="text" placeholder="Project name" ng-model="project.name">
-                              </span>
-                            </label>
-                          </div>
-                          <div class="control-group">
-                            <label>Customer Name
-                              <span class="controls">
-                                <input type="text" placeholder="Customer name" ng-model="project.customerName"> 
-                              </span>
-                            </label>
-                          </div>
-
-                          <div class="control-group">
-                            <label>Rate
-                              <div class="controls">
-                                <input type="number" placeholder="Hourly rate" ng-model="project.rate">
-                              </div>
-                            </label>                      
-                          </div>
-
-                          <div class="control-group">
-                            <div class="controls">
-                              <div class="btn-group">
-                                <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-                                  More
-                                  <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                  <li class="mini ">
-                                    <small>
-                                      <a ng-click="removeProject(project)">Delete Project</a>                                    
-                                    </small>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="control-group">
-                            <div class="controls">
-                              <div class=" btn-group">
-                                <button class="btn btn-small icon-ok" ng-click="updateProject(project)"  data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects"> Save</button>
-                                <button class="btn btn-small icon-remove" ng-click="restoreProject(project)" data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects"> Close</button>
-                              </div>
-                            </div>
-                          </div>
-
-                        </fieldset>
-                      </form>                
-                    </div>                  
-                  </div>                  
-                </div>
-
-              </div>
-            </li>
-          </ul>
+          <div ng-include src="'views/partials/dashboard/projects.html'" ng-controller="DashboardProjectsCtrl">
+          </div>
         </div>
         <!-- Center column -->
         <div class="span6">
 
           <!-- Conditonal alert if user is not yet verified  -->
-          <div ng-include src="'views/partials/user.html'" ng-hide="person.emailVerified">
-          </div>
-
-          <!-- Projects -->
-          <div ng-include src="'views/partials/project.html'"/>            
+          <div ng-include src="'views/partials/user.html'" ng-hide="user.verified">
           </div>
 
           <!-- Time entries table -->
-          <h3>Time Entries</h3>
-          <form action="#">
-            <input type="date" ng-model="selectedDate"/>
-          </form>
-          <table  class="table table-bordered table-hover table-striped" >
-            <thead>
-              <tr>
-                <th rowspan="2" class="span2">Project</th>
-                <th colspan="3" class="span2">Time</th>
-                <th rowspan="2" class="span1">&nbsp;</th>
-              </tr>
-              <tr>
-                <th><small>Start</small></th>
-                <th><small>End</small></th>
-                <th><small>Duration</small></th>
-              </tr>
-            </thead>
-            <tbody ng-repeat="timeEntry in timeEntries">
-              <tr>
-                <td>{{timeEntry.project.name}}</td>
-                <td>{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
-                <td>{{getEndTime(timeEntry)}}</td>
-                <td>{{getDuration(timeEntry)}}</td>
-                <td>
-                  <div class="btn-group">
-                    <button class="btn btn-link icon-edit" ng-click="editTimeEntry(timeEntry)"></button>
-                    <button class="btn btn-link icon-remove" ng-click="removeTimeEntry(timeEntry)"></button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div ng-include src="'views/partials/dashboard/timeEntries.html'" ng-controller="DashboardTimeEntriesCtrl" >
+          </div>
+
         </div>
         <!-- Column 3 -->
-        <div class="span3">
-          <ul class="thumbnails">
-            <li class="span3">
-              <div class="thumbnail">
-                <h4>Company name</h4>
-                  <p>
-                    <strong>This week</strong><br/>
-                    100 hrs
-                  </p>
-                  <p>
-                    <strong>This month</strong><br/>
-                    400 hrs
-                  </p>
-                  <p>
-                    <strong>This year</strong><br/>
-                    10345 hrs
-                  </p>                                                
-              </div>
-            </li>
-            <li class="span3">
-              <div class="thumbnail">
-                <div class="">                
-                  <img src="../images/avatar-32x32.png" alt="">
-                </div>
-                <div class="">
-                  <strong>Jim Arnell</strong>
-                  <ul>
-                    <li>Project A</li>
-                    <li>12:00 (3h42m)</li>
-                  </ul>
-                </div>                                              
-              </div>
-            </li>
-          </ul>
+        <div class="span3" ng-include="'views/partials/dashboard/company.html'" >
+        </div>
+
         </div>
     	</div>
     </div>
