@@ -42,17 +42,30 @@ import javax.validation.constraints.NotNull;
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntry extends AbstractPersistable<Long> {
+   
+   // Start date and time
    @NotNull
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
    private Date  startTime;
+   
+   // End time
+   // XXX: Change to duration?
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
    private Date endTime;
+   
+   //
    private String comment;
+   
+   // Time entry must have one person.
    @ManyToOne
+   @NotNull
    private Person person;
+   
+   // Time entry must have a project
    @ManyToOne
+   @NotNull
    private Project project;
 
    public TimeEntry() {}

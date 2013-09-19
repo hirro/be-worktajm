@@ -1,7 +1,8 @@
+/*globals angular, $, _ */
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $filter, $q, Restangular, $location) {
+  .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $filter, $q, timeEntryService) {
 
     console.log('Initiating DashboardTimeEntriesCtrl');
 
@@ -9,47 +10,28 @@ angular.module('tpsApp')
     $scope.date = new Date();
     $scope.selectedDate = new Date().toISOString().substring(0, 10);
 
-    // Restangular
-    var baseTimeEntries = Restangular.all('timeEntry');
-    $scope.timeEntries = baseTimeEntries.getList();
-    $scope.timeEntries.then(function (timeEntries) {
-      $scope.timeEntries = timeEntries;
-    }, function(reason) {
-      $scope.spinner.message = 'No contact with server (timeEntries)';
-      console.log('Failed to retrieve time entry list %s', reason.status);
-      return $q.reject(reason);
-      // $scope.timeEntries = baseTimeEntries.getList();
+    // Load time entries from service
+    $scope.timeEntries = timeEntryService.getTimeEntries();
+    $scope.timeEntries.then(function (result) {
+      console.log('Entries:');
+      $scope.timeEntries = result;
+      _(result).each(function (e) {
+        console.log('Entry id: %d', e.id);
+      });      
     });
 
     // Time entries
     $scope.removeTimeEntry = function (timeEntry) {
       console.log('removeTimeEntry(%s)', timeEntry.id);
-
-      timeEntry.remove().then(function () {
+      timeEntryService.removeTimeEntry(timeEntry).then(function () {
         console.log('Project deleted from backend');
         $scope.timeEntries = _.without($scope.timeEntries, timeEntry);
       });
-
-      // var i = -1;
-      // $.each($scope.timeEntries, function (index, value) {
-      //   if (value.id === timeEntry.id) {
-      //     i = index;
-      //   }
-      // });
-      // $scope.timeEntries.splice(i, 1);
-      // console.log('Removing index ', i);
     };
     $scope.getTimeEntryById = function (id) {
       var item = $.grep($scope.timeEntries, function (e) { return e.id === id; })[0];
       return item;
     };
-
-    $scope.getTotalTime = function () {
-      $.each(timeEntries, function (i, val) {
-        console.log('Index: %s %s', i, val);
-      });
-    };
-
 
     $scope.getEndTime = function (timeEntry) {
       var result = 'In Progress';
@@ -64,5 +46,6 @@ angular.module('tpsApp')
     };
 
     $scope.$watch('selectedDate', $scope.updateTimeEntries);
+    $scope.$watch('addTimeEntry', $scope.updateTimeEntries);
 
   });

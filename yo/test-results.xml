@@ -1,10 +1,32 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="PhantomJS 1.9 (Mac)" package="undefined" timestamp="2013-09-08T08:25:32" id="0" hostname="sandrock-3.local" tests="4" errors="0" failures="4" time="0.008">
+  <testsuite name="PhantomJS 1.9 (Mac)" package="undefined" timestamp="2013-09-16T06:21:58" id="0" hostname="sandrock" tests="7" errors="0" failures="7" time="0.014">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.1 Safari/534.34"/>
     </properties>
-    <testcase name="should attach a list of projects to the scope" time="0.008" classname="PhantomJS 1.9 (Mac).Controller: DashboardCtrl">
+    <testcase name="should attach a list of awesomeThings to the scope" time="0.01" classname="PhantomJS 1.9 (Mac).Controller: DashboardProjectsCtrl">
+      <failure type="">Error: No module: tokenauth
+    at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1211
+    at ensure (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1152)
+    at module (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1383)
+    at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:2904
+</failure>
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;scope.awesomeThings&apos;)
+    at /Users/jiar/git/tps/yo/test/spec/controllers/DashboardProjects.js:20
+</failure>
+    </testcase>
+    <testcase name="should attach a list of awesomeThings to the scope" time="0.001" classname="PhantomJS 1.9 (Mac).Controller: DashboardTimeEntriesCtrl">
+      <failure type="">Error: No module: tokenauth
+    at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1211
+    at ensure (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1152)
+    at module (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1383)
+    at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:2904
+</failure>
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;scope.awesomeThings&apos;)
+    at /Users/jiar/git/tps/yo/test/spec/controllers/DashboardTimeEntries.js:20
+</failure>
+    </testcase>
+    <testcase name="should attach a list of projects to the scope" time="0" classname="PhantomJS 1.9 (Mac).Controller: DashboardCtrl">
       <failure type="">Error: No module: tokenauth
     at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1211
     at ensure (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1152)
@@ -15,7 +37,7 @@
     at /Users/jiar/git/tps/yo/test/spec/controllers/dashboard.js:31
 </failure>
     </testcase>
-    <testcase name="should attach a list of awesomeThings to the scope" time="0" classname="PhantomJS 1.9 (Mac).Controller: LoginCtrl">
+    <testcase name="should attach a list of awesomeThings to the scope" time="0.001" classname="PhantomJS 1.9 (Mac).Controller: LoginCtrl">
       <failure type="">Error: No module: tokenauth
     at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1211
     at ensure (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1152)
@@ -26,7 +48,21 @@
     at /Users/jiar/git/tps/yo/test/spec/controllers/login.js:20
 </failure>
     </testcase>
-    <testcase name="should do something" time="0" classname="PhantomJS 1.9 (Mac).Service: LoginService">
+    <testcase name="should make hidden element visible" time="0.001" classname="PhantomJS 1.9 (Mac).Directive: ensureUserNameUnique">
+      <failure type="">Error: No module: tokenauth
+    at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1211
+    at ensure (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1152)
+    at module (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1383)
+    at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:2904
+</failure>
+      <failure type="">Error: No module: tokenauth
+    at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1211
+    at ensure (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1152)
+    at module (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1383)
+    at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:2904
+</failure>
+    </testcase>
+    <testcase name="should do something" time="0.001" classname="PhantomJS 1.9 (Mac).Service: LoginService">
       <failure type="">Error: No module: tokenauth
     at /Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1211
     at ensure (/Users/jiar/git/tps/yo/app/bower_components/angular/angular.js:1152)

@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $filter, $q, Restangular, $location) {
+  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $filter, $q, Restangular, $location, timeEntryService) {
     console.log('Initiating DashboardProjectsCtrl');
 
     $scope.activeProject = null;
@@ -28,9 +28,12 @@ angular.module('tpsApp')
     $scope.person.then(function (person) {
       console.log('User loaded from backend: %s', person.email);
       $scope.person = person;
-      if (person.activeTimeEntry !== null) {
+      if (person.activeTimeEntry && person.activeTimeEntry.project) {
         console.log('User has an active project, %s', person.activeTimeEntry.project.name);
-        $scope.activeProject = person.activeTimeEntry.project;
+        // Find project with matching id
+        var project = $scope.getProjectWithId(person.activeTimeEntry.project.id);
+        project.active = true;
+        $scope.activeProject = project;
       } else {
         console.log('No active project');
       }
@@ -97,9 +100,9 @@ angular.module('tpsApp')
       });
     };
     $scope.startProjectTimer = function (project) {
-      console.log('startTimer');
+      console.log('startTimer for project id: %d', project.id);
       if ($scope.person.activeTimeEntry) {
-        console.log('Stopping active project');
+        console.log('Stopping active project %s', $scope.person.activeTimeEntry.project.id);
         $scope.stopProjectTimer($scope.person.activeTimeEntry.project);
       } else {
         console.log('No active project');
@@ -107,39 +110,16 @@ angular.module('tpsApp')
       project.active = true;
 
       // Create a new time entry
-      var timeEntry = { person: $scope.person, project: project, startTime: $.now()};
-      baseTimeEntries.post(timeEntry).then(function (newTimeEntry) {
-        console.log('Time entry created');
-        newTimeEntry.active = true;
-        $scope.timeEntries.push(newTimeEntry);
-        $scope.person.activeTimeEntry = newTimeEntry;
-        $scope.person.put();
-      }, function () {
-        console.error('Failed to add time entry');
-      });
+      timeEntryService.startTimer($scope.person, project);
     };
     $scope.stopProjectTimer = function (project) {
       console.log('stopTimer %s', project);
+      timeEntryService.stopTimer($scope.person, project);
       project.active = false;
-      if ($scope.person.activeTimeEntry) {
-        console.log('Stopping active project, %s', $scope.person.activeTimeEntry.project.name);
-        // Find project in list and mark it as non active
-        var oldProject = _.find($scope.projects, function (val) {
-          return val.id === $scope.person.activeTimeEntry.project.id;
-        });
-        console.log('Found matching active project, { id: %s, name: %s}', oldProject.id, oldProject.name);
-        oldProject.active = false;
-        // Persist time entry
-        $scope.person.activeTimeEntry.endTime = $.now();
-        $scope.person.activeTimeEntry.project.active = false;
-        $scope.person.activeTimeEntry.put();
-        $scope.person.activeTimeEntry = null;
-        $scope.person.put();
-      } else {
-        console.log('No active time entry');
-      }
     };
-
-    
+    $scope.getProjectWithId = function (id) {
+      var item = $.grep($scope.projects, function (e) { return e.id === id; })[0];
+      return item;
+    };
 
   });
