@@ -83,7 +83,8 @@ angular.module('tpsApp')
         return q;
       },
 
-      stopTimer: function(person) {
+      stopTimer: function(person, project) {
+        console.log('stopTimer');
         if (person) {
           if (person.activeTimeEntry) {
             var timeEntryId = person.activeTimeEntry.id;
@@ -94,6 +95,11 @@ angular.module('tpsApp')
               timeEntry.endTime = $.now();
               timeEntry.put().then(function () {
                 console.log('Time entry updated');
+                person.activeTimeEntry = null;
+                person.put().then(function () {
+                  console.log('Person is inactive in database');
+                  project.active = false;
+                });
               });
             } else {
               console.log('Failed to locate entry');

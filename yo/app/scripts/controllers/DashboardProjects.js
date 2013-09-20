@@ -70,25 +70,6 @@ angular.module('tpsApp')
         });
       }
     };
-    $scope.updateActiveProject = function () {
-      if ($scope.projects === null) {
-        console.log('projects not yet updated.');
-      } else if ($scope.person === null) {
-        console.log('person not yet updated');
-      } else {
-        if ($scope.person.activeTimeEntry !== null) {
-          $.each($scope.projects, function (index, project) {
-            if ($scope.activeProject !== null) {
-              if ($scope.person.activeTimeEntry.project.id === project.id) {
-                project.active = true;
-                $scope.activeProject = project;
-                console.log('Project at index %d is active (%s)', index, project.name);
-              }
-            }
-          });
-        }
-      }
-    };
     $scope.restoreProject = function (project) {
       console.log('restoreProject(id: %d, name: %s)', project.id, project.name);
       project.get().then(function (originalProject) {
@@ -101,21 +82,32 @@ angular.module('tpsApp')
     };
     $scope.startProjectTimer = function (project) {
       console.log('startTimer for project id: %d', project.id);
+
       if ($scope.person.activeTimeEntry) {
         console.log('Stopping active project %s', $scope.person.activeTimeEntry.project.id);
         $scope.stopProjectTimer($scope.person.activeTimeEntry.project);
       } else {
         console.log('No active project');
       }
-      project.active = true;
 
       // Create a new time entry
+      project.active = true;
       timeEntryService.startTimer($scope.person, project);
     };
-    $scope.stopProjectTimer = function (project) {
-      console.log('stopTimer %s', project);
-      timeEntryService.stopTimer($scope.person, project);
-      project.active = false;
+    $scope.stopProjectTimer = function () {
+      if ($scope.person &&
+          $scope.person.activeTimeEntry &&
+          $scope.person.activeTimeEntry.project) {
+        var project = $scope.person.activeTimeEntry.project;
+        console.log('stopTimer, stopping active project with id : %s', project.id);
+        project.active = false;
+        timeEntryService.stopTimer($scope.person, project);
+
+        // Hookup with the right object
+        $scope.getProjectWithId(project.id).active = false;
+      } else{
+        console.log('No active time entry found');
+      }
     };
     $scope.getProjectWithId = function (id) {
       var item = $.grep($scope.projects, function (e) { return e.id === id; })[0];
