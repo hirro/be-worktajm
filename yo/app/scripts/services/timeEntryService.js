@@ -76,7 +76,10 @@ angular.module('tpsApp')
           newTimeEntry.active = true;
           timeEntries.push(newTimeEntry);
           person.activeTimeEntry = newTimeEntry;
-          person.put();
+          person.put().then( function () {
+            console.log('startTimer - Person updated in backend');
+            $rootScope.$broadcast('onTimeEntryUpdated', newTimeEntry);
+          });
         }, function () {
           console.error('Failed to add time entry');
         });

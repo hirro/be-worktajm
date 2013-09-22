@@ -5,15 +5,26 @@ angular.module('tpsApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
 	var devMode = true;
+	var devToken = 'jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107';
 
 	// Dev mode, using backdoor token
 	if (devMode) {
-		$rootScope.user = {
-			name: 'jim@arnellconsulting.com',
-			token: 'jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107',
-			verified: true
-		};
-		//PersonService.get();
+	  Restangular.setDefaultHeaders({
+		'Auth-Token': devToken
+	  });
+		PersonService.getPerson().then(function (person) {
+			console.log('login - Person loaded from backend.');
+			console.log('login - email: %s', person.email);
+      if (person.activeTimeEntry) {
+        console.log('login - active project: %d', person.activeTimeEntry.project.id);
+      }
+			$rootScope.user = {
+				name: 'jim@arnellconsulting.com',
+				token: devToken,
+				verified: true
+			};
+		  $location.path( '/dashboard' );
+		});
 	}
 
 	// If user is logged in, the Restangular call must contain the token

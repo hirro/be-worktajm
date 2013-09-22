@@ -1,4 +1,4 @@
-/*globals $scope */
+/*globals $scope, $, _ */
 
 'use strict';
 
@@ -27,6 +27,14 @@ angular.module('tpsApp')
           console.log('Projects retrieved from backend, size: %d', result.length);
           projects = result;
           projectsLoaded = true;
+          var activeProjectId = PersonService.getActiveProjectId();
+          _(projects).each(function (project) {
+            if (project.id === activeProjectId) {
+              project.active = true;
+            } else {
+              project.active = false;
+            }
+          });
 
           // Notify all listeners that project list has been refreshed
           console.log('Sending event - projectsRefreshed');
@@ -38,7 +46,7 @@ angular.module('tpsApp')
       update: function (project) {
         if (project.id >= 0) {
           console.log('updateProject - update');
-          project.put().then(function (result) {
+          project.put().then(function () {
             console.log('updateProject - Backend updated successfully');
             $rootScope.$broadcast('onProjectUpdated', project);
           });

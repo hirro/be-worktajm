@@ -8,7 +8,6 @@ angular.module('tpsApp')
     $scope.activeProject = null;
     $scope.project = {};
     $scope.projects = {};
-    var person = PersonService.getPerson();
     ProjectService.refresh();
 
     // Show new project modal form
@@ -79,7 +78,14 @@ angular.module('tpsApp')
     // Handle projectsRefreshed event
     $scope.$on('onProjectsRefreshed', function (event, updatedProjectList) {
       console.log('onProjectsRefreshed - updated project list contains %d entries', updatedProjectList.length);
+      //$scope.projects = {};
+      var activeProjectId = PersonService.getActiveProjectId();
       $scope.projects = updatedProjectList;
+      _($scope.projects).each(function(p) {
+        if (p.id === activeProjectId) {
+          p.active = true;
+        }
+      });
     });
     $scope.$on('onProjectUpdated', function (event, updatedProject) {
       console.log('onProjectUpdated - %d', updatedProject.id);
