@@ -15,7 +15,7 @@
       <th><small>Duration</small></th>
     </tr>
   </thead>
-  <tbody ng-repeat="timeEntry in timeEntries">
+  <tbody ng-repeat="timeEntry in timeEntries track by $index">
     <tr>
       <td>{{timeEntry.project.name}}</td>
       <td>{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
