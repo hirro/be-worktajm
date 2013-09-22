@@ -9,7 +9,7 @@
 // * Keep track of synchronization status, possible to change appearance of time entry if it has not been persisted yet (slow or offline).
 // * 
 angular.module('tpsApp')
-  .service('timeEntryService', function timeEntryService($resource, Restangular) {
+  .service('TimeEntryService', function TimeEntryService($resource, $rootScope, Restangular) {
     var svc;
     var baseTimeEntries = Restangular.all('timeEntry');
     var selectedDate = new Date().toISOString().substring(0, 10);
@@ -26,22 +26,22 @@ angular.module('tpsApp')
         console.log('getTimeEntries');
         var q = baseTimeEntries.getList();
         return q.then(function (result) {
-          console.log('List of time entries retrieved from backend');
-          _(result).each(function (e) {
-            console.log('Entry id: %d', e.id);
-          });
+          console.log('List of time entries retrieved from backend, size: %d', result.length);
           timeEntries = result;
+          $rootScope.$broadcast('onTimeEntriesRefreshed', timeEntries);
           return timeEntries;
         });
       },
 
       removeTimeEntry: function (timeEntry) {
-        console.log('removeTimeEntry(%s)', timeEntry.id);        
+        var id = timeEntry.id;
+        console.log('removeTimeEntry(%s)', id);
 
         var q = timeEntry.remove();
         q.then(function () {
-          console.log('Project deleted from backend');
+          console.log('Time entry deleted from backend');
           timeEntries = _.without(timeEntries, timeEntry);
+          $rootScope.$broadcast('onTimeEntryRemoved', timeEntry);
         });
 
         // Mark time entry as invalid until it is physically removed
