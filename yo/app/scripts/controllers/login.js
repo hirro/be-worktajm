@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location) {
+  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
 	var devMode = true;
 
@@ -13,7 +13,7 @@ angular.module('tpsApp')
 			token: 'jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107',
 			verified: true
 		};
-		$location.path( '/dashboard' );
+		//PersonService.get();
 	}
 
 	// If user is logged in, the Restangular call must contain the token
@@ -29,6 +29,7 @@ angular.module('tpsApp')
 	
 	$scope.login = function () {
 
+		console.log('login');
 		$scope.token = Restangular.one('authenticate').get({
 			username: $scope.username,
 			password: $scope.password
