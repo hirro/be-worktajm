@@ -1,4 +1,4 @@
-/*globals describe, beforeEach, inject, expect, it */
+/*globals describe, beforeEach, inject, expect, it, projects */
 
 'use strict';
 
@@ -8,7 +8,7 @@ describe('Controller: DashboardCtrl', function () {
 	beforeEach(angular.mock.module('restangular'));
 
 	var DashboardCtrl, scope;
-	var Restangular, $httpBackend;
+	var $httpBackend;
 
 	// Initialize the controller and a mock scope
 	beforeEach(inject(function ($controller, $rootScope, $injector) {
@@ -22,9 +22,9 @@ describe('Controller: DashboardCtrl', function () {
 			{'id':3,'name':'Project C','description':null,'rate':null,'new':false}
 		];
 
-		$httpBackend = $injector.get("$httpBackend");
-		$httpBackend.whenGET("/api/project").respond(accountsModel);
-		$httpBackend.whenGET("/api/project/1").respond(accountsModel[0]);
+		$httpBackend = $injector.get('$httpBackend');
+		$httpBackend.whenGET('/api/project').respond(projects);
+		$httpBackend.whenGET('/api/project/1').respond(projects[0]);
 	}));
 
 	it('should attach a list of projects to the scope', function () {

@@ -69,16 +69,15 @@ angular.module('tpsApp')
       // Find project in the cached project list
       get: function (id) {
         console.log('Finding project with id %d', id);
-        var item = $.grep($scope.projects, function (e) { return e.id === id; })[0];
+        var item = $.grep(projects, function (e) { return e.id === id; })[0];
         return item;
       },
       //
       // Set project status
       // Only one project may be active at the time.
       setActive: function (project, active) {
-        console.log('Starting project');
-        project.isActive = active;
-        // Create open time entry       
+        console.log('setActive - %d', active);
+        this.get(project.id).active = active;
       }
 
     };
