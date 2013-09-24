@@ -9,7 +9,7 @@
 // * Keep track of synchronization status, possible to change appearance of time entry if it has not been persisted yet (slow or offline).
 // * 
 angular.module('tpsApp')
-  .service('TimeEntryService', function TimeEntryService($resource, $rootScope, Restangular) {
+  .service('TimeEntryService', function TimeEntryService($resource, $rootScope, Restangular, ProjectService) {
     var svc;
     var baseTimeEntries = Restangular.all('timeEntry');
     var selectedDate = new Date().toISOString().substring(0, 10);
@@ -33,14 +33,16 @@ angular.module('tpsApp')
         });
       },
 
-      removeTimeEntry: function (timeEntry) {
-        var id = timeEntry.id;
+      removeTimeEntry: function (entry) {
+        var id = entry.id;
+        var timeEntry = this.getTimeEntryById(id);
+        var index = _.indexOf(timeEntries, timeEntry);
         console.log('removeTimeEntry(%s)', id);
 
         var q = timeEntry.remove();
         q.then(function () {
           console.log('Time entry deleted from backend');
-          timeEntries = _.without(timeEntries, timeEntry);
+          timeEntries.splice(index, 1);
           $rootScope.$broadcast('onTimeEntryRemoved', timeEntry);
         });
 
@@ -68,20 +70,22 @@ angular.module('tpsApp')
       },
 
       startTimer: function(person, project) {
-        console.log('Starting timer');
+        console.log('startTimer');
         var timeEntry = { person: person, project: project, startTime: $.now()};
         var q = baseTimeEntries.post(timeEntry);
         q.then(function (newTimeEntry) {
-          console.log('Time entry created');
+          console.log('startTimer - Time entry created');
           newTimeEntry.active = true;
+          ProjectService.setActive(project, true);
           timeEntries.push(newTimeEntry);
           person.activeTimeEntry = newTimeEntry;
           person.put().then( function () {
             console.log('startTimer - Person updated in backend');
             $rootScope.$broadcast('onTimeEntryUpdated', newTimeEntry);
+            $rootScope.$broadcast('onProjectUpdated', project);
           });
         }, function () {
-          console.error('Failed to add time entry');
+          console.error('startTimer - Failed to add time entry');
         });
         return q;
       },
@@ -91,27 +95,28 @@ angular.module('tpsApp')
         if (person) {
           if (person.activeTimeEntry) {
             var timeEntryId = person.activeTimeEntry.id;
-            console.log('Stopping timer with id %d', timeEntryId);
+            console.log('stopTimer - Stopping active time entry with id %d', timeEntryId);
             // Refresh from db, promises?
             var timeEntry = this.getTimeEntryById(timeEntryId);
             if (timeEntry) {
               timeEntry.endTime = $.now();
               timeEntry.put().then(function () {
-                console.log('Time entry updated');
+                console.log('stopTimer - Time entry updated');
                 person.activeTimeEntry = null;
                 person.put().then(function () {
-                  console.log('Person is inactive in database');
-                  project.active = false;
+                  console.log('stopTimer - Person is inactive in database');
+                  ProjectService.setActive(project, false);
+                  //$rootScope.$broadcast('onProjectUpdated', project);
                 });
               });
             } else {
-              console.log('Failed to locate entry');
+              console.error('stopTimer - Failed to locate entry');
             }
           } else {
-            console.log('No active time entry for person %s', person.username);
+            console.error('stopTimer - No active time entry for person %s', person.username);
           }
         } else {
-          console.log('Person is null');
+          console.error('stopTimer - Person is null');
         }
       }
     };

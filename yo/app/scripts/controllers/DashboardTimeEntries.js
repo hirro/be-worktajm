@@ -35,17 +35,6 @@ angular.module('tpsApp')
       return result;
     };
 
-    // Service has updated the time entry
-    $scope.updateTimeEntry = function (updatedTimeEntry) {
-      console.log('updateTimeEntry');
-      var timeEntry = $scope.getTimeEntryById(updatedTimeEntry.id);
-      if (timeEntry) {
-        timeEntry = updatedTimeEntry;
-      } else {
-        $scope.timeEntries.push(timeEntry);
-      }
-    };
-
     //
     // Service events
     //
@@ -55,14 +44,10 @@ angular.module('tpsApp')
     });
     $scope.$on('onTimeEntryUpdated', function (event, newTimeEntry) {
       console.log('onTimeEntryUpdated, id: %d', newTimeEntry.id);
-      $scope.timeEntries.push(newTimeEntry);
+      //$scope.timeEntries.push(newTimeEntry);
     });
-    $scope.$on('onTimeEntryRemoved', function (event, timeEntry) {
-      console.log('onTimeEntryRemoved: %d', timeEntry.id);
-      var timeEntry = $scope.getTimeEntryById(timeEntry.id);
-      if (timeEntry) {
-        $scope.timeEntries = _.without($scope.timeEntries, timeEntry);        
-      }
+    $scope.$on('onTimeEntryRemoved', function (event, removedTimeEntry) {
+      console.log('onTimeEntryRemoved: %d', removedTimeEntry.id);
     });
 
     //

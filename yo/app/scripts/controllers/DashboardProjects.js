@@ -1,4 +1,4 @@
-/*globals angular, $, timeEntries, _ */
+/*globals angular, _ */
 'use strict';
 
 angular.module('tpsApp')
@@ -39,17 +39,16 @@ angular.module('tpsApp')
     //
     // Start the project
     $scope.startProjectTimer = function (project) {
-      console.log('startTimer for project id: %d', project.id);
+      console.log('startTimer -  project id: %d', project.id);
 
       if ($scope.person.activeTimeEntry) {
-        console.log('Stopping active project %s', $scope.person.activeTimeEntry.project.id);
+        console.log('startProjectTimer - Stopping active project %s', $scope.person.activeTimeEntry.project.id);
         $scope.stopProjectTimer($scope.person.activeTimeEntry.project);
       } else {
-        console.log('No active project');
+        console.log('startProjectTimer - No active project');
       }
 
       // Create a new time entry
-      project.active = true;
       TimeEntryService.startTimer($scope.person, project);
     };
     //
@@ -59,26 +58,17 @@ angular.module('tpsApp')
           $scope.person.activeTimeEntry &&
           $scope.person.activeTimeEntry.project) {
         var project = $scope.person.activeTimeEntry.project;
-        console.log('stopTimer, stopping active project with id : %s', project.id);
+        console.log('stopProjectTimer - Stopping active project with id : %s', project.id);
         project.active = false;
         TimeEntryService.stopTimer($scope.person, project);
-
-        // Hookup with the right object
-        var p = $scope.getById($scope.projects, project.id);
-        if (p) {
-          p.active = false;
-        } else {
-          console.error('Failed to find project');
-        }
       } else {
-        console.log('No active time entry found');
+        console.error('stopProjectTimer - No active time entry found');
       }
     };
     //
     // Handle projectsRefreshed event
     $scope.$on('onProjectsRefreshed', function (event, updatedProjectList) {
       console.log('onProjectsRefreshed - updated project list contains %d entries', updatedProjectList.length);
-      //$scope.projects = {};
       var activeProjectId = PersonService.getActiveProjectId();
       $scope.projects = updatedProjectList;
       _($scope.projects).each(function(p) {
@@ -89,6 +79,9 @@ angular.module('tpsApp')
     });
     $scope.$on('onProjectUpdated', function (event, updatedProject) {
       console.log('onProjectUpdated - %d', updatedProject.id);
+      var project = $scope.getById($scope.projects, updatedProject.id);
+      project.active = updatedProject.active;
+      project.name = updatedProject.name;
     });
     //
     //
