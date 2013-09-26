@@ -1,10 +1,25 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="PhantomJS 1.9 (Mac)" package="undefined" timestamp="2013-09-24T05:55:09" id="0" hostname="sandrock" tests="0" errors="0" failures="0" time="0">
+  <testsuite name="Chrome 32.0.1651 (Mac OS X 10.8.5)" package="" timestamp="2013-09-26T06:28:01" id="0" hostname="wing.lan" tests="3" errors="0" failures="1" time="0.021">
     <properties>
-      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.1 Safari/534.34"/>
+      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1651.2 Safari/537.36"/>
     </properties>
-    <system-out><![CDATA[
+    <testcase name="should initialize with empty project list, etc." time="0.013" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should use projects provided from service when receiving &quot;onProjectsRefreshed&quot; event" time="0.005" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should return the reference of the project with id" time="0.003" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl">
+      <failure type="">TypeError: Object [object Object] has no method &apos;getById&apos;
+    at null.&lt;anonymous&gt; (/Users/jiar/git/tps/yo/test/spec/controllers/DashboardProjects.js:39:34)
+</failure>
+    </testcase>
+    <system-out><![CDATA[Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Loading projects',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Loading projects',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'onProjectsRefreshed - updated project list contains %d entries', 3,Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'No active project',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Loading projects'
 ]]></system-out>
     <system-err/>
   </testsuite>

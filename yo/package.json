@@ -39,7 +39,9 @@
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.2",
     "karma-ng-html2js-preprocessor": "~0.1.0",
-    "karma-growl-reporter": "~0.1"
+    "karma-growl-reporter": "~0.1",
+    "karma-junit-reporter": "~0.1",
+    "karma-osx-reporter": "*"
   },
   "engines": {
     "node": ">=0.8.0"
