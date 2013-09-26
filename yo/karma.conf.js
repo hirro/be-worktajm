@@ -49,7 +49,7 @@ module.exports = function(config) {
     browsers: ['ChromeCanary'],
 
     // Reporters
-    reporters: ['progress', 'junit', 'osx'],
+    reporters: ['progress', 'junit', 'growl'],
     
 
     // Continuous Integration mode
