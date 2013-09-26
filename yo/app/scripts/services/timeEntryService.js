@@ -21,7 +21,7 @@ angular.module('tpsApp')
         selectedDate = date;
       },
 
-      // Gets the time entries for the currently selected date
+      //  Gets the time entries for the currently selected date
       getTimeEntries: function () {
         console.log('getTimeEntries');
         var q = baseTimeEntries.getList();
