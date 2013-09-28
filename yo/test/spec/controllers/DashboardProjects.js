@@ -1,4 +1,4 @@
-/*globals describe, beforeEach, $injector, inject, expect, it */
+/*globals describe, beforeEach, $injector, inject, expect, it, spyOn */
 'use strict';
 
 describe('Controller: DashboardProjectsCtrl', function () {
@@ -15,35 +15,35 @@ describe('Controller: DashboardProjectsCtrl', function () {
   ];
   var timeEntries = [
     {id: 1, startTime: 2, endTime: 3},
-    {id: 2, startTime: 2, endTime: 3},    
+    {id: 2, startTime: 2, endTime: 3}
   ];
 
   // Initialize the ProjectServiceMock
-  beforeEach(function() {
+  beforeEach(function () {
     ProjectServiceMock = {
-      remove: function(project) {
+      remove: function (project) {
         //
       },
-      refresh: function() {
+      refresh: function () {
         //
       },
-      update: function() {
+      update: function () {
         //
       }
     };
   });
 
   // Initialize the TimeEntryServiceMock
-  beforeEach(function() {
+  beforeEach(function () {
     TimeEntryServiceMock = {
       // TBD
     };
   });
 
   // Initialize the PersonServiceMock
-  beforeEach(function() {
+  beforeEach(function () {
     PersonServiceMock = {
-      getActiveProjectId: function() {
+      getActiveProjectId: function () {
         return projects[2];
       }
     };
@@ -78,28 +78,28 @@ describe('Controller: DashboardProjectsCtrl', function () {
     expect(scope.getById(scope.projects, 2)).toEqual(projects[1]);
   });
 
-  it('should create a new project using the ProjectService'), function() {
+  it('should create a new project using the ProjectService', function () {
     var project = projects[0];
     scope.project.name = 'New Project';
     scope.project.rate = 530;
-    scope.project.comment = 'Hej';    
+    scope.project.comment = 'Hej';
     scope.createProject();
-  };
+  });
 
   it('should call remove project in ProjectService', function () {
     var project = projects[1];
-    scope.removeProject(project);
+    scope.removProject(project);
     spyOn(ProjectServiceMock, 'remove').andCallThrough();
     // expect(ProjectServiceMock.remove).toHaveBeenCalled();
   });
 
-  it('should should call update in ProjectService', function() {
+  it('should should call update in ProjectService', function () {
     var project = projects[2];
     spyOn(ProjectServiceMock, 'update').andCallThrough();
     // expect(ProjectServiceMock.update).toHaveBeenCalled();
   });
 
-  it('should just create a new timer task when no project is active', function() {
+  it('should just create a new timer task when no project is active', function () {
     var projectToStart = projects[0];
 
     // Clear active project
