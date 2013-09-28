@@ -1,25 +1,38 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="Chrome 32.0.1651 (Mac OS X 10.8.5)" package="" timestamp="2013-09-26T06:28:01" id="0" hostname="wing.lan" tests="3" errors="0" failures="1" time="0.021">
+  <testsuite name="Chrome 32.0.1651 (Mac OS X 10.8.5)" package="" timestamp="2013-09-28T06:59:56" id="0" hostname="wing.lan" tests="7" errors="0" failures="2" time="0.024">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1651.2 Safari/537.36"/>
     </properties>
-    <testcase name="should initialize with empty project list, etc." time="0.013" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should use projects provided from service when receiving &quot;onProjectsRefreshed&quot; event" time="0.005" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should return the reference of the project with id" time="0.003" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl">
-      <failure type="">TypeError: Object [object Object] has no method &apos;getById&apos;
-    at null.&lt;anonymous&gt; (/Users/jiar/git/tps/yo/test/spec/controllers/DashboardProjects.js:39:34)
+    <testcase name="should initialize with empty project list, etc." time="0.012" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should use projects provided from service when receiving &quot;onProjectsRefreshed&quot; event" time="0.003" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should return the reference of the project with id" time="0.002" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should create a new project using the ProjectService" time="0.002" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should call remove project in ProjectService" time="0.002" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl">
+      <failure type="">TypeError: Object #&lt;Object&gt; has no method &apos;removProject&apos;
+    at null.&lt;anonymous&gt; (/Users/jiar/git/tps/yo/test/spec/controllers/DashboardProjects.js:91:11)
+</failure>
+    </testcase>
+    <testcase name="should should call update in ProjectService" time="0.002" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should just create a new timer task when no project is active" time="0.001" classname="Chrome 32.0.1651 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl">
+      <failure type="">TypeError: Cannot read property &apos;activeTimeEntry&apos; of undefined
+    at Object.$scope.startProjectTimer (/Users/jiar/git/tps/yo/app/scripts/controllers/DashboardProjects.js:44:24)
+    at null.&lt;anonymous&gt; (/Users/jiar/git/tps/yo/test/spec/controllers/DashboardProjects.js:106:11)
 </failure>
     </testcase>
     <system-out><![CDATA[Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
  'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
- 'Loading projects',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
  'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
- 'Loading projects',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
  'onProjectsRefreshed - updated project list contains %d entries', 3,Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
- 'No active project',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
  'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
- 'Loading projects'
+ 'Finding project with id %d', 2,Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'createProject(name: %s, id: %d)', 'New Project', undefined,Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'updateProject: %d', undefined,Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1651 (Mac OS X 10.8.5) LOG: LOG
+ 'startTimer -  project id: %d', 1
 ]]></system-out>
     <system-err/>
   </testsuite>
