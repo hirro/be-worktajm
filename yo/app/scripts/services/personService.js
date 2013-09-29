@@ -1,5 +1,6 @@
 'use strict';
 
+// This service handle operations for the currently logged in user.
 angular.module('tpsApp')
   .service('PersonService', function PersonService($rootScope, Restangular) {
     var person;
@@ -16,15 +17,16 @@ angular.module('tpsApp')
         return person;
       },
       getActiveProjectId: function () {
+        var result = -1;
         if (person &&
             person.activeTimeEntry &&
-             person.activeTimeEntry.project) {
+            person.activeTimeEntry.project) {
           console.log('getActiveProjectId - %d', person.activeTimeEntry.project.id);
-          return person.activeTimeEntry.project.id;
+          result = person.activeTimeEntry.project.id;
         } else {
           console.log('No active project');
-          return -1;
         }
+        return result;
       }
     };
     return svc;

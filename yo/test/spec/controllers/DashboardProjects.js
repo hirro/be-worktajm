@@ -6,7 +6,6 @@ describe('Controller: DashboardProjectsCtrl', function () {
   // load the controller's module
   beforeEach(module('tpsApp'));
 
-  var ProjectServiceMock, TimeEntryServiceMock, PersonServiceMock;
   var DashboardProjectsCtrl, scope;
   var projects = [
     {'id': 1, 'name': 'Project A', 'description': null, 'rate': null, 'new': false},
@@ -19,35 +18,35 @@ describe('Controller: DashboardProjectsCtrl', function () {
   ];
 
   // Initialize the ProjectServiceMock
-  beforeEach(function () {
-    ProjectServiceMock = {
-      remove: function (project) {
-        //
-      },
-      refresh: function () {
-        //
-      },
-      update: function () {
-        //
-      }
-    };
-  });
+  var ProjectServiceMock = {
+    remove: function (project) {
+      console.log('ProjectServiceMock:remove called');
+    },
+    refresh: function () {
+      console.log('ProjectServiceMock:refresh called');
+    },
+    update: function () {
+      console.log('ProjectServiceMock:update called');
+    }
+  };
 
   // Initialize the TimeEntryServiceMock
-  beforeEach(function () {
-    TimeEntryServiceMock = {
-      // TBD
-    };
-  });
+  var TimeEntryServiceMock = {
+    startTimer: function () {
+      console.log('TimeEntryServiceMock:startTimer called');
+    },
+    stopTimer: function () {
+      console.log('TimeEntryServiceMock:stopTimer called');
+    }
+  };
 
   // Initialize the PersonServiceMock
-  beforeEach(function () {
-    PersonServiceMock = {
-      getActiveProjectId: function () {
-        return projects[2];
-      }
-    };
-  });
+  var activeProjectId = -1;
+  var PersonServiceMock = {
+    getActiveProjectId: function () {
+      return activeProjectId;
+    }
+  };
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $injector) {
@@ -59,7 +58,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
       TimeEntryService: TimeEntryServiceMock
     });
     var project = [];
-    DashboardProjectsCtrl.$inject = ['$scope',  '$route'];
+    DashboardProjectsCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimeEntryService'];
   }));
 
   it('should initialize with empty project list, etc.', function () {
@@ -87,10 +86,15 @@ describe('Controller: DashboardProjectsCtrl', function () {
   });
 
   it('should call remove project in ProjectService', function () {
-    var project = projects[1];
-    scope.removProject(project);
+    // Register spyes
     spyOn(ProjectServiceMock, 'remove').andCallThrough();
-    // expect(ProjectServiceMock.remove).toHaveBeenCalled();
+
+    // Test code
+    var project = projects[1];
+    scope.removeProject(project);
+
+    // Check spyes
+    expect(ProjectServiceMock.remove).toHaveBeenCalled();
   });
 
   it('should should call update in ProjectService', function () {
@@ -100,11 +104,44 @@ describe('Controller: DashboardProjectsCtrl', function () {
   });
 
   it('should just create a new timer task when no project is active', function () {
-    var projectToStart = projects[0];
-
-    // Clear active project
-    scope.startProjectTimer(projectToStart);
+    // Register spyes
     spyOn(TimeEntryServiceMock, 'startTimer').andCallThrough();
+    spyOn(TimeEntryServiceMock, 'stopTimer').andCallThrough();
+
+    // Preconditions
+    // var activeProjectId = -1;
+    // expect(PersonServiceMock.getActiveProjectId()).not.toBeGreaterThan(0);
+
+    // Test code
+    var projectToStart = projects[0];
+    scope.startProjectTimer(projectToStart);
+    activeProjectId = 2;
+
+    // Verifications
+    // Timer must be started
     expect(TimeEntryServiceMock.startTimer).toHaveBeenCalled();
+    expect(TimeEntryServiceMock.stopTimer).not.toHaveBeenCalled();
+    expect(PersonServiceMock.getActiveProjectId()).toBeGreaterThan(0);
+  });
+
+  it('should stop active timer when project is active', function () {
+    // Register spyes
+    spyOn(TimeEntryServiceMock, 'startTimer').andCallThrough();
+
+    // Test code
+    var projectToStart = projects[0];
+    scope.startProjectTimer(projectToStart);
+
+    // Verifications
+
+  });
+
+
+  it('should create a new timer task and stop the running one when project is active', function () {
+    // Setup test
+
+    // Test code
+
+    // Verifications
   });
 });
