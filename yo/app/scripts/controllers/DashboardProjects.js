@@ -41,28 +41,33 @@ angular.module('tpsApp')
     $scope.startProjectTimer = function (project) {
       console.log('startTimer -  project id: %d', project.id);
 
-      if ($scope.person.activeTimeEntry) {
-        console.log('startProjectTimer - Stopping active project %s', $scope.person.activeTimeEntry.project.id);
-        $scope.stopProjectTimer($scope.person.activeTimeEntry.project);
+      // Check if old project needs to be stopped first
+      var activeProjectId = PersonService.getActiveProjectId();
+      if (activeProjectId >= 0) {
+        console.log('startProjectTimer - Stopping active project %s', activeProjectId);
+        $scope.stopProjectTimer();
       } else {
         console.log('startProjectTimer - No active project');
       }
 
-      // Create a new time entry
+      // Once project is stopped, create a new time entry
       TimeEntryService.startTimer($scope.person, project);
     };
     //
     // Stop the active project
     $scope.stopProjectTimer = function () {
-      if ($scope.person &&
-          $scope.person.activeTimeEntry &&
-          $scope.person.activeTimeEntry.project) {
-        var project = $scope.person.activeTimeEntry.project;
-        console.log('stopProjectTimer - Stopping active project with id : %s', project.id);
-        project.active = false;
-        TimeEntryService.stopTimer($scope.person, project);
+      var activeProjectId = PersonService.getActiveProjectId();
+      if (activeProjectId >= 0) {
+        var project = $scope.getById($scope.projects, activeProjectId);
+        if (project) {
+          console.log('stopProjectTimer - Stopping active project with id : %d', project.id);
+          project.active = false;
+          TimeEntryService.stopTimer($scope.person, project);
+        } else {
+          console.error('Failed to find matching project with id %d', activeProjectId);
+        }
       } else {
-        console.error('stopProjectTimer - No active time entry found');
+        console.error('stopProjectTimer - No active project');
       }
     };
     //

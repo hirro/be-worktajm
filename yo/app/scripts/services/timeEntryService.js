@@ -78,6 +78,7 @@ angular.module('tpsApp')
           newTimeEntry.active = true;
           ProjectService.setActive(project, true);
           timeEntries.push(newTimeEntry);
+          PersonService.setActiveProjectId(project.id);
           person.activeTimeEntry = newTimeEntry;
           person.put().then( function () {
             console.log('startTimer - Person updated in backend');
