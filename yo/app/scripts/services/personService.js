@@ -7,12 +7,15 @@ angular.module('tpsApp')
     var svc;
     svc = {
       getPerson: function () {
+        console.log('PersonService:getPerson')
         person = Restangular.one('person', 1).get();
         person.then(function (p) {
+          console.log('PersonService:getPerson - Backend responded %s', person.toString());
           person = p;
           $rootScope.person = person;
+          return p;
         }, function () {
-          console.log('Failed to load the person from backend');
+          console.error('Failed to load the person from backend');
         });
         return person;
       },
