@@ -56,7 +56,7 @@ describe('Service: personService', function () {
     console.log('XxxxxXX');
     //spyOn(PersonService, 'getPerson').andCallThrough();
     var person = personSvc.getPerson();
-    //expect(PersonService.getPerson).toHaveBeenCalled();
+    //expect(PersonService.getPerson).t©oHaveBeenCalled();
 
     var resolvedValue;
     person.then(function (pr) {
