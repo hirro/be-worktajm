@@ -1,3 +1,4 @@
+/* globals before, beforeEach, describe, inject, $injector, it, testIt, Restangular, expect */
 'use strict';
 
 describe('Service: testIt', function () {
@@ -11,11 +12,19 @@ describe('Service: testIt', function () {
     testIt = _testIt_;
   }));
 
-  // Mock the Restangular service
   var Restangular;
-  before(inject(function (_Restangular_) {
-    Restangular = _Restangular_;
+  var $httpBackend, $rootScope;
+  beforeEach(inject(function($injector) {
+    $rootScope = $injector.get('$rootScope');
+    
+    // Set up the mock http service responses
+    $httpBackend = $injector.get('$httpBackend');
+
+    //
+    $httpBackend.when('GET', '/person/1').respond({userId: 'userX'}, {'A-Token': 'xxx'});
+    Restangular = $injector.get('Restangular');
   }));
+
 
   it('should do something', function () {
     expect(testIt.a()).toBe(456);
@@ -23,6 +32,8 @@ describe('Service: testIt', function () {
 
   it('should return the promise to a person', function() {
     var person = testIt.b();
+    var x = Restangular.one('person', 1).get();
+    //$httpBackend.flush();
     //person.resolve();
   });
  

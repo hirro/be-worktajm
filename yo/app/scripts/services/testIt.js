@@ -1,3 +1,4 @@
+/* globals log */
 'use strict';
 
 angular.module('tpsApp')
