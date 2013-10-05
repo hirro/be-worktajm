@@ -14,9 +14,9 @@ describe('Service: personService', function () {
 
   // Test constants
   var projects = [
-    { id: 1, name: 'Project A', rate: null }];
+    { id: 301, name: 'Project A', rate: null }];
   var timeEntries = [
-    { id: 1, startTime: 0, endTime: 2, project: projects[0] }];
+    { id: 201, startTime: 0, endTime: 2, project: projects[0] }];
   var persons = [
     { id: 1, username: 'User A', activeTimeEntry: null },
     { id: 2, username: 'User B' },
@@ -86,15 +86,40 @@ describe('Service: personService', function () {
   describe('getActiveProjectId', function () {
 
     it('should return the -1 when no project is active', function () {
+
+      // Test setup
       httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      var person = null;
+      service.getPerson().then(function (result) {
+        person = result;
+      }, function () {
+      });
+
+      // Make the requests go though
+      scope.$digest();
+      httpBackend.flush();
+
+      // Test
       var projectId = service.getActiveProjectId();
+
       expect(projectId).toBe(-1);
     });
 
-    it('should return the project id when project is active', function () {
-      httpBackend.whenGET('http://localhost:8080/api/api/person/3').respond(null);
+    it('should return the project id when no user is logged in', function () {
+      // Test setup
+      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[2]);
+      var person = null;
+      service.getPerson().then(function (result) {
+        person = result;
+      }, function () {
+      });
+
+      // Make the requests go though
+      scope.$digest();
+      httpBackend.flush();
+
       var projectId = service.getActiveProjectId();
-      expect(projectId).toBe(-1);
+      expect(projectId).toBe(301);
     });
 
   });
