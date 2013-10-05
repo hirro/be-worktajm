@@ -4,11 +4,10 @@
 
 describe('Service: personService', function () {
 
-  // API
-  var httpBackend;
-  var personSvc, persons;
-  var Restangular;
-  var scope;
+  var svc,
+      httpBackend,
+      scope,
+      restangular;
 
   // Test constants
   var persons = [
@@ -19,33 +18,18 @@ describe('Service: personService', function () {
   // load the service's module
   beforeEach(module('tpsApp'));
 
+  beforeEach(inject(function(Restangular, _$httpBackend_){
+    restangular = Restangular;
+    $httpBackend = _$httpBackend_;
+}));
+
   // Inject the wanted responses into httpBackend
-  beforeEach(inject(function ($httpBackend) {
-    $httpBackend.whenGET('/api/types/ferrari/1').respond(persons[0]);    
-  }));
-
-  // Inject the person service
-  inject(function($httpBackend, PersonService) {
-    personSvc = PersonService;
+  beforeEach(inject(function ($httpBackend, PersonService) {
+    svc = PersonService;
     httpBackend = $httpBackend;
-  });  
-  // // Inject the used services
-  // beforeEach(inject(function(_$httpBackend_, $rootScope, _Restangular_) {
-  //   httpBackend = _$httpBackend_;
-  //   //httpBackend.expectGET('../json/community/getSearchResults').respond('[{"id":"tester"},{"username":"tester2"}]');
-  //   Restangular = _Restangular_;
-  //   scope = $rootScope.$new();
-
-  //   // Model
-  //   persons = [
-  //     { id: 1, email: 'alice@example.com' },
-  //     { id: 2, email: 'bob@example.com' },
-  //   ];
-  //   httpBackend.whenGET('/person/1').respond(persons[0]);
-
-  //   // Service
-
-  // }));
+    // scope = $rootScope;
+    // restangular = Restangular;
+  }));
 
   afterEach(function () {
     httpBackend.verifyNoOutstandingExpectation();
@@ -53,22 +37,27 @@ describe('Service: personService', function () {
   });
 
   it('should get the currenly logged in person', function () {
-    console.log('XxxxxXX');
-    //spyOn(PersonService, 'getPerson').andCallThrough();
-    var person = personSvc.getPerson();
-    //expect(PersonService.getPerson).t©oHaveBeenCalled();
+    console.log('bbbbb');
+    httpBackend.expectGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
 
-    var resolvedValue;
-    person.then(function (pr) {
-      resolvedValue = pr;
-    });
+    spyOn(svc, 'getPerson').andCallThrough();
+    var person = svc.getPerson();
+    restangular.one('person', 1).get();
+    expect(svc.getPerson).toHaveBeenCalled();
 
     httpBackend.flush();
-    //person.resolve();
-    expect(person).toBeDefined();
-    expect(person.id).toBe(1);
-    expect(person.username).toBeDefined();
-    expect(person.username).toBe('alice@example.com');
+
+    // var resolvedValue;
+    // person.then(function (pr) {
+    //   resolvedValue = pr;
+    // });
+
+    //httpBackend.flush();
+    // //person.resolve();
+    // expect(person).toBeDefined();
+    // expect(person.id).toBe(1);
+    // expect(person.username).toBeDefined();
+    // expect(person.username).toBe('alice@example.com');
   });
 
 });
