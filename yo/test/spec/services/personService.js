@@ -36,7 +36,7 @@ describe('Service: personService', function () {
 
   describe('getPerson', function () {
 
-    it('should get the currenly logged in person', function () {
+  it('should get the currenly logged in person', function () {
 
       // Test setup
       httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
@@ -46,18 +46,18 @@ describe('Service: personService', function () {
       var person = null;
       service.getPerson().then(function (result) {
         person = result;
-      });
+    });
 
       // Make the requests go though
       scope.$digest();
-      httpBackend.flush();
+    httpBackend.flush();
 
       expect(service.getPerson).toHaveBeenCalled();
-      expect(person).toBeDefined();
-      expect(person.id).toBe(1);
-      expect(person.username).toBeDefined();
+    expect(person).toBeDefined();
+    expect(person.id).toBe(1);
+    expect(person.username).toBeDefined();
       expect(person.username).toBe('User A');
-    });
+  });
 
     it('should fail gracefully when token has expired or is invalid', function () {
 
