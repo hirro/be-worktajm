@@ -8,7 +8,7 @@ angular.module('tpsApp')
   .service('ProjectService', function ProjectService(Restangular, $rootScope, PersonService) {
     var svc;
     var baseProjects = Restangular.all('project');
-    var projects = {};
+    var projects = null;
     var projectsLoaded = false;
 
     svc = {
@@ -39,7 +39,9 @@ angular.module('tpsApp')
           // Notify all listeners that project list has been refreshed
           console.log('Sending event - projectsRefreshed');
           $rootScope.$broadcast('onProjectsRefreshed', projects);
+          return result;
         });
+        return q;
       },
       //
       // Update or create project

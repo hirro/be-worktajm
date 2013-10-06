@@ -49,8 +49,14 @@ module.exports = function(config) {
     browsers: ['ChromeCanary'],
 
     // Reporters
-    reporters: ['progress', 'junit', 'growl'],
-    
+    reporters: ['progress', 'junit', 'growl', 'coverage'],
+
+   preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      'app/scripts/**/*.js': ['coverage']
+    },    
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
