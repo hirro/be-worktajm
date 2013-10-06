@@ -1,69 +1,95 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="Chrome 32.0.1660 (Mac OS X 10.8.5)" package="" timestamp="2013-10-05T11:05:35" id="0" hostname="wing.lan" tests="16" errors="0" failures="0" time="0.065">
+  <testsuite name="Chrome 32.0.1661 (Mac OS X 10.8.5)" package="" timestamp="2013-10-06T12:25:27" id="0" hostname="wing.lan" tests="19" errors="0" failures="1" time="0.085">
     <properties>
-      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1660.0 Safari/537.36"/>
+      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1661.0 Safari/537.36"/>
     </properties>
-    <testcase name="should initialize with empty project list, etc." time="0.023" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should use projects provided from service when receiving &quot;onProjectsRefreshed&quot; event" time="0.003" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should return the reference of the project with id" time="0.003" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should create a new project using the ProjectService" time="0.003" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should call remove project in ProjectService" time="0.002" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should should call update in ProjectService" time="0.002" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should just create a new timer task when no project is active" time="0.003" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should stop active timer when project is active" time="0.002" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should create a new timer task and stop the running one when project is active" time="0.002" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
-    <testcase name="should get the currenly logged in person" time="0.009" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Service: personService getPerson"/>
-    <testcase name="should fail gracefully when token has expired or is invalid" time="0.004" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Service: personService getPerson"/>
-    <testcase name="should return the -1 when no project is active" time="0.001" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Service: personService getActiveProjectId"/>
-    <testcase name="should return the project id when project is active" time="0.002" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Service: personService getActiveProjectId"/>
-    <testcase name="should make an ajax call to api/v1/fruits" time="0.002" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Service: testIt"/>
-    <testcase name="should resolve to an array of fruit" time="0.002" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Service: testIt"/>
-    <testcase name="should reject the promise and respond with error" time="0.002" classname="Chrome 32.0.1660 (Mac OS X 10.8.5).Service: testIt"/>
-    <system-out><![CDATA[Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Initiating DashboardProjectsCtrl',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:refresh called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Initiating DashboardProjectsCtrl',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:refresh called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'onProjectsRefreshed - updated project list contains %d entries', 3,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Initiating DashboardProjectsCtrl',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:refresh called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Finding project with id %d', 2,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Initiating DashboardProjectsCtrl',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:refresh called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'createProject(name: %s, id: %d)', 'New Project', undefined,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'updateProject: %d', undefined,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:update called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Initiating DashboardProjectsCtrl',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:refresh called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'removeProject: %d', 2,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:remove called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Initiating DashboardProjectsCtrl',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:refresh called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Initiating DashboardProjectsCtrl',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:refresh called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'startTimer -  project id: %d', 1,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'startProjectTimer - No active project',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'TimeEntryServiceMock:startTimer called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Initiating DashboardProjectsCtrl',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:refresh called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'startTimer -  project id: %d', 1,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'startProjectTimer - Stopping active project %s', 2,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Finding project with id %d', 2,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: ERROR
- 'Failed to find matching project with id %d', 2,Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'TimeEntryServiceMock:startTimer called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Initiating DashboardProjectsCtrl',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'ProjectServiceMock:refresh called',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'PersonService:getPerson',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'PersonService:getPerson - Backend responded %s', '[object Object]',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'PersonService:getPerson',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: ERROR
- 'Failed to load the person from backend',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'No active project',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'No active project',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Got data',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Bajs off',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Failed to get data',Chrome 32.0.1660 (Mac OS X 10.8.5) LOG: LOG
- 'Bajs on'
+    <testcase name="should initialize with empty project list, etc." time="0.023" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should use projects provided from service when receiving &quot;onProjectsRefreshed&quot; event" time="0.004" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should return the reference of the project with id" time="0.004" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should create a new project using the ProjectService" time="0.003" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should call remove project in ProjectService" time="0.002" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should should call update in ProjectService" time="0.002" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should just create a new timer task when no project is active" time="0.002" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should stop active timer when project is active" time="0.002" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should create a new timer task and stop the running one when project is active" time="0.002" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Controller: DashboardProjectsCtrl"/>
+    <testcase name="should get the currenly logged in person" time="0.01" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: PersonService getPerson"/>
+    <testcase name="should fail gracefully when token has expired or is invalid" time="0.004" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: PersonService getPerson"/>
+    <testcase name="should return the -1 when no project is active" time="0.003" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: PersonService getActiveProjectId"/>
+    <testcase name="should return the project id when no user is logged in" time="0.004" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: PersonService getActiveProjectId"/>
+    <testcase name="should return empty list when project list has not been refreshed/initialized" time="0.004" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: ProjectService getAll - uninitialized"/>
+    <testcase name="should return project list when project list has been refreshed/initialized" time="0.004" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: ProjectService getAll - initialized"/>
+    <testcase name="should get the project with the provided id" time="0.004" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: ProjectService getAll - initialized">
+      <failure type="">ReferenceError: $ is not defined
+    at Object.ProjectService.svc.get (/Users/jiar/git/tps/yo/app/scripts/services/projectService.js:6:3547)
+    at null.&lt;anonymous&gt; (/Users/jiar/git/tps/yo/test/spec/services/projectService.js:87:28)
+</failure>
+    </testcase>
+    <testcase name="should set the provided project as active" time="0.004" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: ProjectService getAll - initialized"/>
+    <testcase name="should get the currenly logged in person" time="0.003" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: TimeEntryService getTimeEntries"/>
+    <testcase name="should return the time entry with the provided id" time="0.001" classname="Chrome 32.0.1661 (Mac OS X 10.8.5).Service: TimeEntryService getTimeEntryById"/>
+    <system-out><![CDATA[Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:refresh called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:refresh called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'onProjectsRefreshed - updated project list contains %d entries', 3,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:refresh called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Finding project with id %d', 2,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:refresh called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'createProject(name: %s, id: %d)', 'New Project', undefined,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'updateProject: %d', undefined,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:update called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:refresh called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'removeProject: %d', 2,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:remove called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:refresh called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:refresh called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'startTimer -  project id: %d', 1,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'startProjectTimer - No active project',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'TimeEntryServiceMock:startTimer called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:refresh called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'startTimer -  project id: %d', 1,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'startProjectTimer - Stopping active project %s', 2,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Finding project with id %d', 2,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: ERROR
+ 'Failed to find matching project with id %d', 2,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'TimeEntryServiceMock:startTimer called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Initiating DashboardProjectsCtrl',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'ProjectServiceMock:refresh called',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'PersonService:getPerson',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'PersonService:getPerson - Backend responded %s', '[object Object]',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'PersonService:getPerson',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: ERROR
+ 'Failed to load the person from backend',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'PersonService:getPerson',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'PersonService:getPerson - Backend responded %s', '[object Object]',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'No active project',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'PersonService:getPerson',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'PersonService:getPerson - Backend responded %s', '[object Object]',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'getActiveProjectId - %d', 301,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Loading projects',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Projects retrieved from backend, size: %d', 2,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'No active project',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Sending event - projectsRefreshed',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'init list',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Loading projects',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Projects retrieved from backend, size: %d', 2,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'No active project',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Sending event - projectsRefreshed',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'init list',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Finding project with id %d', 302,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Loading projects',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Projects retrieved from backend, size: %d', 2,Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'No active project',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'Sending event - projectsRefreshed',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'init list',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'getTimeEntries',Chrome 32.0.1661 (Mac OS X 10.8.5) LOG: LOG
+ 'List of time entries retrieved from backend, size: %d', 1
 ]]></system-out>
     <system-err/>
   </testsuite>

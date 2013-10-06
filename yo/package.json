@@ -41,7 +41,8 @@
     "karma-ng-html2js-preprocessor": "~0.1.0",
     "karma-growl-reporter": "~0.1",
     "karma-junit-reporter": "~0.1",
-    "karma-osx-reporter": "*"
+    "karma-osx-reporter": "*",
+    "karma-coverage": "~0.1"    
   },
   "engines": {
     "node": ">=0.8.0"

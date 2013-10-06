@@ -60,27 +60,25 @@ describe('Service: PersonService', function () {
     });
 
     it('should fail gracefully when token has expired or is invalid', function () {
+        // Test setup
+        httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(403);
+        spyOn(service, 'getPerson').andCallThrough();
 
-      // Test setup
-      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(403);
-      spyOn(service, 'getPerson').andCallThrough();
+        // Test
+        var person = null;
+        service.getPerson().then(function (result) {
+          person = result;
+        }, function () {
+          person = null;
+        });
 
-      // Test
-      var person = null;
-      service.getPerson().then(function (result) {
-        person = result;
-      }, function () {
-        person = null;
-      });
+        // Make the requests go though
+        scope.$digest();
+        httpBackend.flush();
 
-      // Make the requests go though
-      scope.$digest();
-      httpBackend.flush();
-
-      expect(service.getPerson).toHaveBeenCalled();
-      expect(person).toBe(null);
+        expect(service.getPerson).toHaveBeenCalled();
+        expect(person).toBe(null);
     });
-
   });
 
   describe('getActiveProjectId', function () {
@@ -121,6 +119,5 @@ describe('Service: PersonService', function () {
       var projectId = service.getActiveProjectId();
       expect(projectId).toBe(301);
     });
-
   });
 });
