@@ -2,7 +2,7 @@
 
 'use strict';
 
-describe('Service: personService', function () {
+describe('Service: PersonService', function () {
 
   // load the service's module
   beforeEach(module('tpsApp'));
