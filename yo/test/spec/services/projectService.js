@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: projectService', function () {
+describe('Service: ProjectService', function () {
 
   // load the service's module
   beforeEach(module('tpsApp'));
