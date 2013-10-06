@@ -6,3 +6,5 @@ target
 server-work
 .idea
 
+test-results.xml
+yo/coverage
