@@ -1,4 +1,4 @@
-/*globals $scope, $, _ */
+/*globals  _ */
 
 'use strict';
 
@@ -8,7 +8,7 @@ angular.module('tpsApp')
   .service('ProjectService', function ProjectService(Restangular, $rootScope, PersonService) {
     var svc;
     var baseProjects = Restangular.all('project');
-    var projects = null;
+    var projects = [];
     var projectsLoaded = false;
 
     svc = {
@@ -53,9 +53,10 @@ angular.module('tpsApp')
             $rootScope.$broadcast('onProjectUpdated', project);
           });
         } else {
-          console.log('updateProject - create');
+          console.log('updateProject - creating new entry');
           baseProjects.post(project).then(function (newProject) {
-            this.projects.push(newProject);
+            console.log('Updated project successfully at backend. New id is: %s', newProject.id);
+            projects.push(newProject);
             $rootScope.$broadcast('onProjectUpdated', newProject);
           });
         }
@@ -64,14 +65,19 @@ angular.module('tpsApp')
         console.log('remove project(name: %s, id: %d)', project.name, project.id);
         project.remove().then(function () {
           console.log('Project deleted from backend');
-          $scope.projects = _.without($scope.projects, project);
+          var index = _.indexOf(projects, project);
+          console.log('Removing project at index %d', index);
+          projects.splice(index, 1);
+          //projects = _.without(projects, project);
         });
       },
       //
       // Find project in the cached project list
       get: function (id) {
         console.log('Finding project with id %d', id);
-        var item = $.grep(projects, function (e) { return e.id === id; })[0];
+        var item = _.find(projects, function (p) {
+          return p.id === id;
+        });
         return item;
       },
       //

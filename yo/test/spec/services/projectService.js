@@ -1,4 +1,4 @@
-/*globals expect, afterEach, beforeEach, spyOn, describe, it, inject */
+/*globals expect, afterEach, beforeEach, spyOn, describe, it, inject, _ */
 
 'use strict';
 
@@ -22,10 +22,6 @@ describe('Service: ProjectService', function () {
     { id: 1, username: 'User A', activeTimeEntry: null },
     { id: 2, username: 'User B' },
     { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }];
-
-  var setupProject = function() {
-
-  }
 
   // Inject the services
   beforeEach(inject(function (ProjectService, $httpBackend, $rootScope) {
@@ -54,13 +50,13 @@ describe('Service: ProjectService', function () {
       // Verifications
       expect(service.getAll).toHaveBeenCalled();
       expect(result).toBeDefined();
-      expect(result).toBeNull();
+      expect(result.length).toBe(0);
     });
   });
 
   describe('getAll - initialized', function() {
     beforeEach(function () {
-      httpBackend.whenGET('http://localhost:8080/api/api/project').respond(projects);
+      httpBackend.whenGET('http://localhost:8080/api/api/project').respond(_.clone(projects));
       spyOn(service, 'getAll').andCallThrough();
       spyOn(service, 'refresh').andCallThrough();
       spyOn(scope, '$broadcast').andCallThrough();
@@ -85,12 +81,49 @@ describe('Service: ProjectService', function () {
 
     it('should get the project with the provided id', function () {
       var result = service.get(302);
-      expect(result).not.beNull();
+      expect(result).not.toBeNull();
       expect(result).toBeDefined();
       expect(result.id).toBe(302);
     });
 
-    it('should set the provided project as active', function () {
+    it('should remove the project with the provided id', function () {
+      var projectId = 302;
+      // Assure project exists before removing it
+      var projectToBeRemoved = service.get(projectId);
+      expect(projectToBeRemoved.id).toBe(projectId);
+      // Remove project
+      httpBackend.whenDELETE('http://localhost:8080/api/api/project/302').respond(201);
+      service.remove(projectToBeRemoved);
+      // Make the requests go though
+      scope.$digest();
+      httpBackend.flush();
+      // Verify it is gone      
+      var negative = service.get(projectId);
+      expect(negative).toBeUndefined();
+    });
+
+    it('should update the provided project', function () {
+      var projectId = 302;
+      // First get the project
+      var project = service.get(projectId);
+      expect(project.id).toBe(projectId);
+      // Update it
+      httpBackend.whenPUT('http://localhost:8080/api/api/project/302').respond();
+      service.update(project);
+      // Make the requests go though
+      scope.$digest();
+      httpBackend.flush();
+    });
+
+    it('should create a new project when project has no id', function () {
+      var project = { name: 'New project' };
+      // Create the proejct
+      httpBackend.whenPOST('http://localhost:8080/api/api/project').respond(projects[1]);
+      service.update(project);
+      // Make the requests go though
+      scope.$digest();
+      httpBackend.flush();
+      // Verify it now was created      
     });
   });
 });
