@@ -1,4 +1,4 @@
-/*globals angular, _, $, $filter */
+/*globals angular, _, $ */
 
 'use strict';
 
@@ -17,20 +17,24 @@ angular.module('tpsApp')
 
     svc = {
 
-      selectedDate: function ( date ) {
+      setSelectedDate: function ( date ) {
         selectedDate = date;
+      },
+      getSelectedDate: function () {
+        return selectedDate;
       },
 
       //  Gets the time entries for the currently selected date
       getTimeEntries: function () {
-        console.log('getTimeEntries');
+        console.log('TimeEntryService::getTimeEntries');
         var q = baseTimeEntries.getList();
-        return q.then(function (result) {
+        q.then(function (result) {
           console.log('List of time entries retrieved from backend, size: %d', result.length);
           timeEntries = result;
           $rootScope.$broadcast('onTimeEntriesRefreshed', timeEntries);
           return timeEntries;
         });
+        return q;
       },
 
       removeTimeEntry: function (entry) {
@@ -59,8 +63,10 @@ angular.module('tpsApp')
 
       getEndTime: function (timeEntry) {
         var result = 'In Progress';
-        if (timeEntry.endTime !== null) {
-          result = $filter('date')(timeEntry.endTime, 'HH:mm:ss');
+        if (timeEntry.endTime) {
+          console.log('End time %d', timeEntry.endTime);
+          result = new Date(timeEntry.endTime).toISOString().substring(0, 10);
+          console.log(result);
         }
         return result;
       },

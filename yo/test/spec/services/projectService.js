@@ -113,6 +113,7 @@ describe('Service: ProjectService', function () {
       // Make the requests go though
       scope.$digest();
       httpBackend.flush();
+      // Verify update?
     });
 
     it('should create a new project when project has no id', function () {
@@ -123,7 +124,18 @@ describe('Service: ProjectService', function () {
       // Make the requests go though
       scope.$digest();
       httpBackend.flush();
-      // Verify it now was created      
+      // Verify it now was created  
+      expect(scope.$broadcast).toHaveBeenCalledWith('onProjectUpdated', projects[1]);
+    });
+
+    it('should mark the project as active', function () {
+      var projectId = 302;
+      var project = service.get(projectId);
+      expect(project.id).toBe(projectId);
+      expect(project.active).toBe(false);
+      // The test
+      service.setActive(project, true);
+      expect(project.active).toBe(true);
     });
   });
 });
