@@ -85,7 +85,12 @@ angular.module('tpsApp')
       // Only one project may be active at the time.
       setActive: function (project, active) {
         console.log('setActive - %d', active);
-        this.get(project.id).active = active;
+        var p = this.get(project.id);
+        if (p) {
+         p.active = active;        
+        } else {
+          console.error('Failed to find project to set as active');
+        }
       }
 
     };

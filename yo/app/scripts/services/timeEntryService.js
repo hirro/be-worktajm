@@ -9,7 +9,7 @@
 // * Keep track of synchronization status, possible to change appearance of time entry if it has not been persisted yet (slow or offline).
 // * 
 angular.module('tpsApp')
-  .service('TimeEntryService', function TimeEntryService($resource, $rootScope, Restangular, ProjectService) {
+  .service('TimeEntryService', function TimeEntryService($resource, $rootScope, Restangular, PersonService, ProjectService) {
     var svc;
     var baseTimeEntries = Restangular.all('timeEntry');
     var selectedDate = new Date().toISOString().substring(0, 10);
@@ -71,12 +71,9 @@ angular.module('tpsApp')
         return result;
       },
 
-      updateTimeEntries:  function() {
-        console.log('updateTimeEntries');
-      },
-
-      startTimer: function(person, project) {
+      startTimer: function(project) {
         console.log('startTimer');
+        var person = PersonService.getPerson();
         var timeEntry = { person: person, project: project, startTime: $.now()};
         var q = baseTimeEntries.post(timeEntry);
         q.then(function (newTimeEntry) {

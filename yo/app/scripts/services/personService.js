@@ -19,6 +19,11 @@ angular.module('tpsApp')
         });
         return person;
       },
+      setActiveProjectId: function (id) {
+        if (person) {
+          
+        }
+      },
       getActiveProjectId: function () {
         var result = -1;
         if (person &&
