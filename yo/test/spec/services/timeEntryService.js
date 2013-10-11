@@ -1,4 +1,4 @@
-/* globals expect, it, afterEach, beforeEach, spyOn, describe, inject */
+/* globals _, expect, it, afterEach, beforeEach, spyOn, describe, inject */
 
 'use strict';
 
@@ -10,6 +10,8 @@ describe('Service: TimeEntryService', function () {
   // API
   var httpBackend;
   var service;
+  var personService;
+  var projectService;
   var scope;
 
   // Test constants
@@ -24,10 +26,12 @@ describe('Service: TimeEntryService', function () {
     { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }];
 
   // Inject the person service
-  beforeEach(inject(function (TimeEntryService, $httpBackend, $rootScope) {
+  beforeEach(inject(function (TimeEntryService, PersonService, ProjectService, $httpBackend, $rootScope) {
     service = TimeEntryService;
     httpBackend = $httpBackend;
     scope = $rootScope;
+    personService = PersonService;
+    projectService = ProjectService;
   }));  
 
   afterEach(function () {
@@ -119,4 +123,70 @@ describe('Service: TimeEntryService', function () {
     });
   });
 
+  describe('Timer tests', function () {
+    beforeEach(function () {
+      // Prereq 1 = Person must be loaded
+      var person = null;
+      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      personService.getPerson().then(function (result) {
+        person = result;
+      });
+      scope.$digest();
+      httpBackend.flush();
+      expect(person.username).toBe('User A');
+
+      // Prereq 2 = Projects must be loaded
+      httpBackend.whenGET('http://localhost:8080/api/api/project').respond(_.clone(projects));
+      spyOn(scope, '$broadcast').andCallThrough();
+      projectService.refresh();
+      scope.$digest();
+      httpBackend.flush();
+
+       // Prereq 3 = TimeEntries must be loaded
+      var timeEntries = null;
+      service.getTimeEntries().then(function (result) {
+        timeEntries = result;
+      });
+      httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond([
+        { id: '1', startTime: '0', endTime: '1' }
+      ]);
+      scope.$digest();
+      httpBackend.flush();
+      expect(timeEntries.length).toBe(1);
+    });
+
+    it('should start the timer', function () {
+      // Start the timer
+      service.startTimer(persons[0], projects[0]);
+      // Make the requests go though
+      httpBackend.whenPOST('http://localhost:8080/api/api/timeEntry').respond(timeEntries[0]);
+      httpBackend.whenPUT('http://localhost:8080/api/api/project/301').respond(201);
+      scope.$digest();
+      httpBackend.flush();
+      //service.stopTime(p)
+    });
+
+    it('should not stop the timer when there are no active projects', function () {
+      service.stopTimer(projects[0], persons[0]);
+    });
+
+    it('should handle null value for person gracefully', function () {
+      service.stopTimer(projects[0], null);
+    });
+
+    it('should handle null value for project gracefully', function () {
+      service.stopTimer(null, persons[0]);
+    });
+
+    it('should stop the timer of the active user', function () {
+      var person = personService.getPerson();
+      expect(person).toBeDefined();
+      expect(person).not.toBeNull();
+      person.activeTimeEntry = timeEntries[0];
+      service.stopTimer(projects[0], person);
+      scope.$digest();
+      httpBackend.flush();
+    });
+
+  });
 });

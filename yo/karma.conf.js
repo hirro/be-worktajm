@@ -19,6 +19,7 @@ module.exports = function(config) {
       'app/bower_components/angular-webstorage/angular-webstorage.js',
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-tokenauth/angular-tokenauth.js',
+      'app/bower_components/jquery/jquery.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
