@@ -183,13 +183,18 @@ describe('Service: TimeEntryService', function () {
     it('should start the timer', function () {
       // Start the timer
       var person = personService.getPerson();
-      service.startTimer(projects[0], person);
-      // Make the requests go though
+      service.startTimer(projects[0]);
+
+      // Make the requests go though and validate
       httpBackend.whenPOST('http://localhost:8080/api/api/timeEntry').respond(timeEntries[0]);
       httpBackend.whenPUT('http://localhost:8080/api/api/person/1').respond(person[0]);
       scope.$digest();
       httpBackend.flush();
-      //service.stopTime(p)
+      expect(scope.$broadcast).toHaveBeenCalledWith('onTimeEntryUpdated', timeEntries[0]);
+      expect(scope.$broadcast).toHaveBeenCalledWith('onProjectUpdated', projects[0]);
+
+      // Stop the timer
+      //service.stopTimer(projects[0]);
     });
 
     it('should not stop the timer when there are no active projects', function () {
@@ -209,7 +214,7 @@ describe('Service: TimeEntryService', function () {
       expect(person).toBeDefined();
       expect(person).not.toBeNull();
       person.activeTimeEntry = timeEntries[0];
-      service.stopTimer(projects[0], person);
+      service.stopTimer(projects[0]);
       scope.$digest();
       httpBackend.flush();
     });

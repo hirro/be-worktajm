@@ -95,8 +95,9 @@ angular.module('tpsApp')
         return result;
       },
 
-      startTimer: function(project, person) {
+      startTimer: function(project) {
         console.log('startTimer');
+        var person = PersonService.getPerson();
         var timeEntry = { person: person, project: project, startTime: $.now()};
         var q = baseTimeEntries.post(timeEntry);
         q.then(function (newTimeEntry) {
@@ -118,8 +119,9 @@ angular.module('tpsApp')
         return q;
       },
 
-      stopTimer: function(project, person) {
+      stopTimer: function(project) {
         console.log('stopTimer');
+        var person = PersonService.getPerson();
         if (person) {
           if (person.activeTimeEntry) {
             var timeEntryId = person.activeTimeEntry.id;
