@@ -22,8 +22,93 @@
   @licend The above is the entire license notice
           for the JavaScript code in this page.  
 */
+/*globals describe, it, beforeEach, inject, expect */
 
 'use strict';
 
 describe('Controller: DashboardTimeEntriesCtrl', function () {
+  // load the controller's module
+  beforeEach(module('tpsApp'));
+
+  var DashboardTimeEntriesCtrl, scope;
+  var projects = [
+    {'id': 1, 'name': 'Project A', 'description': null, 'rate': null, 'new': false},
+    {'id': 2, 'name': 'Project B', 'description': null, 'rate': null, 'new': false},
+    {'id': 3, 'name': 'Project C', 'description': null, 'rate': null, 'new': false}
+  ];
+  var timeEntries = [
+    {id: 1, startTime: 2, endTime: 3},
+    {id: 2, startTime: 2, endTime: 3}
+  ];
+
+  // Initialize the ProjectServiceMock
+  var ProjectServiceMock = {
+    remove: function (project) {
+      console.log('ProjectServiceMock:remove called');
+    },
+    refresh: function () {
+      console.log('ProjectServiceMock:refresh called');
+    },
+    update: function () {
+      console.log('ProjectServiceMock:update called');
+    }
+  };
+
+  // Initialize the TimeEntryServiceMock
+  var TimeEntryServiceMock = {
+    startTimer: function () {
+      console.log('TimeEntryServiceMock:startTimer called');
+    },
+    stopTimer: function () {
+      console.log('TimeEntryServiceMock:stopTimer called');
+    },
+    getTimeEntries: function () {
+      console.log('TimeEntryServiceMock::getTimeEntries');
+      return null;
+    }
+  };
+
+  // Initialize the PersonServiceMock
+  var activeProjectId = -1;
+  var PersonServiceMock = {
+    getActiveProjectId: function () {
+      return activeProjectId;
+    }
+  };
+
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope, $injector) {
+    scope = $rootScope.$new();
+    DashboardTimeEntriesCtrl = $controller('DashboardTimeEntriesCtrl', {
+      $scope: scope,
+      ProjectService: ProjectServiceMock,
+      PersonService: PersonServiceMock,
+      TimeEntryService: TimeEntryServiceMock
+    });
+    var project = [];
+    DashboardTimeEntriesCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimeEntryService'];
+  }));
+
+  describe('general tests that does not requre a context', function () {
+    it('it should format the end time properly for a time entry', function () {
+      var endTime = scope.getEndTime(timeEntries[0]);
+      expect(endTime).toBe('01:00:00');
+    });
+
+    it('should not return the time entry with id 1 when not yet initialized', function () {
+      var timeEntry = scope.getTimeEntryById(1);
+      expect(timeEntry).not.toBeDefined();
+    });
+  });
+
+  describe('all contexts loaded', function () {
+    it('should return the time entry with the provider id', function () {
+      var timeEntry = scope.getTimeEntryById(1);
+      expect(timeEntry).not.toBeDefined();
+      scope.$broadcast('$onTimeEntriesRefreshed', timeEntries);
+      timeEntry = scope.getTimeEntryById(1);
+      expect(timeEntry).toBeDefined();
+    });
+  });
+
 });
