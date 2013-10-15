@@ -22,7 +22,7 @@
   @licend The above is the entire license notice
           for the JavaScript code in this page.  
 */
-/*globals describe, it, beforeEach, inject, expect */
+/*globals describe, it, beforeEach, inject, expect, spyOn */
 
 'use strict';
 
@@ -65,6 +65,9 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     getTimeEntries: function () {
       console.log('TimeEntryServiceMock::getTimeEntries');
       return null;
+    },
+    removeTimeEntry: function(timeEntry) {
+      //
     }
   };
 
@@ -89,7 +92,7 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     DashboardTimeEntriesCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimeEntryService'];
   }));
 
-  describe('general tests that does not requre a context', function () {
+  describe('General tests', function () {
     it('it should format the end time properly for a time entry', function () {
       var endTime = scope.getEndTime(timeEntries[0]);
       expect(endTime).toBe('01:00:00');
@@ -99,15 +102,26 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
       var timeEntry = scope.getTimeEntryById(1);
       expect(timeEntry).not.toBeDefined();
     });
-  });
 
-  describe('all contexts loaded', function () {
     it('should return the time entry with the provider id', function () {
       var timeEntry = scope.getTimeEntryById(1);
       expect(timeEntry).not.toBeDefined();
-      scope.$broadcast('$onTimeEntriesRefreshed', timeEntries);
+      scope.$broadcast('onTimeEntriesRefreshed', timeEntries);
+      scope.$digest();
       timeEntry = scope.getTimeEntryById(1);
       expect(timeEntry).toBeDefined();
+    });
+
+    it('should remove the time entry', function () {
+      var timeEntry = scope.getTimeEntryById(1);
+      spyOn(TimeEntryServiceMock, 'removeTimeEntry').andCallThrough();
+      expect(timeEntry).not.toBeDefined();
+      scope.$broadcast('onTimeEntriesRefreshed', timeEntries);
+      scope.$digest();
+      timeEntry = scope.getTimeEntryById(1);
+      expect(timeEntry).toBeDefined();
+      scope.removeTimeEntry(timeEntry);
+      expect(TimeEntryServiceMock.removeTimeEntry).toHaveBeenCalledWith(timeEntry);
     });
   });
 
