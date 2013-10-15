@@ -69,7 +69,6 @@ angular.module('tpsApp')
     });
     $scope.$on('onTimeEntryUpdated', function (event, newTimeEntry) {
       console.log('onTimeEntryUpdated, id: %d', newTimeEntry.id);
-      //$scope.timeEntries.push(newTimeEntry);
     });
     $scope.$on('onTimeEntryRemoved', function (event, removedTimeEntry) {
       console.log('onTimeEntryRemoved: %d', removedTimeEntry.id);
