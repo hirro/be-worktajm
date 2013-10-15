@@ -156,6 +156,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
     // Test code
     var projectToStart = projects[0];
+    activeProjectId = projectToStart.id;
     scope.startProjectTimer(projectToStart);
 
     // Verifications
