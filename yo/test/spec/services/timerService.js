@@ -28,7 +28,7 @@
 
 'use strict';
 
-describe('Service: ProjectService', function () {
+describe('Service: TimerService', function () {
 
   // load the service's module
   beforeEach(module('tpsApp'));
@@ -50,8 +50,8 @@ describe('Service: ProjectService', function () {
     { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }];
 
   // Inject the services
-  beforeEach(inject(function (ProjectService, $httpBackend, $rootScope) {
-    service = ProjectService;
+  beforeEach(inject(function (TimerService, $httpBackend, $rootScope) {
+    service = TimerService;
     httpBackend = $httpBackend;
     scope = $rootScope;
   }));  
