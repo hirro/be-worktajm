@@ -41,16 +41,16 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     {id: 2, startTime: 2, endTime: 3}
   ];
 
-  // Initialize the ProjectServiceMock
-  var ProjectServiceMock = {
+  // Initialize the TimerServiceMock
+  var TimerServiceMock = {
     remove: function (project) {
-      console.log('ProjectServiceMock:remove called');
+      console.log('TimerServiceMock:remove called');
     },
     refresh: function () {
-      console.log('ProjectServiceMock:refresh called');
+      console.log('TimerServiceMock:refresh called');
     },
     update: function () {
-      console.log('ProjectServiceMock:update called');
+      console.log('TimerServiceMock:update called');
     }
   };
 
@@ -84,7 +84,7 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     scope = $rootScope.$new();
     DashboardTimeEntriesCtrl = $controller('DashboardTimeEntriesCtrl', {
       $scope: scope,
-      ProjectService: ProjectServiceMock,
+      TimerService: TimerServiceMock,
       PersonService: PersonServiceMock,
       TimeEntryService: TimeEntryServiceMock
     });

@@ -23,8 +23,32 @@
           for the JavaScript code in this page.  
 */
 
+/*globals describe, beforeEach, inject, expect, it, spyOn */
+
 
 'use strict';
 
 describe('Controller: LoginCtrl', function () {
+
+  var LoginCtrl, scope;
+
+  // Initialize the PersonServiceMock
+  var activeProjectId = -1;
+  var PersonServiceMock = {
+    getActiveProjectId: function () {
+      return activeProjectId;
+    }
+  };  
+
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope, $injector, PersonService) {
+    scope = $rootScope.$new();
+    LoginCtrl = $controller('LoginCtrl', {
+      $scope: scope,
+      PersonService: PersonServiceMock
+    });
+    var project = [];
+    LoginCtrl.$inject = ['$scope',  '$route', 'PersonService'];
+  }));
+
 });

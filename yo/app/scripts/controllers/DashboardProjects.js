@@ -27,13 +27,13 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $filter, $q, $location, TimeEntryService, PersonService, ProjectService) {
+  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $filter, $q, $location, TimeEntryService, PersonService, TimerService) {
     console.log('Initiating DashboardProjectsCtrl');
 
     $scope.activeProject = null;
     $scope.project = {};
     $scope.projects = {};
-    ProjectService.refresh();
+    TimerService.refresh();
 
     // Show new project modal form
     $scope.showNewProject = function () {
@@ -42,19 +42,19 @@ angular.module('tpsApp')
     // create
     $scope.createProject = function () {
       console.log('createProject(name: %s, id: %d)', $scope.project.name, $scope.project.id);
-      //ProjectService.create()
+      //TimerService.create()
       $scope.updateProject($scope.project);
       $scope.project = {};
     };
     $scope.removeProject = function (project) {
       console.log('removeProject: %d', project.id);
-      ProjectService.remove(project);
+      TimerService.remove(project);
     };
     //
     // Update the provided project
     $scope.updateProject = function (project) {
       console.log('updateProject: %d', project.id);
-      ProjectService.update(project);
+      TimerService.update(project);
     };
     //
     // Restore the provided project to the value of the database.
@@ -83,14 +83,8 @@ angular.module('tpsApp')
     $scope.stopProjectTimer = function () {
       var activeProjectId = PersonService.getActiveProjectId();
       if (activeProjectId >= 0) {
-        var project = $scope.getById($scope.projects, activeProjectId);
-        if (project) {
-          console.log('stopProjectTimer - Stopping active project with id : %d', project.id);
-          project.active = false;
-          TimeEntryService.stopTimer($scope.person, project);
-        } else {
-          console.error('Failed to find matching project with id %d', activeProjectId);
-        }
+        console.log('stopProjectTimer - Stopping active project with id : %d', activeProjectId);
+        TimeEntryService.stopTimer($scope.person, activeProjectId);
       } else {
         console.error('stopProjectTimer - No active project');
       }

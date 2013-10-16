@@ -33,7 +33,7 @@
 // * Keep track of synchronization status, possible to change appearance of time entry if it has not been persisted yet (slow or offline).
 // * 
 angular.module('tpsApp')
-  .service('TimeEntryService', function TimeEntryService($resource, $rootScope, Restangular, PersonService, ProjectService) {
+  .service('TimeEntryService', function TimeEntryService($resource, $rootScope, Restangular, PersonService, TimerService) {
     var svc;
     var baseTimeEntries = Restangular.all('timeEntry');
     var selectedDate = new Date().toISOString().substring(0, 10);
@@ -95,6 +95,7 @@ angular.module('tpsApp')
         return result;
       },
 
+      // XXX: Only id is required
       startTimer: function(project) {
         console.log('startTimer');
         var person = PersonService.getPerson();
@@ -103,7 +104,7 @@ angular.module('tpsApp')
         q.then(function (newTimeEntry) {
           console.log('startTimer - Time entry created');
           newTimeEntry.active = true;
-          ProjectService.setActive(project, true);
+          TimerService.setActive(project, true);
           timeEntries.push(newTimeEntry);
 
           // Update person with information that 
@@ -119,6 +120,8 @@ angular.module('tpsApp')
         return q;
       },
 
+      // XXX: Active project can be derived from person
+      // XXX: Use promise so start timer can depend on it...
       stopTimer: function(project) {
         console.log('stopTimer');
         var person = PersonService.getPerson();
@@ -135,7 +138,7 @@ angular.module('tpsApp')
                 person.activeTimeEntry = null;
                 person.put().then(function () {
                   console.log('stopTimer - Person is inactive in database');
-                  ProjectService.setActive(project, false);
+                  TimerService.setActive(project, false);
                   //$rootScope.$broadcast('onProjectUpdated', project);
                 });
               });

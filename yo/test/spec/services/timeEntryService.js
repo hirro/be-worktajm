@@ -36,7 +36,7 @@ describe('Service: TimeEntryService', function () {
   var httpBackend;
   var service;
   var personService;
-  var projectService;
+  var timerService;
   var scope;
 
   // Test constants
@@ -51,12 +51,12 @@ describe('Service: TimeEntryService', function () {
     { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }];
 
   // Inject the person service
-  beforeEach(inject(function (TimeEntryService, PersonService, ProjectService, $httpBackend, $rootScope) {
+  beforeEach(inject(function (TimeEntryService, PersonService, TimerService, $httpBackend, $rootScope) {
     service = TimeEntryService;
     httpBackend = $httpBackend;
     scope = $rootScope;
     personService = PersonService;
-    projectService = ProjectService;
+    timerService = TimerService;
   }));  
 
   afterEach(function () {
@@ -163,7 +163,7 @@ describe('Service: TimeEntryService', function () {
       // Prereq 2 = Projects must be loaded
       httpBackend.whenGET('http://localhost:8080/api/api/project').respond(_.clone(projects));
       spyOn(scope, '$broadcast').andCallThrough();
-      projectService.refresh();
+      timerService.refresh();
       scope.$digest();
       httpBackend.flush();
 
