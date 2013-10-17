@@ -54,16 +54,16 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     }
   };
 
-  // Initialize the TimeEntryServiceMock
-  var TimeEntryServiceMock = {
+  // Initialize the TimerServiceMock
+  var TimerServiceMock = {
     startTimer: function () {
-      console.log('TimeEntryServiceMock:startTimer called');
+      console.log('TimerServiceMock:startTimer called');
     },
     stopTimer: function () {
-      console.log('TimeEntryServiceMock:stopTimer called');
+      console.log('TimerServiceMock:stopTimer called');
     },
     getTimeEntries: function () {
-      console.log('TimeEntryServiceMock::getTimeEntries');
+      console.log('TimerServiceMock::getTimeEntries');
       return null;
     },
     removeTimeEntry: function(timeEntry) {
@@ -84,12 +84,11 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     scope = $rootScope.$new();
     DashboardTimeEntriesCtrl = $controller('DashboardTimeEntriesCtrl', {
       $scope: scope,
-      TimerService: TimerServiceMock,
       PersonService: PersonServiceMock,
-      TimeEntryService: TimeEntryServiceMock
+      TimerService: TimerServiceMock
     });
     var project = [];
-    DashboardTimeEntriesCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimeEntryService'];
+    DashboardTimeEntriesCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimerService'];
   }));
 
   describe('General tests', function () {
@@ -114,14 +113,14 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
 
     it('should remove the time entry', function () {
       var timeEntry = scope.getTimeEntryById(1);
-      spyOn(TimeEntryServiceMock, 'removeTimeEntry').andCallThrough();
+      spyOn(TimerServiceMock, 'removeTimeEntry').andCallThrough();
       expect(timeEntry).not.toBeDefined();
       scope.$broadcast('onTimeEntriesRefreshed', timeEntries);
       scope.$digest();
       timeEntry = scope.getTimeEntryById(1);
       expect(timeEntry).toBeDefined();
       scope.removeTimeEntry(timeEntry);
-      expect(TimeEntryServiceMock.removeTimeEntry).toHaveBeenCalledWith(timeEntry);
+      expect(TimerServiceMock.removeTimeEntry).toHaveBeenCalledWith(timeEntry);
     });
   });
 

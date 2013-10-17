@@ -27,7 +27,7 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $filter, $q, TimeEntryService) {
+  .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $filter, $q, TimerService) {
 
     console.log('Initiating DashboardTimeEntriesCtrl');
 
@@ -37,12 +37,12 @@ angular.module('tpsApp')
     $scope.timeEntries = {};
 
     // Load time entries from service
-    TimeEntryService.getTimeEntries();
+    TimerService.getTimeEntries();
 
     // User clicks remove button
     $scope.removeTimeEntry = function (timeEntry) {
       console.log('removeTimeEntry(%s)', timeEntry.id);
-      TimeEntryService.removeTimeEntry(timeEntry);
+      TimerService.removeTimeEntry(timeEntry);
     };
 
     // Utility function to find the object being displayed in the controller

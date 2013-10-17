@@ -45,6 +45,12 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
   // Initialize the TimerServiceMock
   var TimerServiceMock = {
+    startTimer: function () {
+      console.log('TimerServiceMock:startTimer called');
+    },
+    stopTimer: function () {
+      console.log('TimerServiceMock:stopTimer called');
+    },
     remove: function (project) {
       console.log('TimerServiceMock:remove called');
     },
@@ -53,16 +59,6 @@ describe('Controller: DashboardProjectsCtrl', function () {
     },
     update: function () {
       console.log('TimerServiceMock:update called');
-    }
-  };
-
-  // Initialize the TimeEntryServiceMock
-  var TimeEntryServiceMock = {
-    startTimer: function () {
-      console.log('TimeEntryServiceMock:startTimer called');
-    },
-    stopTimer: function () {
-      console.log('TimeEntryServiceMock:stopTimer called');
     }
   };
 
@@ -80,11 +76,10 @@ describe('Controller: DashboardProjectsCtrl', function () {
     DashboardProjectsCtrl = $controller('DashboardProjectsCtrl', {
       $scope: scope,
       TimerService: TimerServiceMock,
-      PersonService: PersonServiceMock,
-      TimeEntryService: TimeEntryServiceMock
+      PersonService: PersonServiceMock
     });
-    var project = [];
-    DashboardProjectsCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimeEntryService'];
+    //var projects = [];
+    DashboardProjectsCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimerService'];
   }));
 
   it('should initialize with empty project list, etc.', function () {
@@ -131,8 +126,8 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
   it('should just create a new timer task when no project is active', function () {
     // Register spyes
-    spyOn(TimeEntryServiceMock, 'startTimer').andCallThrough();
-    spyOn(TimeEntryServiceMock, 'stopTimer').andCallThrough();
+    spyOn(TimerServiceMock, 'startTimer').andCallThrough();
+    spyOn(TimerServiceMock, 'stopTimer').andCallThrough();
 
     // Preconditions
     // var activeProjectId = -1;
@@ -145,14 +140,14 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
     // Verifications
     // Timer must be started
-    expect(TimeEntryServiceMock.startTimer).toHaveBeenCalled();
-    expect(TimeEntryServiceMock.stopTimer).not.toHaveBeenCalled();
+    expect(TimerServiceMock.startTimer).toHaveBeenCalled();
+    expect(TimerServiceMock.stopTimer).not.toHaveBeenCalled();
     expect(PersonServiceMock.getActiveProjectId()).toBeGreaterThan(0);
   });
 
   it('should stop active timer when project is active', function () {
     // Register spyes
-    spyOn(TimeEntryServiceMock, 'startTimer').andCallThrough();
+    spyOn(TimerServiceMock, 'startTimer').andCallThrough();
 
     // Test code
     var projectToStart = projects[0];
