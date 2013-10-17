@@ -27,7 +27,7 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $filter, $q, $location, TimeEntryService, PersonService, TimerService) {
+  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $filter, $q, $location, TimerService, PersonService) {
     console.log('Initiating DashboardProjectsCtrl');
 
     $scope.activeProject = null;
@@ -76,7 +76,7 @@ angular.module('tpsApp')
       }
 
       // Once project is stopped, create a new time entry
-      TimeEntryService.startTimer($scope.person, project);
+      TimerService.startTimer($scope.person, project);
     };
     //
     // Stop the active project
@@ -84,7 +84,7 @@ angular.module('tpsApp')
       var activeProjectId = PersonService.getActiveProjectId();
       if (activeProjectId >= 0) {
         console.log('stopProjectTimer - Stopping active project with id : %d', activeProjectId);
-        TimeEntryService.stopTimer($scope.person, activeProjectId);
+        TimerService.stopTimer($scope.person, activeProjectId);
       } else {
         console.error('stopProjectTimer - No active project');
       }
