@@ -23,14 +23,14 @@
           for the JavaScript code in this page.  
 */
 
-/*globals  _, $ */
+/*globals  _, $, $q */
 
 'use strict';
 
 // This service should encapsulate all data access. 
 // A future extension could be offline support.
 angular.module('tpsApp')
-  .service('TimerService', function TimerService(Restangular, $rootScope, PersonService) {
+  .service('TimerService', function TimerService(Restangular, $rootScope, $q, PersonService) {
     var svc;
     var baseProjects = Restangular.all('project');
     var projects = [];
@@ -40,16 +40,18 @@ angular.module('tpsApp')
     var timeEntries;    
 
     svc = {
+
       //
       // Refresh project list from server
       getProjects: function () {
         return projects;
       },
+
       //
       // Get all available project for the given person
       // No server reload done
       // 
-      refreshProject: function () {
+      reloadProject: function () {
         console.log('Loading projects');
         var q = baseProjects.getList();
         q.then(function (result) {
@@ -72,8 +74,9 @@ angular.module('tpsApp')
         });
         return q;
       },
+
       //
-      // Update or create project
+      // CRUD for Project
       updateProject: function (project) {
         if (project.id >= 0) {
           console.log('updateProject - update');
@@ -100,8 +103,6 @@ angular.module('tpsApp')
           //projects = _.without(projects, project);
         });
       },
-      //
-      // Find project in the cached project list
       getProject: function (id) {
         console.log('Finding project with id %d', id);
         var item = _.find(projects, function (p) {
@@ -109,6 +110,7 @@ angular.module('tpsApp')
         });
         return item;
       },
+
       //
       // Set project status
       // Only one project may be active at the time.
@@ -128,7 +130,9 @@ angular.module('tpsApp')
         return selectedDate;
       },
 
-      //  Gets the time entries for the currently selected date
+      //
+      // CRUD for time entries
+      //
       getTimeEntries: function () {
         console.log('TimerService::getTimeEntries');
         var q = baseTimeEntries.getList();
@@ -140,13 +144,31 @@ angular.module('tpsApp')
         });
         return q;
       },
-
+      updateTimeEntry: function (timeEntry) {
+        var deferred = $q.defer();
+        var restangularTimeEntry = svc.getTimeEntryById(timeEntry.id);
+        if (restangularTimeEntry) {
+          restangularTimeEntry.put().then(function (result) {
+            console.log('Time entry updated at backend');
+            deferred.resolve(result);
+          }, function () {
+            var errorMsg = 'Failed to update the time entry';
+            console.error(errorMsg);
+            deferred.reject(errorMsg);
+          });
+        } else {
+          var errorMsg = 'Failed to find time entry';
+          console.error(errorMsg);
+          deferred.reject(errorMsg);
+        }
+        console.log('Promise for updateTimeEntry returned');
+        return deferred.promise;        
+      },
       removeTimeEntry: function (entry) {
         var id = entry.id;
         var timeEntry = this.getTimeEntryById(id);
         var index = _.indexOf(timeEntries, timeEntry);
         console.log('removeTimeEntry(%s)', id);
-
         var q = timeEntry.remove();
         q.then(function () {
           console.log('Time entry deleted from backend');
@@ -158,22 +180,14 @@ angular.module('tpsApp')
         timeEntry.disable = true;
         return q;
       },
-
       getTimeEntryById: function (id) {
         return _(timeEntries).find({
           'id': id
         });
       },
-
-      getEndTime: function (timeEntry) {
-        var result = 'In Progress';
-        if (timeEntry.endTime) {
-          console.log('End time %d', timeEntry.endTime);
-          result = new Date(timeEntry.endTime).toISOString().substring(0, 10);
-          console.log(result);
-        }
-        return result;
-      },
+      //
+      // CRUD time entries - END
+      //
 
       // XXX: Only id is required
       startTimer: function(project) {
@@ -202,35 +216,22 @@ angular.module('tpsApp')
 
       // XXX: Active project can be derived from person
       // XXX: Use promise so start timer can depend on it...
-      stopTimer: function(project) {
+      stopTimer: function() {
         console.log('stopTimer');
-        var person = PersonService.getPerson();
-        if (person) {
-          if (person.activeTimeEntry) {
-            var timeEntryId = person.activeTimeEntry.id;
-            console.log('stopTimer - Stopping active time entry with id %d', timeEntryId);
-            // Refresh from db, promises?
-            var timeEntry = this.getTimeEntryById(timeEntryId);
-            if (timeEntry) {
-              timeEntry.endTime = $.now();
-              timeEntry.put().then(function () {
-                console.log('stopTimer - Time entry updated');
-                person.activeTimeEntry = null;
-                person.put().then(function () {
-                  console.log('stopTimer - Person is inactive in database');
-                  TimerService.setActive(project, false);
-                  //$rootScope.$broadcast('onProjectUpdated', project);
-                });
-              });
-            } else {
-              console.error('stopTimer - Failed to locate entry');
-            }
+        PersonService.getPerson().then(function (result) {
+          var person = result;
+          var timeEntry = result.activeTimeEntry;
+          var project = timeEntry.project;
+          if (person && timeEntry && project) {
+            timeEntry.endTime = $.now();
+            timeEntry.put().then(function () {
+              console.log('stopTimer - Time entry updated at backend');
+              PersonService.setActiveTimeEntry(null);
+            });
           } else {
-            console.error('stopTimer - No active time entry for person %s', person.username);
+            console.log('This person has no active timer');
           }
-        } else {
-          console.error('stopTimer - Person is null');
-        }
+        });
       }
     };
     return svc;

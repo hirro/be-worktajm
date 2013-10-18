@@ -27,33 +27,46 @@
 
 // This service handle operations for the currently logged in user.
 angular.module('tpsApp')
-  .service('PersonService', function PersonService($rootScope, Restangular) {
-    var person;
+  .service('PersonService', function PersonService($rootScope, $q, Restangular) {
+    var person = null;
     var svc;
     svc = {
       // Get currently logged in person
       getPerson: function () {
-        console.log('PersonService:getPerson')
-        person = Restangular.one('person', 1).get();
-        person.then(function (p) {
-          console.log('PersonService:getPerson - Backend responded %s', person.toString());
-          person = p;
-          $rootScope.person = person;
-          return p;
-        }, function () {
-          console.error('Failed to load the person from backend');
-        });
-        return person;
+        console.log('PersonService:getPerson');
+
+        var deferred = $q.defer();
+
+        if (person) {
+          console.log('Person already loaded');
+          deferred.resolve(person);
+        } else {
+          console.log('Person not loaded');
+          var qPerson = Restangular.one('person', 1).get();
+          qPerson.then(function (p) {
+            console.log('PersonService:getPerson - Backend responded %s', p.username);
+            person = p;
+            // XXX: Ugly
+            $rootScope.person = p;
+            return deferred.resolve(p);
+          }, function () {
+            console.error('Failed to load the person from backend');
+            return deferred.reject('Failed to load project from backend');
+          });
+        }
+        return deferred.promise;        
       },
       setActiveTimeEntry: function (timeEntry) {
         console.log('Updating person, id %d', person.id);
         person.activeTimeEntry = timeEntry;
         return person.put();
       },
-      setActiveProjectId: function (id) {
-        if (person) {
-          
+      getActiveTimeEntry: function () {
+        var timeEntry = null;
+        if (person && person.activeTimeEntry) {
+          timeEntry = person.activeTimeEntry;
         }
+        return timeEntry;
       },
       getActiveProjectId: function () {
         var result = -1;
