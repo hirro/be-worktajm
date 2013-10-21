@@ -27,7 +27,7 @@
 
 'use strict';
 
-xdescribe('Service: PersonService', function () {
+describe('Service: PersonService', function () {
 
   // load the service's module
   beforeEach(module('tpsApp'));
@@ -159,4 +159,42 @@ xdescribe('Service: PersonService', function () {
       expect(projectId).toBe(301);
     });
   });
+  
+  describe('person is loaded', function () {
+    beforeEach(function () {
+
+      // Test setup
+      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      spyOn(service, 'getPerson').andCallThrough();
+
+      // Test
+      var personA = null;
+      service.getPerson().then(function (result) {
+        personA = result;
+      });
+
+      // Make the requiest go through
+      scope.$digest();
+      httpBackend.flush();
+
+      expect(service.getPerson).toHaveBeenCalled();
+      expect(personA).toBeDefined();
+      expect(personA.id).toBe(1);
+      expect(personA.username).toBeDefined();
+      expect(personA.username).toBe('User A');
+
+    });
+
+    it('should set the active time entry', function () {
+      httpBackend.whenPUT('http://localhost:8080/api/api/person/1').respond(timeEntries[0]);
+      service.setActiveTimeEntry(timeEntries[0]);
+
+      // Make the requiest go through
+      scope.$digest();
+      httpBackend.flush();
+      expect(service.getActiveTimeEntry()).toBe(timeEntries[0]);
+
+    });
+  });
+  
 });
