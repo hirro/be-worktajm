@@ -146,7 +146,7 @@ angular.module('tpsApp')
       },
       updateTimeEntry: function (timeEntry) {
         var deferred = $q.defer();
-        var restangularTimeEntry = svc.getTimeEntryById(timeEntry.id);
+        var restangularTimeEntry = svc.findTimeEntryById(timeEntry.id);
         if (restangularTimeEntry) {
           restangularTimeEntry.put().then(function (result) {
             console.log('Time entry updated at backend');
@@ -166,7 +166,7 @@ angular.module('tpsApp')
       },
       removeTimeEntry: function (entry) {
         var id = entry.id;
-        var timeEntry = this.getTimeEntryById(id);
+        var timeEntry = this.findTimeEntryById(id);
         var index = _.indexOf(timeEntries, timeEntry);
         console.log('removeTimeEntry(%s)', id);
         var q = timeEntry.remove();
@@ -180,7 +180,7 @@ angular.module('tpsApp')
         timeEntry.disable = true;
         return q;
       },
-      getTimeEntryById: function (id) {
+      findTimeEntryById: function (id) {
         return _(timeEntries).find({
           'id': id
         });
