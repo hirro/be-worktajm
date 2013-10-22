@@ -72,7 +72,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     scope.$digest();
     httpBackend.flush();
     // The test
-    var timeEntry = timerService.getTimeEntryById(201);
+    var timeEntry = timerService.findTimeEntryById(201);
     expect(timeEntry).toBeDefined();
     expect(timeEntry.id).toBe(201);
   });
@@ -86,7 +86,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     scope.$digest();
     httpBackend.flush();
     // Verify the entry exists
-    var timeEntry = timerService.getTimeEntryById(201);
+    var timeEntry = timerService.findTimeEntryById(201);
     expect(timeEntry).toBeDefined();
     expect(timeEntry.id).toBe(201);
     // Remove time entry
@@ -96,11 +96,11 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     scope.$digest();
     httpBackend.flush();
     // Verify its gone
-    timeEntry = timerService.getTimeEntryById(201);
+    timeEntry = timerService.findTimeEntryById(201);
     expect(timeEntry).not.toBeDefined();
   });
 
-  xit('should update the time entry with a valid id', function() {
+  it('should update the time entry with a valid id', function() {
     // Must load time entries      
     httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond(timeEntries);
     timerService.getTimeEntries().then(function () {
@@ -115,7 +115,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     var updatedTimeEntry = timeEntry;
     var receivedTimeEntry = null;
     updatedTimeEntry.project = projects[1];
-    httpBackend.whenPUT('http://localhost:8080/api/api/timeEntry/201').respond(updatedTimeEntry);
+    httpBackend.whenPUT('http://localhost:8080/api/api/timeEntry/202').respond(updatedTimeEntry);
     timerService.updateTimeEntry(updatedTimeEntry).then(function (result) {
       receivedTimeEntry = result;
     });
@@ -125,7 +125,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     expect(receivedTimeEntry).toBe(updatedTimeEntry);
   });
 
-  it('should handle an update with an invalid id', function () {
+  it('should handle an update for an id which does not exist', function () {
     // Must load time entries      
     httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond([]);
     timerService.getTimeEntries().then(function () {
@@ -145,7 +145,33 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     });
     scope.$digest();
     expect(failed).toBe(true);
-  });    
+  });   
+
+
+  it('should handle an update with a HTTP error', function () {
+    // Must load time entries      
+    httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond(timeEntries);
+    timerService.getTimeEntries().then(function () {
+      console.log('Got time entries from service');
+    });
+    scope.$digest();
+    httpBackend.flush();
+
+    // Perform the update
+    var updatedTimeEntry = null;
+    var timeEntry = timeEntries[0];
+    var receivedTimeEntry = null;
+    var failed = false;
+    httpBackend.whenPUT('http://localhost:8080/api/api/timeEntry/202').respond(401);
+    timerService.updateTimeEntry(timeEntry).then(function (result) {
+      receivedTimeEntry = result;
+    }, function () {
+      failed = true;
+    });
+    scope.$digest();
+    httpBackend.flush();
+    expect(failed).toBe(true);
+ });   
 
   it('should handle an update that returns HTTP error', function () {
     // Must load time entries      

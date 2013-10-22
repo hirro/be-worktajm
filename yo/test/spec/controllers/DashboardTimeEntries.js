@@ -98,26 +98,26 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     });
 
     it('should not return the time entry with id 1 when not yet initialized', function () {
-      var timeEntry = scope.getTimeEntryById(1);
+      var timeEntry = scope.findTimeEntryById(1);
       expect(timeEntry).not.toBeDefined();
     });
 
     it('should return the time entry with the provider id', function () {
-      var timeEntry = scope.getTimeEntryById(1);
+      var timeEntry = scope.findTimeEntryById(1);
       expect(timeEntry).not.toBeDefined();
       scope.$broadcast('onTimeEntriesRefreshed', timeEntries);
       scope.$digest();
-      timeEntry = scope.getTimeEntryById(1);
+      timeEntry = scope.findTimeEntryById(1);
       expect(timeEntry).toBeDefined();
     });
 
     it('should remove the time entry', function () {
-      var timeEntry = scope.getTimeEntryById(1);
+      var timeEntry = scope.findTimeEntryById(1);
       spyOn(TimerServiceMock, 'removeTimeEntry').andCallThrough();
       expect(timeEntry).not.toBeDefined();
       scope.$broadcast('onTimeEntriesRefreshed', timeEntries);
       scope.$digest();
-      timeEntry = scope.getTimeEntryById(1);
+      timeEntry = scope.findTimeEntryById(1);
       expect(timeEntry).toBeDefined();
       scope.removeTimeEntry(timeEntry);
       expect(TimerServiceMock.removeTimeEntry).toHaveBeenCalledWith(timeEntry);

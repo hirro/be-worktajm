@@ -46,7 +46,7 @@ angular.module('tpsApp')
     };
 
     // Utility function to find the object being displayed in the controller
-    $scope.getTimeEntryById = function (id) {
+    $scope.findTimeEntryById = function (id) {
       var item = $.grep($scope.timeEntries, function (e) { return e.id === id; })[0];
       return item;
     };
