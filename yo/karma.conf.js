@@ -50,7 +50,7 @@ module.exports = function(config) {
     browsers: ['ChromeCanary'],
 
     // Reporters
-    reporters: ['progress', 'junit', 'growl', 'coverage'],
+    reporters: ['progress', 'junit', 'osx', 'coverage'],
 
    preprocessors: {
       // source files, that you wanna generate coverage for
