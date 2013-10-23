@@ -192,46 +192,72 @@ angular.module('tpsApp')
       // XXX: Only id is required
       startTimer: function(project) {
         console.log('startTimer');
-        var person = PersonService.getPerson();
-        var timeEntry = { person: person, project: project, startTime: $.now()};
-        var q = baseTimeEntries.post(timeEntry);
-        q.then(function (newTimeEntry) {
-          console.log('startTimer - Time entry created');
-          newTimeEntry.active = true;
-          svc.setActive(project, true);
-          timeEntries.push(newTimeEntry);
+        var deferred = $q.defer();        
 
-          // Update person with information that 
-          PersonService.setActiveProjectId(project.id);
-          PersonService.setActiveTimeEntry(newTimeEntry).then( function () {
-            console.log('startTimer - Person updated in backend, now sending events');
+        // Get the currently logged in person
+        PersonService.getPerson().then(function (person) {
+
+          // Create the new time entry
+          console.log('Creating new time entry');
+          var timeEntry = { person: person, project: project, startTime: $.now()};
+          baseTimeEntries.post(timeEntry).then(function (newTimeEntry) {
+            console.log('startTimer - Time entry created at backend');
+            newTimeEntry.active = true;
+            svc.setActive(project, true);
+            timeEntries.push(newTimeEntry);
+
+            // Update the person
+            PersonService.setActiveTimeEntry(newTimeEntry);
+
+            // Signal the events
             $rootScope.$broadcast('onTimeEntryUpdated', newTimeEntry);
-            $rootScope.$broadcast('onProjectUpdated', project);
+
+            // Resolve the promise
+            deferred.resolve(newTimeEntry);
+          }, function (reason) {
+            console.error('Failed to create time entry');
+            return deferred.reject(reason);
           });
-        }, function () {
-          console.error('startTimer - Failed to add time entry');
+        }, function (reason) {
+          console.error('Failed to get logged in user');
+          return deferred.reject(reason);
         });
-        return q;
+
+        return deferred.promise;
       },
 
-      // XXX: Active project can be derived from person
-      // XXX: Use promise so start timer can depend on it...
       stopTimer: function() {
         console.log('stopTimer');
-        PersonService.getPerson().then(function (result) {
-          var person = result;
-          var timeEntry = result.activeTimeEntry;
+        var deferred = $q.defer();
+        PersonService.getPerson().then(function (person) {   
+          console.log('person retrieved');
+          var timeEntry = person.activeTimeEntry;
           var project = timeEntry.project;
           if (person && timeEntry && project) {
+            console.log('Got an active project');
             timeEntry.endTime = $.now();
             timeEntry.put().then(function () {
               console.log('stopTimer - Time entry updated at backend');
-              PersonService.setActiveTimeEntry(null);
+              PersonService.setActiveTimeEntry(null).then(function () {
+                console.log('Person is set as inactive');
+                deferred.resolve();
+              }, function (reason) {
+                console.error(reason);
+                deferred.reject(reason);
+              });
+            }, function (reason) {
+              console.error('Failed to update time entry');
+              deferred.reject(reason);
             });
           } else {
             console.log('This person has no active timer');
+            return deferred.resolve(null);
           }
+        }, function (reason) {
+          console.log('Failed to get logged in person');
+          return deferred.reject(reason);
         });
+        return deferred.promise;  
       }
     };
     return svc;

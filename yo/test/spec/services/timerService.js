@@ -72,7 +72,7 @@ describe('Service: TimerService', function () {
     });
   });
 
-  describe('Timer tests', function () {
+  describe('Persons, projects and time entries loaded', function () {
     beforeEach(function () {
       // Prereq 1 = Person must be loaded
       var person = null;
@@ -104,21 +104,41 @@ describe('Service: TimerService', function () {
       expect(timeEntries.length).toBe(1);
     });
 
-    xit('should start the timer', function () {
+    it('should start and stop the timer successfully', function () {
       // Start the timer
       var person = personService.getPerson();
-      timerService.startTimer(projects[0]);
+      var timerStartedSuccessfully = false;
+      timerService.startTimer(projects[0]).then(function () {
+        timerStartedSuccessfully = true;
+      }, function () {
+        timerStartedSuccessfully = false;
+      });
 
-      // Make the requests go though and validate
+      // Create time entry
       httpBackend.whenPOST('http://localhost:8080/api/api/timeEntry').respond(timeEntries[0]);
+      // Person is updated with active time entry
       httpBackend.whenPUT('http://localhost:8080/api/api/person/1').respond(person[0]);
       scope.$digest();
       httpBackend.flush();
+
+      // Verify that the proper event were signaled
       expect(scope.$broadcast).toHaveBeenCalledWith('onTimeEntryUpdated', timeEntries[0]);
-      expect(scope.$broadcast).toHaveBeenCalledWith('onProjectUpdated', projects[0]);
+      expect(timerStartedSuccessfully).toBe(true);
 
       // Stop the timer
-      //timerService.stopTimer(projects[0]);
+      var timerStoppedSuccessfully = false;
+      timerService.stopTimer().then(function () {
+        timerStoppedSuccessfully = true;
+      }, function (reason) {
+        console.error(reason);
+        timerStoppedSuccessfully = false;        
+      });
+
+      // Verify it is stopped
+      httpBackend.whenPUT('http://localhost:8080/api/api/timeEntry/201').respond(timeEntries[0]);
+      scope.$digest();
+      httpBackend.flush();
+      expect(timerStoppedSuccessfully).toBe(true);
     });
 
     it('should not stop the timer when there are no active projects', function () {
@@ -133,31 +153,5 @@ describe('Service: TimerService', function () {
       timerService.stopTimer(null, persons[0]);
     });
 
-    xit('should stop the timer of the active user', function () {
-      // Get the person
-      var person;
-      personService.getPerson().then(function (result) {
-        person = result;
-      });
-      scope.$digest();
-      expect(person).toBeDefined();
-      expect(person).not.toBeNull();
-
-      // Set the person as active
-      var activePerson = person;
-      activePerson.activeTimeEntry = timeEntries[0];
-      httpBackend.whenPUT('http://localhost:8080/api/api/person/1').respond(activePerson);
-      personService.setActiveTimeEntry(timeEntries[0]);
-      scope.$digest();
-      httpBackend.flush();
-      expect(personService.getActiveProjectId()).toBe(projects[0].id);
-
-      // Stop the active timer
-      person.activeTimeEntry = timeEntries[0];
-      timerService.stopTimer();
-      scope.$digest();
-      httpBackend.flush();
-      expect(personService.getActiveProjectId()).toBe(-1);
-    });
   });    
 });
