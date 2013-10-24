@@ -46,12 +46,12 @@ angular.module('tpsApp')
       $scope.project = {};
     };
     $scope.removeProject = function (project) {
-      TimerService.remove(project);
+      TimerService.removeProject(project);
     };
     //
     // Update the provided project
     $scope.updateProject = function (project) {
-      TimerService.update(project);
+      TimerService.updateProject(project);
     };
     //
     // Restore the provided project to the value of the database.
