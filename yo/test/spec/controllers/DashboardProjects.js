@@ -59,6 +59,9 @@ describe('Controller: DashboardProjectsCtrl', function () {
     },
     update: function () {
       console.log('TimerServiceMock:update called');
+    },
+    reloadProject: function () {
+      console.log('TimerServiceMock::reloadProject called');
     }
   };
 
@@ -99,11 +102,12 @@ describe('Controller: DashboardProjectsCtrl', function () {
   });
 
   it('should create a new project using the TimerService', function () {
-    var project = projects[0];
+    spyOn(TimerServiceMock, 'update').andCallThrough();
     scope.project.name = 'New Project';
     scope.project.rate = 530;
     scope.project.comment = 'Hej';
-    scope.createProject();
+    scope.createProjectFromScope();
+    expect(TimerServiceMock.update).toHaveBeenCalled();
   });
 
   it('should call remove project in TimerService', function () {
@@ -124,7 +128,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
     // expect(TimerServiceMock.update).toHaveBeenCalled();
   });
 
-  it('should just create a new timer task when no project is active', function () {
+  it('should just start a timer for the given project', function () {
     // Register spyes
     spyOn(TimerServiceMock, 'startTimer').andCallThrough();
     spyOn(TimerServiceMock, 'stopTimer').andCallThrough();
@@ -133,16 +137,15 @@ describe('Controller: DashboardProjectsCtrl', function () {
     // var activeProjectId = -1;
     // expect(PersonServiceMock.getActiveProjectId()).not.toBeGreaterThan(0);
 
-    // Test code
+    // Start timer
     var projectToStart = projects[0];
-    scope.startProjectTimer(projectToStart);
+    scope.startTimer(projectToStart);
     activeProjectId = 2;
 
     // Verifications
-    // Timer must be started
     expect(TimerServiceMock.startTimer).toHaveBeenCalled();
     expect(TimerServiceMock.stopTimer).not.toHaveBeenCalled();
-    expect(PersonServiceMock.getActiveProjectId()).toBeGreaterThan(0);
+    expect(PersonServiceMock.getActiveProjectId()).toBe(2);
   });
 
   it('should stop active timer when project is active', function () {
@@ -152,10 +155,10 @@ describe('Controller: DashboardProjectsCtrl', function () {
     // Test code
     var projectToStart = projects[0];
     activeProjectId = projectToStart.id;
-    scope.startProjectTimer(projectToStart);
+    scope.startTimer(projectToStart);
 
     // Project should no longer be active
-    //expect(PersonServiceMock.getActiveProjectId()).toBe(-1);
+    expect(TimerServiceMock.startTimer).toHaveBeenCalled();
 
   });
 
@@ -166,5 +169,19 @@ describe('Controller: DashboardProjectsCtrl', function () {
     // Test code
 
     // Verifications
+  });
+
+  describe('test the events', function () {
+    it('should handle onProjectUpdated event', function () {
+      scope.$broadcast('onProjectUpdated', projects[0]);
+    });
+
+    it('should handle the onProjectsRefreshed event', function () {
+      var emptyList = {};
+      scope.$broadcast('onProjectsRefreshed', emptyList);
+      expect(scope.projects).toBe(emptyList);
+      scope.$broadcast('onProjectsRefreshed', projects);      
+      expect(scope.projects).toBe(projects);
+    });
   });
 });

@@ -27,33 +27,30 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $filter, $q, $location, TimerService, PersonService) {
+  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $location, TimerService, PersonService) {
     console.log('Initiating DashboardProjectsCtrl');
 
     $scope.activeProject = null;
     $scope.project = {};
     $scope.projects = {};
-    // TimerService.refresh();
+    TimerService.reloadProject();
 
     // Show new project modal form
     $scope.showNewProject = function () {
       console.log('showNewProject');
     };
     // create
-    $scope.createProject = function () {
+    $scope.createProjectFromScope = function () {
       console.log('createProject(name: %s, id: %d)', $scope.project.name, $scope.project.id);
-      //TimerService.create()
       $scope.updateProject($scope.project);
       $scope.project = {};
     };
     $scope.removeProject = function (project) {
-      console.log('removeProject: %d', project.id);
       TimerService.remove(project);
     };
     //
     // Update the provided project
     $scope.updateProject = function (project) {
-      console.log('updateProject: %d', project.id);
       TimerService.update(project);
     };
     //
@@ -63,16 +60,16 @@ angular.module('tpsApp')
     };
     //
     // Start the project
-    $scope.startProjectTimer = function (project) {
+    $scope.startTimer = function (project) {
       console.log('startTimer -  project id: %d', project.id);
 
       // Check if old project needs to be stopped first
       var activeProjectId = PersonService.getActiveProjectId();
       if (activeProjectId >= 0) {
-        console.log('startProjectTimer - Stopping active project %s', activeProjectId);
-        $scope.stopProjectTimer();
+        console.log('startTimer - Stopping active project %s', activeProjectId);
+        $scope.stopTimer();
       } else {
-        console.log('startProjectTimer - No active project');
+        console.log('startTimer - No active project');
       }
 
       // Once project is stopped, create a new time entry
@@ -80,13 +77,13 @@ angular.module('tpsApp')
     };
     //
     // Stop the active project
-    $scope.stopProjectTimer = function () {
+    $scope.stopTimer = function () {
       var activeProjectId = PersonService.getActiveProjectId();
       if (activeProjectId >= 0) {
-        console.log('stopProjectTimer - Stopping active project with id : %d', activeProjectId);
+        console.log('stopTimer - Stopping active project with id : %d', activeProjectId);
         TimerService.stopTimer($scope.person, activeProjectId);
       } else {
-        console.error('stopProjectTimer - No active project');
+        console.error('stopTimer - No active project');
       }
     };
     //
@@ -103,9 +100,9 @@ angular.module('tpsApp')
     });
     $scope.$on('onProjectUpdated', function (event, updatedProject) {
       console.log('onProjectUpdated - %d', updatedProject.id);
-      var project = $scope.getById($scope.projects, updatedProject.id);
-      project.active = updatedProject.active;
-      project.name = updatedProject.name;
+      // var project = $scope.getById($scope.projects, updatedProject.id);
+      // project.active = updatedProject.active;
+      // project.name = updatedProject.name;
     });
     //
     //
