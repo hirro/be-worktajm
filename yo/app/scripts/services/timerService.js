@@ -144,6 +144,9 @@ angular.module('tpsApp')
         });
         return q;
       },
+      createTimeEntry: function (timeEntry) {
+        return baseTimeEntries.post(timeEntry);
+      },
       updateTimeEntry: function (timeEntry) {
         var deferred = $q.defer();
         var restangularTimeEntry = svc.findTimeEntryById(timeEntry.id);
@@ -189,7 +192,8 @@ angular.module('tpsApp')
       // CRUD time entries - END
       //
 
-      // XXX: Only id is required
+      // Start the timer for the specified project.
+      // Returns a promise to the operation
       startTimer: function(project) {
         console.log('startTimer');
         var deferred = $q.defer();        
@@ -200,46 +204,51 @@ angular.module('tpsApp')
           // Create the new time entry
           console.log('Creating new time entry');
           var timeEntry = { person: person, project: project, startTime: $.now()};
-          baseTimeEntries.post(timeEntry).then(function (newTimeEntry) {
+          svc.createTimeEntry(timeEntry).then(function (newTimeEntry) {
             console.log('startTimer - Time entry created at backend');
             newTimeEntry.active = true;
             svc.setActive(project, true);
             timeEntries.push(newTimeEntry);
 
             // Update the person
-            PersonService.setActiveTimeEntry(newTimeEntry);
-
-            // Signal the events
-            $rootScope.$broadcast('onTimeEntryUpdated', newTimeEntry);
-
-            // Resolve the promise
-            deferred.resolve(newTimeEntry);
+            PersonService.setActiveTimeEntry(newTimeEntry).then(function () {
+              // Signal the events
+              console.log('startTimer succeeded.');
+              $rootScope.$broadcast('onTimeEntryUpdated', newTimeEntry);
+              // Resolve the promise
+              deferred.resolve(newTimeEntry);
+            }, function (reason) {
+              console.error('Failed to setActiveTimeEntry %s', reason);
+              deferred.reject(reason);
+            });
           }, function (reason) {
-            console.error('Failed to create time entry');
+            console.error('Failed to create time entry. %s', reason);
             return deferred.reject(reason);
           });
         }, function (reason) {
-          console.error('Failed to get logged in user');
+          console.error('Failed to get logged in user. %s', reason);
           return deferred.reject(reason);
         });
 
         return deferred.promise;
       },
-
+      // Stop the active task.
+      // If no task is active an error is returned.
       stopTimer: function() {
         console.log('stopTimer');
         var deferred = $q.defer();
+
+        // Get hold of the active time entry of the logged in user
         PersonService.getPerson().then(function (person) {   
-          console.log('person retrieved');
           var timeEntry = person.activeTimeEntry;
-          var project = timeEntry.project;
-          if (person && timeEntry && project) {
+          var project = timeEntry ? timeEntry.project : null;
+          if (timeEntry && project) {
             console.log('Got an active project');
             timeEntry.endTime = $.now();
-            timeEntry.put().then(function () {
+            svc.updateTimeEntry(timeEntry).then(function () {
               console.log('stopTimer - Time entry updated at backend');
               PersonService.setActiveTimeEntry(null).then(function () {
-                console.log('Person is set as inactive');
+                console.log('Stop timer succeeded');                
                 deferred.resolve();
               }, function (reason) {
                 console.error(reason);
@@ -252,7 +261,7 @@ angular.module('tpsApp')
           } else {
             console.log('This person has no active timer');
             return deferred.resolve(null);
-          }
+          }            
         }, function (reason) {
           console.log('Failed to get logged in person');
           return deferred.reject(reason);

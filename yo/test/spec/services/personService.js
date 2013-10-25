@@ -186,14 +186,39 @@ describe('Service: PersonService', function () {
     });
 
     it('should set the active time entry', function () {
+      var failed = false;
+      var activated = false;
       httpBackend.whenPUT('http://localhost:8080/api/api/person/1').respond(timeEntries[0]);
-      service.setActiveTimeEntry(timeEntries[0]);
+      service.setActiveTimeEntry(timeEntries[0]).then(function () {
+        activated = true;
+      }, function () {
+        failed = true;
+      });
 
       // Make the requiest go through
       scope.$digest();
       httpBackend.flush();
       expect(service.getActiveTimeEntry()).toBe(timeEntries[0]);
+      expect(activated).toBe(true);
+      expect(failed).toBe(false);
+    });
 
+    it('setActiveTimeEntry should handle backend error gracefully', function () {
+      var failed = false;
+      var activated = false;
+      httpBackend.whenPUT('http://localhost:8080/api/api/person/1').respond(401);
+      service.setActiveTimeEntry(timeEntries[0]).then(function () {
+        activated = true;
+      }, function () {
+        failed = true;
+      });
+
+      // Make the requiest go through
+      scope.$digest();
+      httpBackend.flush();
+      expect(service.getActiveTimeEntry()).toBe(timeEntries[0]);
+      expect(activated).toBe(false);
+      expect(failed).toBe(true);
     });
   });
   

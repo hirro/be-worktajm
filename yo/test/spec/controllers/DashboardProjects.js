@@ -27,12 +27,12 @@
 /*globals describe, beforeEach, inject, expect, it, spyOn */
 'use strict';
 
-describe('Controller: DashboardProjectsCtrl', function () {
+describe('Controller: DashboardProjectsCtrl', function ($q) {
 
   // load the controller's module
   beforeEach(module('tpsApp'));
 
-  var DashboardProjectsCtrl, scope;
+  var DashboardProjectsCtrl, scope, q;
   var projects = [
     {'id': 1, 'name': 'Project A', 'description': null, 'rate': null, 'new': false},
     {'id': 2, 'name': 'Project B', 'description': null, 'rate': null, 'new': false},
@@ -45,11 +45,18 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
   // Initialize the TimerServiceMock
   var TimerServiceMock = {
-    startTimer: function () {
+    startTimer: function (project) {
       console.log('TimerServiceMock:startTimer called');
+      var deferred = q.defer();
+      deferred.resolve(project);
+      return deferred.promise;
     },
     stopTimer: function () {
       console.log('TimerServiceMock:stopTimer called');
+      var deferred = q.defer();
+      deferred.resolve();
+      console.log('TimerServiceMock::stopTimer done');
+      return deferred.promise;
     },
     removeProject: function (project) {
       console.log('TimerServiceMock:removeProject called');
@@ -74,8 +81,9 @@ describe('Controller: DashboardProjectsCtrl', function () {
   };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $injector) {
+  beforeEach(inject(function ($controller, $rootScope, $injector, $q) {
     scope = $rootScope.$new();
+    q =$q;
     DashboardProjectsCtrl = $controller('DashboardProjectsCtrl', {
       $scope: scope,
       TimerService: TimerServiceMock,
@@ -101,7 +109,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
     expect(scope.getById(scope.projects, 2)).toEqual(projects[1]);
   });
 
-  it('should create a new project using the TimerService', function () {
+ it('should create a new project using the TimerService', function () {
     spyOn(TimerServiceMock, 'updateProject').andCallThrough();
     scope.project.name = 'New Project';
     scope.project.rate = 530;
@@ -110,7 +118,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
     expect(TimerServiceMock.updateProject).toHaveBeenCalled();
   });
 
-  it('should call removeProject in TimerService', function () {
+ it('should call removeProject in TimerService', function () {
     // Register spyes
     spyOn(TimerServiceMock, 'removeProject').andCallThrough();
 
@@ -122,7 +130,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
     expect(TimerServiceMock.removeProject).toHaveBeenCalled();
   });
 
-  it('should should call updateProject in TimerService', function () {
+ it('should should call updateProject in TimerService', function () {
     var project = projects[2];
     spyOn(TimerServiceMock, 'updateProject').andCallThrough();
     scope.updateProject(project);
@@ -134,18 +142,17 @@ describe('Controller: DashboardProjectsCtrl', function () {
     spyOn(TimerServiceMock, 'startTimer').andCallThrough();
     spyOn(TimerServiceMock, 'stopTimer').andCallThrough();
 
-    // Preconditions
-    // var activeProjectId = -1;
-    // expect(PersonServiceMock.getActiveProjectId()).not.toBeGreaterThan(0);
-
     // Start timer
     var projectToStart = projects[0];
     scope.startTimer(projectToStart);
     activeProjectId = 2;
 
+    // Make the requests go though
+    scope.$digest();
+
     // Verifications
     expect(TimerServiceMock.startTimer).toHaveBeenCalled();
-    expect(TimerServiceMock.stopTimer).not.toHaveBeenCalled();
+    expect(TimerServiceMock.stopTimer).toHaveBeenCalled();
     expect(PersonServiceMock.getActiveProjectId()).toBe(2);
   });
 
@@ -157,6 +164,9 @@ describe('Controller: DashboardProjectsCtrl', function () {
     var projectToStart = projects[0];
     activeProjectId = projectToStart.id;
     scope.startTimer(projectToStart);
+
+    // Make the requests go though
+    scope.$digest();
 
     // Project should no longer be active
     expect(TimerServiceMock.startTimer).toHaveBeenCalled();

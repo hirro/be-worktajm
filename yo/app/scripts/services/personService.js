@@ -31,14 +31,18 @@ angular.module('tpsApp')
     var person = null;
     var svc;
     svc = {
-      // Get currently logged in person
+
+      /**
+       * Returns the logged in person.
+       * If person has not been loaded before it will be retrieved from backend.
+       * @return promise to Person.
+       */
       getPerson: function () {
         console.log('PersonService:getPerson');
 
         var deferred = $q.defer();
 
         if (person) {
-          console.log('Person already loaded');
           deferred.resolve(person);
         } else {
           console.log('Person not loaded');
@@ -56,11 +60,33 @@ angular.module('tpsApp')
         }
         return deferred.promise;        
       },
+
+      /**
+       * Sets the logged in person as actively running the provided time entry.
+       * @return promise to the person.
+       */
       setActiveTimeEntry: function (timeEntry) {
+        var deferred = $q.defer();
         console.log('Updating person, id %d', person.id);
+        var stoppedProject = person.activeTimeEntry ? person.activeTimeEntry.project : null;
+        var startedProject = timeEntry ? timeEntry.project : null;
         person.activeTimeEntry = timeEntry;
-        return person.put();
+        person.put().then(function (result) {
+          // Signal that the project status has changed.
+          $rootScope.$broadcast('onProjectUpdated', stoppedProject);
+          $rootScope.$broadcast('onProjectUpdated', startedProject);
+          return deferred.resolve(result);
+        }, function (reason) {
+          console.error('setActiveTimeEntry failed. %s', reason);
+          return deferred.reject(reason);
+        });
+        return deferred.promise;
       },
+
+      /**
+       * Returns the active time entry of the logged in person.
+       * @return active time entry of logged in person, null if not active.
+       */
       getActiveTimeEntry: function () {
         var timeEntry = null;
         if (person && person.activeTimeEntry) {
@@ -68,6 +94,10 @@ angular.module('tpsApp')
         }
         return timeEntry;
       },
+
+      /** Returns the id if the active project.
+       * @return id of the active project, -1 if no project is active.
+       */
       getActiveProjectId: function () {
         var result = -1;
         if (person &&
