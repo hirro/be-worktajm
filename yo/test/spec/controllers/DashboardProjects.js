@@ -122,10 +122,11 @@ describe('Controller: DashboardProjectsCtrl', function () {
     expect(TimerServiceMock.removeProject).toHaveBeenCalled();
   });
 
-  it('should should call update in TimerService', function () {
+  it('should should call updateProject in TimerService', function () {
     var project = projects[2];
     spyOn(TimerServiceMock, 'updateProject').andCallThrough();
-    // expect(TimerServiceMock.updateProject).toHaveBeenCalled();
+    scope.updateProject(project);
+    expect(TimerServiceMock.updateProject).toHaveBeenCalled();
   });
 
   it('should just start a timer for the given project', function () {
