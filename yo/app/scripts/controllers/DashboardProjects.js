@@ -39,25 +39,7 @@ angular.module('tpsApp')
     $scope.showNewProject = function () {
       console.log('showNewProject');
     };
-    // create
-    $scope.createProjectFromScope = function () {
-      console.log('createProject(name: %s, id: %d)', $scope.project.name, $scope.project.id);
-      $scope.updateProject($scope.project);
-      $scope.project = {};
-    };
-    $scope.removeProject = function (project) {
-      TimerService.removeProject(project);
-    };
-    //
-    // Update the provided project
-    $scope.updateProject = function (project) {
-      TimerService.updateProject(project);
-    };
-    //
-    // Restore the provided project to the value of the database.
-    $scope.restoreProject = function (project) {
-      console.log('restoreProject(id: %d, name: %s)', project.id, project.name);
-    };
+
     //
     // Start the project
     $scope.startTimer = function (project) {
@@ -98,14 +80,38 @@ angular.module('tpsApp')
         }
       });
     });
+
+    //
+    // Event handlers
     $scope.$on('onProjectUpdated', function (event, updatedProject) {
       console.log('onProjectUpdated - %d', updatedProject.id);
       // var project = $scope.getById($scope.projects, updatedProject.id);
       // project.active = updatedProject.active;
       // project.name = updatedProject.name;
     });
+
     //
-    //
+    // CRUD operations
+    // create
+    $scope.createProjectFromScope = function () {
+      console.log('createProject(name: %s, id: %d)', $scope.project.name, $scope.project.id);
+      $scope.updateProject($scope.project);
+      $scope.project = {};
+    };
+    // Update the provided project
+    $scope.updateProject = function (project) {
+      TimerService.updateProject(project);
+    };
+    // Delete
+    $scope.removeProject = function (project) {
+      TimerService.removeProject(project);
+    };
+    // Restore the provided project to the value of the database.
+    // XXX unused
+    $scope.restoreProject = function (project) {
+      console.log('restoreProject(id: %d, name: %s)', project.id, project.name);
+    };
+    // Read (cached)
     $scope.getById = function (list, id) {
       console.log('Finding project with id %d', id);
       return _(list).find({
