@@ -51,14 +51,14 @@ describe('Controller: DashboardProjectsCtrl', function () {
     stopTimer: function () {
       console.log('TimerServiceMock:stopTimer called');
     },
-    remove: function (project) {
-      console.log('TimerServiceMock:remove called');
+    removeProject: function (project) {
+      console.log('TimerServiceMock:removeProject called');
     },
     refresh: function () {
       console.log('TimerServiceMock:refresh called');
     },
-    update: function () {
-      console.log('TimerServiceMock:update called');
+    updateProject: function () {
+      console.log('TimerServiceMock:updateProject called');
     },
     reloadProject: function () {
       console.log('TimerServiceMock::reloadProject called');
@@ -102,30 +102,30 @@ describe('Controller: DashboardProjectsCtrl', function () {
   });
 
   it('should create a new project using the TimerService', function () {
-    spyOn(TimerServiceMock, 'update').andCallThrough();
+    spyOn(TimerServiceMock, 'updateProject').andCallThrough();
     scope.project.name = 'New Project';
     scope.project.rate = 530;
     scope.project.comment = 'Hej';
     scope.createProjectFromScope();
-    expect(TimerServiceMock.update).toHaveBeenCalled();
+    expect(TimerServiceMock.updateProject).toHaveBeenCalled();
   });
 
-  it('should call remove project in TimerService', function () {
+  it('should call removeProject in TimerService', function () {
     // Register spyes
-    spyOn(TimerServiceMock, 'remove').andCallThrough();
+    spyOn(TimerServiceMock, 'removeProject').andCallThrough();
 
     // Test code
     var project = projects[1];
     scope.removeProject(project);
 
     // Check spyes
-    expect(TimerServiceMock.remove).toHaveBeenCalled();
+    expect(TimerServiceMock.removeProject).toHaveBeenCalled();
   });
 
   it('should should call update in TimerService', function () {
     var project = projects[2];
-    spyOn(TimerServiceMock, 'update').andCallThrough();
-    // expect(TimerServiceMock.update).toHaveBeenCalled();
+    spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+    // expect(TimerServiceMock.updateProject).toHaveBeenCalled();
   });
 
   it('should just start a timer for the given project', function () {
