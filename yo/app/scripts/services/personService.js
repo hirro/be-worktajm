@@ -43,19 +43,20 @@ angular.module('tpsApp')
         var deferred = $q.defer();
 
         if (person) {
+          console.log('PersonService:getPerson - OK (local)');
           deferred.resolve(person);
         } else {
-          console.log('Person not loaded');
           var qPerson = Restangular.one('person', 1).get();
           qPerson.then(function (p) {
-            console.log('PersonService:getPerson - Backend responded %s', p.username);
+            console.log('PersonService:getPerson - OK (backend)');
             person = p;
             // XXX: Ugly
             $rootScope.person = p;
             return deferred.resolve(p);
           }, function () {
-            console.error('Failed to load the person from backend');
-            return deferred.reject('Failed to load project from backend');
+            var msg = 'Failed to load the person from backend';
+            console.error('PersonService:getPerson - %s', msg);
+            return deferred.reject(msg);
           });
         }
         return deferred.promise;        
@@ -67,21 +68,27 @@ angular.module('tpsApp')
        */
       setActiveTimeEntry: function (timeEntry) {
         var deferred = $q.defer();
-        console.log('Updating person, id %d', person.id);
+        console.log('PersonService:setActiveTimeEntry(id [%d])', timeEntry ? timeEntry.id : null);
         var stoppedProject = person.activeTimeEntry ? person.activeTimeEntry.project : null;
         var startedProject = timeEntry ? timeEntry.project : null;
         person.activeTimeEntry = timeEntry;
         person.put().then(function (result) {
           // Signal that the project status has changed.
           if (stoppedProject) {
+            console.log('BROADCAST: onProjectUpdated (id [%d])', stoppedProject.id);
             $rootScope.$broadcast('onProjectUpdated', stoppedProject);
+          } else {
+            console.log('PersonService:::setActiveTimeEntry - No project stopped');
           }
           if (startedProject) {
+            console.log('BROADCAST: onProjectUpdated (id [%d])', startedProject.id);
             $rootScope.$broadcast('onProjectUpdated', startedProject);
+          } else {
+            console.log('PersonService:::setActiveTimeEntry - No project started');
           }
           return deferred.resolve(result);
         }, function (reason) {
-          console.error('setActiveTimeEntry failed. %s', reason);
+          console.error('PersonService::setActiveTimeEntry failed. %s', reason);
           return deferred.reject(reason);
         });
         return deferred.promise;
@@ -107,10 +114,10 @@ angular.module('tpsApp')
         if (person &&
             person.activeTimeEntry &&
             person.activeTimeEntry.project) {
-          console.log('getActiveProjectId - %d', person.activeTimeEntry.project.id);
+          console.log('PersonService::getActiveProjectId(id [%d])', person.activeTimeEntry.project.id);
           result = person.activeTimeEntry.project.id;
         } else {
-          console.log('No active project');
+          console.log('PersonService::getActiveProjectId - No active project');
         }
         return result;
       }

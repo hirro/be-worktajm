@@ -1,6 +1,6 @@
 /*
   @licstart The following is the entire license notice for the 
-            JavaScript code in this page.
+      JavaScript code in this page.
   @source TBD
 
   Copyright (C) 2013 Jim Arnell.
@@ -20,7 +20,7 @@
   through which recipients can access the Corresponding Source.
 
   @licend The above is the entire license notice
-          for the JavaScript code in this page.  
+      for the JavaScript code in this page.  
 */
 
 /* globals angular */
@@ -29,68 +29,67 @@
 angular.module('tpsApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
-	var devMode = true;
-	var devToken = 'jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107';
+  var devMode = true;
+  var devToken = 'jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107';
 
-	// Dev mode, using backdoor token
-	if (devMode) {
-	  Restangular.setDefaultHeaders({
-		'Auth-Token': devToken
-	  });
-		PersonService.getPerson().then(function (person) {
-			console.log('login - Person loaded from backend.');
-			console.log('login - email: %s', person.email);
-      if (person.activeTimeEntry) {
-        console.log('login - active project: %d', person.activeTimeEntry.project.id);
-      }
-			$rootScope.user = {
-				name: 'jim@arnellconsulting.com',
-				token: devToken,
-				verified: true
-			};
-		  $location.path( '/dashboard' );
-		});
-	}
+  // Dev mode, using backdoor token
+  if (devMode) {
+    Restangular.setDefaultHeaders({
+    'Auth-Token': devToken
+    });
+    PersonService.getPerson().then(function (person) {
+      console.log('LoginCtrl::initialize - Person loaded from backend (email [%s])', person.email);
+    if (person.activeTimeEntry) {
+      console.log('LoginCtrl::initialize - Active project: %d', person.activeTimeEntry.project.id);
+    }
+      $rootScope.user = {
+        name: 'jim@arnellconsulting.com',
+        token: devToken,
+        verified: true
+      };
+      $location.path( '/dashboard' );
+    });
+  }
 
-	// If user is logged in, the Restangular call must contain the token
-	if ($rootScope.user) {
-	  console.log('User has a token, user name: %s', $rootScope.user.name);
-	  Restangular.setDefaultHeaders({
-		'Auth-Token': $rootScope.user.token
-	  });
-	} else {
-	  console.log('Token missing, redirecting to login');
-	  $location.path( '/main' );
-	}
-	
-	$scope.login = function () {
+  // If user is logged in, the Restangular call must contain the token
+  if ($rootScope.user) {
+    console.log('LoginCtrl::initialize - User has a token, user name: %s', $rootScope.user.name);
+    Restangular.setDefaultHeaders({
+    'Auth-Token': $rootScope.user.token
+    });
+  } else {
+    console.log('LoginCtrl::initialize - Token missing, redirecting to login');
+    $location.path( '/main' );
+  }
+  
+  $scope.login = function () {
 
-		console.log('login');
-		$scope.token = Restangular.one('authenticate').get({
-			username: $scope.username,
-			password: $scope.password
-		}).then(function(user) {
-			console.log('Successfully authenticated, user: %s', user.name);
-			$rootScope.user = user;
-			$location.path( '/dashboard' );
-		}, function() {
-			console.error('Login failed');
-		});
-	};
+    console.log('login');
+    $scope.token = Restangular.one('authenticate').get({
+      username: $scope.username,
+      password: $scope.password
+    }).then(function(user) {
+      console.log('LoginCtrl::initialize - Successfully authenticated, user: %s', user.name);
+      $rootScope.user = user;
+      $location.path( '/dashboard' );
+    }, function() {
+      console.error('LoginCtrl::initialize - Login failed');
+    });
+  };
 
-	$scope.register = function () {
-		$location.path( '/register');
-	};
+  $scope.register = function () {
+    $location.path( '/register');
+  };
 
-	$scope.logout = function () {
-		$scope.user = null;
-	};
+  $scope.logout = function () {
+    $scope.user = null;
+  };
 
-	$scope.settings = function () {
-		// TBD
-	};
+  $scope.settings = function () {
+    // TBD
+  };
 
-	$scope.profile = function () {
-		// TBD
-	}
+  $scope.profile = function () {
+    // TBD
+  };
 });

@@ -37,13 +37,13 @@ angular.module('tpsApp')
 
     // Show new project modal form
     $scope.showNewProject = function () {
-      console.log('showNewProject');
+      console.log('DashboardProjectsCtrl::showNewProject');
     };
 
     //
     // Start the project
     $scope.startTimer = function (project) {
-      console.log('startTimer -  project id: %d', project.id);
+      console.log('DashboardProjectsCtrl::startTimer -  project id: %d', project.id);
       // Always stop active timer 
       TimerService.stopTimer().then(function () {
         TimerService.startTimer(project);
@@ -61,7 +61,7 @@ angular.module('tpsApp')
     // @start Event handlers
     //
     $scope.$on('onProjectUpdated', function (event, updatedProject) {
-      console.log('onProjectUpdated - %d', updatedProject.id);
+      console.info('EVENT: onProjectUpdated([%d])', updatedProject.id);
       var project = $scope.getById($scope.projects, updatedProject.id);
       if (project) {
         // Make sure to copy all the attributes here
@@ -69,11 +69,11 @@ angular.module('tpsApp')
         project.name = updatedProject.name;
         project.rate = updatedProject.rate;
       } else {
-        console.error('Failed to find matching project in controller, add it?');
+        console.error('DashboardProjectsCtrl::onProjectUpdated - Failed to find matching project in controller, add it?');
       }
     });
     $scope.$on('onProjectsRefreshed', function (event, updatedProjectList) {
-      console.log('onProjectsRefreshed - updated project list contains %d entries', updatedProjectList.length);
+      console.log('EVENT: onProjectsRefreshed(size [%d])', updatedProjectList.length);
       var activeProjectId = PersonService.getActiveProjectId();
       $scope.projects = updatedProjectList;
       _($scope.projects).each(function(p) {
@@ -91,7 +91,7 @@ angular.module('tpsApp')
     //
     // create
     $scope.createProjectFromScope = function () {
-      console.log('createProject(name: %s, id: %d)', $scope.project.name, $scope.project.id);
+      console.log('DashboardProjectsCtrl::createProjectFromScope(name: %s, id: %d)', $scope.project.name, $scope.project.id);
       $scope.updateProject($scope.project);
       $scope.project = {};
     };
@@ -106,11 +106,11 @@ angular.module('tpsApp')
     // Restore the provided project to the value of the database.
     // XXX unused
     $scope.restoreProject = function (project) {
-      console.log('restoreProject(id: %d, name: %s)', project.id, project.name);
+      console.log('createProjectFromScope:::restoreProject(id: %d, name: %s)', project.id, project.name);
     };
     // Read (cached)
     $scope.getById = function (list, id) {
-      console.log('Finding project with id %d', id);
+      console.log('createProjectFromScope::getById([%d])', id);
       return _(list).find({
         'id': id
       });
