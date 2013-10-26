@@ -41,7 +41,7 @@ angular.module('tpsApp')
 
     // User clicks remove button
     $scope.removeTimeEntry = function (timeEntry) {
-      console.log('removeTimeEntry(%s)', timeEntry.id);
+      console.log('DashboardTimeEntriesCtrl::removeTimeEntry(%d)', timeEntry.id);
       TimerService.removeTimeEntry(timeEntry);
     };
 
@@ -64,14 +64,14 @@ angular.module('tpsApp')
     // Service events
     //
     $scope.$on('onTimeEntriesRefreshed', function (event, newTimeEntries) {
-      console.log('onTimeEntriesRefreshed, %d items', newTimeEntries.length);
+      console.log('EVENT: onTimeEntriesRefreshed(count [%d])', newTimeEntries.length);
       $scope.timeEntries = newTimeEntries;
     });
     $scope.$on('onTimeEntryUpdated', function (event, newTimeEntry) {
-      console.log('onTimeEntryUpdated, id: %d', newTimeEntry.id);
+      console.log('EVENT: onTimeEntryUpdated(id [%d])', newTimeEntry.id);
     });
     $scope.$on('onTimeEntryRemoved', function (event, removedTimeEntry) {
-      console.log('onTimeEntryRemoved: %d', removedTimeEntry.id);
+      console.log('EVENT: onTimeEntryRemoved(id [%d])', removedTimeEntry.id);
     });
 
     //
@@ -79,6 +79,6 @@ angular.module('tpsApp')
     //
     $scope.$watch('onSelectedDate', $scope.onSelectedDate);
     $scope.onSelectedDate = function () {
-      console.log('updateTimeEntries');
+      console.log('WATCH: updateTimeEntries');
     };
   });
