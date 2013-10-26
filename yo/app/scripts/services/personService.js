@@ -73,8 +73,12 @@ angular.module('tpsApp')
         person.activeTimeEntry = timeEntry;
         person.put().then(function (result) {
           // Signal that the project status has changed.
-          $rootScope.$broadcast('onProjectUpdated', stoppedProject);
-          $rootScope.$broadcast('onProjectUpdated', startedProject);
+          if (stoppedProject) {
+            $rootScope.$broadcast('onProjectUpdated', stoppedProject);
+          }
+          if (startedProject) {
+            $rootScope.$broadcast('onProjectUpdated', startedProject);
+          }
           return deferred.resolve(result);
         }, function (reason) {
           console.error('setActiveTimeEntry failed. %s', reason);
