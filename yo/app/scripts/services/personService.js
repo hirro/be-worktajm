@@ -75,6 +75,7 @@ angular.module('tpsApp')
         person.put().then(function (result) {
           // Signal that the project status has changed.
           if (stoppedProject) {
+            stoppedProject.active = false;
             console.log('BROADCAST: onProjectUpdated (id [%d])', stoppedProject.id);
             $rootScope.$broadcast('onProjectUpdated', stoppedProject);
           } else {
@@ -82,6 +83,7 @@ angular.module('tpsApp')
           }
           if (startedProject) {
             console.log('BROADCAST: onProjectUpdated (id [%d])', startedProject.id);
+            startedProject.active = true;
             $rootScope.$broadcast('onProjectUpdated', startedProject);
           } else {
             console.log('PersonService:::setActiveTimeEntry - No project started');
