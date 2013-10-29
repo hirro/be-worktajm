@@ -28,6 +28,16 @@
 
 describe('Filter: dateFilter', function () {
 
+  // Test constants
+  var timeEntries = [
+    { startTime: new Date('1/1/1970') },
+    { startTime: new Date('1/1/1970') },
+    { startTime: new Date('1/1/1971') },
+    { startTime: new Date('1/1/1972') },
+    { startTime: new Date('1/1/1972') },
+    { startTime: new Date('1/1/1972') }
+  ];
+
   // load the filter's module
   beforeEach(module('tpsApp'));
 
@@ -37,9 +47,23 @@ describe('Filter: dateFilter', function () {
     dateFilter = $filter('dateFilter');
   }));
 
-  it('should return the input prefixed with "dateFilter filter:"', function () {
-    var text = 'angularjs';
-    expect(dateFilter(text)).toBe('dateFilter filter: ' + text);
+  it('should return the filtered dates for ../1970', function () {
+    var filterEvaluation1 = dateFilter(timeEntries, new Date('1/1/1970'));
+    expect(filterEvaluation1.length).toBe(2);
   });
 
+  it('should return the filtered dates for ../1971', function () {
+    var filterEvaluation1 = dateFilter(timeEntries, new Date('1/1/1971'));
+    expect(filterEvaluation1.length).toBe(1);
+  });
+
+  it('should return the filtered dates for ../1972', function () {
+    var filterEvaluation1 = dateFilter(timeEntries, new Date('1/1/1972'));
+    expect(filterEvaluation1.length).toBe(3);
+  });
+
+  it('should return the filtered dates for ../1973', function () {
+    var filterEvaluation1 = dateFilter(timeEntries, new Date('1/1/1973'));
+    expect(filterEvaluation1.length).toBe(0);
+  });
 });
