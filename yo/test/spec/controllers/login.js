@@ -51,4 +51,10 @@ describe('Controller: LoginCtrl', function () {
     LoginCtrl.$inject = ['$scope',  '$route', 'PersonService'];
   }));
 
+  xdescribe('positive test', function () {
+    scope.username = '';
+    scope.password = '';
+    scope.login();
+  });
+
 });
