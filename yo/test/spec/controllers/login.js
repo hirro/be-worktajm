@@ -28,33 +28,70 @@
 
 'use strict';
 
-describe('Controller: LoginCtrl', function () {
+describe('Controller: LoginCtrl', function ($q) {
 
-  var LoginCtrl, scope;
+  // load the controller's module
+  beforeEach(module('tpsApp'));
+
+  var LoginCtrl, scope, q, httpBackend;
 
   // Initialize the PersonServiceMock
   var activeProjectId = -1;
+  var usernameA = 'usernameA';
+  var passwordA = 'passwordA';
+  var person = { id: 123, username: usernameA};
   var PersonServiceMock = {
     getActiveProjectId: function () {
       return activeProjectId;
+    },
+    getPerson: function () {
+      var deferred = q.defer();
+      deferred.resolve(person);
+      return deferred.promise;
     }
   };  
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $injector, PersonService) {
-    scope = $rootScope.$new();
+  beforeEach(inject(function ($controller, $rootScope, $q, $httpBackend) {
+    scope = $rootScope;
+    q = $q;
+    httpBackend = $httpBackend;
     LoginCtrl = $controller('LoginCtrl', {
       $scope: scope,
       PersonService: PersonServiceMock
     });
-    var project = [];
     LoginCtrl.$inject = ['$scope',  '$route', 'PersonService'];
   }));
 
-  xdescribe('positive test', function () {
-    scope.username = '';
-    scope.password = '';
+  it('should login successfully', function () {
+    scope.username = usernameA;
+    scope.password = passwordA;
     scope.login();
+    expect(scope.user).toBeUndefined();
+
+    // Make the request go through
+    httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=passwordA&username=usernameA').respond(person);
+    scope.$digest();
+    httpBackend.flush();
+
+    // Verify
+    expect(scope.user.username).toBe('usernameA');    
+  });
+
+  it('should fail login gracefully on access denied', function () {
+    scope.username = usernameA;
+    scope.password = passwordA;
+    scope.login();
+    expect(scope.user).toBeUndefined();
+
+    // Make the request go through
+    httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=passwordA&username=usernameA').respond(401);
+    scope.$digest();
+    httpBackend.flush();
+
+    // Verify
+    expect(scope.user).toBeNull();
+
   });
 
 });

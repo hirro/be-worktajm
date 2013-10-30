@@ -37,6 +37,7 @@ angular.module('tpsApp').controller('RegisterCtrl', function ($scope, Restangula
 		}, function (reason) {
 			console.error('Failed to register user, error: %s', reason);
 		});
+    return promise;
 	};
 });
 

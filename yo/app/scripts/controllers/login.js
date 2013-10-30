@@ -39,9 +39,9 @@ angular.module('tpsApp')
     });
     PersonService.getPerson().then(function (person) {
       console.log('LoginCtrl::initialize - Person loaded from backend (email [%s])', person.email);
-    if (person.activeTimeEntry) {
-      console.log('LoginCtrl::initialize - Active project: %d', person.activeTimeEntry.project.id);
-    }
+      if (person.activeTimeEntry) {
+        console.log('LoginCtrl::initialize - Active project: %d', person.activeTimeEntry.project.id);
+      }
       $rootScope.user = {
         name: 'jim@arnellconsulting.com',
         token: devToken,
@@ -74,6 +74,7 @@ angular.module('tpsApp')
       $location.path( '/dashboard' );
     }, function() {
       console.error('LoginCtrl::initialize - Login failed');
+      $rootScope.user = null;      
     });
   };
 
@@ -92,4 +93,5 @@ angular.module('tpsApp')
   $scope.profile = function () {
     // TBD
   };
+
 });
