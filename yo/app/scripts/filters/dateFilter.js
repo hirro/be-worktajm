@@ -30,10 +30,8 @@ angular.module('tpsApp')
   .filter('dateFilter', function () {
     return function (inputArray, selectedDate) {
       var selectedDateInMs = new Date(selectedDate);
-      console.log('selectedDate: %s', selectedDateInMs.toLocaleDateString());
       return _.filter(inputArray, function (timeEntry) {
         var startDate = new Date(timeEntry.startTime);
-        console.log('startDate: %s', startDate.toLocaleDateString());
         return selectedDateInMs.toLocaleDateString() === startDate.toLocaleDateString();
       });
     };

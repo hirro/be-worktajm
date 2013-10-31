@@ -48,6 +48,11 @@ describe('Controller: LoginCtrl', function ($q) {
       var deferred = q.defer();
       deferred.resolve(person);
       return deferred.promise;
+    },
+    login: function (username, password) {
+      var deferred = q.defer();
+      deferred.resolve(person);
+      return deferred.promise;
     }
   };  
 
@@ -64,34 +69,22 @@ describe('Controller: LoginCtrl', function ($q) {
   }));
 
   it('should login successfully', function () {
+    // Setup
+    spyOn(PersonServiceMock, 'login').andCallThrough();
+
+    // Preconditions
+    expect(scope.user).toBeUndefined();
+
     scope.username = usernameA;
     scope.password = passwordA;
     scope.login();
-    expect(scope.user).toBeUndefined();
 
-    // Make the request go through
-    httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=passwordA&username=usernameA').respond(person);
+    // Make the requests go though
     scope.$digest();
-    httpBackend.flush();
 
     // Verify
+    expect(PersonServiceMock.login).toHaveBeenCalled();
     expect(scope.user.username).toBe('usernameA');    
-  });
-
-  it('should fail login gracefully on access denied', function () {
-    scope.username = usernameA;
-    scope.password = passwordA;
-    scope.login();
-    expect(scope.user).toBeUndefined();
-
-    // Make the request go through
-    httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=passwordA&username=usernameA').respond(401);
-    scope.$digest();
-    httpBackend.flush();
-
-    // Verify
-    expect(scope.user).toBeNull();
-
   });
 
 });
