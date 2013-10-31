@@ -51,7 +51,7 @@ angular.module('tpsApp')
     });
   }
 
-  // If user is logged in, the Restangular call must contain the token
+  // Route handling? If user is logged in, the Restangular call must contain the token
   if ($rootScope.user) {
     console.log('LoginCtrl::initialize - User has a token, user name: %s', $rootScope.user.name);
     Restangular.setDefaultHeaders({
@@ -65,15 +65,12 @@ angular.module('tpsApp')
   $scope.login = function () {
 
     console.log('login');
-    $scope.token = Restangular.one('authenticate').get({
-      username: $scope.username,
-      password: $scope.password
-    }).then(function(user) {
-      console.log('LoginCtrl::initialize - Successfully authenticated, user: %s', user.name);
+    PersonService.login($scope.username, $scope.password).then(function (user) {
+      console.log('LoginCtrl::login - Successfully authenticated, user: %s', $scope.username);
       $rootScope.user = user;
       $location.path( '/dashboard' );
-    }, function() {
-      console.error('LoginCtrl::initialize - Login failed');
+    }, function (reason) {
+      console.error(reason);
       $rootScope.user = null;      
     });
   };

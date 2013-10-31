@@ -25,12 +25,50 @@
 
 'use strict';
 
-// This service handle operations for the currently logged in user.
+/**
+ * This service handle operations for the currently logged in user.
+ * @event onProjectUpdated(project) when active project has changed.
+ * @tbdEvent onLoggedOut()
+ * @tbdEvent onLoggedIn()
+ */
 angular.module('tpsApp')
   .service('PersonService', function PersonService($rootScope, $q, Restangular) {
     var person = null;
+    var token = null;
     var svc;
     svc = {
+
+      login: function (username, password) {
+        console.log('PersonService::login');
+
+        var deferred = $q.defer();
+        token = Restangular.one('authenticate').get({
+          username: username,
+          password: password
+        }).then(function(returnedToken) {
+          console.log('PersonService::login - Received authentication token for user: %s', returnedToken.name);
+          token = returnedToken;
+
+          // Use the token to set the authentication token, once done the person can be fetched.
+          Restangular.setDefaultHeaders({
+          'Auth-Token': token
+          });
+
+          svc.getPerson().then(function (returnedPerson) {
+            person = returnedPerson;
+            deferred.resolve(person);
+          }, function (reason) {
+            return deferred.reject(reason);
+          });
+
+        }, function (reason) {
+          console.error('PersonService::login - Login failed');
+          person = null;
+          token = null;
+          return deferred.reject(reason);
+        });
+        return deferred.promise;
+      },
 
       /**
        * Returns the logged in person.

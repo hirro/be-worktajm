@@ -222,4 +222,80 @@ describe('Service: PersonService', function () {
     });
   });
   
+  describe('login tests', function () {
+    it('should login successfully', function () {
+      var person = null;
+      var suceeded = false;
+      var failed = false;
+      service.login('UserA', 'PasswordA').then(function (result) {
+        person = result;
+        suceeded = true;
+      }, function () {
+        failed = true;
+      });
+      expect(person).toBeNull();
+
+      // Make the requiest go through
+      httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(persons[0]);
+      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      scope.$digest();
+      httpBackend.flush();    
+      
+      // Validations
+      expect(person).not.toBeNull();
+      expect(suceeded).toBe(true);
+      expect(failed).toBe(false);
+    });
+
+    it('should fail login on authentication failure', function () {
+      var person = null;
+      var suceeded = false;
+      var failed = false;
+      service.login('UserA', 'PasswordA').then(function (result) {
+        person = result;
+        suceeded = true;
+      }, function () {
+        failed = true;
+      });
+      expect(person).toBeNull();
+
+      // Make the requiest go through
+      httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(401);
+      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      scope.$digest();
+      httpBackend.flush();    
+      
+      // Validations
+      expect(person).toBeNull();
+      expect(suceeded).toBe(false);
+      expect(failed).toBe(true);
+    });
+
+
+    it('should fail gracefully in the unlikely event that authentication suceeded but it failed to get the person', function () {
+      var person = null;
+      var suceeded = false;
+      var failed = false;
+      service.login('UserA', 'PasswordA').then(function (result) {
+        person = result;
+        suceeded = true;
+      }, function () {
+        failed = true;
+      });
+      expect(person).toBeNull();
+
+      // Make the requiest go through
+      httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(persons[0]);
+      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(401);
+      scope.$digest();
+      httpBackend.flush();    
+      
+      // Validations
+      expect(person).toBeNull();
+      expect(suceeded).toBe(false);
+      expect(failed).toBe(true);
+    });
+
+  });
+  
 });
