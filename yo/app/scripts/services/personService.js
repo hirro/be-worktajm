@@ -46,8 +46,8 @@ angular.module('tpsApp')
           username: username,
           password: password
         }).then(function(returnedToken) {
-          console.log('PersonService::login - Received authentication token for user: %s', returnedToken.name);
-          token = returnedToken;
+          console.log('PersonService::login - Received authentication token for user: %s', returnedToken.token);
+          token = returnedToken.token;
 
           // Use the token to set the authentication token, once done the person can be fetched.
           Restangular.setDefaultHeaders({
@@ -57,6 +57,11 @@ angular.module('tpsApp')
           svc.getPerson().then(function (returnedPerson) {
             person = returnedPerson;
             deferred.resolve(person);
+            console.log('BROADCAST: onLoggedIn (id [%d])', person.id);
+            $rootScope.$broadcast('onLoggedIn', person);
+            $rootScope.token = token;
+            $rootScope.person = person;            
+
           }, function (reason) {
             return deferred.reject(reason);
           });
@@ -68,6 +73,17 @@ angular.module('tpsApp')
           return deferred.reject(reason);
         });
         return deferred.promise;
+      },
+
+      logout: function () {
+        console.log('Logging out user [%s]', person.username);
+        person = null;
+        token = null;
+        Restangular.setDefaultHeaders({
+          'Auth-Token': token
+        });
+        console.log('BROADCAST: onLoggedOut ()');
+        $rootScope.$broadcast('onLoggedOut');
       },
 
       /**
@@ -88,8 +104,6 @@ angular.module('tpsApp')
           qPerson.then(function (p) {
             console.log('PersonService:getPerson - OK (backend)');
             person = p;
-            // XXX: Ugly
-            $rootScope.person = p;
             return deferred.resolve(p);
           }, function () {
             var msg = 'Failed to load the person from backend';

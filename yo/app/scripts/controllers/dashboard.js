@@ -30,6 +30,9 @@
 angular.module('tpsApp')
   .controller('DashboardCtrl', function ($scope, $rootScope, $resource, $filter, $q, Restangular, $location) {
 
+    if (!$rootScope.token) {
+      $location.path( '/main' );
+    }
 
   });
 

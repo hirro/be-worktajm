@@ -64,15 +64,19 @@ angular.module('tpsApp')
     // Service events
     //
     $scope.$on('onTimeEntriesRefreshed', function (event, newTimeEntries) {
-      console.log('EVENT: onTimeEntriesRefreshed(count [%d])', newTimeEntries.length);
+      console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntriesRefreshed(count [%d])', newTimeEntries.length);
       $scope.timeEntries = newTimeEntries;
     });
     $scope.$on('onTimeEntryUpdated', function (event, newTimeEntry) {
-      console.log('EVENT: onTimeEntryUpdated(id [%d])', newTimeEntry.id);
+      console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntryUpdated(id [%d])', newTimeEntry.id);
     });
     $scope.$on('onTimeEntryRemoved', function (event, removedTimeEntry) {
-      console.log('EVENT: onTimeEntryRemoved(id [%d])', removedTimeEntry.id);
+      console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntryRemoved(id [%d])', removedTimeEntry.id);
     });
+    $scope.$on('onLoggedOut', function () {
+      console.info('EVENT: DashboardTimeEntriesCtrl::onLoggedOut()');
+      $scope.timeEntries = null;
+    });    
 
     //
     // Bind events 

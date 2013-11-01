@@ -39,6 +39,9 @@ describe('Controller: LoginCtrl', function ($q) {
   var activeProjectId = -1;
   var usernameA = 'usernameA';
   var passwordA = 'passwordA';
+  var usernameB = 'usernameB';
+  var passwordB = 'passwordB';
+
   var person = { id: 123, username: usernameA};
   var PersonServiceMock = {
     getActiveProjectId: function () {
@@ -51,7 +54,11 @@ describe('Controller: LoginCtrl', function ($q) {
     },
     login: function (username, password) {
       var deferred = q.defer();
-      deferred.resolve(person);
+      if (username === usernameA) {
+        deferred.resolve(person);
+      } else {
+        deferred.reject();
+      }
       return deferred.promise;
     }
   };  
@@ -86,5 +93,25 @@ describe('Controller: LoginCtrl', function ($q) {
     expect(PersonServiceMock.login).toHaveBeenCalled();
     expect(scope.user.username).toBe('usernameA');    
   });
+
+  it('should fail login', function () {
+    // Setup
+    spyOn(PersonServiceMock, 'login').andCallThrough();
+
+    // Preconditions
+    expect(scope.user).toBeUndefined();
+
+    scope.username = usernameB;
+    scope.password = passwordB;
+    scope.login();
+
+    // Make the requests go though
+    scope.$digest();
+
+    // Verify
+    expect(PersonServiceMock.login).toHaveBeenCalled();
+    expect(scope.user).toBeNull();    
+  });
+
 
 });
