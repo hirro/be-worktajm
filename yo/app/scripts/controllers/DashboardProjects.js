@@ -58,35 +58,6 @@ angular.module('tpsApp')
     };
 
     //
-    // @start Event handlers
-    //
-    $scope.$on('onProjectUpdated', function (event, updatedProject) {
-      console.info('EVENT: onProjectUpdated([%d])', updatedProject.id);
-      var project = $scope.getById($scope.projects, updatedProject.id);
-      if (project) {
-        // Make sure to copy all the attributes here
-        project.active = updatedProject.active;
-        project.name = updatedProject.name;
-        project.rate = updatedProject.rate;
-      } else {
-        console.error('DashboardProjectsCtrl::onProjectUpdated - Failed to find matching project in controller, add it?');
-      }
-    });
-    $scope.$on('onProjectsRefreshed', function (event, updatedProjectList) {
-      console.log('EVENT: onProjectsRefreshed(size [%d])', updatedProjectList.length);
-      var activeProjectId = PersonService.getActiveProjectId();
-      $scope.projects = updatedProjectList;
-      _($scope.projects).each(function(p) {
-        if (p.id === activeProjectId) {
-          p.active = true;
-        }
-      });
-    });
-    //
-    // @end Event handlers
-    //
-
-    //
     // @start CRUD operations
     //
     // create
@@ -116,5 +87,38 @@ angular.module('tpsApp')
       });
     };
     // @end CRUD operations
+
+    //
+    // @start Event handlers
+    //
+    $scope.$on('onProjectUpdated', function (event, updatedProject) {
+      console.info('EVENT: onProjectUpdated([%d])', updatedProject.id);
+      var project = $scope.getById($scope.projects, updatedProject.id);
+      if (project) {
+        // Make sure to copy all the attributes here
+        project.active = updatedProject.active;
+        project.name = updatedProject.name;
+        project.rate = updatedProject.rate;
+      } else {
+        console.error('DashboardProjectsCtrl::onProjectUpdated - Failed to find matching project in controller, add it?');
+      }
+    });
+    $scope.$on('onProjectsRefreshed', function (event, updatedProjectList) {
+      console.log('EVENT: DashboardProjectsCtrl::onProjectsRefreshed(size [%d])', updatedProjectList.length);
+      var activeProjectId = PersonService.getActiveProjectId();
+      $scope.projects = updatedProjectList;
+      _($scope.projects).each(function(p) {
+        if (p.id === activeProjectId) {
+          p.active = true;
+        }
+      });
+    });
+    $scope.$on('onLoggedOut', function () {
+      console.info('EVENT: DashboardProjectsCtrl::onLoggedOut()');
+      $scope.projects = {};
+    });    
+    //
+    // @end Event handlers
+    //    
 
   });
