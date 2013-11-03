@@ -15,7 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.arnellconsulting.tps.webflow;
+package com.arnellconsulting.tps.web.service;
+
+import com.arnellconsulting.tps.webflow.Registration;
 
 public interface RegistrationService {
     Registration createRegistration();

@@ -17,6 +17,7 @@
 
 package com.arnellconsulting.tps.webflow;
 
+import com.arnellconsulting.tps.web.service.RegistrationService;
 import lombok.Data;
 
 import lombok.extern.slf4j.Slf4j;

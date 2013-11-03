@@ -213,6 +213,12 @@
          <artifactId>jstl</artifactId>
          <version>1.2</version>
       </dependency>
+      <!-- Javax mail -->
+      <dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.3</version>
+      </dependency>
       <!-- JSR 303 with Hibernate Validator -->
       <dependency>
          <groupId>org.hibernate</groupId>

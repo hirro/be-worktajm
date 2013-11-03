@@ -22,7 +22,7 @@
     <import resource="applicationContext-webflow.xml" />
     <import resource="applicationContext-datasource.xml" />
     <import resource="applicationContext-security.xml" />
-    <!-- <import resource="applicationContext-mail.xml" /> -->
+    <import resource="applicationContext-mail.xml" />
     <import resource="applicationContext-springdata.xml" />
 
 </beans>

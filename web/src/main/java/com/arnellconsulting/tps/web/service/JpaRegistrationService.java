@@ -15,13 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.arnellconsulting.tps.webflow;
+package com.arnellconsulting.tps.web.service;
 
 import com.arnellconsulting.tps.model.Contract;
 import com.arnellconsulting.tps.model.Corporate;
 import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.webflow.Registration;
 
 import lombok.extern.slf4j.Slf4j;
 
