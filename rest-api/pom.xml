@@ -199,14 +199,6 @@
          </exclusions>
       </dependency>      
 
-      <!-- Autogenerate getters and setters -->
-      <dependency>
-         <groupId>org.projectlombok</groupId>
-         <artifactId>lombok</artifactId>
-         <version>0.12.0</version>
-         <scope>provided</scope>
-      </dependency>
-
       <!-- Jackson -->
       <dependency>
          <groupId>org.codehaus.jackson</groupId>
