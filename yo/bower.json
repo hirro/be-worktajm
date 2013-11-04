@@ -5,7 +5,6 @@
     "angular": "PatternConsulting/bower-angular#1.1.x",
     "json3": "~3.2.4",
     "jquery": "~1.9.1",
-    "bootstrap-sass": "~2.3.1",
     "es5-shim": "~2.0.8",
     "angular-resource": "~1.0.8",
     "angular-cookies": "~1.0.8",
@@ -16,7 +15,8 @@
     "alertify": "~0.3.9",
     "angular-tokenauth": "~0.0.6",
     "angular-webstorage": "~0.9.3",
-    "datejs": "*"
+    "datejs": "*",
+    "sass-bootstrap": "~3.0.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.8",

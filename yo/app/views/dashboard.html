@@ -9,12 +9,12 @@
       <!-- Projects -->
     	<div class="row">
         <!-- Column 1 -->
-        <div class="span3">
+        <div class="col-md-3">
           <div ng-include src="'views/partials/dashboard/projects.html'" ng-controller="DashboardProjectsCtrl">
           </div>
         </div>
         <!-- Center column -->
-        <div class="span6">
+        <div class="col-md-6">
 
           <!-- Conditonal alert if user is not yet verified  -->
           <div ng-include src="'views/partials/user.html'" ng-hide="person.emailVerified">
@@ -26,7 +26,7 @@
 
         </div>
         <!-- Column 3 -->
-        <div class="span3" ng-include="'views/partials/dashboard/company.html'" >
+        <div class="col-md-3" ng-include="'views/partials/dashboard/company.html'" >
         </div>
 
         </div>
