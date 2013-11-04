@@ -1,5 +1,5 @@
 $FontAwesomePath: "/bower_components/font-awesome/font/";
-@import "bootstrap-sass/lib/bootstrap";
+@import "sass-bootstrap/lib/bootstrap";
 @import "font-awesome/scss/font-awesome";
 @import "spinner.css";
 
@@ -25,10 +25,10 @@ html {
 
 /* CUSTOMIZE THE NAVBAR
     -------------------------------------------------- */
-.navbar-form {
-    margin-right: 20px;
-    margin-top: 5px;
-}
+// .navbar-form {
+//     margin-right: 20px;
+//     margin-top: 5px;
+// }
 
 /* CUSTOMIZE THE CAROUSEL
     -------------------------------------------------- */
