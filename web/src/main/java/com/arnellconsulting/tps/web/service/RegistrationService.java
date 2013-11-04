@@ -45,9 +45,9 @@ public interface RegistrationService {
 
     /**
      * Cancel an existing registration.
-     * @param id the registration id
+     * @param registration the registration id
      */
-    void cancelRegistration(Long id);
+    void cancelRegistration(Registration registration);
 
     /**
      * Logins in the user after successful registration.

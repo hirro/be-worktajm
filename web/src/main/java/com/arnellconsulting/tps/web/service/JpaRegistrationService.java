@@ -1,4 +1,5 @@
-/*
+/**
+ *
  * Copyright 2013 Jim Arnell
  *
  * This program is free software: you can redistribute it and/or modify
@@ -13,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+ **/
 
 package com.arnellconsulting.tps.web.service;
 
@@ -50,8 +51,16 @@ public class JpaRegistrationService implements RegistrationService {
    private static final String DEFAULT_PROJECT_NAME = "Project X";
    private static final String DEFAULT_CORPORATE_NAME = "Example corporate name";
 
-   @Autowired
    private transient MailSender mailTemplate;
+
+   @Autowired
+   public void setMailTemplate(MailSender mailTemplate) {
+      this.mailTemplate = mailTemplate;
+   }
+
+   public void setEm(EntityManager em) {
+      this.em = em;
+   }   
 
    /** PersistanceContext */
    @SuppressWarnings("PMD.ShortVariable")
@@ -60,7 +69,7 @@ public class JpaRegistrationService implements RegistrationService {
    //~--- methods -------------------------------------------------------------
 
    @Override
-   public void cancelRegistration(final Long id) {}
+   public void cancelRegistration(final Registration registration) {}
 
    @Override
    @Transactional(readOnly = true)
