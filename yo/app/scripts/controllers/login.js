@@ -29,38 +29,8 @@
 angular.module('tpsApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
-  // var devMode = false;
-  // var devToken = 'jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107';
-  // // Dev mode, using backdoor token
-  // if (devMode) {
-  //   Restangular.setDefaultHeaders({
-  //   'Auth-Token': devToken
-  //   });
-  //   PersonService.getPerson().then(function (person) {
-  //     console.log('LoginCtrl::initialize - Person loaded from backend (email [%s])', person.email);
-  //     if (person.activeTimeEntry) {
-  //       console.log('LoginCtrl::initialize - Active project: %d', person.activeTimeEntry.project.id);
-  //     }
-  //     $rootScope.user = {
-  //       name: 'jim@arnellconsulting.com',
-  //       token: devToken,
-  //       verified: true
-  //     };
-  //     $location.path( '/dashboard' );
-  //   });
-  // }
+  var devMode = true;
 
-  // // Route handling? If user is logged in, the Restangular call must contain the token
-  // if ($rootScope.user) {
-  //   console.log('LoginCtrl::initialize - User has a token, user name: %s', $rootScope.user.name);
-  //   Restangular.setDefaultHeaders({
-  //   'Auth-Token': $rootScope.user.token
-  //   });
-  // } else {
-  //   console.log('LoginCtrl::initialize - Token missing, redirecting to login');
-  //   $location.path( '/main' );
-  // }
-  
   $scope.login = function () {
     console.log('login(username [%s], password [%s])', $scope.username, $scope.password);
     PersonService.login($scope.username, $scope.password).then(function (user) {
@@ -70,6 +40,7 @@ angular.module('tpsApp')
     }, function (reason) {
       console.error(reason);
       $rootScope.user = null;      
+      $location.path( '/main' );
     });
   };
 
@@ -98,5 +69,11 @@ angular.module('tpsApp')
     $rootScope.user = null;
   });
 
+  // Dev mode, using hardcoded credentials
+  if (devMode) {
+    $scope.username = 'jim@arnellconsulting.com';
+    $scope.password = 'password';
+    $scope.login();
+  }
 
 });

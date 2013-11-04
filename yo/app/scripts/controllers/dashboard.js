@@ -23,16 +23,19 @@
           for the JavaScript code in this page.  
 */
 
-/*globals angular, $, timeEntries, _ */
+/*globals angular */
 
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardCtrl', function ($scope, $rootScope, $resource, $filter, $q, Restangular, $location) {
+  .controller('DashboardCtrl', function ($scope, PersonService, $location) {
 
-    if (!$rootScope.token) {
-      $location.path( '/main' );
-    }
+    PersonService.getPerson().then(function () {
+      // Success
+    }, function () {
+      console.error('DashboardCtrl::initialize - Root scope does not define user, going back to main.');
+      $location.path( '/main' );      
+    });
 
   });
 
