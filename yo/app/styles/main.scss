@@ -1,64 +1,67 @@
-$FontAwesomePath: "/bower_components/font-awesome/font/";
-@import "sass-bootstrap/lib/bootstrap";
-@import "font-awesome/scss/font-awesome";
+@import "sass-bootstrap-compass/sass/sass-bootstrap";
+// @import "font-awesome/scss/font-awesome";
 // @import "spinner.css";
 
 /* GLOBAL STYLES
-    -------------------------------------------------- */
+-------------------------------------------------- */
 
-html {
+/* Padding below the footer and lighter body text */
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
 }
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar-wrapper .navbar {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
 
 /* Carousel base class */
 .carousel {
-    margin-bottom: 60px;
+  height: 500px;
+  margin-bottom: 60px;
 }
-
-.carousel .container {
-    position: relative;
-    z-index: 9;
-}
-
-.carousel-control {
-    height: 80px;
-    margin-top: 0;
-    font-size: 120px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
-    background-color: transparent;
-    border: 0;
-    z-index: 10;
-}
-
-.carousel .item {
-    height: 500px;
-}
-
-.carousel img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    height: 500px;
-}
-
+/* Since positioning the image, we need to help out the caption */
 .carousel-caption {
-    background-color: transparent;
-    position: static;
-    max-width: 550px;
-    padding: 0 20px;
-    margin-top: 200px;
+  z-index: 10;
 }
 
-.carousel-caption h1,.carousel-caption .lead {
-    margin: 0;
-    line-height: 1.25;
-    color: #fff;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
 }
 
-.carousel-caption .btn {
-    margin-top: 10px;
-}
+
+/* @projects.scss
+-------------------------------------------------- */
 
 .projects {
     padding: 10px;
