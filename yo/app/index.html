@@ -58,33 +58,29 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top" ng-show="person" ng-controller="LoginCtrl" >
       <div class="container">
-        <div class="navbar navbar-inverse navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="glyphicon-bar"></span>
-                <span class="glyphicon-bar"></span>
-                <span class="glyphicon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">worktajm</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/main">Home</a></li>
-                <li class="aaactive"><a ref="#/dashboard"> Dashboard</a></li>
-                <li><a href="#reports">Reports</a></li>
-                <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a ng-click="logout()">Logout</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">About</a></li>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="glyphicon-bar"></span>
+            <span class="glyphicon-bar"></span>
+            <span class="glyphicon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">worktajm</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/main">Home</a></li>
+            <li class="aaactive"><a ref="#/dashboard"> Dashboard</a></li>
+            <li><a href="#reports">Reports</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a ng-click="logout()">Logout</a></li>
               </ul>
-            </div>
-          </div>
+            </li>
+            <li><a href="#">About</a></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -147,22 +143,23 @@
         <!-- build:js scripts/plugins.js -->
         <script src="bower_components/alertify/alertify.min.js"></script>
         <script src="bower_components/jquery/jquery.js"></script>
-        <script src="bower_components/sass-bootstrap/js/affix.js"></script>
-        <script src="bower_components/sass-bootstrap/js/alert.js"></script>
-        <script src="bower_components/sass-bootstrap/js/button.js"></script>
-        <script src="bower_components/sass-bootstrap/js/carousel.js"></script>
-        <script src="bower_components/sass-bootstrap/js/collapse.js"></script>
-        <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
-        <script src="bower_components/sass-bootstrap/js/modal.js"></script>
-        <script src="bower_components/sass-bootstrap/js/popover.js"></script>
-        <script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
-        <script src="bower_components/sass-bootstrap/js/tab.js"></script>
-        <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
-        <script src="bower_components/sass-bootstrap/js/transition.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/affix.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/alert.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/button.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/carousel.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/collapse.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/dropdown.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/modal.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/popover.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/scrollspy.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/tab.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/tooltip.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/js/transition.js"></script>
+        <script src="bower_components/sass-bootstrap-compass/assets/js/holder.js"></script>        
         <!-- endbuild -->
 
         <!-- build:js scripts/modules.js -->
-        <script src="bower_components/angular-resource/angular-resource.js"></script>        
+        <script src="bower_components/angular-resource/angular-resource.js"></script> 
         <script src="bower_components/lodash/lodash.js"></script>
         <script src="bower_components/restangular/dist/restangular.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
