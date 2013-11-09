@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- Bootstrap 3.0.2 -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+    <!-- alertify -->
+    <link rel="stylesheet" href="bower_components/alertify/themes/alertify.core.css" />
+    <link rel="stylesheet" href="bower_components/alertify/themes/alertify.bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/alertify/themes/alertify.default.css" />
+
+    <title>WorkTajm</title>
+
+  </head>
+  
+
+  <body ng-app="tpsApp">
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container" ng-view=""></div>
+
+
+    <script src="bower_components/angular/angular.js"></script>
+
+    <!-- CDNs -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/holder/2.0/holder.js"></script>     
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <!-- endbuild -->
+
+        <!-- build:js scripts/plugins.js -->
+        <script src="bower_components/alertify/alertify.min.js"></script>
+        <script src="bower_components/jquery/jquery.js"></script>   
+        <!-- endbuild -->
+
+        <!-- build:js scripts/modules.js -->
+        <script src="bower_components/angular-resource/angular-resource.js"></script> 
+        <script src="bower_components/lodash/lodash.js"></script>
+        <script src="bower_components/restangular/dist/restangular.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-webstorage/angular-webstorage.js"></script>
+        <script src="bower_components/angular-tokenauth/angular-tokenauth.js"></script>        
+        <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/controllers/register.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/DashboardProjects.js"></script>
+        <script src="scripts/controllers/DashboardTimeEntries.js"></script>
+        <script src="scripts/services/timerService.js"></script>
+        <script src="scripts/services/personService.js"></script>
+        <script src="scripts/services/TpsConstants.js"></script>
+        <script src="scripts/filters/dateFilter.js"></script>
+        <script src="scripts/controllers/Main.js"></script>
+        <!-- endbuild -->
+  <!-- livereload script -->
+<script type="text/javascript">document.write('<script src="http://'
+ + (location.host || 'localhost').split(':')[0]
+ + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>')
+</script>
+</body>
+</html>

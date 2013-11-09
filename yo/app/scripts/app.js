@@ -19,12 +19,13 @@ angular.module('tpsApp', ['ngResource', 'restangular', 'tokenauth'])
         templateUrl: 'views/reports.html',
         controller: 'ReportsCtrl'
       })
-      .when('/loading', {
-        templateUrl: 'views/loading.html',
-        controller: 'ReportsCtrl'
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
       })
       .otherwise({
-        redirectTo: '/main'
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
       });
     }
   )
