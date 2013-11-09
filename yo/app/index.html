@@ -69,8 +69,9 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#/main">Home</a></li>
-            <li class="aaactive"><a ref="#/dashboard"> Dashboard</a></li>
+            <li><a ref="#dashboard">Dashboard</a></li>
             <li><a href="#reports">Reports</a></li>
+            <li><a href="#about">About</a></li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -79,12 +80,10 @@
                 <li><a ng-click="logout()">Logout</a></li>
               </ul>
             </li>
-            <li><a href="#">About</a></li>
           </ul>
         </div>
       </div>
     </div>
-
 
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
@@ -92,37 +91,8 @@
     <footer class="footer">
       <div class="container">
         <div class="row">
-          <p class="pull-left">&copy; 2013 Arnell Consulting AB &middot; <a href="#">Testar</a>&middot; <a href="#">Terms</a></p>
-        </div>
-        <div class="row">
-          <hr/>
-          <h4>Server Side Techology</h4>
-          <p>
-            <a href="http://www.springframework.org" class="footer-logo">
-              <img src="../images/attribution/powered-by-spring.png" alt="Powered by Spring"/>
-            </a>
-          </p>
-        </div>
-        <div class="row">
-          <hr/>
-          <h4>Client Side Techology</h4>
-          <p>
-            <h5>Featuring</h5>
-            <a href="http://yeoman.io/" class="footer-logo">
-              <img src="../images/attribution/yeoman.png" alt="Yeoman"/>
-            </a>
-            <h5>Featuring</h5>
-            <a href="http://www.jquery.com" class="footer-logo">
-              <img src="../images/attribution/jquery.png" alt="Powered by jQuery"/>
-            </a>
-            <a href="http://twitter.github.io/bootstrap/" class="footer-logo">
-              <img src="../images/attribution/bootstrap.png" alt="Bootstrap"/>
-            </a>
-            <a href="http://angularjs.org/" class="footer-logo">
-              <img src="../images/attribution/angularjs.png" alt="AngularJS"/>
-            </a>            
-          </p>
-        </div>
+          <p class="pull-left">&copy; 2013 Arnell Consulting AB</p>
+        </div>        
       </div>
     </footer>           
 
@@ -140,42 +110,44 @@
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
 
-        <!-- build:js scripts/plugins.js -->
-        <script src="bower_components/alertify/alertify.min.js"></script>
-        <script src="bower_components/jquery/jquery.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/affix.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/alert.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/button.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/carousel.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/collapse.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/dropdown.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/modal.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/popover.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/scrollspy.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/tab.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/tooltip.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/js/transition.js"></script>
-        <script src="bower_components/sass-bootstrap-compass/assets/js/holder.js"></script>        
-        <!-- endbuild -->
+    <!-- build:js scripts/plugins.js -->
+    <script src="bower_components/alertify/alertify.min.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/affix.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/alert.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/button.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/carousel.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/collapse.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/dropdown.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/modal.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/popover.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/scrollspy.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/tab.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/tooltip.js"></script>
+    <script src="bower_components/sass-bootstrap-compass/js/transition.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script> 
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-webstorage/angular-webstorage.js"></script>
+    <script src="bower_components/angular-tokenauth/angular-tokenauth.js"></script>        
+    <script src="bower_components/holderjs/holder.js"></script>        
+    <script src="bower_components/sass-bootstrap-compass/assets/js/holder.js"></script>        
+    <!-- endbuild -->
 
-        <!-- build:js scripts/modules.js -->
-        <script src="bower_components/angular-resource/angular-resource.js"></script> 
-        <script src="bower_components/lodash/lodash.js"></script>
-        <script src="bower_components/restangular/dist/restangular.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-webstorage/angular-webstorage.js"></script>
-        <script src="bower_components/angular-tokenauth/angular-tokenauth.js"></script>        
-        <script src="scripts/controllers/dashboard.js"></script>
-        <script src="scripts/controllers/register.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/DashboardProjects.js"></script>
-        <script src="scripts/controllers/DashboardTimeEntries.js"></script>
-        <script src="scripts/services/timerService.js"></script>
-        <script src="scripts/services/personService.js"></script>
-        <script src="scripts/services/TpsConstants.js"></script>
-        <script src="scripts/filters/dateFilter.js"></script>
-        <script src="scripts/controllers/Main.js"></script>
-        <!-- endbuild -->
+    <!-- build:js scripts/modules.js -->
+    <script src="scripts/controllers/dashboard.js"></script>
+    <script src="scripts/controllers/register.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/DashboardProjects.js"></script>
+    <script src="scripts/controllers/DashboardTimeEntries.js"></script>
+    <script src="scripts/services/timerService.js"></script>
+    <script src="scripts/services/personService.js"></script>
+    <script src="scripts/services/TpsConstants.js"></script>
+    <script src="scripts/filters/dateFilter.js"></script>
+    <script src="scripts/controllers/Main.js"></script>
+    <!-- endbuild -->
+    
 </body>
 </html>
