@@ -32,61 +32,8 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="LoginCtrl" ng-hide="person">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="glyphicon-bar"></span>
-            <span class="glyphicon-bar"></span>
-            <span class="glyphicon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">worktajm!</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" size="40" class="form-control" ng-model="username">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control" ng-model="password">
-            </div>
-            <button type="submit" class="btn btn-success" ng-click="login()" >Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </div>    
-
-    <div class="navbar navbar-inverse navbar-fixed-top" ng-show="person" ng-controller="LoginCtrl" >
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="glyphicon-bar"></span>
-            <span class="glyphicon-bar"></span>
-            <span class="glyphicon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">worktajm</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/main">Home</a></li>
-            <li><a ref="#dashboard">Dashboard</a></li>
-            <li><a href="#reports">Reports</a></li>
-            <li><a href="#about">About</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a ng-click="logout()">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div ng-view=""></div>
 
     <footer class="footer">
       <div class="container">
@@ -147,6 +94,8 @@
     <script src="scripts/services/TpsConstants.js"></script>
     <script src="scripts/filters/dateFilter.js"></script>
     <script src="scripts/controllers/Main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/reports.js"></script>
     <!-- endbuild -->
     
 </body>
