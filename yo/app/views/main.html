@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="styles/outside.css">
+
 <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="LoginCtrl" ng-hide="person">
   <div class="container">
     <div class="navbar-header">
@@ -20,54 +22,90 @@
       </form>
     </div><!--/.navbar-collapse -->
   </div>
-</div>    
+</div>   
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="item active">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Time Tracking</h1>
-          <p class="lead">The simple time tracking solution!</p>
-          <p>Report time in either web browser or on your mobile phone.</p>
-          <p>Generate printed invoices in seconds.</p>
-          <p>Add coworkers to your company</p>
-          <p><a class="btn btn-lg btn-primary" href="#/register" role="button">Register</a></p>
+<div class="row1">
+  <div class="container grey">
+    <div class="row">
+      <!-- Column 1 -->
+      <div class="col-md-8">
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+          <div class="container">
+            <h1>Time reports</h1>
+            <h2>Simple and convenient time reporting in your favourite browser.</h2>
+            <p>Key features
+              <ul>
+                <li>Easy to use web interface, yet extensible for power users.</li>
+                <li>Receive PDF invoices each month or week.</li>
+                <li>Add and track coworkers in your organization</li>
+                <li>Clients on iPhone and Android</li>
+              </ul>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="item">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Report Time</h1>
-          <p class="lead">Either enter your time using a web browser or a mobile phone.</p>
-          <p>Supported clients</p>
-          <p>&middot; iPhone</p>
-          <p><a class="btn btn-lg btn-primary" href="#/register" role="button">Register</a></p>
+      <!-- Center column -->
+      <div class="col-md-4">
+        <div class="registrationForm">
+          <form role="form">
+            <fieldset>
+            
+              <!-- Form Name -->
+              <legend>Sign Up</legend>
+              
+              <!-- Text input-->
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" class="form-control" name="email" type="email" placeholder="Enter email address" class="input-xlarge" required="" tabindex="1" autofocus="autofocus" ng-model="email" />
+              </div>
+              
+              <!-- Password input-->
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" class="form-control" name="password" type="password" placeholder="Enter your password" class="input-xlarge" required="" tabindex="2" ng-model="password" />
+              </div>
+              
+              <!-- Text input-->
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input id="company" class="form-control" name="company" type="text" placeholder="Enter company name" class="input-xlarge" tabindex="3" ng-model="company"/>
+                <p class="help-block">Optional</p>
+              </div>
+              
+              <!-- Button -->
+              <button id="singlebutton" type="button" class="btn btn-default" ng-click="register()" >Register</button>
+              
+            </fieldset>
+          </form>          
         </div>
       </div>
-    </div>
-    <div class="item">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Generate invoices</h1>
-          <p class="lead">Background picture a printed invoice.</p>
-          <p><a class="btn btn-lg btn-primary" href="#/register" role="button">Register</a></p>
-        </div>
-      </div>
-    </div>
+    </div>    
   </div>
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div><!-- /.carousel -->
+</div> <!-- row1 -->
+<div class="row2">
+  <div class="container">
+    <hr class="featurette-divider">
 
+    <div class="featurette">
+      <img class="featurette-image pull-right" src="images/self/dashboard_sample.png">
+      <h2 class="featurette-heading">Easy to use web interface.</h2>
+      <p class="lead">Just enter the name of the project you wish to report time for and press start! </p>
+      <p class="lead">Get statistics of time reported this month, week and day. </p>
+      <p class="lead">Get statistics billed hours per customer. </p>
+    </div>
+
+    <hr class="featurette-divider">
+    <div class="featurette">
+      <img class="featurette-image pull-right" src="images/self/invoice.png">
+      <h2 class="featurette-heading">Automatic generation of invoices. <span class="muted"></span></h2>
+      <p class="lead">
+        Generate monthly or weekly PDF invoice of billed hour for each of your customers.
+      </p>
+    </div>
+
+  </div>  
+</div> <!-- row2 -->
+
+
+</div>

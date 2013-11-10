@@ -3,17 +3,9 @@
 angular.module('tpsApp', ['ngResource', 'restangular', 'tokenauth'])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/main', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
-      })
-      .when('/register', {
-        templateUrl: 'views/register.html',
-        controller: 'RegisterCtrl'
       })
       .when('/reports', {
         templateUrl: 'views/reports.html',
