@@ -7,9 +7,14 @@
 
 /* Padding below the footer and lighter body text */
 body {
-  padding-bottom: 40px;
-  padding-top: 80px;
+  padding-bottom: 0px;
+  padding-top: 50px;
   color: #5a5a5a;
+}
+
+footer {
+  height: 50px;
+  background: #181818;
 }
 
 /* CUSTOMIZE THE NAVBAR
