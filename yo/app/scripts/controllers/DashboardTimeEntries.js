@@ -23,7 +23,7 @@
           for the JavaScript code in this page.  
 */
 
-/*globals angular, $, _ */
+/*globals angular, $, _ , string */
 'use strict';
 
 angular.module('tpsApp')
@@ -56,6 +56,23 @@ angular.module('tpsApp')
       var result = 'In Progress';
       if (timeEntry.endTime !== null) {
         result = $filter('date')(timeEntry.endTime, 'HH:mm:ss');
+      }
+      return result;
+    };
+
+    // Utility function to show duration for a task
+    $scope.getDuration = function (timeEntry) {
+      var result = 'f';
+      if (timeEntry.endTime) {
+        var elapsedSeconds = (timeEntry.endTime - timeEntry.startTime)/1000;
+        var hours   = Math.floor(elapsedSeconds / 3600);
+        var minutes = Math.floor((elapsedSeconds - (hours * 3600)) / 60);
+        var seconds = elapsedSeconds - (hours * 3600) - (minutes * 60);
+
+        if (hours   < 10) {hours   = '0' + hours;}
+        if (minutes < 10) {minutes = '0' + minutes;}
+        if (seconds < 10) {seconds = '0' + seconds;}
+        result = hours + ':' + minutes + ':' + seconds;
       }
       return result;
     };
