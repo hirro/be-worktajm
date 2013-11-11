@@ -18,7 +18,8 @@
     "datejs": "*",
     "sass-bootstrap-compass": "~3.0.17",
     "bower-angular-placeholders": "~0.0.2",
-    "holderjs": "~2.2.0"
+    "holderjs": "~2.2.0",
+    "string-format": "~1.0.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.8",

@@ -97,6 +97,24 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
       expect(endTime).toBe('01:00:00');
     });
 
+    it('should return the time difference in a formatted string', function () {
+      var timeEntry = {
+        startTime: 0,
+        endTime: 1000*34 + 1000*60*24 + 1000*60*60*3
+      };
+      var duration = scope.getDuration(timeEntry);
+      expect(duration).toBe('03:24:34');
+    });
+
+    it('should return the time difference in a formatted string', function () {
+      var timeEntry = {
+        startTime: 0,
+        endTime: 1000*34 + 1000*60*24
+      };
+      var duration = scope.getDuration(timeEntry);
+      expect(duration).toBe('00:24:34');
+    });
+
     it('should not return the time entry with id 1 when not yet initialized', function () {
       var timeEntry = scope.findTimeEntryById(1);
       expect(timeEntry).not.toBeDefined();
