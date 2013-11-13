@@ -41,22 +41,25 @@ describe('Service: TimerService, CRUD tests for Project', function () {
   // Test constants
   var projects = [
     { id: 301, name: 'Project A' },
-    { id: 302, name: 'Project B' }];
+    { id: 302, name: 'Project B' }
+  ];
   var timeEntries = [
     { id: 201, startTime: 0, endTime: 1381337488*1000, project: projects[0] },
-    { id: 202, startTime: 0, endTime: 2 }];
+    { id: 202, startTime: 0, endTime: 2 }
+  ];
   var persons = [
     { id: 1, username: 'User A', activeTimeEntry: null },
     { id: 2, username: 'User B' },
-    { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }];
+    { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }
+  ];
 
   // Inject the required services
   beforeEach(inject(function (TimerService, PersonService, $httpBackend, $rootScope) {
     timerService = TimerService;
-    personService = PersonService;    
+    personService = PersonService;
     httpBackend = $httpBackend;
     scope = $rootScope;
-  }));  
+  }));
 
   afterEach(function () {
     httpBackend.verifyNoOutstandingExpectation();
@@ -132,16 +135,21 @@ describe('Service: TimerService, CRUD tests for Project', function () {
 
     it('should update the provided project', function () {
       var projectId = 302;
+      var successful = false;
+
       // First get the project
       var project = timerService.getProject(projectId);
       expect(project.id).toBe(projectId);
       // Update it
       httpBackend.whenPUT('http://localhost:8080/api/api/project/302').respond();
-      timerService.updateProject(project);
+      timerService.updateProject(project).then(function () {
+        successful = true;
+      });
       // Make the requests go though
       scope.$digest();
       httpBackend.flush();
-      // Verify update?
+      // Verify
+      expect(successful).toBe(true);
     });
 
     it('should create a new project when project has no id', function () {
@@ -166,5 +174,4 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       expect(project.active).toBe(true);
     });
   });
-
 });

@@ -42,12 +42,6 @@ angular.module('tpsApp')
     svc = {
 
       //
-      // Refresh project list from server
-      getProjects: function () {
-        return projects;
-      },
-
-      //
       // Get all available project for the given person
       // No server reload done
       // 
@@ -77,13 +71,18 @@ angular.module('tpsApp')
 
       //
       // CRUD for Project
+      //
       updateProject: function (project) {
+        var deferred = $q.defer();
         if (project.id >= 0) {
           console.log('TimerService::updateProject');
-          project.put().then(function () {
+          project.put().then(function (updatedProject) {
             console.log('TimerService::updateProject - Backend updated successfully');
             console.log('BROADCAST: - onProjectUpdated (%d)', project.id);
             $rootScope.$broadcast('onProjectUpdated', project);
+            deferred.resolve(updatedProject);
+          }, function (reason) {
+            deferred.reject(reason);
           });
         } else {
           console.log('updateProject - creating new entry');
@@ -91,8 +90,12 @@ angular.module('tpsApp')
             console.log('Updated project successfully at backend. New id is: %s', newProject.id);
             projects.push(newProject);
             $rootScope.$broadcast('onProjectUpdated', newProject);
+            deferred.resolve(newProject);
+          }, function (reason) {
+            deferred.reject(reason);
           });
         }
+        return deferred.promise;
       },
       removeProject: function (project) {
         console.log('TimerService::remove(name: [%s], id: [%d])', project.name, project.id);
@@ -110,6 +113,9 @@ angular.module('tpsApp')
           return p.id === id;
         });
         return item;
+      },
+      getProjects: function () {
+        return projects;
       },
 
       //

@@ -23,7 +23,7 @@
           for the JavaScript code in this page.  
 */
 
-/*globals angular, _ */
+/*globals angular, _, $ */
 'use strict';
 
 angular.module('tpsApp')
@@ -38,6 +38,17 @@ angular.module('tpsApp')
     // Show new project modal form
     $scope.showNewProject = function () {
       console.log('DashboardProjectsCtrl::showNewProject');
+      $('#projectModal').modal('show');
+    };
+
+    $scope.updateProject = function () {
+      console.log('DashboardProjectsCtrl::updateProject(projectName: [%s])', $scope.project.name);
+      TimerService.updateProject($scope.project).then(function () {
+        console.log('DashboardProjectsCtrl::updateProject(projectName -Successfully created project');
+        $('#projectModal').modal('hide');
+      }, function (reason) {
+        console.error('DashboardProjectsCtrl::updateProject(projectName - Failed to create project: %s', reason);
+      });
     };
 
     //

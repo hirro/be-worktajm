@@ -45,6 +45,16 @@ angular.module('tpsApp')
       TimerService.removeTimeEntry(timeEntry);
     };
 
+    $scope.editTimeEntry = function (timeEntry) {
+      console.log('DashboardTimeEntriesCtrl::editTimeEntry');
+      $scope.timeEntry = timeEntry;
+
+      // Build project list for combo
+      timeEntry.projects = TimerService.getProjects();
+
+      $('#timeEntryModal').modal('show');
+    };
+
     // Utility function to find the object being displayed in the controller
     $scope.findTimeEntryById = function (id) {
       var item = $.grep($scope.timeEntries, function (e) { return e.id === id; })[0];
@@ -72,7 +82,7 @@ angular.module('tpsApp')
         if (hours   < 10) {hours   = '0' + hours;}
         if (minutes < 10) {minutes = '0' + minutes;}
         if (seconds < 10) {seconds = '0' + seconds;}
-        result = hours + ':' + minutes + ':' + seconds;
+        result = hours + ':' + minutes;
       }
       return result;
     };

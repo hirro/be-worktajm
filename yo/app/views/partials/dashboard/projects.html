@@ -18,10 +18,12 @@
  
         <div class="project" ng-repeat="project in projects">
           <div class="project-header in project-{{project.id}}" id="project-header-{{project.id}}">
-              <a data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects">
+              <a data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects" class="projectToggle">
                 <i class="glyphicon glyphicon-chevron-right"></i>
               </a>
-              {{project.name}}
+              <span class="projectEdit" contenteditable="true">
+                {{project.name}}
+              </span>
               <a ng-click="stopTimer(project)" class="btn btn-xs btn-primary pull-right" role="button" ng-show="project.active" >Stop</a>                  
               <a ng-click="startTimer(project)" class="btn btn-xs btn-primary pull-right" role="button" ng-hide="project.active">Start</a>                  
           </div>
