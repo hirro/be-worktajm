@@ -103,7 +103,7 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
         endTime: 1000*34 + 1000*60*24 + 1000*60*60*3
       };
       var duration = scope.getDuration(timeEntry);
-      expect(duration).toBe('03:24:34');
+      expect(duration).toBe('03:24');
     });
 
     it('should return the time difference in a formatted string', function () {
@@ -112,7 +112,7 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
         endTime: 1000*34 + 1000*60*24
       };
       var duration = scope.getDuration(timeEntry);
-      expect(duration).toBe('00:24:34');
+      expect(duration).toBe('00:24');
     });
 
     it('should not return the time entry with id 1 when not yet initialized', function () {
