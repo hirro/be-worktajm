@@ -39,7 +39,8 @@
 	<div class="row">
     <!-- Column 1 -->
     <div class="col-md-3">
-      <div ng-include src="'views/partials/dashboard/projects.html'" ng-controller="DashboardProjectsCtrl">
+      <div ng-controller="DashboardProjectsCtrl">
+        <div ng-include src="'views/partials/dashboard/projects.html'"></div>
       </div>
     </div>
     <!-- Center column -->
@@ -50,7 +51,8 @@
       </div>
 
       <!-- Time entries table -->
-      <div ng-include src="'views/partials/dashboard/timeEntries.html'" ng-controller="DashboardTimeEntriesCtrl" >
+      <div ng-controller="DashboardTimeEntriesCtrl">
+        <div ng-include src="'views/partials/dashboard/timeEntries.html'"></div>    
       </div>
 
     </div>

@@ -74,7 +74,7 @@ angular.module('tpsApp')
       //
       updateProject: function (project) {
         var deferred = $q.defer();
-        if (project.id >= 0) {
+        if (project.id) {
           console.log('TimerService::updateProject');
           project.put().then(function (updatedProject) {
             console.log('TimerService::updateProject - Backend updated successfully');

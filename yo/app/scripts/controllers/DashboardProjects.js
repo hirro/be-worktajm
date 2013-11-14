@@ -32,7 +32,11 @@ angular.module('tpsApp')
 
     $scope.activeProject = null;
     $scope.project = {};
-    $scope.projects = {};
+    // $scope.projects = {};
+  $scope.projects = [
+    { id: 301, name: 'Project A' },
+    { id: 302, name: 'Project B' }
+  ];   
     TimerService.reloadProject();
 
     // Show new project modal form
@@ -41,7 +45,7 @@ angular.module('tpsApp')
       $('#projectModal').modal('show');
     };
 
-    $scope.updateProject = function () {
+    $scope.createProject = function () {
       console.log('DashboardProjectsCtrl::updateProject(projectName: [%s])', $scope.project.name);
       TimerService.updateProject($scope.project).then(function () {
         console.log('DashboardProjectsCtrl::updateProject(projectName -Successfully created project');
