@@ -5,6 +5,7 @@
     "angular": "~1.2.0",
     "json3": "~3.2.4",
     "jquery": "~1.9.1",
+    "sass-bootstrap-compass": "~3.0.17",
     "es5-shim": "~2.0.8",
     "angular-resource": "~1.2.0",
     "angular-cookies": "~1.2.0",
@@ -16,7 +17,6 @@
     "alertify": "~0.3.9",
     "angular-tokenauth": "~0.0.8",
     "datejs": "*",
-    "sass-bootstrap-compass": "~3.0.17",
     "bower-angular-placeholders": "~0.0.2",
     "holderjs": "~2.2.0",
     "string-format": "~1.0.2",
@@ -28,7 +28,6 @@
   },
   "resolutions": {
     "angular": "~1.2.0",
-    "bootstrap": "3.0.2",
     "angular-cookies": "~1.2.0"
   }
 }
