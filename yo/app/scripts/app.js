@@ -1,6 +1,13 @@
 'use strict';
 
-angular.module('tpsApp', ['ngResource', 'restangular', 'tokenauth', 'ui.bootstrap.datetimepicker'])
+angular.module('tpsApp', [
+  'ngCookies',
+  'ngResource',
+  'ngSanitize',
+  'ngRoute',
+  'restangular', 
+  'tokenauth'
+])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/dashboard', {
