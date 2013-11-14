@@ -32,11 +32,7 @@ angular.module('tpsApp')
 
     $scope.activeProject = null;
     $scope.project = {};
-    // $scope.projects = {};
-  $scope.projects = [
-    { id: 301, name: 'Project A' },
-    { id: 302, name: 'Project B' }
-  ];   
+    $scope.projects = {};
     TimerService.reloadProject();
 
     // Show new project modal form
