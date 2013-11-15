@@ -27,5 +27,5 @@
 
 'use strict';
 
-describe('Controller: DashboardCtrl', function () {
+describe('Controller: DashboardCtrl', function () {  
 });
