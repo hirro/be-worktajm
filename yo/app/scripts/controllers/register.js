@@ -34,8 +34,10 @@ angular.module('tpsApp').controller('RegisterCtrl', function ($scope, Restangula
 			console.log('Successfully registered user');
 			$scope.token = token;
 			$location.path( '/dashboard' );
+      toastr.success('Registration succeeded, moving to dashboard');
 		}, function (reason) {
 			console.error('Failed to register user, error: %s', reason);
+      toastr.error('Registration failed');
 		});
     return promise;
 	};
