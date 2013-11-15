@@ -80,7 +80,6 @@ angular.module('tpsApp')
         person = null;
         token = null;
         Restangular.setDefaultHeaders({
-          'Auth-Token': token
         });
         console.log('BROADCAST: onLoggedOut ()');
         $rootScope.$broadcast('onLoggedOut');

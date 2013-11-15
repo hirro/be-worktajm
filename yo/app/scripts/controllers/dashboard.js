@@ -30,13 +30,21 @@
 angular.module('tpsApp')
   .controller('DashboardCtrl', function ($scope, PersonService, $location) {
 
-    PersonService.getPerson().then(function () {
-      console.log('***********************************************');
-      // Success
-    }, function () {
-      console.error('DashboardCtrl::initialize - Root scope does not define user, going back to main.');
-      $location.path( '/main' );      
-    });
-
+  PersonService.getPerson().then(function () {
+    console.log('***********************************************');
+    // Success
+  }, function () {
+    console.error('DashboardCtrl::initialize - Root scope does not define user, going back to main.');
+    $location.path( '/main' );      
   });
+
+  //
+  // @start Event handlers
+  //
+  $scope.$on('onLoggedOut', function () {
+    console.info('EVENT: DashboardCtrl::onLoggedOut()');
+    $location.path( '/main' );
+  });
+
+});
 
