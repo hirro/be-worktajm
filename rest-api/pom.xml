@@ -403,7 +403,14 @@
                <port>8080</port>
             </configuration>
          </plugin>   
-                             
+         <plugin>
+            <groupId>org.eluder.coveralls</groupId>
+            <artifactId>coveralls-maven-plugin</artifactId>
+            <version>2.0.1</version>
+            <configuration>
+               <repoToken>wPz7EdaqzdZVOfJRMa6UKSoIBOfBPDaqi</repoToken>
+            </configuration>
+         </plugin>                             
       </plugins>
    </build>
    <reporting>
@@ -411,7 +418,13 @@
          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>cobertura-maven-plugin</artifactId>
-            <version>2.4</version>
+            <version>2.5.2</version>
+            <configuration>
+               <format>xml</format>
+               <maxmem>256m</maxmem>
+               <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+            </configuration>  
          </plugin>
       </plugins>
    </reporting>   
