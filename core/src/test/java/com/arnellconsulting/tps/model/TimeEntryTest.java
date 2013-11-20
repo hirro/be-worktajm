@@ -42,7 +42,7 @@ import java.util.Date;
 public class TimeEntryTest {
    private static ObjectMapper objectMapper = new ObjectMapper();
 
-   @Test
+   //@Test
    public void testDeserialization() throws IOException {
       final Person person = TestConstants.createPersonA();
       final Project project = TestConstants.createProjectA();
