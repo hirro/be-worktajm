@@ -37,7 +37,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Time entries.
- * @author jiar
+ * @author hirro
  */
 @Entity
 @SuppressWarnings("PMD")

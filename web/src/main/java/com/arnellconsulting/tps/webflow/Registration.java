@@ -31,7 +31,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Webflow bean.
- * @author jiar
+ * @author hirro
  */
 @Data
 @SuppressWarnings("PMD.BeanMembersShouldSerialize")

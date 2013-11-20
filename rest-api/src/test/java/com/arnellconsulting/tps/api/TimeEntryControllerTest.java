@@ -61,7 +61,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestContext.class, WebAppContext.class })

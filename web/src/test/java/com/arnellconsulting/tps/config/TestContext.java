@@ -27,7 +27,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 @Configuration
 public class TestContext {

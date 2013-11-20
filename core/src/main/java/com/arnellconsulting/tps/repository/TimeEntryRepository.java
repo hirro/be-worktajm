@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {
    public List<TimeEntry> findByPersonIdAndStartTimeBetween(long userId, Date from, Date to);

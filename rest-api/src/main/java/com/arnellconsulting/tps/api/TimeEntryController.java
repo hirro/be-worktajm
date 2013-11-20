@@ -50,7 +50,7 @@ import org.joda.time.DateTime;
 /**
  * JSON API for TimeEntry.
  *
- * @author jiar
+ * @author hirro
  */
 @Controller
 @RequestMapping("api/timeEntry")

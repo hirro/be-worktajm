@@ -31,7 +31,7 @@ import org.springframework.mail.SimpleMailMessage;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public class JpaRegistrationServiceTest {
    

@@ -42,7 +42,7 @@ import org.joda.time.DateTime;
 /**
  * Implements the TpsService interface.
  *
- * @author jiar
+ * @author hirro
  */
 @Slf4j
 @Service

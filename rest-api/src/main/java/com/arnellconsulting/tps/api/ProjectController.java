@@ -40,7 +40,7 @@ import java.util.List;
 /**
  * JSON API for Project.
  *
- * @author jiar
+ * @author hirro
  */
 @Controller
 @RequestMapping("api/project")

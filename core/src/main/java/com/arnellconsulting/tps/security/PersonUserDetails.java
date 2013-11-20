@@ -29,7 +29,7 @@ import java.util.Collection;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public class PersonUserDetails implements UserDetails {
    private String password;

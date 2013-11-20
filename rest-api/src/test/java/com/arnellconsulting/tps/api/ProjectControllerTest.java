@@ -54,7 +54,7 @@ import org.mockito.ArgumentCaptor;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestContext.class, WebAppContext.class })

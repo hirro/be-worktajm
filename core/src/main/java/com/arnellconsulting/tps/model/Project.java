@@ -34,7 +34,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * TBD
- * @author jiar
+ * @author hirro
  */
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)

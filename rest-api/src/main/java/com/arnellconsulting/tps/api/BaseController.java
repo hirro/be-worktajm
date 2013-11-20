@@ -23,7 +23,7 @@ import org.springframework.security.core.Authentication;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public class BaseController {
 

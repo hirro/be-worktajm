@@ -23,7 +23,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 }

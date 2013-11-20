@@ -22,7 +22,7 @@ import org.joda.time.DateTime;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public final class TestConstants {
    public static final BigDecimal PROJECTA_A_RATE = new BigDecimal("10.3");

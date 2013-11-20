@@ -31,7 +31,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 @Configuration
 public class TestContext {

@@ -42,7 +42,7 @@ import static org.mockito.Mockito.when;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public class TpsUserDetailsServiceTest {
    private static final String EMAIL = "a@example.com";

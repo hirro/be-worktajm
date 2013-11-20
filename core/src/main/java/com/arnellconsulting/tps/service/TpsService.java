@@ -29,7 +29,7 @@ import org.joda.time.DateTime;
 /**
  * Separation between repositories.
  *
- * @author jiar
+ * @author hirro
  */
 @SuppressWarnings({ "PMD.UnusedModifier", "PMD.ShortVariable" })
 public interface TpsService {

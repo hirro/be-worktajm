@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public class UserTransfer {
    private final transient String name;

@@ -40,7 +40,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Handles registration of new users.
  * 
- * @author jiar
+ * @author hirro
  */
 @Controller
 @RequestMapping("/api/registration")

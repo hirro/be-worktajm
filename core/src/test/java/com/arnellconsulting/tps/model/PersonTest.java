@@ -29,7 +29,7 @@ import java.util.Collection;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public class PersonTest {
    private transient Person person;

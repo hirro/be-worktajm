@@ -44,7 +44,7 @@ import java.util.List;
  *
  * This object is intended to be used by corporate administrators.
  *
- * @author jiar
+ * @author hirro
  */
 @Controller
 @RequestMapping("api/person")

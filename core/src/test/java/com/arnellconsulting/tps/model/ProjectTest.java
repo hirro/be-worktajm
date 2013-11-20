@@ -26,7 +26,7 @@ import org.junit.runners.JUnit4;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 @RunWith(JUnit4.class)
 public class ProjectTest {

@@ -32,7 +32,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * TBD
- * @author jiar
+ * @author hirro
  */
 @Entity
 @SuppressWarnings("PMD")

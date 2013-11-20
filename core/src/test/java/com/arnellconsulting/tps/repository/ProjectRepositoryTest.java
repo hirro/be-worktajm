@@ -40,7 +40,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestContext.class, WebAppContext.class, PersistenceContext.class })

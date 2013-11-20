@@ -26,7 +26,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public interface PersonRepository extends JpaRepository<Person, Long> {
    public Person findByEmail(String email);

@@ -45,7 +45,7 @@ import org.springframework.security.core.AuthenticationException;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 @Controller
 @RequestMapping("api/authenticate")

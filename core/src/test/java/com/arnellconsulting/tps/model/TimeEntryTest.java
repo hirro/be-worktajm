@@ -37,7 +37,7 @@ import java.util.Date;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public class TimeEntryTest {
    private static ObjectMapper objectMapper = new ObjectMapper();

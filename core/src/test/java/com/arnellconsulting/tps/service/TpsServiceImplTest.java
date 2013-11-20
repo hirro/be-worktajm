@@ -47,7 +47,7 @@ import org.joda.time.DateTime;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
 public class TpsServiceImplTest {

@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 public class UnauthorizedEntryPoint implements AuthenticationEntryPoint {
    @Override

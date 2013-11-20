@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  *
- * @author jiar
+ * @author hirro
  */
 @ResponseStatus(value=HttpStatus.BAD_REQUEST, reason="Invalid parameter")
 public class InvalidParameterExeception extends Exception {
