@@ -19,6 +19,7 @@
 
 package com.arnellconsulting.tps.api;
 
+import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.security.TokenUtils;
 import com.arnellconsulting.tps.security.UserTransfer;
 
@@ -78,7 +79,7 @@ public class AuthenticationController {
           */
          log.debug("Authenticaton succeeded, loading user details");
 
-         final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+         final PersonUserDetails userDetails = (PersonUserDetails) userDetailsService.loadUserByUsername(username);
          final Map<String, Boolean> roles = new HashMap<String, Boolean>();
 
          for (GrantedAuthority authority : userDetails.getAuthorities()) {
@@ -86,7 +87,10 @@ public class AuthenticationController {
             roles.put(authority.toString(), Boolean.TRUE);
          }
 
-         return new UserTransfer(userDetails.getUsername(), roles, TokenUtils.createToken(userDetails));
+         return new UserTransfer(userDetails.getUsername(), 
+                                 userDetails.getPerson().getId(), 
+                                 roles, 
+                                 TokenUtils.createToken(userDetails));
       } catch (AuthenticationException e) {
          log.error("Failed to authenticate user: {}", username);
          throw e;

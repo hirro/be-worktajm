@@ -44,15 +44,17 @@ public class TpsUserDetailsService implements UserDetailsService {
 
    @Override
    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-      log.debug("loadUserByUsername({})", username);
       final Person person = repository.findByEmail(username);
       if (person == null) {
+         log.error("Failed loadUserByUsername({})", username);
          throw new UsernameNotFoundException(username);
       }
 
-      log.debug("Loaded the user, firstName: {}, lastName: {}", person.getFirstName(), person.getLastName());
+      log.debug("Loaded the user, firstName: {}, lastName: {}, password: PASSWORD", person.getFirstName(), person.getLastName());
       final PersonUserDetails details = new PersonUserDetails();
       details.setPerson(person);
+      // xxx
+      // fixme 
       details.setPassword("password");
       return details;
    }

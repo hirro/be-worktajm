@@ -102,10 +102,13 @@ public class AuthenticationControllerTest {
 
    @Test
    public void testValidAuthentication() throws Exception {
+      final Person validPerson = mock(Person.class);
+      when(validPerson.getId()).thenReturn(1l);
       final PersonUserDetails validUserDetails = mock(PersonUserDetails.class);
       final Authentication authentication = mock(Authentication.class);
       when(validUserDetails.getUsername()).thenReturn(VALID);
       when(validUserDetails.getPassword()).thenReturn(VALID);
+      when(validUserDetails.getPerson()).thenReturn(validPerson);
       when(authenticationManager.authenticate(any(Authentication.class))).thenReturn(authentication);
       when(userDetailsService.loadUserByUsername(VALID)).thenReturn(validUserDetails);
 

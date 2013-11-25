@@ -22,18 +22,20 @@ package com.arnellconsulting.tps.security;
 import java.util.Map;
 
 /**
- *
+ * XXX: Lombok?
  * @author hirro
  */
 public class UserTransfer {
    private final transient String name;
    private final transient Map<String, Boolean> roles;
    private final transient String token;
+   private final transient long userId;
 
-   public UserTransfer(final String userName, final Map<String, Boolean> roles, final String token) {
+   public UserTransfer(final String userName, final long userId, final Map<String, Boolean> roles, final String token) {
       this.name = userName;
       this.roles = roles;
       this.token = token;
+      this.userId = userId;
    }
 
    public String getName() {
@@ -46,5 +48,9 @@ public class UserTransfer {
 
    public String getToken() {
       return this.token;
+   }
+   
+   public long getUserId() {
+      return this.userId;
    }
 }
