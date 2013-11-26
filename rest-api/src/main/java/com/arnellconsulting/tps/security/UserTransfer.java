@@ -19,6 +19,7 @@
 
 package com.arnellconsulting.tps.security;
 
+import com.arnellconsulting.tps.model.Person;
 import java.util.Map;
 
 /**
@@ -26,20 +27,18 @@ import java.util.Map;
  * @author hirro
  */
 public class UserTransfer {
-   private final transient String name;
+   private final transient long personId;
    private final transient Map<String, Boolean> roles;
    private final transient String token;
-   private final transient long userId;
 
-   public UserTransfer(final String userName, final long userId, final Map<String, Boolean> roles, final String token) {
-      this.name = userName;
+   public UserTransfer(final long personId, final Map<String, Boolean> roles, final String token) {
+      this.personId = personId;
       this.roles = roles;
       this.token = token;
-      this.userId = userId;
    }
 
-   public String getName() {
-      return this.name;
+   public long getPersonId() {
+      return this.personId;
    }
 
    public Map<String, Boolean> getRoles() {
@@ -49,8 +48,5 @@ public class UserTransfer {
    public String getToken() {
       return this.token;
    }
-   
-   public long getUserId() {
-      return this.userId;
-   }
+
 }

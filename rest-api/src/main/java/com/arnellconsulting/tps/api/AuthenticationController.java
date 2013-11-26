@@ -87,8 +87,7 @@ public class AuthenticationController {
             roles.put(authority.toString(), Boolean.TRUE);
          }
 
-         return new UserTransfer(userDetails.getUsername(), 
-                                 userDetails.getPerson().getId(), 
+         return new UserTransfer(userDetails.getPerson().getId(), 
                                  roles, 
                                  TokenUtils.createToken(userDetails));
       } catch (AuthenticationException e) {
