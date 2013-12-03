@@ -64,7 +64,7 @@ public class PersistenceContext {
    private static final String DATABASE_PASSWORD = "";
    private static final String HIBERNATE_DIALECT = "org.hibernate.dialect.H2Dialect";
    private static final boolean HIBERNATE_FORMAT_SQL = true;
-   private static final String HIBERNATE_HBM2DDL_AUTO = "create-drop";
+   private static final String HIBERNATE_HBM2DDL_AUTO = "create";
    private static final String HIBERNATE_NAMING_STRATEGY = "org.hibernate.cfg.ImprovedNamingStrategy";
    private static final boolean HIBERNATE_SHOW_SQL = true;
 

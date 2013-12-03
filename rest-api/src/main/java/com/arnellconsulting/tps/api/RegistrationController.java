@@ -80,6 +80,7 @@ public class RegistrationController {
       person.setEmail(email);
       person.setLastName("Last name");
       person.setFirstName("First name");
+      person.setPassword(password);
 
       if (company != null) {
          // Create company

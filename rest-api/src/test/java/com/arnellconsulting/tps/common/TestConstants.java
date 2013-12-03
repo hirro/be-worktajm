@@ -54,7 +54,7 @@ public final class TestConstants {
    public static final String TIMEENTRY_A_COMMENT = "Time Entry A comment";
    public static final String PERSON_A_CREATE = "{\"emailVerified\":true,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
    public static final String PERSON_A = "{\"id\":null,\"emailVerified\":true,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
-   public static final String PERSON_A_READ = "{\"id\":null,\"emailVerified\":true,\"activeTimeEntry\":null,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
+   public static final String PERSON_A_READ = "{\"id\":null,\"emailVerified\":true,\"activeTimeEntry\":null,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"password\":\"PasswordA\",\"new\":true}";
 
    private TestConstants() {
    }
@@ -65,6 +65,7 @@ public final class TestConstants {
       person.setFirstName(PERSON_A_FIRST_NAME);
       person.setLastName(PERSON_A_LAST_NAME);
       person.setEmailVerified(PERSON_A_EMAIL_VERIFIED);
+      person.setPassword(PERSON_A_PASSWORD);
       return person;
    }
 

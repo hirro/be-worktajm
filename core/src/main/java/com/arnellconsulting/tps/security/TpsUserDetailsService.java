@@ -53,9 +53,7 @@ public class TpsUserDetailsService implements UserDetailsService {
       log.debug("Loaded the user, firstName: {}, lastName: {}, password: PASSWORD", person.getFirstName(), person.getLastName());
       final PersonUserDetails details = new PersonUserDetails();
       details.setPerson(person);
-      // xxx
-      // fixme 
-      details.setPassword("password");
+      details.setPassword(person.getPassword());
       return details;
    }
 }
