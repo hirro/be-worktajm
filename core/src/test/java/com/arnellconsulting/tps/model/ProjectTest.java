@@ -18,6 +18,7 @@
 
 package com.arnellconsulting.tps.model;
 
+import static org.hamcrest.Matchers.is;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -34,21 +35,14 @@ public class ProjectTest {
    public static final String DESCRIPTION = "Description";
    private transient Project project;
 
-   @Before
-   public void setUp() {
+   @Test
+   public void testAccessors() {
       project = new Project();
       project.setName(PROJECT_NAME);
       project.setDescription(DESCRIPTION);
-   }
-
-   @Test
-   public void testGetName() {
-      assertEquals(PROJECT_NAME, project.getName());
-   }
-
-   @Test
-   public void testGetDescription() {
-      assertEquals(DESCRIPTION, project.getDescription());
+      assertThat(project.getName(), is(PROJECT_NAME));
+      assertThat(project.getDescription(), is(DESCRIPTION));
+      assertEquals(project.getTimeEntries(), null);
    }
 
 }

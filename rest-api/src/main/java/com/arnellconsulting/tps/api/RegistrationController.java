@@ -19,8 +19,6 @@
 
 package com.arnellconsulting.tps.api;
 
-import com.arnellconsulting.tps.exception.EmailNotUniqueException;
-import com.arnellconsulting.tps.exception.InvalidParameterExeception;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
 
@@ -68,9 +66,6 @@ public class RegistrationController {
       // Check uniqueness
       if (tpsService.findPersonByEmail(email) != null) {
          throw new InvalidParameterExeception("Email is already registered");
-      }      
-      if ((company != null) && tpsService.findCorporate(company)) {
-         throw new InvalidParameterExeception("Company is already registered");
       }
       
       // Normal processing

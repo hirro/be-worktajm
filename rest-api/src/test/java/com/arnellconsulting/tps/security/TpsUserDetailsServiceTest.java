@@ -53,7 +53,14 @@ public class TpsUserDetailsServiceTest {
    private transient PersonUserDetails userDetails;
    public Person person;
 
-   //~--- methods -------------------------------------------------------------
+   @Before
+   public void setUp() {
+      tps = new TpsUserDetailsService(repositoryMock);
+      person = TestConstants.createPersonA();
+      userDetails = new PersonUserDetails();
+      userDetails.setPerson(person);
+      userDetails.setPassword(TestConstants.PERSON_A_PASSWORD);
+   }
 
    @Test(expected = UsernameNotFoundException.class)
    public void testLoadUserByUsernameButNotFound() {
@@ -63,27 +70,13 @@ public class TpsUserDetailsServiceTest {
       verifyNoMoreInteractions(repositoryMock);
    }
 
-   //~--- set methods ---------------------------------------------------------
-
-   @Before
-   public void setUp() {
-      tps = new TpsUserDetailsService(repositoryMock);
-      person = TestConstants.createPersonA();
-      userDetails = new PersonUserDetails();
-      userDetails.setPerson(person);
-      userDetails.setAuthority(TestConstants.PERSON_A_AUTHORITY);
-      userDetails.setPassword(TestConstants.PERSON_A_PASSWORD);
-   }
-
-   //~--- methods -------------------------------------------------------------
-
+   @Test
    public void testLoadUserByUsername() {
       when(repositoryMock.findByEmail(EMAIL)).thenReturn(person);
 
       final PersonUserDetails person = (PersonUserDetails) tps.loadUserByUsername(EMAIL);
 
       assertThat(person, notNullValue());
-      assertThat(person.getAuthority(), is(TestConstants.PERSON_A_AUTHORITY));
       assertThat(person.getPassword(), is(TestConstants.PERSON_A_PASSWORD));
       assertThat(person.getUsername(), is(TestConstants.PERSON_A_EMAIL));
       assertThat(person.isAccountNonExpired(), is(true));

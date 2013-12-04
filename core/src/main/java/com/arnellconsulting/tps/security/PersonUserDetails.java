@@ -75,16 +75,8 @@ public class PersonUserDetails implements UserDetails {
       return true;
    }
 
-   public String getAuthority() {
-      return authority;
-   }
-
    public Person getPerson() {
       return person;
-   }
-
-   public void setAuthority(final String authority) {
-      this.authority = authority;
    }
 
    public void setPassword(final String password) {

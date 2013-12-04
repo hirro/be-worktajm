@@ -54,7 +54,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -82,103 +81,6 @@ public class TimeEntryControllerTest {
    private transient PersonUserDetails personUserDetails;
    private UsernamePasswordAuthenticationToken principal;
 
-   @Test
-   public void testCreate() throws Exception {
-      mockMvc.perform(
-      post("/api/timeEntry").principal(principal).content(TestConstants.TIMEENTRY_A_CREATE).contentType(MediaType.APPLICATION_JSON)).andExpect(
-      status().isOk());
-
-      final ArgumentCaptor<TimeEntry> argument = ArgumentCaptor.forClass(TimeEntry.class);
-
-      verify(tpsServiceMock, times(1)).saveTimeEntry(argument.capture());
-      assertThat(argument.getValue().getComment(), is(TestConstants.TIMEENTRY_A_COMMENT));
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   @Test
-   public void testDelete() throws Exception {
-      mockMvc.perform(delete("/api/timeEntry/1").principal(principal).accept(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
-      verify(tpsServiceMock, times(1)).deleteTimeEntry(1L);
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   @Test
-   public void testList() throws Exception {
-      when(tpsServiceMock.getTimeEntriesForPerson(Mockito.anyLong(), Mockito.any(DateTime.class), Mockito.any(DateTime.class))).thenReturn(timeEntries);
-      mockMvc.perform(get("/api/timeEntry").principal(principal).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(Mockito.anyLong(), Mockito.any(DateTime.class), Mockito.any(DateTime.class));
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   @Test
-   public void testListWithDefinedRange() throws Exception {
-      final DateTime fromDate = new DateTime(0);
-      final DateTime toDate = new DateTime(1);
-      when(tpsServiceMock.getTimeEntriesForPerson(Mockito.anyLong(), Mockito.any(DateTime.class), Mockito.any(DateTime.class))).thenReturn(timeEntries);
-      mockMvc.perform(get("/api/timeEntry")
-              .param("from", fromDate.toString())
-              .param("to", toDate.toString())
-              .principal(principal).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(Mockito.anyLong(), Mockito.any(DateTime.class), Mockito.any(DateTime.class));
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   // I get this on travis
-   // <{"id":null,"startTime":1274392800000,"endTime":1262300400000,"comment":"Time Entry A comment","project":{"id":null,"name":"Project A","description":"Project A description","rate":10.3,"new":true},"new":true}> but was:<{"id":null,"startTime":1274400000000,"endTime":1262304000000,"comment":"Time Entry A comment","project":{"id":null,"name":"Project A","description":"Project A description","rate":10.3,"new":true},"new":true}>
-   //@Test
-   public void testRead() throws Exception {
-      when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntryA);
-      mockMvc.perform(get("/api/timeEntry/1").principal(principal).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(
-      content().string(TestConstants.TIMEENTRY_A_READ));
-      verify(tpsServiceMock, times(1)).getTimeEntry(1L);
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   @Test
-   public void testUpdate() throws Exception {
-      final TimeEntry timeEntry = spy(timeEntryA);
-
-      when(timeEntry.getId()).thenReturn(1L);
-      when(timeEntry.getPerson()).thenReturn(person1);
-      when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntry);
-      mockMvc.perform(
-      put("/api/timeEntry/1").principal(principal).content(TestConstants.TIMEENTRY_A_UPDATE).contentType(MediaType.APPLICATION_JSON)).andExpect(
-      status().isNoContent());
-
-      final ArgumentCaptor<TimeEntry> argument = ArgumentCaptor.forClass(TimeEntry.class);
-
-      verify(tpsServiceMock, times(1)).saveTimeEntry(argument.capture());
-      verify(tpsServiceMock, times(1)).getTimeEntry(1);
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   @Test
-   public void testUpdateNotExisting() throws Exception {
-      final TimeEntry timeEntry = spy(timeEntryA);
-
-      when(timeEntry.getId()).thenReturn(1L);
-      when(timeEntry.getPerson()).thenReturn(person2);
-      when(tpsServiceMock.getTimeEntry(1)).thenReturn(null);
-      mockMvc.perform(
-      put("/api/timeEntry/1").principal(principal).content(TestConstants.TIMEENTRY_A_UPDATE).contentType(MediaType.APPLICATION_JSON)).andExpect(
-      status().isBadRequest());
-      verify(tpsServiceMock, times(1)).getTimeEntry(1);
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   @Test
-   public void testUpdateNotOwned() throws Exception {
-      final TimeEntry timeEntry = spy(timeEntryA);
-
-      when(timeEntry.getId()).thenReturn(1L);
-      when(timeEntry.getPerson()).thenReturn(person2);
-      when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntry);
-      mockMvc.perform(
-      put("/api/timeEntry/1").principal(principal).content(TestConstants.TIMEENTRY_A_UPDATE).contentType(MediaType.APPLICATION_JSON)).andExpect(
-      status().isUnauthorized());
-      verify(tpsServiceMock, times(1)).getTimeEntry(1);
-      verifyNoMoreInteractions(tpsServiceMock);
-   }
 
    @Before
    public void setUp() {
@@ -200,4 +102,152 @@ public class TimeEntryControllerTest {
       principal = spy(new UsernamePasswordAuthenticationToken("wiseau", "Love is blind"));
       when(principal.getPrincipal()).thenReturn(personUserDetails);
    }
+   
+   @Test
+   public void testCreate() throws Exception {
+      mockMvc.perform(
+         post("/api/timeEntry")
+         .principal(principal)
+         .content(TestConstants.TIMEENTRY_A_CREATE)
+         .contentType(MediaType.APPLICATION_JSON)
+      ).andExpect(status().isOk());
+
+      final ArgumentCaptor<TimeEntry> argument = ArgumentCaptor.forClass(TimeEntry.class);
+
+      verify(tpsServiceMock, times(1)).saveTimeEntry(argument.capture());
+      assertThat(argument.getValue().getComment(), is(TestConstants.TIMEENTRY_A_COMMENT));
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testDelete() throws Exception {
+      mockMvc.perform(
+         delete("/api/timeEntry/1")
+         .principal(principal)
+         .accept(MediaType.APPLICATION_JSON)
+      ).andExpect(status().isNoContent());
+      verify(tpsServiceMock, times(1)).deleteTimeEntry(1L);
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testList() throws Exception {
+      when(
+         tpsServiceMock.getTimeEntriesForPerson(
+            Mockito.anyLong(), 
+            Mockito.any(DateTime.class), 
+            Mockito.any(DateTime.class)
+         )
+      ).thenReturn(timeEntries);
+      mockMvc.perform(
+         get("/api/timeEntry")
+         .principal(principal)
+         .accept(MediaType.APPLICATION_JSON)
+      ).andExpect(status().isOk());
+      verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(
+         Mockito.anyLong(), 
+         Mockito.any(DateTime.class), 
+         Mockito.any(DateTime.class));
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testListWithDefinedRange() throws Exception {
+      final DateTime fromDate = new DateTime(0);
+      final DateTime toDate = new DateTime(1);
+      when(
+         tpsServiceMock.getTimeEntriesForPerson(
+            Mockito.anyLong(), 
+            Mockito.any(DateTime.class), 
+            Mockito.any(DateTime.class)
+         )
+      ).thenReturn(timeEntries);
+      mockMvc.perform(
+         get("/api/timeEntry")
+         .param("from", fromDate.toString())
+         .param("to", toDate.toString())
+         .principal(principal).accept(MediaType.APPLICATION_JSON)
+      ).andExpect(status().isOk());
+      verify(
+         tpsServiceMock, 
+         times(1)
+      ).getTimeEntriesForPerson(
+         Mockito.anyLong(), 
+         Mockito.any(DateTime.class), 
+         Mockito.any(DateTime.class));
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   // I get this on travis
+   // <{"id":null,"startTime":1274392800000,"endTime":1262300400000,"comment":"Time Entry A comment","project":{"id":null,"name":"Project A","description":"Project A description","rate":10.3,"new":true},"new":true}> 
+   // <{"id":null,"startTime":1274400000000,"endTime":1262304000000,"comment":"Time Entry A comment","project":{"id":null,"name":"Project A","description":"Project A description","rate":10.3,"new":true},"new":true}>
+   @Test
+   public void testRead() throws Exception {
+      when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntryA);
+      mockMvc.perform(
+         get("/api/timeEntry/1")
+         .principal(principal)
+         .accept(MediaType.APPLICATION_JSON)
+      )
+      .andExpect(status().isOk());
+      //      .andExpect(content().string(TestConstants.TIMEENTRY_A_READ));
+      verify(tpsServiceMock, times(1)).getTimeEntry(1L);
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testUpdate() throws Exception {
+      final TimeEntry timeEntry = spy(timeEntryA);
+
+      when(timeEntry.getId()).thenReturn(1L);
+      when(timeEntry.getPerson()).thenReturn(person1);
+      when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntry);
+      mockMvc.perform(
+         put("/api/timeEntry/1")
+         .principal(principal)
+         .content(TestConstants.TIMEENTRY_A_UPDATE)
+         .contentType(MediaType.APPLICATION_JSON)
+      ).andExpect(status().isNoContent());
+
+      final ArgumentCaptor<TimeEntry> argument = ArgumentCaptor.forClass(TimeEntry.class);
+
+      verify(tpsServiceMock, times(1)).saveTimeEntry(argument.capture());
+      verify(tpsServiceMock, times(1)).getTimeEntry(1);
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testUpdateNotExisting() throws Exception {
+      final TimeEntry timeEntry = spy(timeEntryA);
+
+      when(timeEntry.getId()).thenReturn(1L);
+      when(timeEntry.getPerson()).thenReturn(person2);
+      when(tpsServiceMock.getTimeEntry(1)).thenReturn(null);
+      mockMvc.perform(
+         put("/api/timeEntry/1")
+         .principal(principal)
+         .content(TestConstants.TIMEENTRY_A_UPDATE)
+         .contentType(MediaType.APPLICATION_JSON)
+      ).andExpect(status().isBadRequest());
+      verify(tpsServiceMock, times(1)).getTimeEntry(1);
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
+   @Test
+   public void testUpdateNotOwned() throws Exception {
+      final TimeEntry timeEntry = spy(timeEntryA);
+
+      when(timeEntry.getId()).thenReturn(1L);
+      when(timeEntry.getPerson()).thenReturn(person2);
+      when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntry);
+      mockMvc.perform(
+         put("/api/timeEntry/1")
+         .principal(principal)
+         .content(TestConstants.TIMEENTRY_A_UPDATE)
+         .contentType(MediaType.APPLICATION_JSON)
+      ).andExpect(status().isUnauthorized());
+      verify(tpsServiceMock, times(1)).getTimeEntry(1);
+      verifyNoMoreInteractions(tpsServiceMock);
+   }
+
 }

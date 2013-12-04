@@ -396,7 +396,7 @@
             <artifactId>tomcat7-maven-plugin</artifactId>
             <version>2.1</version>
             <configuration>
-               <url>http://arnellconsulting.dyndns.org:8080/manager/text</url>
+               <url>http://epyon:8080/manager/text</url>
                <username>maven</username>
                <password>licentio</password>
                <update>true</update>

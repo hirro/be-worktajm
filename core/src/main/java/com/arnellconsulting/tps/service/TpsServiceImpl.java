@@ -24,16 +24,12 @@ import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
-import java.util.Date;
-
-import lombok.AllArgsConstructor;
 
 import lombok.extern.slf4j.Slf4j;
 
 import lombok.NonNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -134,12 +130,6 @@ public class TpsServiceImpl implements TpsService {
    @Override
    public void saveTimeEntry(final TimeEntry person) {
       timeEntryRepository.save(person);
-   }
-
-   @Override
-   public boolean findCorporate(final String company) {
-      // No suppert for this yet
-      return false;
    }
 
 }

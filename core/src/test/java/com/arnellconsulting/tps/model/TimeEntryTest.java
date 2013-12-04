@@ -41,8 +41,20 @@ import java.util.Date;
  */
 public class TimeEntryTest {
    private static ObjectMapper objectMapper = new ObjectMapper();
+   
+   @Test
+   public void testAccessors() {
+      final Person person = TestConstants.createPersonA();
+      final Project project = TestConstants.createProjectA();
+      final TimeEntry timeEntry = TestConstants.createTimeEntryA(person, project);
+      assertThat(timeEntry.getComment(), is(TestConstants.TIMEENTRY_A_COMMENT));
+      assertThat(timeEntry.getEndTime(), is(TestConstants.TIMEENTRY_A_END_TIME.toDate()));
+      assertThat(timeEntry.getStartTime(), is(TestConstants.TIMEENTRY_A_START_TIME.toDate()));
+      assertThat(timeEntry.getProject(), is(project));
+      assertThat(timeEntry.getPerson(), is(person));
+   }
 
-   //@Test
+   @Test
    public void testDeserialization() throws IOException {
       final Person person = TestConstants.createPersonA();
       final Project project = TestConstants.createProjectA();

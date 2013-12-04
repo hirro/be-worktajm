@@ -21,7 +21,6 @@ package com.arnellconsulting.tps.service;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
-import java.util.Date;
 
 import java.util.List;
 import org.joda.time.DateTime;
@@ -53,6 +52,4 @@ public interface TpsService {
    public void deleteTimeEntry(final long id);
    public void saveTimeEntry(final TimeEntry timeEntry);
 
-   // Corporate
-   public boolean findCorporate(String company);
 }

@@ -14,7 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.tps.exception;
+
+package com.arnellconsulting.tps.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -23,16 +24,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *
  * @author hirro
  */
-@ResponseStatus(value=HttpStatus.UNAUTHORIZED, reason="Not authorized")
-public class AccessDeniedException extends Exception {
+@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason="Invalid parameter")
+public class InvalidParameterExeception extends Exception {
 
    /**
     * Constructs an instance of
-    * <code>AccessDeniedException</code> with the specified detail message.
+    * <code>InvalidParameterExeception</code> with the specified detail message.
     *
     * @param msg the detail message.
     */
-   public AccessDeniedException(final String msg) {
+   public InvalidParameterExeception(final String msg) {
       super(msg);
    }
 }

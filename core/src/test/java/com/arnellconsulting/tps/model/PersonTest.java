@@ -18,31 +18,30 @@
 
 package com.arnellconsulting.tps.model;
 
-import com.arnellconsulting.tps.common.PersonStatus;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import java.util.Collection;
+import static org.hamcrest.Matchers.is;
 
 /**
  *
  * @author hirro
  */
 public class PersonTest {
-   private transient Person person;
-
-   @Before
-   public void setUp() {
-      person = TestConstants.createPersonA();
-   }
 
    @Test
    public void testGetters() {
-     assertEquals(TestConstants.PERSON_A_FIRST_NAME, person.getFirstName());
-      assertEquals(TestConstants.PERSON_A_LAST_NAME, person.getLastName());
-     assertEquals(TestConstants.PERSON_A_EMAIL_VERIFIED, person.getEmailVerified());
+     final Person person = TestConstants.createPersonA();
+     final Project project = TestConstants.createProjectA();
+     final TimeEntry timeEntry = TestConstants.createTimeEntryA(person, project);
+     person.setActiveTimeEntry(timeEntry);
+     assertThat(person.getFirstName(), is(TestConstants.PERSON_A_FIRST_NAME));
+     assertThat(person.getLastName(), is(TestConstants.PERSON_A_LAST_NAME));
+     assertThat(person.getEmail(), is(TestConstants.PERSON_A_EMAIL));
+     assertThat(person.getPassword(), is(TestConstants.PERSON_A_PASSWORD));
+     assertThat(person.getEmailVerified(), is(TestConstants.PERSON_A_EMAIL_VERIFIED));
+     assertThat(person.getActiveTimeEntry(), is(timeEntry));
+     assertNull(person.getTimeEntries());
   }
 }

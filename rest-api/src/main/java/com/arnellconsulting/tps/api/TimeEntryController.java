@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2013 Jim Arnell
  *
@@ -18,11 +19,8 @@
 
 package com.arnellconsulting.tps.api;
 
-import com.arnellconsulting.tps.exception.AccessDeniedException;
-import com.arnellconsulting.tps.exception.InvalidParameterExeception;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.TimeEntry;
-import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +39,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.security.Principal;
-import java.util.Date;
 
 import java.util.List;
 import org.joda.time.DateTime;
@@ -67,6 +63,7 @@ public class TimeEntryController extends BaseController {
     * Creates a new time entry for the logged in user.
     *
     * @param timeEntry
+    * @param principal
     * @return TimeEntry
     */
    @Transactional
@@ -89,6 +86,7 @@ public class TimeEntryController extends BaseController {
     * It may only be deleted by the person owning it.
     *
     * @param id logged in person
+    * @param principal
     */
    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
    @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -104,8 +102,9 @@ public class TimeEntryController extends BaseController {
    /**
     * List all time entries belonging to the logged in user.
     *
-    * @param from optional from date
-    * @param to optional to date
+    * @param fromDate optional from date
+    * @param toDate optional to date
+    * @param principal
     * @return list of TimeEntry
     */
    @Transactional
@@ -138,6 +137,7 @@ public class TimeEntryController extends BaseController {
     * Reads a time entry.
     *
     * @param id of logged in user
+    * @param principal
     * @return TimeEntry
     * @throws AccessDeniedException if user is not authorized.
     */
@@ -166,6 +166,7 @@ public class TimeEntryController extends BaseController {
     *
     * @param id the id of the person
     * @param timeEntry the time entry to be updated
+    * @param principal
     * @throws AccessDeniedException if time entry does not belong to user.
     */
    @Transactional

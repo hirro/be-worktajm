@@ -47,7 +47,7 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
    private final transient UserDetailsService userService;
 
    public AuthenticationTokenProcessingFilter(final AuthenticationManager authManager,
-           final UserDetailsService userService) {
+                                              final UserDetailsService userService) {
       super();
       this.authManager = authManager;
       this.userService = userService;
