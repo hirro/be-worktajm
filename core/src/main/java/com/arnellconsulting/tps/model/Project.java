@@ -31,52 +31,40 @@ import java.util.Collection;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * TBD
+ * Project POJO
+ * 
  * @author hirro
  */
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project extends AbstractPersistable<Long> {
    private static final long serialVersionUID = -3902305943341540214L;
-   private String name;
-   private String description;
-   private BigDecimal rate;
+
+   /**
+    * Project name.
+    */
+   @NotNull
+   @Getter @Setter private String name;
+   
+   /**
+    * Project description.
+    */
+   @Getter @Setter private String description;
+
+   /**
+    * Charging for this project.
+    */
+   @Getter @Setter private BigDecimal rate;
+
+   /**
+    * Time entries associated to this project.
+    */
    @OneToMany
    @JsonBackReference(value = "timeentry->project")
-   private Collection<TimeEntry> timeEntries;
+   @Getter @Setter private Collection<TimeEntry> timeEntries;
 
-   public Collection<TimeEntry> getTimeEntries() {
-      return timeEntries;
-   }
-
-   public String getDescription() {
-      return description;
-   }
-
-   @NotNull
-   public String getName() {
-      return name;
-   }
-
-   public BigDecimal getRate() {
-      return rate;
-   }
-
-   public void setDescription(final String description) {
-      this.description = description;
-   }
-
-   public void setName(final String name) {
-      this.name = name;
-   }
-
-   public void setRate(final BigDecimal rate) {
-      this.rate = rate;
-   }
-
-   public void setTimeEntries(final Collection<TimeEntry> timeEntries) {
-      this.timeEntries = timeEntries;
-   }
 }

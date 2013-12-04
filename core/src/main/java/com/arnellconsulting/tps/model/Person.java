@@ -29,7 +29,6 @@ import java.util.Collection;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

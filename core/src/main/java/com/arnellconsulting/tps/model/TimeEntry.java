@@ -34,6 +34,8 @@ import java.util.Date;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Time entries.
@@ -44,72 +46,40 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntry extends AbstractPersistable<Long> {
    
-   // Start date and time
+   /**
+    * Start date and time.
+    */
    @NotNull
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
-   private Date  startTime;
-   
-   // End time
-   // XXX: Change to duration?
+   @Getter @Setter private Date  startTime;
+
+   /**
+    * End date and time
+    */
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
-   private Date endTime;
+   @Getter @Setter private Date endTime;
    
-   //
-   private String comment;
-   
-   // Time entry must have one person.
+   /**
+    * Optional comment for the time entry.
+    */
+   @Getter @Setter private String comment;
+
+   /**
+    * The person who owns this time entry.
+    */
    @ManyToOne
    @NotNull
-   private Person person;
-   
-   // Time entry must have a project
-   @ManyToOne
-   @NotNull
-   private Project project;
-
-   public TimeEntry() {}
-
-   public String getComment() {
-      return comment;
-   }
-
-   public Date getEndTime() {
-      return endTime;
-   }
-
    @JsonIgnore
-   @JsonBackReference("activeTimeEntry")
-   public Person getPerson() {
-      return person;
-   }
+   @JsonBackReference("activeTimeEntry")   
+   @Getter @Setter private Person person;
 
-   public Project getProject() {
-      return project;
-   }
-
-   public Date getStartTime() {
-      return startTime;
-   }
-
-   public void setComment(final String comment) {
-      this.comment = comment;
-   }
-
-   public void setEndTime(final Date endTime) {
-      this.endTime = endTime;
-   }
-
-   public void setPerson(final Person person) {
-      this.person = person;
-   }
-
-   public void setProject(final Project project) {
-      this.project = project;
-   }
-
-   public void setStartTime(final Date startTime) {
-      this.startTime = startTime;
-   }
+   /**
+    * The project that is associated with the time entry.
+    */
+   @ManyToOne
+   @NotNull
+   @Getter @Setter private Project project;
+   
 }

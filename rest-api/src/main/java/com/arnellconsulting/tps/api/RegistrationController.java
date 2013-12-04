@@ -21,7 +21,6 @@ package com.arnellconsulting.tps.api;
 
 import com.arnellconsulting.tps.exception.EmailNotUniqueException;
 import com.arnellconsulting.tps.exception.InvalidParameterExeception;
-import com.arnellconsulting.tps.model.Corporate;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
 
@@ -81,13 +80,6 @@ public class RegistrationController {
       person.setLastName("Last name");
       person.setFirstName("First name");
       person.setPassword(password);
-
-      if (company != null) {
-         // Create company
-         final Corporate corporate = new Corporate();
-         corporate.setName(company);
-         //person.setCorporate(corporate);
-      }
 
       tpsService.savePerson(person);
 
