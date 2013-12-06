@@ -43,5 +43,6 @@ public class PersonTest {
      assertThat(person.getEmailVerified(), is(TestConstants.PERSON_A_EMAIL_VERIFIED));
      assertThat(person.getActiveTimeEntry(), is(timeEntry));
      assertNull(person.getTimeEntries());
+     assertNull(person.getProjects());
   }
 }

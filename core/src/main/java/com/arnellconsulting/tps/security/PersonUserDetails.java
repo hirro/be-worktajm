@@ -36,6 +36,11 @@ public class PersonUserDetails implements UserDetails {
    private String authority;
    private Person person;
 
+   PersonUserDetails() {
+      //
+   }
+   
+   
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
       final ArrayList<GrantedAuthority> temp = new ArrayList<GrantedAuthority>();

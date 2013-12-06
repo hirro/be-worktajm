@@ -33,6 +33,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * Project POJO
@@ -67,4 +68,13 @@ public class Project extends AbstractPersistable<Long> {
    @JsonBackReference(value = "timeentry->project")
    @Getter @Setter private Collection<TimeEntry> timeEntries;
 
+   /**
+    * The person who owns this project.
+    */
+   @ManyToOne
+   @NotNull
+   @JsonIgnore
+   @JsonBackReference("person->project")   
+   @Getter @Setter private Person person;
+   
 }

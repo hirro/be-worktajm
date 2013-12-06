@@ -8,3 +8,4 @@ server-work
 
 test-results.xml
 yo/coverage
+*.iml

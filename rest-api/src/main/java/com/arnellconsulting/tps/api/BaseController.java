@@ -27,7 +27,6 @@ import org.springframework.security.core.Authentication;
  */
 public class BaseController {
 
-   //~--- get methods ---------------------------------------------------------
    public Person getAuthenticatedPerson(final Principal principal) {
       PersonUserDetails userDetails;
       userDetails = (PersonUserDetails) ((Authentication) principal).getPrincipal();

@@ -63,8 +63,8 @@ public class TpsServiceImpl implements TpsService {
 
    // ~ Project
    @Override
-   public List<Project> getProjets() {
-      return projectRepository.findAll();
+   public List<Project> getProjectsForPerson(final long id) {
+      return projectRepository.findByPersonId(id);
    }
 
    @Override

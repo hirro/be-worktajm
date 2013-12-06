@@ -80,6 +80,7 @@ public class TimeEntryControllerTest {
    @Autowired
    private transient PersonUserDetails personUserDetails;
    private UsernamePasswordAuthenticationToken principal;
+   private UsernamePasswordAuthenticationToken token;
 
 
    @Before
@@ -99,7 +100,8 @@ public class TimeEntryControllerTest {
       when(person1.getId()).thenReturn(1L);
       when(person2.getId()).thenReturn(2L);
       when(personUserDetails.getPerson()).thenReturn(person1);
-      principal = spy(new UsernamePasswordAuthenticationToken("wiseau", "Love is blind"));
+      token = new UsernamePasswordAuthenticationToken(TestConstants.PERSON_A_EMAIL, TestConstants.PERSON_A_PASSWORD);
+      principal = spy(token);
       when(principal.getPrincipal()).thenReturn(personUserDetails);
    }
    
@@ -166,7 +168,8 @@ public class TimeEntryControllerTest {
          get("/api/timeEntry")
          .param("from", fromDate.toString())
          .param("to", toDate.toString())
-         .principal(principal).accept(MediaType.APPLICATION_JSON)
+         .principal(principal)
+         .accept(MediaType.APPLICATION_JSON)
       ).andExpect(status().isOk());
       verify(
          tpsServiceMock, 

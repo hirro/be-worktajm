@@ -62,6 +62,7 @@ public final class TestConstants {
       person.setLastName(PERSON_A_LAST_NAME);
       person.setEmailVerified(PERSON_A_EMAIL_VERIFIED);
       person.setPassword(PERSON_A_PASSWORD);
+      person.setProjects(null);
       return person;
    }
 

@@ -22,6 +22,7 @@ package com.arnellconsulting.tps.repository;
 import com.arnellconsulting.tps.config.PersistenceContext;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
+import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TestConstants;
 
@@ -50,12 +51,20 @@ import org.springframework.transaction.annotation.Transactional;
 @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
 public class ProjectRepositoryTest extends TestCase {
    @Autowired
-   private transient ProjectRepository repository;
+   private transient ProjectRepository projectRepository;
+
+   @Autowired
+   private transient PersonRepository personRepository;
 
    @Test
    public void testInsert() {
+      // Create and save person
+      Person person = personRepository.save(TestConstants.createPersonA());      
+      
+      // Create and save project
       final Project project = TestConstants.createProjectA();
-      final Project persistedProject = repository.save(project);
+      project.setPerson(person);
+      final Project persistedProject = projectRepository.save(project);
 
       assertEquals(project.getName(), persistedProject.getName());
    }

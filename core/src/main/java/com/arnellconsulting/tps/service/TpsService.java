@@ -33,23 +33,92 @@ import org.joda.time.DateTime;
 @SuppressWarnings({ "PMD.UnusedModifier", "PMD.ShortVariable" })
 public interface TpsService {
 
-   // Project
-   public List<Project> getProjets();
+   /**
+    * Retrieve all the projects the current user is authorized for.
+    * @return list of projects
+    */
+   public List<Project> getProjectsForPerson(final long id);
+   
+   /**
+    * Retrieve the project with the specified project id.
+    * @param id project id
+    * @return project
+    */
    public Project getProject(final long id);
+   
+   /**
+    * Delete or disable project with the specified id.
+    * Projects with time entries may not be deleted.
+    * @param id project id.
+    */
    public void deleteProject(final long id);
+   
+   /**
+    * Save the project.
+    * @param project 
+    */
    public void saveProject(final Project project);
 
-   // Persons
+   /**
+    * Get the person with the provided id.
+    * Certain information may be restricted to person only.
+    * @param id
+    * @return person
+    */
    public Person getPerson(final long id);
+   
+   /**
+    * Get all persons?
+    * @return a list of persons belonging to the same company as the logged in user.
+    */
    public List<Person> getPersons();
+   
+   /**
+    * Deletes a person with provided id.
+    * May only be performed by administrators.
+    * @param id 
+    */
    public void deletePerson(final long id);
+   
+   /**
+    * Save the person.
+    * @param person 
+    */
    public void savePerson(Person person);
+   
+   /**
+    * Find person by email address.
+    * @param email
+    * @return person
+    */
    Person findPersonByEmail(final String email);
 
-   // TimeEntry
-   public List<TimeEntry> getTimeEntriesForPerson(final long userId, final DateTime from, final DateTime to);
+   /**
+    * Gets the time entry with the specified id.
+    * @param id time entry id
+    * @return TimeEntry
+    */
    public TimeEntry getTimeEntry(final long id);
+   
+   /**
+    * Deletes the time entry with the specified id
+    * @param id time entry id
+    */
    public void deleteTimeEntry(final long id);
+   
+   /**
+    * Save the time entry.
+    * @param timeEntry 
+    */
    public void saveTimeEntry(final TimeEntry timeEntry);
+
+   /**
+    * Gets all the time entries for the given person.
+    * @param userId user id.
+    * @param from the date from which time entries should be retrieved.
+    * @param to the date to which time entries should be retrieved.
+    * @return list of time entries.
+    */
+   public List<TimeEntry> getTimeEntriesForPerson(final long userId, final DateTime from, final DateTime to);
 
 }

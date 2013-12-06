@@ -18,8 +18,10 @@
 
 package com.arnellconsulting.tps.api;
 
+import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.service.TpsService;
+import java.security.Principal;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,7 +48,7 @@ import java.util.List;
 @RequestMapping("api/project")
 @Slf4j
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
-public class ProjectController {
+public class ProjectController extends BaseController {
 
    @Autowired
    private transient TpsService tpsService;
@@ -54,16 +56,22 @@ public class ProjectController {
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
-   public List<Project> list() throws InterruptedException {
+   public List<Project> list(final Principal principal) throws InterruptedException {
       log.debug("list");
-      return tpsService.getProjets();
+      final Person person = getAuthenticatedPerson(principal);
+      return tpsService.getProjectsForPerson(person.getId());
    }
 
    @Transactional
    @RequestMapping(method = RequestMethod.POST)
    @ResponseBody
-   public Project create(@RequestBody final Project project) {
+   public Project create(@RequestBody final Project project, final Principal principal) {
       log.debug("create: {}", project.toString());
+      
+      // Project must belong to a person
+      final Person person = getAuthenticatedPerson(principal);
+      project.setPerson(person);
+
       tpsService.saveProject(project);
 
       return project;
@@ -78,7 +86,8 @@ public class ProjectController {
    public Project read(@PathVariable final long id) {
       log.debug("read id: {}", id);
 
-      return tpsService.getProject(id);
+      Project project = tpsService.getProject(id);
+      return project;
    }
  
    @Transactional

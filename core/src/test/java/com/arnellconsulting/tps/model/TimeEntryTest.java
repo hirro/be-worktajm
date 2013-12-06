@@ -40,7 +40,7 @@ import java.util.Date;
  * @author hirro
  */
 public class TimeEntryTest {
-   private static ObjectMapper objectMapper = new ObjectMapper();
+   private static final ObjectMapper objectMapper = new ObjectMapper();
    
    @Test
    public void testAccessors() {

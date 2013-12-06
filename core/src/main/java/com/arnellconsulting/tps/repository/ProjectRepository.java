@@ -19,6 +19,7 @@
 package com.arnellconsulting.tps.repository;
 
 import com.arnellconsulting.tps.model.Project;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -26,4 +27,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author hirro
  */
 public interface ProjectRepository extends JpaRepository<Project, Long> {
+
+   public List<Project> findByPersonId(long id);
 }

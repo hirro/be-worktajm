@@ -95,17 +95,17 @@ public class TpsServiceImplTest {
    }
 
    /**
-    * Test of getProjets method, of class TpsServiceImpl.
+    * Test of getProjetcs method, of class TpsServiceImpl.
     */
    @Test
-   public void testGetProjets() {
-      when(projectRepository.findAll()).thenReturn(this.projects);
+   public void testGetProjetsForPerson() {
+      when(projectRepository.findByPersonId(1)).thenReturn(this.projects);
 
-      final List<Project> projs = service.getProjets();
+      final List<Project> projs = service.getProjectsForPerson(1);
 
       assertThat(projectA.getName(), is(projs.get(0).getName()));
       assertThat(projectB.getName(), is(projs.get(1).getName()));
-      verify(projectRepository, times(1)).findAll();
+      verify(projectRepository, times(1)).findByPersonId(1);
       verifyNoMoreInteractions(projectRepository);
    }
 

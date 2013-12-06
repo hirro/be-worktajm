@@ -63,6 +63,50 @@
             </plugin>
          </plugins>
       </pluginManagement>
+      <plugins>
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <version>2.5.2</version>
+            <configuration>
+               <format>xml</format>
+               <maxmem>256m</maxmem>
+               <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+            </configuration>            
+         </plugin>         
+         <plugin>
+            <groupId>org.eluder.coveralls</groupId>
+            <artifactId>coveralls-maven-plugin</artifactId>
+            <version>2.0.1</version>
+            <configuration>
+               <repoToken>wPz7EdaqzdZVOfJRMa6UKSoIBOfBPDaqi</repoToken>
+               <!-- aggregated reports for multi-module projects -->
+               <aggregate>true</aggregate>               
+            </configuration>
+         </plugin>
+         <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+               <execution>
+                  <phase>deploy</phase>
+                  <configuration>
+                     <tasks>
+                        <!--
+                           Place any Ant task here. You can add anything
+                           you can add between <target> and </target> in a
+                           build.xml.
+                        -->
+                        <touch file="target/coveralls.json"/>
+                     </tasks>
+                  </configuration>
+                  <goals>
+                     <goal>run</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>         
+      </plugins>
    </build>
 
    <dependencies>
@@ -186,8 +230,8 @@
       </plugins>
    </reporting>       
    <scm>
-      <connection>scm:git:git@arnellconsulting.com:tps.git</connection>
-      <url>scm:git:git@arnellconsulting.com:tps.git</url>
-      <developerConnection>scm:git:git@arnellconsulting.com:tps.git</developerConnection>
+      <url>https://github.com/hirro/be-worktajm</url>
+      <connection>scm:git:git://github.com/hirro/be-worktajm.git</connection>
+      <developerConnection>scm:git:git@github.com:hirro/be-worktajm.git</developerConnection>
    </scm>    
 </project>

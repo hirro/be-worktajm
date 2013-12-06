@@ -31,8 +31,8 @@ import org.junit.runners.JUnit4;
  */
 @RunWith(JUnit4.class)
 public class ProjectTest {
-   public static final String PROJECT_NAME = "Project name";
-   public static final String DESCRIPTION = "Description";
+   private static final String PROJECT_NAME = "Project name";
+   private static final String DESCRIPTION = "Description";
    private transient Project project;
 
    @Test

@@ -31,6 +31,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 /**
  * TBD
@@ -79,10 +80,18 @@ public class Person extends AbstractPersistable<Long> {
    @Getter @Setter private String email;
 
    /**
-    * Encrypted person of the person.
+    * Encrypted password of the person.
     */
    @NotNull
    @Getter @Setter private String password;
+
+   /**
+    * The projects owned by the person.
+    */
+   @OneToMany
+   @JsonBackReference(value = "person->project")
+   @Getter @Setter private Collection<Project> projects;
+           
    
    public Person() {
       this.emailVerified = false;
