@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd0e660a-c014-47f5-8ae0-b3b8b39d51ff">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="timeEntries" uuid="440db502-ff4f-49e6-8655-c37ee44eba3a">
+		<parameter name="personId" class="java.lang.Integer" isForPrompting="false">
+			<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+	name project_name,
+	rate,
+	sum(end_time-start_time)/3600 hours,
+	rate*sum(end_time-start_time)/3600 total
+FROM time_entry
+join person on time_entry.person=person.id
+join project on time_entry.project=project.id
+where person.id=$P{personId}
+group by project_name, rate;]]>
+		</queryString>
+		<field name="project_name" class="java.lang.String"/>
+		<field name="rate" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="hours" class="java.lang.Double"/>
+		<field name="total" class="java.lang.Double"/>
+		<variable name="totalHours" class="java.lang.Float" calculation="Sum">
+			<variableExpression><![CDATA[$F{hours}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="allTimeEntries" uuid="dcfba6cf-3db0-4fff-afa9-f1022c3d8085">
+		<parameter name="personId" class="java.lang.Integer" isForPrompting="false">
+			<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+	name project_name,
+	rate,
+	(end_time-start_time)/3600 hours,
+	rate*(end_time-start_time) total,
+	time_entry.comment
+FROM time_entry
+join person on time_entry.person=person.id
+join project on time_entry.project=project.id
+where person.id=$P{personId}]]>
+		</queryString>
+		<field name="project_name" class="java.lang.String"/>
+		<field name="rate" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="hours" class="java.lang.Double"/>
+		<field name="total" class="java.lang.Double"/>
+		<field name="comment" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="personId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM person
+where person.id=1;]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email_verified" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="first_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="last_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="password" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="active_time_entry" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="150" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7dfaff35-866d-4f6d-8d22-bc2d3291f1da" x="0" y="0" width="416" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[{NAME OF COMPANY}]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="48fd7d40-a40f-4d4f-bd20-9ce624d73c21" x="1" y="25" width="180" height="54"/>
+				<textElement/>
+				<text><![CDATA[{CUSTOMER NAME}
+{CUSTOMER ADDRESS LINE 1}
+{CUSTOMER ADDRESS LINE 2}
+{CUSTOMER ADDRESS LINE 3}]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="82ec62af-c69b-44ea-8538-403cae4e6938" x="416" y="0" width="139" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="db820782-7fac-4735-9cc6-57dd6d9e76af" x="1" y="20" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="85df2c42-539f-46bb-8cbf-3ee3c1e32dbb" x="1" y="96" width="180" height="54"/>
+				<textElement/>
+				<text><![CDATA[Faktura nummer NN
+Vår referens
+Betalnings vilkor
+Förfallningsdatum]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="400" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="d609344c-b8c4-4cf5-8335-9693724368f3" key="table 4" style="table 4" x="0" y="0" width="555" height="400"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="timeEntries" uuid="7ecd47d5-9285-4dd6-8f25-7e98fe40eb45">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="300" uuid="d5f27f48-e23b-4de9-9610-68f811944dd5">
+						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="fd0bb7d5-c457-4cc8-b32c-536ec27cc73e" x="2" y="0" width="298" height="30"/>
+								<textElement verticalAlignment="Bottom">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Project Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 4_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="6fca029a-0924-44a8-8d8b-efbe8ae43c99" x="2" y="0" width="298" height="20"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{project_name}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b8588659-ee5b-4077-9bdb-bf7482737275">
+						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="452774f2-b99b-4810-824e-2daf3bd4f4c6" x="0" y="0" width="88" height="30"/>
+								<textElement textAlignment="Right" verticalAlignment="Bottom">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Rate]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 4_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField pattern="###0">
+								<reportElement uuid="75828372-9fc5-4a96-9864-0b0ab9d7ac1b" x="0" y="0" width="88" height="20"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{rate}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="1481c72b-8739-4069-b12c-34442391e03b">
+						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="d3f42e03-8526-4ed8-8339-ba9d67a638fb" x="0" y="0" width="88" height="30"/>
+								<textElement textAlignment="Right" verticalAlignment="Bottom">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Hours]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 4_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField pattern="###0.0">
+								<reportElement uuid="fea66a58-462c-488c-94e8-26de674d4611" x="0" y="0" width="88" height="20"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{hours}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b7e1805d-185e-47d5-90d0-91a50817966a">
+						<jr:columnHeader style="table 4_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="ac92cefb-0d4a-4ef6-be63-aff3003d752d" x="0" y="0" width="88" height="30"/>
+								<textElement textAlignment="Right" verticalAlignment="Bottom">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 4_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField pattern="#,##0.0">
+								<reportElement uuid="342c6668-e637-4ca4-9d36-659bcedc9b3e" x="0" y="0" width="88" height="20"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ec43e0f4-e725-4f92-9114-f98def27729a" x="0" y="10" width="180" height="54"/>
+				<textElement/>
+				<text><![CDATA[Arnell Consulting AB
+Winges väg 6
+139 60 Värmdö]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fba52452-7b2b-4ee5-83f2-fc94df47df5a" x="180" y="10" width="180" height="54"/>
+				<textElement/>
+				<text><![CDATA[Företaget innehar F-skattsedel
+Org. Nr 556689-5172
+Säte i Stockholm
+Momsreg.nr/VAT-nr SE556689517201
+Bankgiro 5683-6877]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="7770e57b-11cd-493b-82bd-3fbde729d1e8" x="1" y="0" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>
