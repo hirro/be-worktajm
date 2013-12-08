@@ -3,29 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>tps-parent</artifactId>
-    <groupId>com.arnellconsulting.tps</groupId>
-    <version>2.0.5.BUILD-SNAPSHOT</version>
-  </parent>   
+   <parent>
+      <artifactId>tps-parent</artifactId>
+      <groupId>com.arnellconsulting.tps</groupId>
+      <version>2.0.5.BUILD-SNAPSHOT</version>
+   </parent>   
    <groupId>com.arnellconsulting.tps</groupId>
    <artifactId>api</artifactId>
    <packaging>war</packaging>
    <name>rest-api</name>
    <properties>
       <tps-version>2.0.5.BUILD-SNAPSHOT</tps-version>
+      <groovy.version>2.1.1</groovy.version>      
+      <jasperReport.version>5.2.0</jasperReport.version>
    </properties>
-   <organization>
-      <name>Arnell Consulting AB</name>
-      <url>http://arnellconsulting.com</url>
-   </organization>
-   <repositories>
-      <repository>
-         <id>spring-repository</id>
-         <name>SpringSource Repository</name>
-         <url>http://repo.springsource.org/milestone</url>
-      </repository>
-   </repositories>
    <dependencies>
       <!-- Spring -->
       <dependency>
@@ -234,6 +225,19 @@
          <version>${tps-version}</version>
       </dependency>
 
+      <!-- Jasper 
+      <dependency>
+         <groupId>com.lowagie</groupId>
+         <artifactId>itext</artifactId>
+         <version>2.1.7</version>
+      </dependency>      
+      <dependency>
+         <groupId>net.sf.jasperreports</groupId>
+         <artifactId>jasperreports</artifactId>
+         <version>${jasperReport.version}</version>
+      </dependency>
+      -->
+
    </dependencies>
    <build>
       <finalName>tps</finalName>
@@ -404,7 +408,29 @@
                <update>true</update>
                <port>8080</port>
             </configuration>
-         </plugin>                            
+         </plugin>
+         
+         <!-- Jasper -->
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jasperreports-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>compile-reports</goal>
+                  </goals>
+               </execution>
+            </executions>
+
+            <dependencies>
+               <!--note this must be repeated here to pick up correct xml validation -->
+               <dependency>
+                  <groupId>net.sf.jasperreports</groupId>
+                  <artifactId>jasperreports</artifactId>
+                  <version>${jasperReport.version}</version>
+               </dependency>
+            </dependencies>
+         </plugin>
       </plugins>
    </build>
    <reporting>
