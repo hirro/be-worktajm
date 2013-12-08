@@ -42,14 +42,6 @@
       <module>rest-api</module>
    </modules>
 
-   <repositories>
-      <repository>
-         <id>spring-repository</id>
-         <name>SpringSource Repository</name>
-         <url>http://repo.springsource.org/milestone</url>
-      </repository>
-   </repositories>
-
    <build>
       <pluginManagement>
          <plugins>
