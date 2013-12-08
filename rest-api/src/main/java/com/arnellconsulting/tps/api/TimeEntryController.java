@@ -168,6 +168,7 @@ public class TimeEntryController extends BaseController {
     * @param timeEntry the time entry to be updated
     * @param principal
     * @throws AccessDeniedException if time entry does not belong to user.
+    * @throws InvalidParameterExeception if parameter was invalid.
     */
    @Transactional
    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -185,15 +186,15 @@ public class TimeEntryController extends BaseController {
       if (existingTimeEntry == null) {
          log.debug("No item to update");
          throw new InvalidParameterExeception("No item to update");
-      } else if (existingTimeEntry.getPerson().getId() == person.getId()) {
-         log.debug("Updating time entry with id: {} as person: {}", timeEntry.getId(), person.getId());
-         timeEntry.setPerson(person);
-         tpsService.saveTimeEntry(timeEntry);
-      } else {
+      } else if (existingTimeEntry.getPerson().getId() != person.getId()) {
          // Acccess denied
          log.error("Tried to access unauthorized item");
          throw new AccessDeniedException("Tried to access unauthorized item");
       }
+
+      log.debug("Updating time entry with id: {} as person: {}", timeEntry.getId(), person.getId());
+      timeEntry.setPerson(person);
+      tpsService.saveTimeEntry(timeEntry);
    }
 
 }

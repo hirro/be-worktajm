@@ -139,6 +139,7 @@ public class ProjectControllerTest {
          put("/api/project/1")
          .content(TestConstants.PROJECT_A)
          .contentType(MediaType.APPLICATION_JSON)
+         .principal(principal)
       )
       .andExpect(status()
       .isNoContent());

@@ -89,7 +89,7 @@ public class Person extends AbstractPersistable<Long> {
     * The projects owned by the person.
     */
    @OneToMany
-   @JsonBackReference(value = "person->project")
+   @JsonIgnore   
    @Getter @Setter private Collection<Project> projects;
            
    

@@ -65,7 +65,7 @@ public class Project extends AbstractPersistable<Long> {
     * Time entries associated to this project.
     */
    @OneToMany
-   @JsonBackReference(value = "timeentry->project")
+   @JsonIgnore
    @Getter @Setter private Collection<TimeEntry> timeEntries;
 
    /**
@@ -74,7 +74,6 @@ public class Project extends AbstractPersistable<Long> {
    @ManyToOne
    @NotNull
    @JsonIgnore
-   @JsonBackReference("person->project")   
    @Getter @Setter private Person person;
    
 }

@@ -65,7 +65,8 @@ public class ProjectController extends BaseController {
    @Transactional
    @RequestMapping(method = RequestMethod.POST)
    @ResponseBody
-   public Project create(@RequestBody final Project project, final Principal principal) {
+   public Project create(@RequestBody final Project project, 
+                         final Principal principal) {
       log.debug("create: {}", project.toString());
       
       // Project must belong to a person
@@ -96,8 +97,15 @@ public class ProjectController extends BaseController {
       method = RequestMethod.PUT
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void update(@PathVariable final long id, @RequestBody final Project project) {
+   public void update(@PathVariable final long id, 
+                         @RequestBody final Project project,
+                         final Principal principal) {
       log.debug("update name: {}");
+
+      // Project must belong to a person
+      final Person person = getAuthenticatedPerson(principal);
+      project.setPerson(person);      
+      
       tpsService.saveProject(project);
    }
 
