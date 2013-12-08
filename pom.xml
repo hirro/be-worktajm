@@ -53,6 +53,11 @@
                   <target>1.5</target>
                </configuration>
             </plugin>
+            <plugin>
+               <groupId>org.apache.tomcat.maven</groupId>
+               <artifactId>tomcat7-maven-plugin</artifactId>
+               <version>2.2</version>            
+            </plugin>
          </plugins>
       </pluginManagement>
       <plugins>
@@ -64,7 +69,7 @@
                <format>xml</format>
                <maxmem>256m</maxmem>
                <!-- aggregated reports for multi-module projects -->
-              <aggregate>true</aggregate>
+               <aggregate>true</aggregate>
             </configuration>            
          </plugin>         
          <plugin>
@@ -76,28 +81,7 @@
                <!-- aggregated reports for multi-module projects -->
                <aggregate>true</aggregate>               
             </configuration>
-         </plugin>
-         <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-               <execution>
-                  <phase>deploy</phase>
-                  <configuration>
-                     <tasks>
-                        <!--
-                           Place any Ant task here. You can add anything
-                           you can add between <target> and </target> in a
-                           build.xml.
-                        -->
-                        <touch file="target/coveralls.json"/>
-                     </tasks>
-                  </configuration>
-                  <goals>
-                     <goal>run</goal>
-                  </goals>
-               </execution>
-            </executions>
-         </plugin>         
+         </plugin>        
       </plugins>
    </build>
 
