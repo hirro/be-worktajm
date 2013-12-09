@@ -33,9 +33,25 @@ All calls are returned in **JSON**.
 
 # Person
 
+## POST /person
+
+Create a person.
+
+API returns:
+**200** on success with copy of created object WITH id.
+**400** on error
+
+#### example request
+
+    $ curl -u john.doe@example.com:password https://worktajm.arnellconsulting.dyndns.org:8080/api/person/1 -X PUT \
+      -F 'phone=6041234567'
+
+
 ## GET /person/{person id}
 
-Gets the person with the specified id.
+Read the person with the specified id.
+If no id is specified, the currently logged in person will be retrieved.
+
 API will return **200**.
 
 #### example request
@@ -50,14 +66,13 @@ API will return **200**.
        "activeTimeEntry": 3,
        "firstName": "John",
        "lastName": "Doe",
-       "email": "john.doe@example.com",
-       "password": "*******"
+       "email": "john.doe@example.com"
     }
 
 
 ## PUT /person
 
-Create a person.
+Update a person.
 API returns:
 **200** on success.
 **400** on error
@@ -78,32 +93,89 @@ API returns:
        "email": "john.doe@example.com"
     }
 
+## DELETE /person/{id}
+
+Deletes a person with the specified person id.
+
+#### example request
+
+    $ curl -u john.doe@example.com:password https://worktajm.arnellconsulting.dyndns.org:8080/api/person/1 -X DELETE \
+      -F 'phone=6041234567'
+
+
+
+
 # Time Entry
 
 ## GET /timeEntry/{time entry id}
 
 Expects basic auth to get an existing customer. API will return **200**.
 
-#### response
+#### example request
 
     $ curl -k -u john.doe@example.com:password https://worktajm.arnellconsulting.dyndns.org:8080/api/timeEntry/1
 
+#### response
+
     {
-       "id": 1,
-       "startTime": 1386358504000,
-       "endTime": 1386365705000,
-       "comment": null,
-       "project": {
-          "id": 2,
-          "name": "B",
-          "description": null,
-          "rate": 555,
-          "new": false
-       },
-       "new": false
+      "id": 1,
+      "startTime": 1386358504000,
+      "endTime": 1386365705000,
+      "comment": null,
+      "links": 
+      [ 
+        {
+          "rel": "project",
+          "href": "https://worktajm.arnellconsulting.dyndns.org:8080/api/project/1"
+        },
+        {
+          "rel": "person",
+          "href": "https://worktajm.arnellconsulting.dyndns.org:8080/api/person/1"
+        }        
+      ]
     }    
 
-## 
+## POST /timeEntry
 
+Creates a new time entry.
+
+#### Example request
+
+    $ curl -k -u john.doe@example.com:password https://worktajm.arnellconsulting.dyndns.org:8080/api/timeEntry/1
+
+#### Example response
+
+## PUT /timeEntry
+
+Update a new time entry.
+
+#### Example request
+
+    $ curl -k -u john.doe@example.com:password https://worktajm.arnellconsulting.dyndns.org:8080/api/timeEntry/1
+
+#### Example response
+## GET /timeEntries
+
+Gets all time entries for the logged in person.
+
+#### Example response
+
+    {
+      "links": 
+      [ 
+        {
+          "rel": "timeEntry",
+          "href": "https://worktajm.arnellconsulting.dyndns.org:8080/api/timeEntry/1"
+        },
+        {
+          "rel": "timeEntry",
+          "href": "https://worktajm.arnellconsulting.dyndns.org:8080/api/timeEntry/2"
+        },
+        {
+          "rel": "timeEntry",
+          "href": "https://worktajm.arnellconsulting.dyndns.org:8080/api/timeEntry/3"
+        }        
+      ]
+    }
 
 
