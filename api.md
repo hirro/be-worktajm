@@ -44,7 +44,7 @@ API will return **200**.
 
 #### response
 
-   {
+    {
        "id": 1,
        "emailVerified": false,
        "activeTimeEntry": 3,
@@ -52,7 +52,7 @@ API will return **200**.
        "lastName": "Doe",
        "email": "john.doe@example.com",
        "password": "*******"
-   }
+    }
 
 
 ## PUT /person
@@ -69,14 +69,14 @@ API returns:
 
 #### response
 
-   {
+    {
        "id": 1,
        "emailVerified": false,
        "activeTimeEntry": 3,
        "firstName": "John",
        "lastName": "Doe",
        "email": "john.doe@example.com"
-   }
+    }
 
 # Time Entry
 
@@ -88,20 +88,20 @@ Expects basic auth to get an existing customer. API will return **200**.
 
     $ curl -k -u john.doe@example.com:password https://worktajm.arnellconsulting.dyndns.org:8080/api/timeEntry/1
 
-  {
-      "id": 1,
-      "startTime": 1386358504000,
-      "endTime": 1386365705000,
-      "comment": null,
-      "project": {
+    {
+       "id": 1,
+       "startTime": 1386358504000,
+       "endTime": 1386365705000,
+       "comment": null,
+       "project": {
           "id": 2,
           "name": "B",
           "description": null,
           "rate": 555,
           "new": false
-      },
-      "new": false
-  }    
+       },
+       "new": false
+    }    
 
 ## 
 
