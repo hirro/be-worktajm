@@ -212,7 +212,7 @@ where person.id=1;]]>
 				<text><![CDATA[{NAME OF COMPANY}]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="48fd7d40-a40f-4d4f-bd20-9ce624d73c21" x="1" y="25" width="180" height="54"/>
+				<reportElement uuid="48fd7d40-a40f-4d4f-bd20-9ce624d73c21" x="1" y="25" width="555" height="54"/>
 				<textElement/>
 				<text><![CDATA[{CUSTOMER NAME}
 {CUSTOMER ADDRESS LINE 1}
@@ -232,14 +232,14 @@ where person.id=1;]]>
 					<pen lineWidth="2.0"/>
 				</graphicElement>
 			</line>
-			<staticText>
-				<reportElement uuid="85df2c42-539f-46bb-8cbf-3ee3c1e32dbb" x="1" y="96" width="180" height="54"/>
-				<textElement/>
-				<text><![CDATA[Faktura nummer NN
-Vår referens
+			<textField>
+				<reportElement uuid="8f772345-ff87-4f60-bf4a-0e1686f4c250" x="1" y="96" width="555" height="54"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA["Faktura nummer NN
+Vår referens " + $F{first_name} + " + " + $F{last_name}+ "
 Betalnings vilkor
-Förfallningsdatum]]></text>
-			</staticText>
+Förfallningsdatum"]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>
