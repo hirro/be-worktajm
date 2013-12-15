@@ -179,3 +179,23 @@ Gets all time entries for the logged in person.
     }
 
 
+# Status Report
+
+## GET /status/
+
+Returns the status of the asking user.
+
+#### Example request
+
+      $ curl -l -u john.doe@example.com:password https://worktajm.arnellconsulting.dyndns.org:8080/status
+
+#### Example response
+
+      {
+        "last_day": {
+          
+        }
+      }
+
+
+#### Example response
