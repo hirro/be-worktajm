@@ -8,3 +8,7 @@ This is the Worktajm backend.
 
 Hosted at: http://www.worktajm.com
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hirro/be-worktajm/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
