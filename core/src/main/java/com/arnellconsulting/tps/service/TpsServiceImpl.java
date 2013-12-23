@@ -18,12 +18,14 @@
 
 package com.arnellconsulting.tps.service;
 
+import com.arnellconsulting.tps.model.Company;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
+import com.arnellconsulting.tps.repository.CompanyRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,15 +52,19 @@ public class TpsServiceImpl implements TpsService {
    ProjectRepository projectRepository;
    private final transient @NonNull
    TimeEntryRepository timeEntryRepository;
+   private final transient @NonNull
+   CompanyRepository customerRepository;
 
    @Autowired
    public TpsServiceImpl(final PersonRepository personRepository,
                          final ProjectRepository projectRepository,
-                         final TimeEntryRepository timeEntryRepository) {
+                         final TimeEntryRepository timeEntryRepository,
+                         final CompanyRepository companyRepository) {
       log.debug("ctor");
       this.personRepository = personRepository;
       this.projectRepository = projectRepository;
       this.timeEntryRepository = timeEntryRepository;
+      this.customerRepository = companyRepository;
    }
 
    // ~ Project
@@ -115,6 +121,26 @@ public class TpsServiceImpl implements TpsService {
                                                   final DateTime from,
                                                   final DateTime to) {
      return timeEntryRepository.findByPersonIdAndStartTimeBetween(userId, from.toDate(), to.toDate());
+   }
+
+   @Override
+   public List<Company> getCustomersForPerson(long id) {
+      return customerRepository.findByPersonId(id);
+   }
+
+   @Override
+   public Company getCustomer(long id) {
+      return customerRepository.findOne(id);
+   }
+
+   @Override
+   public void deleteCustomer(long id) {
+      customerRepository.delete(id);
+   }
+
+   @Override
+   public void saveCustomer(Company customer) {
+      customerRepository.save(customer);
    }
 
    @Override

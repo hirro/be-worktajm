@@ -19,9 +19,11 @@
 
 package com.arnellconsulting.tps.service;
 
+import com.arnellconsulting.tps.model.Company;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
+import com.arnellconsulting.tps.repository.CompanyRepository;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
@@ -65,13 +67,16 @@ public class TpsServiceImplTest {
    private transient TimeEntry timeEntryA;
    private transient List<TimeEntry> timeEntriesA;
    private transient Date dateA;
+   private transient Company companyA;
+   private CompanyRepository companyRepository;
 
    @Before
    public void setUp() {
       personRepository = mock(PersonRepository.class);
       projectRepository = mock(ProjectRepository.class);
       timeEntryRepository = mock(TimeEntryRepository.class);
-      service = new TpsServiceImpl(personRepository, projectRepository, timeEntryRepository);
+      companyRepository = mock(CompanyRepository.class);
+      service = new TpsServiceImpl(personRepository, projectRepository, timeEntryRepository, companyRepository);
       projectA = new Project();
       projectA.setName("Project A");
       projectB = new Project();

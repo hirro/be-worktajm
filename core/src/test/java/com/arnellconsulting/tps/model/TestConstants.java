@@ -19,6 +19,8 @@ package com.arnellconsulting.tps.model;
 import com.arnellconsulting.tps.common.PersonStatus;
 import java.math.BigDecimal;
 import org.joda.time.DateTime;
+import java.util.Collection;
+import java.util.Vector;
 
 /**
  *
@@ -35,7 +37,6 @@ public final class TestConstants {
    public static final DateTime TIMEENTRY_A_START_TIME = new DateTime("2010-05-21");
    public static final PersonStatus PERSON_A_STATUS = PersonStatus.NORMAL;
    public static final String CHECK_EMAIL_PATH = "/registration/checkEmail.do?email=%s";
-   public static final String COMPANY_A = "company A";
    public static final String CREATE_PATH = "/registration/create?email=%s&password=%s&company=%s";
    public static final String PERSON_A_EMAIL = "a@example.com";
    public static final String PERSON_A_FIRST_NAME = "A";
@@ -51,6 +52,18 @@ public final class TestConstants {
    public static final String PERSON_A_CREATE = "{\"emailVerified\":true,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
    public static final String PERSON_A = "{\"id\":null,\"emailVerified\":true,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
    public static final String PERSON_A_READ = "{\"id\":null,\"emailVerified\":true,\"activeTimeEntry\":null,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
+
+   // Address A
+   public static final String ADDRESS_A_CITY = "Punxsutawney";
+   public static final String ADDRESS_A_LINE1 = "102 West Mahoning Street";
+   public static final String ADDRESS_A_LINE2 = "";
+   public static final String ADDRESS_A_COUNTRY = "US";
+   public static final String ADDRESS_A_ZIP = "15767";
+   public static final String ADDRESS_A_STATE = "PA";
+
+   // Customer A
+   public static final String COMPANY_A_REFERENCE_PERSON = "Phil";
+   public static final String COMPANY_A_NAME= "Phil and Co";
 
    private TestConstants() {
    }
@@ -83,4 +96,26 @@ public final class TestConstants {
       timeEntryA.setProject(project);
       return timeEntryA;
    }
+
+   public static Address createAddressA() {
+      final Address address = new Address();
+      address.setCity(ADDRESS_A_CITY);
+      address.setCountry(ADDRESS_A_COUNTRY);
+      address.setLine1(ADDRESS_A_LINE1);
+      address.setLine2(ADDRESS_A_LINE2);
+      address.setState(ADDRESS_A_STATE);
+      address.setZip(ADDRESS_A_ZIP);
+      return address;
+   }
+
+    public static Company createCompanyA() {
+       Company company = new Company();
+       company.setCompanyName(COMPANY_A_NAME);
+       company.setReferencePerson(COMPANY_A_REFERENCE_PERSON);
+       company.setBillingAddress(createAddressA());
+       Collection<Project> projects = new Vector<Project>();
+       projects.add(createProjectA());
+       company.setProjects(projects);
+       return company;
+    }
 }

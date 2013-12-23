@@ -21,6 +21,8 @@ package com.arnellconsulting.tps.service;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
+import com.arnellconsulting.tps.model.Company;
+
 
 import java.util.List;
 import org.joda.time.DateTime;
@@ -121,4 +123,30 @@ public interface TpsService {
     */
    public List<TimeEntry> getTimeEntriesForPerson(final long userId, final DateTime from, final DateTime to);
 
+   /**
+    * Retrieve all the projects the current user is authorized for.
+    * @return list of projects
+    */
+   public List<Company> getCustomersForPerson(final long id);
+
+   /**
+    * Retrieve the customer with the specified customer id.
+    *
+    * @param id customer id
+    * @return customer
+    */
+   public Company getCustomer(final long id);
+
+   /**
+    * Delete or disable customer with the specified id.
+    * Customers with time entries may not be deleted.
+    * @param id project id.
+    */
+   public void deleteCustomer(final long id);
+
+   /**
+    * Save the customer.
+    * @param customer
+    */
+   public void saveCustomer(final Company customer);
 }
