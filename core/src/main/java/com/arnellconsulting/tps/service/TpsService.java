@@ -18,10 +18,10 @@
 
 package com.arnellconsulting.tps.service;
 
+import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
-import com.arnellconsulting.tps.model.Company;
 
 
 import java.util.List;
@@ -127,7 +127,7 @@ public interface TpsService {
     * Retrieve all the projects the current user is authorized for.
     * @return list of projects
     */
-   public List<Company> getCustomersForPerson(final long id);
+   public List<Customer> getCustomersForPerson(final long id);
 
    /**
     * Retrieve the customer with the specified customer id.
@@ -135,7 +135,7 @@ public interface TpsService {
     * @param id customer id
     * @return customer
     */
-   public Company getCustomer(final long id);
+   public Customer getCustomer(final long id);
 
    /**
     * Delete or disable customer with the specified id.
@@ -148,5 +148,5 @@ public interface TpsService {
     * Save the customer.
     * @param customer
     */
-   public void saveCustomer(final Company customer);
+   public void saveCustomer(final Customer customer);
 }

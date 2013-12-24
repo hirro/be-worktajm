@@ -19,15 +19,14 @@
 
 package com.arnellconsulting.tps.repository;
 
-import com.arnellconsulting.tps.model.Company;
+import com.arnellconsulting.tps.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by jiar on 2013-12-22.
  */
-public interface CompanyRepository extends JpaRepository<Company, Long> {
-   List<Company> findByPersonId(long id);
+public interface CompanyRepository extends JpaRepository<Customer, Long> {
+   List<Customer> findByPersonId(long id);
 }

@@ -22,8 +22,11 @@ package com.arnellconsulting.tps.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
@@ -31,12 +34,14 @@ import java.util.Collection;
 /**
  *
  */
-public class Company extends AbstractPersistable<Long>
+@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Customer extends AbstractPersistable<Long>
 {
     private static final long serialVersionUID = -390230121353660214L;
 
     /**
-     * Company name, mandatory.
+     * Customer name, mandatory.
      */
     @NotNull
     @Getter @Setter private String companyName;
@@ -58,4 +63,13 @@ public class Company extends AbstractPersistable<Long>
     @OneToMany
     @JsonIgnore
     @Getter @Setter private Collection<Project> projects;
+
+
+   /**
+    * The owner of the entry
+    *
+    */
+   @ManyToOne
+   @JsonIgnore
+   @Getter @Setter private Person person;
 }

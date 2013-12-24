@@ -18,7 +18,7 @@
 
 package com.arnellconsulting.tps.service;
 
-import com.arnellconsulting.tps.model.Company;
+import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
@@ -124,12 +124,12 @@ public class TpsServiceImpl implements TpsService {
    }
 
    @Override
-   public List<Company> getCustomersForPerson(long id) {
+   public List<Customer> getCustomersForPerson(long id) {
       return customerRepository.findByPersonId(id);
    }
 
    @Override
-   public Company getCustomer(long id) {
+   public Customer getCustomer(long id) {
       return customerRepository.findOne(id);
    }
 
@@ -139,7 +139,7 @@ public class TpsServiceImpl implements TpsService {
    }
 
    @Override
-   public void saveCustomer(Company customer) {
+   public void saveCustomer(Customer customer) {
       customerRepository.save(customer);
    }
 

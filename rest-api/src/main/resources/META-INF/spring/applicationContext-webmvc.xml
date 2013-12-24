@@ -14,15 +14,4 @@
 
 	<mvc:default-servlet-handler />
 
-   <!-- Map paths directly to view names without controller processing. Use the view-name attribute if necessary: by convention the view name equals the path without the leading slash -->
-	<mvc:view-controller path="/" view-name="landing" />
-	<mvc:view-controller path="/landing" view-name="landing"/>
-	<mvc:view-controller path="/login" />
-	<mvc:view-controller path="/logoutSuccess" />
-	<mvc:view-controller path="/dashboard" />
-	<mvc:view-controller path="/index" />
-
-    <!-- Enable JSON -->
-	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/> 
-
 </beans>

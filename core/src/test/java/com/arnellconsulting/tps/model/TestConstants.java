@@ -16,8 +16,8 @@
  */
 package com.arnellconsulting.tps.model;
 
-import com.arnellconsulting.tps.common.PersonStatus;
 import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 import java.util.Collection;
 import java.util.Vector;
@@ -27,31 +27,23 @@ import java.util.Vector;
  * @author hirro
  */
 public final class TestConstants {
-   public static final BigDecimal PROJECTA_A_RATE = new BigDecimal("10.3");
-   public static final Boolean ACCOUNT_NON_EXPIRED = Boolean.TRUE;
-   public static final Boolean ACCOUNT_NON_LOCKED = Boolean.TRUE;
-   public static final Boolean CREDENTIALS_NON_EXPIRED = Boolean.TRUE;
-   public static final Boolean ENABLED = Boolean.TRUE;
+   public static final BigDecimal PROJECT_A_RATE = new BigDecimal("10.3");
    public static final Boolean PERSON_A_EMAIL_VERIFIED = true;
-   public static final DateTime TIMEENTRY_A_END_TIME = new DateTime("2010-01-01");
-   public static final DateTime TIMEENTRY_A_START_TIME = new DateTime("2010-05-21");
-   public static final PersonStatus PERSON_A_STATUS = PersonStatus.NORMAL;
-   public static final String CHECK_EMAIL_PATH = "/registration/checkEmail.do?email=%s";
-   public static final String CREATE_PATH = "/registration/create?email=%s&password=%s&company=%s";
+
+   // Person A
    public static final String PERSON_A_EMAIL = "a@example.com";
    public static final String PERSON_A_FIRST_NAME = "A";
    public static final String PERSON_A_LAST_NAME = "Ason";
    public static final String PERSON_A_PASSWORD = "PasswordA";
-   public static final String PERSON_A_AUTHORITY = "Person A Auth";
-   public static final String PROJECT_A = "{\"id\":null,\"name\":\"Project A\",\"description\":\"Project A description\",\"rate\":10.3,\"new\":true}";
+
+   // Project A
    public static final String PROJECT_A_DESCRIPTION = "Project A description";
    public static final String PROJECT_A_NAME = "Project A";
-   public static final String TIMEENTRY_A_READ = "{\"id\":null,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"project\":{\"id\":null,\"name\":\"Project A\",\"description\":\"Project A description\",\"rate\":10.3,\"new\":true},\"new\":true}";
-   public static final String TIMEENTRY_A_CREATE = "{\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
+
+   // Time Entry A
    public static final String TIMEENTRY_A_COMMENT = "Time Entry A comment";
-   public static final String PERSON_A_CREATE = "{\"emailVerified\":true,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
-   public static final String PERSON_A = "{\"id\":null,\"emailVerified\":true,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
-   public static final String PERSON_A_READ = "{\"id\":null,\"emailVerified\":true,\"activeTimeEntry\":null,\"firstName\":\"A\",\"lastName\":\"Ason\",\"email\":\"a@example.com\",\"new\":true}";
+   public static final DateTime TIMEENTRY_A_END_TIME = new DateTime("2010-01-01");
+   public static final DateTime TIMEENTRY_A_START_TIME = new DateTime("2010-05-21");
 
    // Address A
    public static final String ADDRESS_A_CITY = "Punxsutawney";
@@ -62,8 +54,8 @@ public final class TestConstants {
    public static final String ADDRESS_A_STATE = "PA";
 
    // Customer A
-   public static final String COMPANY_A_REFERENCE_PERSON = "Phil";
-   public static final String COMPANY_A_NAME= "Phil and Co";
+   public static final String CUSTOMER_A_REFERENCE_PERSON = "Phil";
+   public static final String CUSTOMER_A_NAME = "Phil and Co";
 
    private TestConstants() {
    }
@@ -83,7 +75,7 @@ public final class TestConstants {
       final Project project = new Project();
       project.setName(PROJECT_A_NAME);
       project.setDescription(PROJECT_A_DESCRIPTION);
-      project.setRate(PROJECTA_A_RATE);
+      project.setRate(PROJECT_A_RATE);
       return project;
    }
 
@@ -108,14 +100,14 @@ public final class TestConstants {
       return address;
    }
 
-    public static Company createCompanyA() {
-       Company company = new Company();
-       company.setCompanyName(COMPANY_A_NAME);
-       company.setReferencePerson(COMPANY_A_REFERENCE_PERSON);
-       company.setBillingAddress(createAddressA());
-       Collection<Project> projects = new Vector<Project>();
-       projects.add(createProjectA());
-       company.setProjects(projects);
-       return company;
-    }
+   public static Customer createCustomerA() {
+      Customer customer = new Customer();
+      customer.setCompanyName(CUSTOMER_A_NAME);
+      customer.setReferencePerson(CUSTOMER_A_REFERENCE_PERSON);
+      customer.setBillingAddress(createAddressA());
+      Collection<Project> projects = new Vector<Project>();
+      projects.add(createProjectA());
+      customer.setProjects(projects);
+      return customer;
+   }
 }

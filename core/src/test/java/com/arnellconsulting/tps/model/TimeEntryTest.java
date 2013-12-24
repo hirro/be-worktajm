@@ -54,13 +54,4 @@ public class TimeEntryTest {
       assertThat(timeEntry.getPerson(), is(person));
    }
 
-   //@Test
-   public void testDeserialization() throws IOException {
-      final Person person = TestConstants.createPersonA();
-      final Project project = TestConstants.createProjectA();
-      final TimeEntry timeEntry = TestConstants.createTimeEntryA(person, project);
-      final String actorsAsJson = objectMapper.writeValueAsString(timeEntry);
-
-      assertThat(actorsAsJson, is(TestConstants.TIMEENTRY_A_READ));
-   }
 }

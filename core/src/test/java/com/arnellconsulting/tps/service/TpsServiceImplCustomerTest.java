@@ -35,7 +35,6 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -43,16 +42,16 @@ import java.util.List;
  * @author hirro
  */
 @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
-public class TpsServiceImplCompanyTest {
+public class TpsServiceImplCustomerTest {
    private static final String EMAIL = "a@ab.com";
    private transient TpsServiceImpl service;
    private transient PersonRepository personRepository;
    private transient ProjectRepository projectRepository;
    private transient TimeEntryRepository timeEntryRepository;
    private transient CompanyRepository companyRepository;
-   private transient List<Company> testCompanies;
+   private transient List<Customer> testCompanies;
    private transient Person personA;
-   private transient Company companyA;
+   private transient Customer customerA;
 
    @Before
    public void setUp() {
@@ -61,9 +60,9 @@ public class TpsServiceImplCompanyTest {
       timeEntryRepository = mock(TimeEntryRepository.class);
       companyRepository = mock(CompanyRepository.class);
       service = new TpsServiceImpl(personRepository, projectRepository, timeEntryRepository, companyRepository);
-      companyA = TestConstants.createCompanyA();
-      testCompanies = new ArrayList<Company>();
-      testCompanies.add(companyA);
+      customerA = TestConstants.createCustomerA();
+      testCompanies = new ArrayList<Customer>();
+      testCompanies.add(customerA);
       personA = TestConstants.createPersonA();
    }
 
@@ -74,9 +73,9 @@ public class TpsServiceImplCompanyTest {
    public void testGetCompanyForPerson() {
       when(companyRepository.findByPersonId(1)).thenReturn(testCompanies);
 
-      final List<Company> companies = service.getCustomersForPerson(1);
+      final List<Customer> companies = service.getCustomersForPerson(1);
 
-      assertThat(companyA.getCompanyName(), is(companies.get(0).getCompanyName()));
+      assertThat(customerA.getCompanyName(), is(companies.get(0).getCompanyName()));
       verify(companyRepository, times(1)).findByPersonId(1);
       verifyNoMoreInteractions(companyRepository);
    }
@@ -86,10 +85,10 @@ public class TpsServiceImplCompanyTest {
     */
    @Test
    public void testGetCompany() {
-      when(companyRepository.findOne(1L)).thenReturn(companyA);
+      when(companyRepository.findOne(1L)).thenReturn(customerA);
 
-      final Company company = service.getCustomer(1L);
-      assertThat(companyA.getCompanyName(), is(company.getCompanyName()));
+      final Customer customer = service.getCustomer(1L);
+      assertThat(customerA.getCompanyName(), is(customer.getCompanyName()));
 
       verify(companyRepository, times(1)).findOne(1L);
       verifyNoMoreInteractions(companyRepository);
@@ -110,8 +109,8 @@ public class TpsServiceImplCompanyTest {
     */
    @Test
    public void testSaveProject() {
-      service.saveCustomer(companyA);
-      verify(companyRepository, times(1)).save(companyA);
+      service.saveCustomer(customerA);
+      verify(companyRepository, times(1)).save(customerA);
       verifyNoMoreInteractions(companyRepository);
    }
 

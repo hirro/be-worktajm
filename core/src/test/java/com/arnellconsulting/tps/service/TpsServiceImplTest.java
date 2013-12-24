@@ -19,7 +19,7 @@
 
 package com.arnellconsulting.tps.service;
 
-import com.arnellconsulting.tps.model.Company;
+import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
@@ -28,13 +28,8 @@ import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
 
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
 import org.junit.Test;
-
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.hamcrest.Matchers.is;
 
@@ -67,7 +62,7 @@ public class TpsServiceImplTest {
    private transient TimeEntry timeEntryA;
    private transient List<TimeEntry> timeEntriesA;
    private transient Date dateA;
-   private transient Company companyA;
+   private transient Customer customerA;
    private CompanyRepository companyRepository;
 
    @Before

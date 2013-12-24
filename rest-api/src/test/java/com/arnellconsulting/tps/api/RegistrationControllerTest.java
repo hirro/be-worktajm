@@ -72,12 +72,13 @@ public class RegistrationControllerTest {
    @Test
    public void testCreate() throws Exception {
       when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(null);
-      mockMvc.perform(get("/api/registration")
-              .param("password", TestConstants.PERSON_A_PASSWORD)
-              .param("email", TestConstants.PERSON_A_EMAIL)
-              .param("company", TestConstants.COMPANY_A)
-              .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk());
+      mockMvc.perform(
+         get("/api/registration")
+            .param("password", TestConstants.PERSON_A_PASSWORD)
+            .param("email", TestConstants.PERSON_A_EMAIL)
+            .param("company", TestConstants.PERSON_A_COMPANY)
+            .accept(MediaType.APPLICATION_JSON))
+         .andExpect(status().isOk());
       verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verify(tpsServiceMock, times(1)).savePerson(any(Person.class));
       verifyNoMoreInteractions(tpsServiceMock);
@@ -89,12 +90,12 @@ public class RegistrationControllerTest {
 
       try {
          mockMvc.perform(
-         get("/api/registration")
-                 .param("password", TestConstants.PERSON_A_PASSWORD)
-                 .param("email", TestConstants.PERSON_A_EMAIL)
-                 .param("company", TestConstants.COMPANY_A)
-                 .accept(MediaType.APPLICATION_JSON))
-               .andExpect(status().isBadRequest());
+            get("/api/registration")
+              .param("password", TestConstants.PERSON_A_PASSWORD)
+              .param("email", TestConstants.PERSON_A_EMAIL)
+              .param("company", TestConstants.PERSON_A_COMPANY)
+              .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
       } catch (Exception ex) {
          fail("Should not throw here? Controller exception is not visible");
       }
@@ -105,8 +106,10 @@ public class RegistrationControllerTest {
 
    @Test
    public void testIndex() throws Exception {
-      mockMvc.perform(get("/api/registration").accept(MediaType.APPLICATION_JSON)).andExpect(
-      status().isBadRequest());
+      mockMvc.perform(
+         get("/api/registration").
+            accept(MediaType.APPLICATION_JSON))
+         .andExpect(status().isBadRequest());
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
@@ -116,8 +119,10 @@ public class RegistrationControllerTest {
 
       final String path = String.format(TestConstants.CHECK_EMAIL_PATH, TestConstants.PERSON_A_EMAIL);
 
-      mockMvc.perform(get(path).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(
-      content().string("false"));
+      mockMvc.perform(
+        get(path).accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().string("false"));
       verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verifyNoMoreInteractions(tpsServiceMock);
    }
@@ -128,8 +133,10 @@ public class RegistrationControllerTest {
 
       final String path = String.format(TestConstants.CHECK_EMAIL_PATH, TestConstants.PERSON_A_EMAIL);
 
-      mockMvc.perform(get(path).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(
-      content().string("true"));
+      mockMvc.perform(
+         get(path).accept(MediaType.APPLICATION_JSON))
+         .andExpect(status().isOk())
+         .andExpect(content().string("true"));
       verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verifyNoMoreInteractions(tpsServiceMock);
    }
