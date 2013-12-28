@@ -76,6 +76,7 @@ public final class TestConstants {
    public static final String CUSTOMER_A_JSON_READ = "{\"id\":null,\"companyName\":\"Phil and Co\",\"billingAddress\":{\"line1\":\"102 West Mahoning Street\",\"line2\":\"\",\"city\":\"Punxsutawney\",\"state\":\"PA\",\"country\":\"US\",\"zip\":\"15767\"},\"referencePerson\":\"Phil\",\"new\":true}";
    public static final String CUSTOMER_A_JSON_UPDATE = "{\"id\":1,\"companyName\":\"Phil and Co\",\"billingAddress\":{\"line1\":\"102 West Mahoning Street\",\"line2\":\"\",\"city\":\"Punxsutawney\",\"state\":\"PA\",\"country\":\"US\",\"zip\":\"15767\"},\"referencePerson\":\"Phil\"}";
    public static final String CUSTOMER_A_JSON_CREATE = "{\"companyName\":\"Phil and Co\",\"billingAddress\":{\"line1\":\"102 West Mahoning Street\",\"line2\":\"\",\"city\":\"Punxsutawney\",\"state\":\"PA\",\"country\":\"US\",\"zip\":\"15767\"},\"referencePerson\":\"Phil\",\"new\":true}";
+   public static final String APPLICATION_JSON_UTF8 = "application/json;charset=UTF-8";
 
    private TestConstants() {
    }

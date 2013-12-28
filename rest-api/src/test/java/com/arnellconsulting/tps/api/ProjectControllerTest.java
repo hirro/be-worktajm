@@ -15,16 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
 package com.arnellconsulting.tps.api;
+
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
-import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
 
@@ -43,18 +46,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.mockito.Mockito.*;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.ArrayList;
 import java.util.List;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+
 import org.mockito.ArgumentCaptor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
+
 
 /**
  *
@@ -127,7 +124,8 @@ public class ProjectControllerTest {
          .accept(MediaType.APPLICATION_JSON)
       )
       .andExpect(status().isOk())
-      .andExpect(content().string(TestConstants.PROJECT_A));
+      .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
+      .andExpect(jsonPath("name", is(projectA.getName())));
       
       verify(tpsServiceMock, times(1)).getProject(1L);
       verifyNoMoreInteractions(tpsServiceMock);

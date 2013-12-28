@@ -82,7 +82,6 @@ public class Project extends AbstractPersistable<Long> {
     * The optional customer who runs this project.
     */
    @ManyToOne
-   @JsonIgnore
    private Customer customer;
 
    public String getName() {
