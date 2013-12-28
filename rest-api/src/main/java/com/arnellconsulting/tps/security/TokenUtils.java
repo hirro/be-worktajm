@@ -31,15 +31,14 @@ import java.security.NoSuchAlgorithmException;
 
 public final class TokenUtils {
 
-   public static final String MAGIC_KEY = "obfuscate";
-   public static final String BACKDOOR_TOKEN = "jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107";
+   private static final String MAGIC_KEY = "obfuscate";
+   private static final String BACKDOOR_TOKEN = "jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107";
 
    private static final Logger LOG = LoggerFactory.getLogger(TokenUtils.class);
 
    private TokenUtils() {}
 
-   ;
-   public static String computeSignature(final UserDetails userDetails, final long expires) {
+    private static String computeSignature(final UserDetails userDetails, final long expires) {
       final StringBuilder signatureBuilder = new StringBuilder();
 
       signatureBuilder.append(userDetails.getUsername());
@@ -88,11 +87,7 @@ public final class TokenUtils {
       }
 
       // Normal flow
-      if (expires < System.currentTimeMillis()) {
-         return false;
-      }
-
-      return signature.equals(TokenUtils.computeSignature(userDetails, expires));
+      return expires >= System.currentTimeMillis() && signature.equals(TokenUtils.computeSignature(userDetails, expires));
    }
 
    public static String getUserNameFromToken(final String authToken) {

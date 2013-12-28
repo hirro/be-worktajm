@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author hirro
  */
 @ResponseStatus(value=HttpStatus.BAD_REQUEST, reason="Invalid parameter")
-public class InvalidParameterExeception extends Exception {
+class InvalidParameterExeception extends Exception {
 
    /**
     * Constructs an instance of

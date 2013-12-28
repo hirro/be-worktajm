@@ -27,7 +27,7 @@ import org.springframework.security.core.Authentication;
  */
 public class BaseController {
 
-   public Person getAuthenticatedPerson(final Principal principal) throws AccessDeniedException {
+   Person getAuthenticatedPerson(final Principal principal) throws AccessDeniedException {
       Person person = null;
       
       if (principal != null) {

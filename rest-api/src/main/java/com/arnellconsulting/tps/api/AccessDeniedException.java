@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author hirro
  */
 @ResponseStatus(value=HttpStatus.UNAUTHORIZED, reason="Not authorized")
-public class AccessDeniedException extends Exception {
+class AccessDeniedException extends Exception {
 
    /**
     * Constructs an instance of

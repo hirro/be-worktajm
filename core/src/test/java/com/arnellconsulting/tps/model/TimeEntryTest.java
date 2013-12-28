@@ -21,19 +21,11 @@ package com.arnellconsulting.tps.model;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
 
 import static org.junit.Assert.*;
-
-import java.io.IOException;
-
-import java.util.Date;
 
 /**
  *

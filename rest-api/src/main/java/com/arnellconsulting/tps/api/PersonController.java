@@ -65,8 +65,8 @@ public class PersonController {
     *
     * The typical use case would be adding new employees to to the organization.
     *
-    * @param person
-    * @return
+    * @param person to create
+    * @return created person
     */
    @Transactional
    @RequestMapping(method = RequestMethod.POST, headers = { "Accept=application/json" })
@@ -112,7 +112,7 @@ public class PersonController {
 
    /**
     * Retrieves information about the specified person.
-    * @param id
+    * @param id person id
     * @return the person with the provided id.
     */
    @Transactional

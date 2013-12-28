@@ -47,7 +47,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
-import static org.hamcrest.Matchers.hasSize;
 
 import org.mockito.ArgumentCaptor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -66,10 +65,8 @@ public class ProjectControllerTest {
    private transient MockMvc mockMvc;
    private transient Project projectA;
    private transient List<Project> projects;
-   private transient Person person1;
-   private transient Person person2;
-   
-   @Autowired
+
+    @Autowired
    private transient TpsService tpsServiceMock;
    @Autowired
    private transient WebApplicationContext webApplicationContext;
@@ -77,9 +74,8 @@ public class ProjectControllerTest {
    @Autowired
    private transient PersonUserDetails personUserDetails;
    private UsernamePasswordAuthenticationToken principal;
-   private UsernamePasswordAuthenticationToken token;
-  
-   @Before
+
+    @Before
    public void setUp() {
 
       // We have to reset our mock between tests because the mock objects
@@ -87,12 +83,12 @@ public class ProjectControllerTest {
       // stubbing and verified behavior would "leak" from one test to another.
       Mockito.reset(tpsServiceMock);
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-      person1 = spy(TestConstants.createPersonA());
-      person2 = spy(TestConstants.createPersonA());
+       Person person1 = spy(TestConstants.createPersonA());
+       Person person2 = spy(TestConstants.createPersonA());
       when(person1.getId()).thenReturn(1L);
       when(person2.getId()).thenReturn(2L);
       when(personUserDetails.getPerson()).thenReturn(person1);
-      token = new UsernamePasswordAuthenticationToken(TestConstants.PERSON_A_EMAIL, TestConstants.PERSON_A_PASSWORD);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(TestConstants.PERSON_A_EMAIL, TestConstants.PERSON_A_PASSWORD);
       principal = spy(token);
       when(principal.getPrincipal()).thenReturn(personUserDetails);
       

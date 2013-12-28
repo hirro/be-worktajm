@@ -8,7 +8,6 @@
       <groupId>com.arnellconsulting.tps</groupId>
       <version>2.0.5.BUILD-SNAPSHOT</version>
    </parent>   
-   <groupId>com.arnellconsulting.tps</groupId>
    <artifactId>api</artifactId>
    <packaging>war</packaging>
    <name>rest-api</name>

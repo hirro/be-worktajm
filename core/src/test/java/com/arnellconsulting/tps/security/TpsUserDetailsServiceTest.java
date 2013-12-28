@@ -31,10 +31,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertEquals;
 
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.isNull;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

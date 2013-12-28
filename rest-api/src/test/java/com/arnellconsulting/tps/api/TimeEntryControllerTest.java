@@ -67,8 +67,7 @@ public class TimeEntryControllerTest {
    private transient TimeEntry timeEntryA;
    private transient Person person1;
    private transient Person person2;
-   private transient Project project;
-   private transient List<TimeEntry> timeEntries;
+    private transient List<TimeEntry> timeEntries;
    @Autowired
    private transient TpsService tpsServiceMock;
    @Autowired
@@ -76,10 +75,9 @@ public class TimeEntryControllerTest {
    @Autowired
    private transient PersonUserDetails personUserDetails;
    private UsernamePasswordAuthenticationToken principal;
-   private UsernamePasswordAuthenticationToken token;
 
 
-   @Before
+    @Before
    public void setUp() {
 
       // We have to reset our mock between tests because the mock objects
@@ -89,14 +87,14 @@ public class TimeEntryControllerTest {
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
       person1 = spy(TestConstants.createPersonA());
       person2 = spy(TestConstants.createPersonA());
-      project = TestConstants.createProjectA();
+       Project project = TestConstants.createProjectA();
       timeEntryA = TestConstants.createTimeEntryA(person1, project);
       timeEntries = new ArrayList<TimeEntry>();
       timeEntries.add(timeEntryA);
       when(person1.getId()).thenReturn(1L);
       when(person2.getId()).thenReturn(2L);
       when(personUserDetails.getPerson()).thenReturn(person1);
-      token = new UsernamePasswordAuthenticationToken(TestConstants.PERSON_A_EMAIL, TestConstants.PERSON_A_PASSWORD);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(TestConstants.PERSON_A_EMAIL, TestConstants.PERSON_A_PASSWORD);
       principal = spy(token);
       when(principal.getPrincipal()).thenReturn(personUserDetails);
    }

@@ -21,7 +21,7 @@ package com.arnellconsulting.tps.model;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
@@ -33,11 +33,10 @@ import org.junit.runners.JUnit4;
 public class ProjectTest {
    private static final String PROJECT_NAME = "Project name";
    private static final String DESCRIPTION = "Description";
-   private transient Project project;
 
-   @Test
+    @Test
    public void testAccessors() {
-      project = new Project();
+        Project project = new Project();
       project.setName(PROJECT_NAME);
       project.setDescription(DESCRIPTION);
       assertThat(project.getName(), is(PROJECT_NAME));

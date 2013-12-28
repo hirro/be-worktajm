@@ -40,7 +40,7 @@ package com.arnellconsulting.tps.api;
  *
  * @author jiar
  */
-public class ReportController {
+class ReportController {
 
 //    public RunReportResponseType runReport(@WebParam(name="request") RunReportRequestType request) {
 //        // Instantiate response object

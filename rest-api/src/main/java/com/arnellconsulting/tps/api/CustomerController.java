@@ -88,8 +88,7 @@ public class CustomerController extends BaseController {
    public Customer read(@PathVariable final long id) {
       LOG.debug("read id: {}", id);
 
-      Customer customer = tpsService.getCustomer(id);
-      return customer;
+      return tpsService.getCustomer(id);
    }
 
    @Transactional

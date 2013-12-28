@@ -19,7 +19,6 @@
 
 package com.arnellconsulting.tps.security;
 
-import com.arnellconsulting.tps.model.Person;
 import java.util.Map;
 
 /**

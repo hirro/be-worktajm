@@ -32,7 +32,7 @@ public final class TestConstants {
    public static final Boolean ACCOUNT_NON_LOCKED = Boolean.TRUE;
    public static final Boolean CREDENTIALS_NON_EXPIRED = Boolean.TRUE;
    public static final Boolean ENABLED = Boolean.TRUE;
-   public static final Boolean PERSON_A_EMAIL_VERIFIED = true;
+   private static final Boolean PERSON_A_EMAIL_VERIFIED = true;
    public static final PersonStatus PERSON_A_STATUS = PersonStatus.NORMAL;
    public static final String CHECK_EMAIL_PATH = "/api/registration/checkEmail.do?email=%s";
    public static final String COMPANY_A = "company A";
@@ -50,28 +50,28 @@ public final class TestConstants {
 
    // Project A
    public static final String PROJECT_A = "{\"id\":null,\"name\":\"Project A\",\"description\":\"Project A description\",\"rate\":10.3,\"new\":true}";
-   public static final BigDecimal PROJECT_A_RATE = new BigDecimal("10.3");
+   private static final BigDecimal PROJECT_A_RATE = new BigDecimal("10.3");
    public static final String PROJECT_A_DESCRIPTION = "Project A description";
-   public static final String PROJECT_A_NAME = "Project A";
+   private static final String PROJECT_A_NAME = "Project A";
 
    // Time Entry A
-   public static final DateTime TIMEENTRY_A_END_TIME = new DateTime("2010-01-01");
-   public static final DateTime TIMEENTRY_A_START_TIME = new DateTime("2010-05-21");
+   private static final DateTime TIMEENTRY_A_END_TIME = new DateTime("2010-01-01");
+   private static final DateTime TIMEENTRY_A_START_TIME = new DateTime("2010-05-21");
    public static final String TIMEENTRY_A_CREATE = "{\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
    public static final String TIMEENTRY_A_COMMENT = "Time Entry A comment";
    public static final String TIMEENTRY_A_UPDATE = "{\"id\":1,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
 
    // Address A
-   public static final String ADDRESS_A_CITY = "Punxsutawney";
-   public static final String ADDRESS_A_LINE1 = "102 West Mahoning Street";
-   public static final String ADDRESS_A_LINE2 = "";
-   public static final String ADDRESS_A_COUNTRY = "US";
-   public static final String ADDRESS_A_ZIP = "15767";
-   public static final String ADDRESS_A_STATE = "PA";
+   private static final String ADDRESS_A_CITY = "Punxsutawney";
+   private static final String ADDRESS_A_LINE1 = "102 West Mahoning Street";
+   private static final String ADDRESS_A_LINE2 = "";
+   private static final String ADDRESS_A_COUNTRY = "US";
+   private static final String ADDRESS_A_ZIP = "15767";
+   private static final String ADDRESS_A_STATE = "PA";
 
    // Customer A
-   public static final String CUSTOMER_A_REFERENCE_PERSON = "Phil";
-   public static final String CUSTOMER_A_NAME = "Phil and Co";
+   private static final String CUSTOMER_A_REFERENCE_PERSON = "Phil";
+   private static final String CUSTOMER_A_NAME = "Phil and Co";
    public static final String CUSTOMER_A_JSON_UPDATE = "{\"id\":1,\"companyName\":\"Phil and Co\",\"billingAddress\":{\"line1\":\"102 West Mahoning Street\",\"line2\":\"\",\"city\":\"Punxsutawney\",\"state\":\"PA\",\"country\":\"US\",\"zip\":\"15767\"},\"referencePerson\":\"Phil\"}";
    public static final String CUSTOMER_A_JSON_CREATE = "{\"companyName\":\"Phil and Co\",\"billingAddress\":{\"line1\":\"102 West Mahoning Street\",\"line2\":\"\",\"city\":\"Punxsutawney\",\"state\":\"PA\",\"country\":\"US\",\"zip\":\"15767\"},\"referencePerson\":\"Phil\",\"new\":true}";
    public static final String APPLICATION_JSON_UTF8 = "application/json;charset=UTF-8";
@@ -108,7 +108,7 @@ public final class TestConstants {
       return timeEntryA;
    }
 
-   public static Address createAddressA() {
+   private static Address createAddressA() {
       final Address address = new Address();
       address.setCity(ADDRESS_A_CITY);
       address.setCountry(ADDRESS_A_COUNTRY);

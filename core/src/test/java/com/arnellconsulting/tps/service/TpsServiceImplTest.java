@@ -61,16 +61,14 @@ public class TpsServiceImplTest {
    private transient List<Person> persons;
    private transient TimeEntry timeEntryA;
    private transient List<TimeEntry> timeEntriesA;
-   private transient Date dateA;
-   private transient Customer customerA;
-   private CompanyRepository companyRepository;
+    private transient Customer customerA;
 
-   @Before
+    @Before
    public void setUp() {
       personRepository = mock(PersonRepository.class);
       projectRepository = mock(ProjectRepository.class);
       timeEntryRepository = mock(TimeEntryRepository.class);
-      companyRepository = mock(CompanyRepository.class);
+        CompanyRepository companyRepository = mock(CompanyRepository.class);
       service = new TpsServiceImpl(personRepository, projectRepository, timeEntryRepository, companyRepository);
       projectA = new Project();
       projectA.setName("Project A");
@@ -90,7 +88,7 @@ public class TpsServiceImplTest {
       timeEntryA.setPerson(personA);
       timeEntriesA = new ArrayList<TimeEntry>();
       timeEntriesA.add(timeEntryA);
-      dateA = new Date(0);
+        Date dateA = new Date(0);
       timeEntryA.setEndTime(dateA);
    }
 

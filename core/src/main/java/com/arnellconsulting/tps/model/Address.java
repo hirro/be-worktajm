@@ -19,9 +19,6 @@ package com.arnellconsulting.tps.model;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 
-/**
- * Created by jiar on 2013-12-22.
- */
 @Embeddable
 public class Address implements Serializable {
 

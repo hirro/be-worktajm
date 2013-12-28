@@ -64,9 +64,9 @@ public class TimeEntryController extends BaseController {
    /**
     * Creates a new time entry for the logged in user.
     *
-    * @param timeEntry
-    * @param principal
-    * @return TimeEntry
+    * @param timeEntry the time entry
+    * @param principal the principal
+    * @return TimeEntry the created time entry
     */
    @Transactional
    @RequestMapping(method = RequestMethod.POST, headers = { "Accept=application/json" })
@@ -88,7 +88,7 @@ public class TimeEntryController extends BaseController {
     * It may only be deleted by the person owning it.
     *
     * @param id logged in person
-    * @param principal
+    * @param principal the principal
     */
    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
    @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -106,7 +106,7 @@ public class TimeEntryController extends BaseController {
     *
     * @param fromDate optional from date
     * @param toDate optional to date
-    * @param principal
+    * @param principal the principal
     * @return list of TimeEntry
     */
    @Transactional
@@ -139,7 +139,7 @@ public class TimeEntryController extends BaseController {
     * Reads a time entry.
     *
     * @param id of logged in user
-    * @param principal
+    * @param principal the principal
     * @return TimeEntry
     * @throws AccessDeniedException if user is not authorized.
     */
@@ -168,7 +168,7 @@ public class TimeEntryController extends BaseController {
     *
     * @param id the id of the person
     * @param timeEntry the time entry to be updated
-    * @param principal
+    * @param principal the principal
     * @throws AccessDeniedException if time entry does not belong to user.
     * @throws InvalidParameterExeception if parameter was invalid.
     */

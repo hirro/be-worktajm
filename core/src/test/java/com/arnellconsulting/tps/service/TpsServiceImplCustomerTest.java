@@ -45,25 +45,21 @@ import java.util.List;
 public class TpsServiceImplCustomerTest {
    private static final String EMAIL = "a@ab.com";
    private transient TpsServiceImpl service;
-   private transient PersonRepository personRepository;
-   private transient ProjectRepository projectRepository;
-   private transient TimeEntryRepository timeEntryRepository;
-   private transient CompanyRepository companyRepository;
+    private transient CompanyRepository companyRepository;
    private transient List<Customer> testCompanies;
-   private transient Person personA;
-   private transient Customer customerA;
+    private transient Customer customerA;
 
    @Before
    public void setUp() {
-      personRepository = mock(PersonRepository.class);
-      projectRepository = mock(ProjectRepository.class);
-      timeEntryRepository = mock(TimeEntryRepository.class);
+       PersonRepository personRepository = mock(PersonRepository.class);
+       ProjectRepository projectRepository = mock(ProjectRepository.class);
+       TimeEntryRepository timeEntryRepository = mock(TimeEntryRepository.class);
       companyRepository = mock(CompanyRepository.class);
       service = new TpsServiceImpl(personRepository, projectRepository, timeEntryRepository, companyRepository);
       customerA = TestConstants.createCustomerA();
       testCompanies = new ArrayList<Customer>();
       testCompanies.add(customerA);
-      personA = TestConstants.createPersonA();
+       Person personA = TestConstants.createPersonA();
    }
 
    /**

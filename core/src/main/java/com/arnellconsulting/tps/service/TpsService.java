@@ -57,14 +57,14 @@ public interface TpsService {
    
    /**
     * Save the project.
-    * @param project 
+    * @param project the project
     */
    public void saveProject(final Project project);
 
    /**
     * Get the person with the provided id.
     * Certain information may be restricted to person only.
-    * @param id
+    * @param id the person id
     * @return person
     */
    public Person getPerson(final long id);
@@ -78,19 +78,19 @@ public interface TpsService {
    /**
     * Deletes a person with provided id.
     * May only be performed by administrators.
-    * @param id 
+    * @param id the person id.
     */
    public void deletePerson(final long id);
    
    /**
     * Save the person.
-    * @param person 
+    * @param person the person
     */
    public void savePerson(Person person);
    
    /**
     * Find person by email address.
-    * @param email
+    * @param email search parameter
     * @return person
     */
    Person findPersonByEmail(final String email);
@@ -110,7 +110,7 @@ public interface TpsService {
    
    /**
     * Save the time entry.
-    * @param timeEntry 
+    * @param timeEntry to save
     */
    public void saveTimeEntry(final TimeEntry timeEntry);
 
@@ -146,7 +146,7 @@ public interface TpsService {
 
    /**
     * Save the customer.
-    * @param customer
+    * @param customer to save
     */
    public void saveCustomer(final Customer customer);
 }

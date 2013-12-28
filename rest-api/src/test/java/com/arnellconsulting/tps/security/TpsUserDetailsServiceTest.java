@@ -48,16 +48,15 @@ public class TpsUserDetailsServiceTest {
    private static final String EMAIL = "a@example.com";
    private static final String UNKNOWN_EMAIL = "b@example.com";
 
-   private transient PersonRepository repositoryMock = Mockito.mock(PersonRepository.class);
+   private final transient PersonRepository repositoryMock = Mockito.mock(PersonRepository.class);
    private transient TpsUserDetailsService tps;
-   private transient PersonUserDetails userDetails;
-   public Person person;
+    private Person person;
 
    @Before
    public void setUp() {
       tps = new TpsUserDetailsService(repositoryMock);
       person = TestConstants.createPersonA();
-      userDetails = new PersonUserDetails();
+       PersonUserDetails userDetails = new PersonUserDetails();
       userDetails.setPerson(person);
       userDetails.setPassword(TestConstants.PERSON_A_PASSWORD);
    }
