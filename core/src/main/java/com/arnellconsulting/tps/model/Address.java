@@ -14,35 +14,70 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-
 package com.arnellconsulting.tps.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 /**
  * Created by jiar on 2013-12-22.
  */
 @Embeddable
-public class Address {
-    @Getter @Setter
-    private String line1;
+public class Address implements Serializable {
 
-    @Getter @Setter
-    private String line2;
+   private String line1;
+   private String line2;
+   private String city;
+   private String state;
+   private String country;
+   private String zip;
 
-    @Getter @Setter
-    private String city;
+   public String getState() {
+      return state;
+   }
 
-    @Getter @Setter
-    private String state;
+   public void setState(final String state) {
+      this.state = state;
+   }
 
-    @Getter @Setter
-    private String country;
+   public String getLine1() {
+      return line1;
+   }
 
-    @Getter @Setter
-    private String zip;
+   public void setLine1(final String line1) {
+      this.line1 = line1;
+   }
+
+   public String getLine2() {
+      return line2;
+   }
+
+   public void setLine2(final String line2) {
+      this.line2 = line2;
+   }
+
+   public String getCity() {
+      return city;
+   }
+
+   public void setCity(final String city) {
+      this.city = city;
+   }
+
+   public String getCountry() {
+      return country;
+   }
+
+   public void setCountry(final String country) {
+      this.country = country;
+   }
+
+   public String getZip() {
+      return zip;
+   }
+
+   public void setZip(final String zip) {
+      this.zip = zip;
+   }
+
 }

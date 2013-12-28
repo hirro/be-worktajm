@@ -3,20 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>baseURL</key>
-	<string>http://localhost:8080/api/api/customer</string>
+	<string>http://localhost:8080/api/api/project/1</string>
 	<key>bodyString</key>
 	<string>{
-  "companyName": "Phil and Co",
-  "billingAddress":
-  {
-    "line1": "102 West Mahoning Street",
-    "line2": "",
-    "city": "Punxsutawney",
-    "state": "PA",
-    "country": "US",
-    "zip": "15767"
-  },
-  "referencePerson": "Phil"
+    "id": 1,
+    "name": "Project A",
+    "description": null,
+    "rate": 12,
+    "new": false
 }</string>
 	<key>followRedirect</key>
 	<true/>
@@ -42,15 +36,15 @@
 		</dict>
 	</array>
 	<key>httpMethod</key>
-	<string>POST</string>
+	<string>PUT</string>
 	<key>jsonpScript</key>
 	<string></string>
 	<key>paramBodyUIChoice</key>
-	<integer>2</integer>
+	<integer>0</integer>
 	<key>parameters</key>
 	<array/>
 	<key>parametersType</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>presentBeforeChallenge</key>
 	<false/>
 	<key>stringEncoding</key>

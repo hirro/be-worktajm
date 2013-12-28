@@ -14,56 +14,52 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-
-
 package com.arnellconsulting.tps.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 /**
  *
  */
-@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Customer extends AbstractPersistable<Long>
-{
-    private static final long serialVersionUID = -390230121353660214L;
+@Entity
+@Table(name = "CUSTOMER",
+       uniqueConstraints = {
+         @UniqueConstraint(columnNames = {"companyName", "person"})
+       })
+public class Customer extends AbstractPersistable<Long> {
 
-    /**
-     * Customer name, mandatory.
-     */
-    @NotNull
-    @Getter @Setter private String companyName;
+   private static final long serialVersionUID = -390230121353660214L;
 
-    /**
-     * Billings address, mandatory.
-     */
-    @NotNull
-    @Getter @Setter private Address billingAddress;
+   /**
+    * Customer name, mandatory.
+    */
+   @NotNull
+   private String companyName;
 
-    /**
-     * Reference person, optional.
-     */
-    @Getter @Setter private String referencePerson;
+   /**
+    * Billings address, mandatory.
+    */
+   @NotNull
+   private Address billingAddress;
 
-    /**
-     * The projects owned by the project.
-     */
-    @OneToMany
-    @JsonIgnore
-    @Getter @Setter private Collection<Project> projects;
+   /**
+    * Reference person, optional.
+    */
+   private String referencePerson;
 
+   /**
+    * The projects owned by the project.
+    */
+   @OneToMany
+   @JsonIgnore
+   private Collection<Project> projects;
 
    /**
     * The owner of the entry
@@ -71,5 +67,45 @@ public class Customer extends AbstractPersistable<Long>
     */
    @ManyToOne
    @JsonIgnore
-   @Getter @Setter private Person person;
+   private Person person;
+
+   public String getCompanyName() {
+      return companyName;
+   }
+
+   public void setCompanyName(final String companyName) {
+      this.companyName = companyName;
+   }
+
+   public Address getBillingAddress() {
+      return billingAddress;
+   }
+
+   public void setBillingAddress(final Address billingAddress) {
+      this.billingAddress = billingAddress;
+   }
+
+   public String getReferencePerson() {
+      return referencePerson;
+   }
+
+   public void setReferencePerson(final String referencePerson) {
+      this.referencePerson = referencePerson;
+   }
+
+   public Collection<Project> getProjects() {
+      return projects;
+   }
+
+   public void setProjects(final Collection<Project> projects) {
+      this.projects = projects;
+   }
+
+   public Person getPerson() {
+      return person;
+   }
+
+   public void setPerson(final Person person) {
+      this.person = person;
+   }   
 }

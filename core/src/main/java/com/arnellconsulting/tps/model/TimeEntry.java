@@ -31,8 +31,8 @@ import java.util.Date;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+
+
 
 /**
  * Time entries.
@@ -42,26 +42,26 @@ import lombok.Setter;
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntry extends AbstractPersistable<Long> {
-   
+
    /**
     * Start date and time.
     */
    @NotNull
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
-   @Getter @Setter private Date  startTime;
+   private Date  startTime;
 
    /**
     * End date and time
     */
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
-   @Getter @Setter private Date endTime;
-   
+   private Date endTime;
+
    /**
     * Optional comment for the time entry.
     */
-   @Getter @Setter private String comment;
+   private String comment;
 
    /**
     * The person who owns this time entry.
@@ -69,14 +69,54 @@ public class TimeEntry extends AbstractPersistable<Long> {
    @ManyToOne
    @NotNull
    @JsonIgnore
-   @JsonBackReference("activeTimeEntry")   
-   @Getter @Setter private Person person;
+   @JsonBackReference("activeTimeEntry")
+   private Person person;
 
    /**
     * The project that is associated with the time entry.
     */
    @ManyToOne
    @NotNull
-   @Getter @Setter private Project project;
-   
+   private Project project;
+
+   public Date getStartTime() {
+      return startTime;
+   }
+
+   public void setStartTime(final Date startTime) {
+      this.startTime = startTime;
+   }
+
+   public Date getEndTime() {
+      return endTime;
+   }
+
+   public void setEndTime(final Date endTime) {
+      this.endTime = endTime;
+   }
+
+   public String getComment() {
+      return comment;
+   }
+
+   public void setComment(final String comment) {
+      this.comment = comment;
+   }
+
+   public Person getPerson() {
+      return person;
+   }
+
+   public void setPerson(final Person person) {
+      this.person = person;
+   }
+
+   public Project getProject() {
+      return project;
+   }
+
+   public void setProject(final Project project) {
+      this.project = project;
+   }
+
 }

@@ -31,7 +31,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
  */
 @Configuration
 public class TestContext {
-    private static final String MESSAGE_SOURCE_BASE_NAME = "i18n/messages";
+   private static final String MESSAGE_SOURCE_BASE_NAME = "i18n/messages";
 
     @Bean
     public MessageSource messageSource() {

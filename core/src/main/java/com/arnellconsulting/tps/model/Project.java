@@ -19,7 +19,6 @@
 
 package com.arnellconsulting.tps.model;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -31,8 +30,8 @@ import java.util.Collection;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
@@ -41,6 +40,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author hirro
  */
 @Entity
+@Table(name="PROJECT",
+        uniqueConstraints={@UniqueConstraint(columnNames = {"name", "person"})}
+)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project extends AbstractPersistable<Long> {
    private static final long serialVersionUID = -3902305943341540214L;
@@ -49,24 +51,24 @@ public class Project extends AbstractPersistable<Long> {
     * Project name.
     */
    @NotNull
-   @Getter @Setter private String name;
-   
+   private String name;
+
    /**
     * Project description.
     */
-   @Getter @Setter private String description;
+   private String description;
 
    /**
     * Charging for this project.
     */
-   @Getter @Setter private BigDecimal rate;
+   private BigDecimal rate;
 
    /**
     * Time entries associated to this project.
     */
    @OneToMany
    @JsonIgnore
-   @Getter @Setter private Collection<TimeEntry> timeEntries;
+   private Collection<TimeEntry> timeEntries;
 
    /**
     * The person who owns this project.
@@ -74,6 +76,61 @@ public class Project extends AbstractPersistable<Long> {
    @ManyToOne
    @NotNull
    @JsonIgnore
-   @Getter @Setter private Person person;
-   
+   private Person person;
+
+   /**
+    * The optional customer who runs this project.
+    */
+   @ManyToOne
+   @JsonIgnore
+   private Customer customer;
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(final String name) {
+      this.name = name;
+   }
+
+   public String getDescription() {
+      return description;
+   }
+
+   public void setDescription(final String description) {
+      this.description = description;
+   }
+
+   public BigDecimal getRate() {
+      return rate;
+   }
+
+   public void setRate(final BigDecimal rate) {
+      this.rate = rate;
+   }
+
+   public Collection<TimeEntry> getTimeEntries() {
+      return timeEntries;
+   }
+
+   public void setTimeEntries(final Collection<TimeEntry> timeEntries) {
+      this.timeEntries = timeEntries;
+   }
+
+   public Person getPerson() {
+      return person;
+   }
+
+   public void setPerson(final Person person) {
+      this.person = person;
+   }
+
+   public Customer getCustomer() {
+      return customer;
+   }
+
+   public void setCustomer(final Customer customer) {
+      this.customer = customer;
+   }
+
 }
