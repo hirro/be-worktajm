@@ -23,8 +23,8 @@ import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
 import java.security.Principal;
 
-import lombok.extern.slf4j.Slf4j;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,9 +46,10 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("api/customer")
-@Slf4j
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class CustomerController extends BaseController {
+
+   private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
 
    @Autowired
    private transient TpsService tpsService;
@@ -57,7 +58,7 @@ public class CustomerController extends BaseController {
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
    public List<Customer> list(final Principal principal) throws InterruptedException {
-      log.debug("list");
+      LOG.debug("list");
       final Person person = getAuthenticatedPerson(principal);
       return tpsService.getCustomersForPerson(person.getId());
    }
@@ -67,7 +68,7 @@ public class CustomerController extends BaseController {
    @ResponseBody
    public Customer create(@RequestBody final Customer customer,
                          final Principal principal) {
-      log.debug("create: {}", customer.toString());
+      LOG.debug("create: {}", customer.toString());
 
       // Customer must belong to a person
       final Person person = getAuthenticatedPerson(principal);
@@ -85,7 +86,7 @@ public class CustomerController extends BaseController {
    )
    @ResponseBody
    public Customer read(@PathVariable final long id) {
-      log.debug("read id: {}", id);
+      LOG.debug("read id: {}", id);
 
       Customer customer = tpsService.getCustomer(id);
       return customer;
@@ -100,7 +101,7 @@ public class CustomerController extends BaseController {
    public void update(@PathVariable final long id,
                       @RequestBody final Customer customer,
                       final Principal principal) {
-      log.debug("update name: {}");
+      LOG.debug("update name: {}");
 
       // Customer must belong to a person
       final Person person = getAuthenticatedPerson(principal);
@@ -115,7 +116,7 @@ public class CustomerController extends BaseController {
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void delete(@PathVariable final long id) {
-      log.debug("delete id: {}", id);
+      LOG.debug("delete id: {}", id);
       tpsService.deleteCustomer(id);
    }
 }

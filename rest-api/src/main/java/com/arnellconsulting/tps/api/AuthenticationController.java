@@ -23,7 +23,8 @@ import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.security.TokenUtils;
 import com.arnellconsulting.tps.security.UserTransfer;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -50,9 +51,10 @@ import org.springframework.security.core.AuthenticationException;
  */
 @Controller
 @RequestMapping("api/authenticate")
-@Slf4j
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class AuthenticationController {
+   private static final Logger LOG = LoggerFactory.getLogger(AuthenticationController.class);
+
    @Autowired
    private transient UserDetailsService userDetailsService;
    @Autowired
@@ -65,7 +67,7 @@ public class AuthenticationController {
       final UsernamePasswordAuthenticationToken token;
       final Authentication authentication;
       
-      log.debug("authenticate, username: {}, password: ******", username);
+      LOG.debug("authenticate, username: {}, password: ******", username);
 
       try {
          token = new UsernamePasswordAuthenticationToken(username, password);
@@ -77,13 +79,13 @@ public class AuthenticationController {
           * Reload user as password of authentication principal will be null after authorization and
           * password is needed for token generation
           */
-         log.debug("Authenticaton succeeded, loading user details");
+         LOG.debug("Authenticaton succeeded, loading user details");
 
          final PersonUserDetails userDetails = (PersonUserDetails) userDetailsService.loadUserByUsername(username);
          final Map<String, Boolean> roles = new HashMap<String, Boolean>();
 
          for (GrantedAuthority authority : userDetails.getAuthorities()) {
-            log.debug("  authority: {}", authority);
+            LOG.debug("  authority: {}", authority);
             roles.put(authority.toString(), Boolean.TRUE);
          }
 
@@ -91,7 +93,7 @@ public class AuthenticationController {
                                  roles, 
                                  TokenUtils.createToken(userDetails));
       } catch (AuthenticationException e) {
-         log.error("Failed to authenticate user: {}", username);
+         LOG.error("Failed to authenticate user: {}", username);
          throw e;
       }
    }

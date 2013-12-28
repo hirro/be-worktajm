@@ -21,7 +21,8 @@ package com.arnellconsulting.tps.api;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,9 +49,11 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("api/person")
-@Slf4j
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class PersonController {
+
+   private static final Logger LOG = LoggerFactory.getLogger(PersonController.class);
+
    @Autowired
    private transient TpsService tpsService;
 
@@ -70,7 +73,7 @@ public class PersonController {
    @ResponseBody
    @Secured("ROLE_ADMIN")
    public Person create(@RequestBody final Person person) {
-      log.debug("create");
+      LOG.debug("create");
       tpsService.savePerson(person);
 
       return person;
@@ -89,7 +92,7 @@ public class PersonController {
    @ResponseStatus(HttpStatus.NO_CONTENT)
    @Secured("ROLE_ADMIN")
    public void delete(@PathVariable final long id) {
-      log.debug("delete id: {}", id);
+      LOG.debug("delete id: {}", id);
       tpsService.deletePerson(id);
    }
 
@@ -102,7 +105,7 @@ public class PersonController {
    @ResponseBody
    @Secured("ROLE_ADMIN")
    public List<Person> list() {
-      log.debug("list");
+      LOG.debug("list");
 
       return tpsService.getPersons();
    }
@@ -117,16 +120,16 @@ public class PersonController {
    @ResponseBody
    @Secured("ROLE_USER")
    public Person read(@PathVariable final long id) {
-      log.debug("read id: {}", id);
+      LOG.debug("read id: {}", id);
 
       final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
       if (auth == null) {
-         log.debug("No user");
+         LOG.debug("No user");
       } else {
          final String name = auth.getName();
 
-         log.debug("Current user is {}", name);
+         LOG.debug("Current user is {}", name);
       }
 
       return tpsService.getPerson(id);
@@ -144,7 +147,7 @@ public class PersonController {
    @ResponseStatus(HttpStatus.NO_CONTENT)
    @Secured("ROLE_USER")
    public void update(@RequestBody final Person person) {
-      log.debug("update - email: {}", person.getEmail());
+      LOG.debug("update - email: {}", person.getEmail());
       tpsService.savePerson(person);
    }
 }

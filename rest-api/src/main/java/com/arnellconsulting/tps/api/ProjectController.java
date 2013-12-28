@@ -23,8 +23,8 @@ import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.service.TpsService;
 import java.security.Principal;
 
-import lombok.extern.slf4j.Slf4j;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,9 +46,10 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("api/project")
-@Slf4j
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class ProjectController extends BaseController {
+
+   private static final Logger LOG = LoggerFactory.getLogger(ProjectController.class);
 
    @Autowired
    private transient TpsService tpsService;
@@ -57,7 +58,7 @@ public class ProjectController extends BaseController {
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
    public List<Project> list(final Principal principal) throws InterruptedException {
-      log.debug("list");
+      LOG.debug("list");
       final Person person = getAuthenticatedPerson(principal);
       return tpsService.getProjectsForPerson(person.getId());
    }
@@ -67,7 +68,7 @@ public class ProjectController extends BaseController {
    @ResponseBody
    public Project create(@RequestBody final Project project, 
                          final Principal principal) {
-      log.debug("create: {}", project.toString());
+      LOG.debug("create: {}", project.toString());
       
       // Project must belong to a person
       final Person person = getAuthenticatedPerson(principal);
@@ -85,7 +86,7 @@ public class ProjectController extends BaseController {
    )
    @ResponseBody
    public Project read(@PathVariable final long id) {
-      log.debug("read id: {}", id);
+      LOG.debug("read id: {}", id);
 
       Project project = tpsService.getProject(id);
       return project;
@@ -100,7 +101,7 @@ public class ProjectController extends BaseController {
    public void update(@PathVariable final long id, 
                          @RequestBody final Project project,
                          final Principal principal) {
-      log.debug("update name: {}");
+      LOG.debug("update name: {}");
 
       // Project must belong to a person
       final Person person = getAuthenticatedPerson(principal);
@@ -115,7 +116,7 @@ public class ProjectController extends BaseController {
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void delete(@PathVariable final long id) {
-      log.debug("delete id: {}", id);
+      LOG.debug("delete id: {}", id);
       tpsService.deleteProject(id);
    }
 }

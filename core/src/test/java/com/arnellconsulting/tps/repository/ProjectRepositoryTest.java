@@ -28,8 +28,6 @@ import com.arnellconsulting.tps.model.TestConstants;
 
 import junit.framework.TestCase;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -47,7 +45,6 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration(classes = { TestContext.class, WebAppContext.class, PersistenceContext.class })
 @WebAppConfiguration
 @Transactional
-@Slf4j
 @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
 public class ProjectRepositoryTest extends TestCase {
    @Autowired

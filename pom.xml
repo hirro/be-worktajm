@@ -29,7 +29,6 @@
       <jackson.version>2.2.1</jackson.version>
       <hibernate-version>4.2.3.Final</hibernate-version>
       <hibernate-validator-version>5.0.1.Final</hibernate-validator-version>
-      <lombok.version>1.12.2</lombok.version>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>      
    </properties>
    <organization>
@@ -140,14 +139,6 @@
                <artifactId>xml-apis</artifactId>
             </exclusion>
          </exclusions>
-      </dependency>      
-
-      <!-- Autogenerate getters and setters -->
-      <dependency>
-         <groupId>org.projectlombok</groupId>
-         <artifactId>lombok</artifactId>
-         <version>${lombok.version}</version>
-         <scope>provided</scope>
       </dependency>
       
       <!--Logging-->      

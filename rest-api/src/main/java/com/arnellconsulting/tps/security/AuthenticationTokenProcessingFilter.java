@@ -19,7 +19,8 @@
 
 package com.arnellconsulting.tps.security;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,8 +38,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-@Slf4j
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
+
+   private static final Logger LOG = LoggerFactory.getLogger(AuthenticationTokenProcessingFilter.class);
 
    //
    // @Autowired
@@ -58,10 +60,10 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
                         final ServletResponse response,
                         final FilterChain chain)
            throws IOException, ServletException {
-      log.debug("doFilter");
+      LOG.debug("doFilter");
 
       if (!(request instanceof HttpServletRequest)) {
-         log.debug("Invalid request");
+         LOG.debug("Invalid request");
 
          throw new RuntimeException("Expecting a http request");
       }
@@ -71,7 +73,7 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
       final String userName = TokenUtils.getUserNameFromToken(authToken);
 
       if (userName != null) {
-         log.debug("Read user name {} from token", userName);
+         LOG.debug("Read user name {} from token", userName);
 
          final UserDetails userDetails = this.userService.loadUserByUsername(userName);
 
@@ -83,7 +85,7 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails((HttpServletRequest) request));
             SecurityContextHolder.getContext().setAuthentication(this.authManager.authenticate(authentication));
          } else {
-            log.debug("Provided token was not valid, username {}", userName);
+            LOG.debug("Provided token was not valid, username {}", userName);
          }
       }
 

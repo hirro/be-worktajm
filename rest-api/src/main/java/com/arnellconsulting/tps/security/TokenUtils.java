@@ -22,15 +22,19 @@ package com.arnellconsulting.tps.security;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.codec.Hex;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import lombok.extern.slf4j.Slf4j;
 
 
-@Slf4j
 public final class TokenUtils {
+
    public static final String MAGIC_KEY = "obfuscate";
    public static final String BACKDOOR_TOKEN = "jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107";
+
+   private static final Logger LOG = LoggerFactory.getLogger(TokenUtils.class);
 
    private TokenUtils() {}
 
@@ -76,13 +80,13 @@ public final class TokenUtils {
       final String[] parts = authToken.split(":");
       final long expires = Long.parseLong(parts[1]);
       final String signature = parts[2];
-      
+
       // Backdoor for developers
       if (authToken.equals(BACKDOOR_TOKEN)) {
-         log.warn("Logging in using developer backdoor");
+         LOG.warn("Logging in using developer backdoor");
          return true;
       }
-      
+
       // Normal flow
       if (expires < System.currentTimeMillis()) {
          return false;

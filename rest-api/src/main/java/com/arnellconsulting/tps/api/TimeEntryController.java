@@ -23,7 +23,8 @@ import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.TimeEntry;
 import com.arnellconsulting.tps.service.TpsService;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,9 +51,10 @@ import org.joda.time.DateTime;
  */
 @Controller
 @RequestMapping("api/timeEntry")
-@Slf4j
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class TimeEntryController extends BaseController {
+
+   private static final Logger LOG = LoggerFactory.getLogger(TimeEntryController.class);
 
    @Autowired
    private transient TpsService tpsService;
@@ -74,7 +76,7 @@ public class TimeEntryController extends BaseController {
       // Logged in person
       final Person person = getAuthenticatedPerson(principal);
 
-      log.debug("create TimeEntry as user: {}", person.getId());
+      LOG.debug("create TimeEntry as user: {}", person.getId());
       timeEntry.setPerson(person);
       tpsService.saveTimeEntry(timeEntry);
 
@@ -95,7 +97,7 @@ public class TimeEntryController extends BaseController {
       // Logged in person
       final Person person = getAuthenticatedPerson(principal);
 
-      log.debug("delete time entry with id: {} as user: {}", id, person.getId());
+      LOG.debug("delete time entry with id: {} as user: {}", id, person.getId());
       tpsService.deleteTimeEntry(id);
    }
 
@@ -128,7 +130,7 @@ public class TimeEntryController extends BaseController {
       if (toDate != null) {
          to = DateTime.parse(toDate);
       }
-      log.debug("list time entries as user: {}", person.getId());
+      LOG.debug("list time entries as user: {}", person.getId());
 
       return tpsService.getTimeEntriesForPerson(person.getId(), from, to);
    }
@@ -148,14 +150,14 @@ public class TimeEntryController extends BaseController {
    public TimeEntry read(@PathVariable final long id, final Principal principal) throws AccessDeniedException {
       final Person person = getAuthenticatedPerson(principal);
 
-      log.debug("read id: {} as user: {}", id, person.getId());
+      LOG.debug("read id: {} as user: {}", id, person.getId());
 
       // Only return time entry if logged in person is the owner of the object.
       final TimeEntry timeEntry = tpsService.getTimeEntry(id);
       if (timeEntry.getPerson().getId() == person.getId()) {
          return timeEntry;
       } else {
-         log.error("Tried to access unauthorized item");
+         LOG.error("Tried to access unauthorized item");
          throw new AccessDeniedException("Tried to access unauthorized item");
       }
    }
@@ -184,15 +186,15 @@ public class TimeEntryController extends BaseController {
       // before it is updated.
       final TimeEntry existingTimeEntry = tpsService.getTimeEntry(timeEntry.getId());
       if (existingTimeEntry == null) {
-         log.debug("No item to update");
+         LOG.debug("No item to update");
          throw new InvalidParameterExeception("No item to update");
       } else if (existingTimeEntry.getPerson().getId() != person.getId()) {
          // Acccess denied
-         log.error("Tried to access unauthorized item");
+         LOG.error("Tried to access unauthorized item");
          throw new AccessDeniedException("Tried to access unauthorized item");
       }
 
-      log.debug("Updating time entry with id: {} as person: {}", timeEntry.getId(), person.getId());
+      LOG.debug("Updating time entry with id: {} as person: {}", timeEntry.getId(), person.getId());
       timeEntry.setPerson(person);
       tpsService.saveTimeEntry(timeEntry);
    }

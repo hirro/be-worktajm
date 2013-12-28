@@ -27,9 +27,8 @@ import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
 import com.arnellconsulting.tps.repository.CompanyRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
-import lombok.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,25 +41,22 @@ import org.joda.time.DateTime;
  *
  * @author hirro
  */
-@Slf4j
 @Service
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class TpsServiceImpl implements TpsService {
-   private final transient @NonNull
-   PersonRepository personRepository;
-   private final transient @NonNull
-   ProjectRepository projectRepository;
-   private final transient @NonNull
-   TimeEntryRepository timeEntryRepository;
-   private final transient @NonNull
-   CompanyRepository customerRepository;
+   private static final Logger LOG = LoggerFactory.getLogger(TpsServiceImpl.class);
+
+   private final transient PersonRepository personRepository;
+   private final transient ProjectRepository projectRepository;
+   private final transient TimeEntryRepository timeEntryRepository;
+   private final transient CompanyRepository customerRepository;
 
    @Autowired
    public TpsServiceImpl(final PersonRepository personRepository,
                          final ProjectRepository projectRepository,
                          final TimeEntryRepository timeEntryRepository,
                          final CompanyRepository companyRepository) {
-      log.debug("ctor");
+      LOG.debug("ctor");
       this.personRepository = personRepository;
       this.projectRepository = projectRepository;
       this.timeEntryRepository = timeEntryRepository;
@@ -75,7 +71,7 @@ public class TpsServiceImpl implements TpsService {
 
    @Override
    public Project getProject(final long id) {
-      log.debug("getProjectById");
+      LOG.debug("getProjectById");
       return projectRepository.findOne(id);
    }
 

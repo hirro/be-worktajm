@@ -23,7 +23,6 @@ import com.arnellconsulting.tps.model.Person;
 import java.util.Map;
 
 /**
- * XXX: Lombok?
  * @author hirro
  */
 public class UserTransfer {
