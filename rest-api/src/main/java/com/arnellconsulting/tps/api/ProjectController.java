@@ -57,7 +57,7 @@ public class ProjectController extends BaseController {
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
-   public List<Project> list(final Principal principal) throws InterruptedException {
+   public List<Project> list(final Principal principal) throws InterruptedException, AccessDeniedException {
       LOG.debug("list");
       final Person person = getAuthenticatedPerson(principal);
       return tpsService.getProjectsForPerson(person.getId());
@@ -67,7 +67,7 @@ public class ProjectController extends BaseController {
    @RequestMapping(method = RequestMethod.POST)
    @ResponseBody
    public Project create(@RequestBody final Project project,
-                         final Principal principal) {
+                         final Principal principal) throws AccessDeniedException {
       LOG.debug("create: {}", project.toString());
 
       // Project must belong to a person
@@ -99,7 +99,7 @@ public class ProjectController extends BaseController {
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void update(@PathVariable final long id,
                          @RequestBody final Project project,
-                         final Principal principal) {
+                         final Principal principal) throws AccessDeniedException {
       LOG.debug("update name: {}");
 
       // Project must belong to a person

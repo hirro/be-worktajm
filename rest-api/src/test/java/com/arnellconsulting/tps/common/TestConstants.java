@@ -57,7 +57,6 @@ public final class TestConstants {
    // Time Entry A
    public static final DateTime TIMEENTRY_A_END_TIME = new DateTime("2010-01-01");
    public static final DateTime TIMEENTRY_A_START_TIME = new DateTime("2010-05-21");
-   public static final String TIMEENTRY_A_READ = "{\"id\":null,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"project\":{\"id\":null,\"name\":\"Project A\",\"description\":\"Project A description\",\"rate\":10.3,\"new\":true},\"new\":true}";
    public static final String TIMEENTRY_A_CREATE = "{\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
    public static final String TIMEENTRY_A_COMMENT = "Time Entry A comment";
    public static final String TIMEENTRY_A_UPDATE = "{\"id\":1,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
@@ -73,7 +72,6 @@ public final class TestConstants {
    // Customer A
    public static final String CUSTOMER_A_REFERENCE_PERSON = "Phil";
    public static final String CUSTOMER_A_NAME = "Phil and Co";
-   public static final String CUSTOMER_A_JSON_READ = "{\"id\":null,\"companyName\":\"Phil and Co\",\"billingAddress\":{\"line1\":\"102 West Mahoning Street\",\"line2\":\"\",\"city\":\"Punxsutawney\",\"state\":\"PA\",\"country\":\"US\",\"zip\":\"15767\"},\"referencePerson\":\"Phil\",\"new\":true}";
    public static final String CUSTOMER_A_JSON_UPDATE = "{\"id\":1,\"companyName\":\"Phil and Co\",\"billingAddress\":{\"line1\":\"102 West Mahoning Street\",\"line2\":\"\",\"city\":\"Punxsutawney\",\"state\":\"PA\",\"country\":\"US\",\"zip\":\"15767\"},\"referencePerson\":\"Phil\"}";
    public static final String CUSTOMER_A_JSON_CREATE = "{\"companyName\":\"Phil and Co\",\"billingAddress\":{\"line1\":\"102 West Mahoning Street\",\"line2\":\"\",\"city\":\"Punxsutawney\",\"state\":\"PA\",\"country\":\"US\",\"zip\":\"15767\"},\"referencePerson\":\"Phil\",\"new\":true}";
    public static final String APPLICATION_JSON_UTF8 = "application/json;charset=UTF-8";

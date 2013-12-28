@@ -18,6 +18,12 @@
 
 package com.arnellconsulting.tps.api;
 
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
@@ -42,16 +48,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import static org.hamcrest.Matchers.is;
-
-import static org.junit.Assert.assertThat;
-
-import static org.mockito.Mockito.*;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -181,9 +177,6 @@ public class TimeEntryControllerTest {
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
-   // I get this on travis
-   // <{"id":null,"startTime":1274392800000,"endTime":1262300400000,"comment":"Time Entry A comment","project":{"id":null,"name":"Project A","description":"Project A description","rate":10.3,"new":true},"new":true}> 
-   // <{"id":null,"startTime":1274400000000,"endTime":1262304000000,"comment":"Time Entry A comment","project":{"id":null,"name":"Project A","description":"Project A description","rate":10.3,"new":true},"new":true}>
    @Test
    public void testRead() throws Exception {
       when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntryA);
@@ -192,8 +185,10 @@ public class TimeEntryControllerTest {
          .principal(principal)
          .accept(MediaType.APPLICATION_JSON)
       )
-      .andExpect(status().isOk());
-      //      .andExpect(content().string(TestConstants.TIMEENTRY_A_READ));
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
+      .andExpect(jsonPath("startTime", is(timeEntryA.getStartTime().getTime())));
+
       verify(tpsServiceMock, times(1)).getTimeEntry(1L);
       verifyNoMoreInteractions(tpsServiceMock);
    }
@@ -201,7 +196,6 @@ public class TimeEntryControllerTest {
    @Test
    public void testUpdate() throws Exception {
       final TimeEntry timeEntry = spy(timeEntryA);
-
       when(timeEntry.getId()).thenReturn(1L);
       when(timeEntry.getPerson()).thenReturn(person1);
       when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntry);

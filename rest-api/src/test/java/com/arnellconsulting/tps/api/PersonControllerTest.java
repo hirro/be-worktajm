@@ -19,6 +19,12 @@
 
 package com.arnellconsulting.tps.api;
 
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
@@ -40,22 +46,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import static org.hamcrest.Matchers.is;
-
-import static org.junit.Assert.assertThat;
-
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,8 +111,12 @@ public class PersonControllerTest {
    @Test
    public void testRead() throws Exception {
       when(tpsServiceMock.getPerson(1)).thenReturn(person);
-      mockMvc.perform(get("/api/person/1").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(
-      content().string(TestConstants.PERSON_A_READ));
+      mockMvc.perform(
+         get("/api/person/1")
+            .accept(MediaType.APPLICATION_JSON))
+         .andExpect(status().isOk())
+         .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
+         .andExpect(jsonPath("email", is(person.getEmail())));              
       verify(tpsServiceMock, times(1)).getPerson(1L);
       verifyNoMoreInteractions(tpsServiceMock);
    }

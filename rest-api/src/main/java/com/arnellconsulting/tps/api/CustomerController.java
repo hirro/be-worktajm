@@ -57,7 +57,7 @@ public class CustomerController extends BaseController {
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @ResponseBody
-   public List<Customer> list(final Principal principal) throws InterruptedException {
+   public List<Customer> list(final Principal principal) throws InterruptedException, AccessDeniedException {
       LOG.debug("list");
       final Person person = getAuthenticatedPerson(principal);
       return tpsService.getCustomersForPerson(person.getId());
@@ -67,7 +67,7 @@ public class CustomerController extends BaseController {
    @RequestMapping(method = RequestMethod.POST)
    @ResponseBody
    public Customer create(@RequestBody final Customer customer,
-                         final Principal principal) {
+                         final Principal principal) throws AccessDeniedException {
       LOG.debug("create: {}", customer.toString());
 
       // Customer must belong to a person
@@ -100,7 +100,7 @@ public class CustomerController extends BaseController {
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void update(@PathVariable final long id,
                       @RequestBody final Customer customer,
-                      final Principal principal) {
+                      final Principal principal) throws AccessDeniedException {
       LOG.debug("update name: {}");
 
       // Customer must belong to a person

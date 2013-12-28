@@ -27,10 +27,20 @@ import org.springframework.security.core.Authentication;
  */
 public class BaseController {
 
-   public Person getAuthenticatedPerson(final Principal principal) {
-      PersonUserDetails userDetails;
-      userDetails = (PersonUserDetails) ((Authentication) principal).getPrincipal();
-      return userDetails.getPerson();
+   public Person getAuthenticatedPerson(final Principal principal) throws AccessDeniedException {
+      Person person = null;
+      
+      if (principal != null) {
+         PersonUserDetails userDetails;
+         userDetails = (PersonUserDetails) ((Authentication) principal).getPrincipal();
+         if (userDetails != null) {
+           person = userDetails.getPerson();
+         }
+      }
+      if (person == null) {
+         throw new AccessDeniedException("Failed to map principal to person");
+      }
+      return person;
    }
    
 }

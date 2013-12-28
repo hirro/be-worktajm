@@ -42,10 +42,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
+import static org.hamcrest.Matchers.is;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -117,7 +119,8 @@ public class CustomerControllerTest {
          get("/api/customer/1")
             .accept(MediaType.APPLICATION_JSON))
          .andExpect(status().isOk())
-         .andExpect(content().string(TestConstants.CUSTOMER_A_JSON_READ));
+         .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
+         .andExpect(jsonPath("companyName", is(customerA.getCompanyName())));              
 
       verify(tpsServiceMock, times(1)).getCustomer(1L);
       verifyNoMoreInteractions(tpsServiceMock);

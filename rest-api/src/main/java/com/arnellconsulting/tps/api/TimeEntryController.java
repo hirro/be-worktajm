@@ -72,7 +72,7 @@ public class TimeEntryController extends BaseController {
    @RequestMapping(method = RequestMethod.POST, headers = { "Accept=application/json" })
    @ResponseBody
    @Secured("ROLE_USER")
-   public TimeEntry create(@RequestBody final TimeEntry timeEntry, final Principal principal) {
+   public TimeEntry create(@RequestBody final TimeEntry timeEntry, final Principal principal) throws AccessDeniedException {
       // Logged in person
       final Person person = getAuthenticatedPerson(principal);
 
@@ -93,7 +93,7 @@ public class TimeEntryController extends BaseController {
    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
    @ResponseStatus(HttpStatus.NO_CONTENT)
    @Secured("ROLE_USER")
-   public void delete(@PathVariable final long id, final Principal principal) {
+   public void delete(@PathVariable final long id, final Principal principal) throws AccessDeniedException {
       // Logged in person
       final Person person = getAuthenticatedPerson(principal);
 
@@ -115,7 +115,7 @@ public class TimeEntryController extends BaseController {
    @Secured("ROLE_USER")
    public List<TimeEntry> list(@RequestParam(value = "from", required = false) final String fromDate,
                                @RequestParam(value = "to", required = false) final String toDate,
-                               final Principal principal) {
+                               final Principal principal) throws AccessDeniedException {
       // Logged in person
       final Person person = getAuthenticatedPerson(principal);
    

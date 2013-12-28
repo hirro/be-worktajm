@@ -47,6 +47,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
+import static org.hamcrest.Matchers.hasSize;
 
 import org.mockito.ArgumentCaptor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -108,7 +109,9 @@ public class ProjectControllerTest {
          .content(TestConstants.PROJECT_A)
          .contentType(MediaType.APPLICATION_JSON)
          .principal(principal))
-      .andExpect(status().isOk());
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
+      .andExpect(jsonPath("id", is(projectA.getId())));
 
       final ArgumentCaptor<Project> argument = ArgumentCaptor.forClass(Project.class);
       verify(tpsServiceMock, times(1)).saveProject(argument.capture());
@@ -122,6 +125,7 @@ public class ProjectControllerTest {
       mockMvc.perform(
          get("/api/project/1")
          .accept(MediaType.APPLICATION_JSON)
+         .principal(principal)
       )
       .andExpect(status().isOk())
       .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
@@ -165,6 +169,8 @@ public class ProjectControllerTest {
          .accept(MediaType.APPLICATION_JSON)
          .principal(principal))
       .andExpect(status().isOk());
+//      .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
+//      .andExpect(jsonPath("$", hasSize(2)));              
 
       verify(tpsServiceMock, times(1)).getProjectsForPerson(1);
       verifyNoMoreInteractions(tpsServiceMock);
