@@ -81,8 +81,7 @@ public class Project extends AbstractPersistable<Long> {
    /**
     * The optional customer who runs this project.
     */
-   @ManyToOne
-   private Customer customer;
+   private Long customerId;
 
    public String getName() {
       return name;
@@ -124,12 +123,12 @@ public class Project extends AbstractPersistable<Long> {
       this.person = person;
    }
 
-   public Customer getCustomer() {
-      return customer;
+   public Long getCustomerId() {
+      return customerId;
    }
 
-   public void setCustomer(final Customer customer) {
-      this.customer = customer;
+   public void setCustomerId(final Long customerId) {
+      this.customerId = customerId;
    }
 
 }

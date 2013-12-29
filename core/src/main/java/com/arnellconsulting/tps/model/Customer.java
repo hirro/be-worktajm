@@ -58,6 +58,7 @@ public class Customer extends AbstractPersistable<Long> {
     * The projects owned by the project.
     */
    @OneToMany
+   @JoinColumn(name="customerId")
    @JsonIgnore
    private Collection<Project> projects;
 
