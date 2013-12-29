@@ -35,9 +35,9 @@ public class CustomerTest extends TestCase {
     public void testGetters() {
        final Person person = TestConstants.createPersonA();
        final Customer customer = TestConstants.createCustomerA();
-       assertThat(customer.getCompanyName(), is(TestConstants.CUSTOMER_A_NAME));
+       assertThat(customer.getName(), is(TestConstants.CUSTOMER_A_NAME));
        assertThat(customer.getReferencePerson(), is(TestConstants.CUSTOMER_A_REFERENCE_PERSON));
-       assertThat(customer.getCompanyName(), is(TestConstants.CUSTOMER_A_NAME));
+       assertThat(customer.getName(), is(TestConstants.CUSTOMER_A_NAME));
        assertThat(customer.getBillingAddress().getLine1(), is(TestConstants.ADDRESS_A_LINE1));
        assertThat(customer.getBillingAddress().getLine2(), is(TestConstants.ADDRESS_A_LINE2));
        assertThat(customer.getBillingAddress().getCity(), is(TestConstants.ADDRESS_A_CITY));

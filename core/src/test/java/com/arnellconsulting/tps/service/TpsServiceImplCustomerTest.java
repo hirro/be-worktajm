@@ -71,7 +71,7 @@ public class TpsServiceImplCustomerTest {
 
       final List<Customer> companies = service.getCustomersForPerson(1);
 
-      assertThat(customerA.getCompanyName(), is(companies.get(0).getCompanyName()));
+      assertThat(customerA.getName(), is(companies.get(0).getName()));
       verify(companyRepository, times(1)).findByPersonId(1);
       verifyNoMoreInteractions(companyRepository);
    }
@@ -84,7 +84,7 @@ public class TpsServiceImplCustomerTest {
       when(companyRepository.findOne(1L)).thenReturn(customerA);
 
       final Customer customer = service.getCustomer(1L);
-      assertThat(customerA.getCompanyName(), is(customer.getCompanyName()));
+      assertThat(customerA.getName(), is(customer.getName()));
 
       verify(companyRepository, times(1)).findOne(1L);
       verifyNoMoreInteractions(companyRepository);

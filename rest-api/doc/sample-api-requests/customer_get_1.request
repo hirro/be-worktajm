@@ -6,7 +6,7 @@
 	<string>http://localhost:8080/api/api/customer</string>
 	<key>bodyString</key>
 	<string>{
-  "companyName": "Phil and Co",
+  "name": "Phil and Co",
   "billingAddress":
   {
     "line1": "102 West Mahoning Street",

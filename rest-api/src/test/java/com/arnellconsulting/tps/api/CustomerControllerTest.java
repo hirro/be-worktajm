@@ -117,7 +117,7 @@ public class CustomerControllerTest {
             .accept(MediaType.APPLICATION_JSON))
          .andExpect(status().isOk())
          .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
-         .andExpect(jsonPath("companyName", is(customerA.getCompanyName())));              
+         .andExpect(jsonPath("name", is(customerA.getName())));              
 
       verify(tpsServiceMock, times(1)).getCustomer(1L);
       verifyNoMoreInteractions(tpsServiceMock);

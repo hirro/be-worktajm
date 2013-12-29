@@ -102,7 +102,7 @@ public final class TestConstants {
 
    public static Customer createCustomerA() {
       Customer customer = new Customer();
-      customer.setCompanyName(CUSTOMER_A_NAME);
+      customer.setName(CUSTOMER_A_NAME);
       customer.setReferencePerson(CUSTOMER_A_REFERENCE_PERSON);
       customer.setBillingAddress(createAddressA());
       Collection<Project> projects = new Vector<Project>();

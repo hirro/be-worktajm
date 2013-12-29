@@ -31,7 +31,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "CUSTOMER",
        uniqueConstraints = {
-         @UniqueConstraint(columnNames = {"companyName", "person"})
+         @UniqueConstraint(columnNames = {"name", "person"})
        })
 public class Customer extends AbstractPersistable<Long> {
 
@@ -41,7 +41,7 @@ public class Customer extends AbstractPersistable<Long> {
     * Customer name, mandatory.
     */
    @NotNull
-   private String companyName;
+   private String name;
 
    /**
     * Billings address, mandatory.
@@ -70,12 +70,12 @@ public class Customer extends AbstractPersistable<Long> {
    @JsonIgnore
    private Person person;
 
-   public String getCompanyName() {
-      return companyName;
+   public String getName() {
+      return name;
    }
 
-   public void setCompanyName(final String companyName) {
-      this.companyName = companyName;
+   public void setName(final String name) {
+      this.name = name;
    }
 
    public Address getBillingAddress() {
