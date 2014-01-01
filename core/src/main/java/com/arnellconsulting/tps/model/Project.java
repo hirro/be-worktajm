@@ -41,8 +41,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  */
 @Entity
 @Table(name="PROJECT",
-        uniqueConstraints={@UniqueConstraint(columnNames = {"name", "person"})}
-)
+        uniqueConstraints={@UniqueConstraint(columnNames = {"name", "person"})
+})
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project extends AbstractPersistable<Long> {
    private static final long serialVersionUID = -3902305943341540214L;

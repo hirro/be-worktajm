@@ -46,7 +46,6 @@ public class Customer extends AbstractPersistable<Long> {
    /**
     * Billings address, mandatory.
     */
-   @NotNull
    private Address billingAddress;
 
    /**
