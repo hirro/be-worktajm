@@ -34,7 +34,7 @@ import javax.validation.constraints.NotNull;
  * @author hirro
  */
 @Entity
-@Table(name = "PERSON")
+@Table(name = "tps_person")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person extends AbstractPersistable<Long> {
 
@@ -53,7 +53,7 @@ public class Person extends AbstractPersistable<Long> {
    /**
     * One person may have one or more time entries.
     */
-   @OneToMany
+   @OneToMany(mappedBy="person")
    @JsonIgnore
    private Collection<TimeEntry> timeEntries;
 
@@ -83,7 +83,7 @@ public class Person extends AbstractPersistable<Long> {
    /**
     * The projects owned by the person.
     */
-   @OneToMany
+   @OneToMany(mappedBy="person")
    @JsonIgnore
    private Collection<Project> projects;
 

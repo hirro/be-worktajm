@@ -29,9 +29,9 @@ import java.util.Collection;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "CUSTOMER",
+@Table(name = "tps_customer",
        uniqueConstraints = {
-         @UniqueConstraint(columnNames = {"name", "person"})
+         @UniqueConstraint(columnNames = {"name", "person_id"}, name="idx_customer_person")
        })
 public class Customer extends AbstractPersistable<Long> {
 
@@ -66,6 +66,7 @@ public class Customer extends AbstractPersistable<Long> {
     *
     */
    @ManyToOne
+   @JoinColumn(name="person_id")
    @JsonIgnore
    private Person person;
 

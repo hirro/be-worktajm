@@ -24,6 +24,7 @@
             <column name="first_name" type="char(255)"/>
             <column name="last_name" type="char(255)"/>
             <column name="password" type="char(255)"/>
+            <column name="email_verified" type="int" defaultValueBoolean="false"/>
         </createTable>
         <createIndex catalogName="tps"
                 indexName="idx_email"
@@ -54,6 +55,7 @@
             <column name="line2" type="char(255)"/>
             <column name="state" type="char(255)"/>
             <column name="zip" type="char(255)"/>
+            <column name="city" type="char(255)"/>
             <column name="country" type="char(255)"/>
             <column name="reference_person" type="char(255)"/>
         </createTable>
@@ -76,7 +78,7 @@
             <column name="customer_id" type="bigint"/>
         </addColumn>
         <createIndex catalogName="tps"
-                indexName="idx_name_person"
+                indexName="idx_project_person"
                 schemaName="tps"
                 tableName="tps_project"
                 tablespace="space A"
@@ -101,7 +103,7 @@
             <column name="person_id" type="bigint"/>
         </addColumn>
         <createIndex catalogName="tps"
-                indexName="idx_name_person"
+                indexName="idx_customer_person"
                 schemaName="tps"
                 tableName="tps_customer"
                 tablespace="space A"

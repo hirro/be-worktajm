@@ -40,8 +40,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author hirro
  */
 @Entity
-@Table(name="PROJECT",
-        uniqueConstraints={@UniqueConstraint(columnNames = {"name", "person"})
+@Table(name="tps_project",
+        uniqueConstraints={
+           @UniqueConstraint(columnNames = {"name", "person_id"}, name="idx_project_person")
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project extends AbstractPersistable<Long> {
@@ -66,7 +67,7 @@ public class Project extends AbstractPersistable<Long> {
    /**
     * Time entries associated to this project.
     */
-   @OneToMany
+   @OneToMany(mappedBy="project")
    @JsonIgnore
    private Collection<TimeEntry> timeEntries;
 
@@ -74,6 +75,7 @@ public class Project extends AbstractPersistable<Long> {
     * The person who owns this project.
     */
    @ManyToOne
+   @JoinColumn(name="person_id")
    @NotNull
    @JsonIgnore
    private Person person;

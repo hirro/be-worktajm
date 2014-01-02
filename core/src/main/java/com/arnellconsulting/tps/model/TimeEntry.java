@@ -39,6 +39,7 @@ import javax.validation.constraints.NotNull;
  * @author hirro
  */
 @Entity
+@Table(name = "tps_time_entry")
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntry extends AbstractPersistable<Long> {
@@ -67,6 +68,7 @@ public class TimeEntry extends AbstractPersistable<Long> {
     * The person who owns this time entry.
     */
    @ManyToOne
+   @JoinColumn(name="person_id")
    @NotNull
    @JsonIgnore
    @JsonBackReference("activeTimeEntry")
@@ -76,6 +78,7 @@ public class TimeEntry extends AbstractPersistable<Long> {
     * The project that is associated with the time entry.
     */
    @ManyToOne
+   @JoinColumn(name="project_id")
    @NotNull
    private Project project;
 
