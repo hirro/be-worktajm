@@ -202,6 +202,15 @@
             <configuration>                  
                <propertyFile>src/main/resources/liquibase.properties</propertyFile>
             </configuration>                
+            <executions>
+               <execution>
+                  <phase>site</phase>                                                                  
+                  <goals>
+                     <goal>dropAll</goal>
+                     <goal>update</goal>
+                  </goals>
+               </execution>
+            </executions>
          </plugin>                                        
       </plugins>
    </build>
