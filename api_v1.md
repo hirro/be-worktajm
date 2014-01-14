@@ -199,3 +199,23 @@ Returns the status of the asking user.
 
 
 #### Example response
+
+# Email lookup
+
+## GET /registration/isEmailUnique?email=a@b.cde
+
+Returns true if email is available for registration.
+
+Note to self, might need to restrict this.
+
+#### Example request
+
+      $ curl -l -u john.doe@example.com:password https://worktajm.arnellconsulting.dyndns.org:8080/registration/isEmailUniuqe?email=a@b.cde
+
+#### Example response
+
+      true
+
+
+#### Example response
+
