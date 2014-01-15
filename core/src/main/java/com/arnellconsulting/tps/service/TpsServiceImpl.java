@@ -35,6 +35,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import org.joda.time.DateTime;
+import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * Implements the TpsService interface.
@@ -153,5 +154,10 @@ public class TpsServiceImpl implements TpsService {
    public void saveTimeEntry(final TimeEntry person) {
       timeEntryRepository.save(person);
    }
+   
+   @Scheduled(fixedRate=60000)
+   public void doSomething() {
+       LOG.debug("Scheduled job");
+   }   
 
 }

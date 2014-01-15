@@ -86,10 +86,10 @@ public class RegistrationController {
 
    //~--- get methods ---------------------------------------------------------
 
-   @RequestMapping(value = "/checkEmail.do")
+   @RequestMapping(value = "/isEmailAvailable")
    @ResponseBody
-   public boolean isEmailUnique(final HttpServletResponse response, @RequestParam final String email) {
-      LOG.debug("isEmailUnique: {}", email);
+   public boolean isEmailAvailable(final HttpServletResponse response, @RequestParam final String email) {
+      LOG.debug("isEmailAvailable: {}", email);
 
       final Person person = tpsService.findPersonByEmail(email);
 

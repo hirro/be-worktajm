@@ -97,7 +97,7 @@ public class PersonController {
    }
 
    /**
-    * Lists all persons belonging to the organization of the logged in administrator.
+    * Find all persons belonging to the organization of the logged in administrator.
     * @return list of persons
     */
    @Transactional
