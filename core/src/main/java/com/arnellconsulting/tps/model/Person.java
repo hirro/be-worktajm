@@ -47,6 +47,7 @@ public class Person extends AbstractPersistable<Long> {
    /**
     * A person may have one active time entry. This could be fetched from the database instead.
     */
+   @JoinColumn(name="active_time_entry_id")
    @ManyToOne
    private TimeEntry activeTimeEntry = null;
 

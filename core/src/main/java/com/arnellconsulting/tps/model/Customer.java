@@ -16,6 +16,7 @@
  */
 package com.arnellconsulting.tps.model;
 
+import com.arnellconsulting.tps.common.InvoicePeriod;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -42,6 +43,12 @@ public class Customer extends AbstractPersistable<Long> {
     */
    @NotNull
    private String name;
+   
+   /**
+    * Invoice period.
+    */
+   @Enumerated(EnumType.STRING)
+   private InvoicePeriod invoicePeriod = InvoicePeriod.NONE;
 
    /**
     * Billings address, mandatory.
@@ -94,6 +101,14 @@ public class Customer extends AbstractPersistable<Long> {
       this.referencePerson = referencePerson;
    }
 
+   public InvoicePeriod getInvoicePeriod() {
+      return invoicePeriod;
+   }
+
+   public void setInvoicePeriod(InvoicePeriod invoicePeriod) {
+      this.invoicePeriod = invoicePeriod;
+   }   
+   
    public Collection<Project> getProjects() {
       return projects;
    }

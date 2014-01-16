@@ -19,6 +19,7 @@
 
 package com.arnellconsulting.tps.model;
 
+import com.arnellconsulting.tps.common.InvoicePeriod;
 import junit.framework.TestCase;
 import org.junit.Test;
 
@@ -43,6 +44,7 @@ public class CustomerTest extends TestCase {
        assertThat(customer.getBillingAddress().getCity(), is(TestConstants.ADDRESS_A_CITY));
        assertThat(customer.getBillingAddress().getZip(), is(TestConstants.ADDRESS_A_ZIP));
        assertThat(customer.getProjects(),  not(nullValue()));
+       assertThat(customer.getInvoicePeriod(), is(InvoicePeriod.NONE));
 
     }
 }

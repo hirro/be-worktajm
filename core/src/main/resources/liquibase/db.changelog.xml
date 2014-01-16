@@ -119,7 +119,6 @@
             referencedColumnNames="id"
             referencedTableName="tps_person"
             referencedTableSchemaName="tps"/>    
-
     </changeSet>
 
     <!-- One time entry has one person and one project -->
@@ -145,5 +144,27 @@
             referencedTableName="tps_project"
             referencedTableSchemaName="tps"/>   
     </changeSet>
+    
+    <!-- One person has one active project (TODO : unnecessary imho) -->
+    <changeSet id="5" author="hirro">
+        <addColumn tableName="tps_person">
+            <column name="active_time_entry_id" type="bigint"/>
+        </addColumn>
+        <addForeignKeyConstraint 
+            baseColumnNames="active_time_entry_id"
+            baseTableName="tps_person"
+            baseTableSchemaName="tps"
+            constraintName="fk_person_time_entry"
+            referencedColumnNames="id"
+            referencedTableName="tps_time_entry"
+            referencedTableSchemaName="tps"/>    
+    </changeSet>
+
+    <!-- One time entry has one person and one project -->
+    <changeSet id="6" author="hirro">
+        <addColumn tableName="tps_customer">
+            <column name="invoice_period" type="char(10)"/>
+        </addColumn>
+    </changeSet>                
 
 </databaseChangeLog>
