@@ -165,6 +165,16 @@
         <addColumn tableName="tps_customer">
             <column name="invoice_period" type="char(10)"/>
         </addColumn>
-    </changeSet>                
+    </changeSet>          
+    
+   <changeSet id="7" author="hirro">
+      <insert tableName="tps_person" schemaName="tps">
+          <column name="email" value="jim@arnellconsulting.com"/>
+          <column name="first_name" value="jim"/>
+          <column name="last_name" value="Arnell"/>
+          <column name="password" value="password"/>
+          <column name="email_verified" value="1"/>
+      </insert>
+   </changeSet>
 
 </databaseChangeLog>
