@@ -170,7 +170,7 @@
    <changeSet id="7" author="hirro">
       <insert tableName="tps_person" schemaName="tps">
           <column name="email" value="jim@arnellconsulting.com"/>
-          <column name="first_name" value="jim"/>
+          <column name="first_name" value="Jim"/>
           <column name="last_name" value="Arnell"/>
           <column name="password" value="password"/>
           <column name="email_verified" value="1"/>

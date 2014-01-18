@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>baseURL</key>
-	<string>http://localhost:8080/worktajm-api/project</string>
+	<string>http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project</string>
 	<key>followRedirect</key>
 	<true/>
 	<key>handleJSONPCallbacks</key>
