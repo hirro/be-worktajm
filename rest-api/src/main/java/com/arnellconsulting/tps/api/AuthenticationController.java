@@ -49,7 +49,7 @@ import org.springframework.security.core.AuthenticationException;
  * @author hirro
  */
 @Controller
-@RequestMapping("api/authenticate")
+@RequestMapping("authenticate")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class AuthenticationController {
    private static final Logger LOG = LoggerFactory.getLogger(AuthenticationController.class);

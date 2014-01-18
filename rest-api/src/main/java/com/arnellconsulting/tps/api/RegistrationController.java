@@ -41,7 +41,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author hirro
  */
 @Controller
-@RequestMapping("/api/registration")
+@RequestMapping("/registration")
 public class RegistrationController {
 
    private static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class);

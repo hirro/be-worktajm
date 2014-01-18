@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>baseURL</key>
-	<string>http://localhost:8080/api/api/customer</string>
+	<string>http://localhost:8080/worktajm-api/customer</string>
 	<key>bodyString</key>
 	<string>{
   "name": "Phil and Co",

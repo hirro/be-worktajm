@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>baseURL</key>
-	<string>http://localhost:8080/worktajm-api/person/1</string>
+	<string>http://arnellconsulting.dyndns.org:8080/tps/api/registration/isEmailAvailable</string>
 	<key>followRedirect</key>
 	<true/>
 	<key>handleJSONPCallbacks</key>
@@ -26,7 +26,16 @@
 	<key>paramBodyUIChoice</key>
 	<integer>0</integer>
 	<key>parameters</key>
-	<array/>
+	<array>
+		<dict>
+			<key>inUse</key>
+			<true/>
+			<key>parameter</key>
+			<string>email</string>
+			<key>value</key>
+			<string>jim@farnellconsulting.com</string>
+		</dict>
+	</array>
 	<key>parametersType</key>
 	<integer>0</integer>
 	<key>presentBeforeChallenge</key>

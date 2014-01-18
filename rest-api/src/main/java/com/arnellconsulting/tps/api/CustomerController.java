@@ -45,7 +45,7 @@ import java.util.List;
  * @author hirro
  */
 @Controller
-@RequestMapping("api/customer")
+@RequestMapping("customer")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class CustomerController extends BaseController {
 

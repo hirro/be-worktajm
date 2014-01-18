@@ -45,7 +45,7 @@ import java.util.List;
  * @author hirro
  */
 @Controller
-@RequestMapping("api/project")
+@RequestMapping("project")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class ProjectController extends BaseController {
 

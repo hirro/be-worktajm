@@ -48,7 +48,7 @@ import java.util.List;
  * @author hirro
  */
 @Controller
-@RequestMapping("api/person")
+@RequestMapping("person")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class PersonController {
 

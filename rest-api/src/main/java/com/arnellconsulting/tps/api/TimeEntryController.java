@@ -50,7 +50,7 @@ import org.joda.time.DateTime;
  * @author hirro
  */
 @Controller
-@RequestMapping("api/timeEntry")
+@RequestMapping("timeEntry")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class TimeEntryController extends BaseController {
 

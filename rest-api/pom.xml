@@ -8,7 +8,7 @@
       <groupId>com.arnellconsulting.tps</groupId>
       <version>2.0.5.BUILD-SNAPSHOT</version>
    </parent>   
-   <artifactId>api</artifactId>
+   <artifactId>worktajm-api</artifactId>
    <packaging>war</packaging>
    <name>rest-api</name>
    <properties>
@@ -252,7 +252,7 @@
 
    </dependencies>
    <build>
-      <finalName>tps</finalName>      
+      <finalName>worktajm-api</finalName>      
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
