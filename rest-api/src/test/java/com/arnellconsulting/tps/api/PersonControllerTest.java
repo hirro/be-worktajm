@@ -85,7 +85,7 @@ public class PersonControllerTest {
    @Test
    public void testCreate() throws Exception {
       mockMvc.perform(
-      post("/api/person").content(TestConstants.PERSON_A_CREATE).contentType(MediaType.APPLICATION_JSON)).andExpect(
+      post("/person").content(TestConstants.PERSON_A_CREATE).contentType(MediaType.APPLICATION_JSON)).andExpect(
       status().isOk());
       final ArgumentCaptor<Person> argument = ArgumentCaptor.forClass(Person.class);
       verify(tpsServiceMock, times(1)).savePerson(argument.capture());
@@ -95,7 +95,7 @@ public class PersonControllerTest {
 
    @Test
    public void testDelete() throws Exception {
-      mockMvc.perform(delete("/api/person/1").accept(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
+      mockMvc.perform(delete("/person/1").accept(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
       verify(tpsServiceMock, times(1)).deletePerson(1L);
       verifyNoMoreInteractions(tpsServiceMock);
    }
@@ -103,7 +103,7 @@ public class PersonControllerTest {
    @Test
    public void testList() throws Exception {
       when(tpsServiceMock.getPersons()).thenReturn(persons);
-      mockMvc.perform(get("/api/person").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+      mockMvc.perform(get("/person").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
       verify(tpsServiceMock, times(1)).getPersons();
       verifyNoMoreInteractions(tpsServiceMock);
    }
@@ -112,7 +112,7 @@ public class PersonControllerTest {
    public void testRead() throws Exception {
       when(tpsServiceMock.getPerson(1)).thenReturn(person);
       mockMvc.perform(
-         get("/api/person/1")
+         get("/person/1")
             .accept(MediaType.APPLICATION_JSON))
          .andExpect(status().isOk())
          .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
@@ -123,7 +123,7 @@ public class PersonControllerTest {
 
    @Test
    public void testUpdate() throws Exception {
-      mockMvc.perform(put("/api/person/1").content(TestConstants.PERSON_A).contentType(MediaType.APPLICATION_JSON)).andExpect(
+      mockMvc.perform(put("/person/1").content(TestConstants.PERSON_A).contentType(MediaType.APPLICATION_JSON)).andExpect(
       status().isNoContent());
       final ArgumentCaptor<Person> argument = ArgumentCaptor.forClass(Person.class);
       verify(tpsServiceMock, times(1)).savePerson(argument.capture());

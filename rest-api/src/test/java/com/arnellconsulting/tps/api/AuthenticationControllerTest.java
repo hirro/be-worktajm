@@ -98,7 +98,7 @@ public class AuthenticationControllerTest {
       when(authenticationManager.authenticate(any(Authentication.class))).thenReturn(authentication);
       when(userDetailsService.loadUserByUsername(VALID)).thenReturn(validUserDetails);
 
-      mockMvc.perform(get("/api/authenticate")
+      mockMvc.perform(get("/authenticate")
               .param(PARAM_PASSWORD, VALID)
               .param(PARAM_USERNAME, VALID))
             .andExpect(status().isOk());
@@ -114,7 +114,7 @@ public class AuthenticationControllerTest {
       when(authenticationManager.authenticate(any(Authentication.class))).thenReturn(authentication);      
       when(userDetailsService.loadUserByUsername(INVALID)).thenThrow(new UsernameNotFoundException("itest"));
 
-      mockMvc.perform(get("/api/authenticate")
+      mockMvc.perform(get("/authenticate")
               .param(PARAM_PASSWORD, INVALID)
               .param(PARAM_USERNAME, INVALID))
             .andExpect(status().isInternalServerError());

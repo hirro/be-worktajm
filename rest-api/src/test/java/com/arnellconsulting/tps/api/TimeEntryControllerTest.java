@@ -102,7 +102,7 @@ public class TimeEntryControllerTest {
    @Test
    public void testCreate() throws Exception {
       mockMvc.perform(
-         post("/api/timeEntry")
+         post("/timeEntry")
          .principal(principal)
          .content(TestConstants.TIMEENTRY_A_CREATE)
          .contentType(MediaType.APPLICATION_JSON)
@@ -118,7 +118,7 @@ public class TimeEntryControllerTest {
    @Test
    public void testDelete() throws Exception {
       mockMvc.perform(
-         delete("/api/timeEntry/1")
+         delete("/timeEntry/1")
          .principal(principal)
          .accept(MediaType.APPLICATION_JSON)
       ).andExpect(status().isNoContent());
@@ -136,7 +136,7 @@ public class TimeEntryControllerTest {
          )
       ).thenReturn(timeEntries);
       mockMvc.perform(
-         get("/api/timeEntry")
+         get("/timeEntry")
          .principal(principal)
          .accept(MediaType.APPLICATION_JSON)
       ).andExpect(status().isOk());
@@ -159,7 +159,7 @@ public class TimeEntryControllerTest {
          )
       ).thenReturn(timeEntries);
       mockMvc.perform(
-         get("/api/timeEntry")
+         get("/timeEntry")
          .param("from", fromDate.toString())
          .param("to", toDate.toString())
          .principal(principal)
@@ -179,7 +179,7 @@ public class TimeEntryControllerTest {
    public void testRead() throws Exception {
       when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntryA);
       mockMvc.perform(
-         get("/api/timeEntry/1")
+         get("/timeEntry/1")
          .principal(principal)
          .accept(MediaType.APPLICATION_JSON)
       )
@@ -198,7 +198,7 @@ public class TimeEntryControllerTest {
       when(timeEntry.getPerson()).thenReturn(person1);
       when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntry);
       mockMvc.perform(
-         put("/api/timeEntry/1")
+         put("/timeEntry/1")
          .principal(principal)
          .content(TestConstants.TIMEENTRY_A_UPDATE)
          .contentType(MediaType.APPLICATION_JSON)
@@ -219,7 +219,7 @@ public class TimeEntryControllerTest {
       when(timeEntry.getPerson()).thenReturn(person2);
       when(tpsServiceMock.getTimeEntry(1)).thenReturn(null);
       mockMvc.perform(
-         put("/api/timeEntry/1")
+         put("/timeEntry/1")
          .principal(principal)
          .content(TestConstants.TIMEENTRY_A_UPDATE)
          .contentType(MediaType.APPLICATION_JSON)
@@ -236,7 +236,7 @@ public class TimeEntryControllerTest {
       when(timeEntry.getPerson()).thenReturn(person2);
       when(tpsServiceMock.getTimeEntry(1)).thenReturn(timeEntry);
       mockMvc.perform(
-         put("/api/timeEntry/1")
+         put("/timeEntry/1")
          .principal(principal)
          .content(TestConstants.TIMEENTRY_A_UPDATE)
          .contentType(MediaType.APPLICATION_JSON)

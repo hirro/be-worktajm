@@ -101,7 +101,7 @@ public class ProjectControllerTest {
       when(tpsServiceMock.getProjectsForPerson(1)).thenReturn(projects);
       
       mockMvc.perform(
-         post("/api/project")
+         post("/project")
          .content(TestConstants.PROJECT_A)
          .contentType(MediaType.APPLICATION_JSON)
          .principal(principal))
@@ -119,7 +119,7 @@ public class ProjectControllerTest {
    public void testRead() throws Exception {
       when(tpsServiceMock.getProject(1L)).thenReturn(projectA);
       mockMvc.perform(
-         get("/api/project/1")
+         get("/project/1")
          .accept(MediaType.APPLICATION_JSON)
          .principal(principal)
       )
@@ -134,7 +134,7 @@ public class ProjectControllerTest {
    @Test
    public void testUpdate() throws Exception {
       mockMvc.perform(
-         put("/api/project/1")
+         put("/project/1")
             .content(TestConstants.PROJECT_A)
             .contentType(MediaType.APPLICATION_JSON)
             .principal(principal))
@@ -150,7 +150,7 @@ public class ProjectControllerTest {
    @Test
    public void testDelete() throws Exception {
       mockMvc.perform(
-         delete("/api/project/1")
+         delete("/project/1")
          .accept(MediaType.APPLICATION_JSON))
       .andExpect(status().isNoContent());
       verify(tpsServiceMock, times(1)).deleteProject(1L);
@@ -161,7 +161,7 @@ public class ProjectControllerTest {
    public void testList() throws Exception {
       when(tpsServiceMock.getProjectsForPerson(1)).thenReturn(projects);
       mockMvc.perform(
-         get("/api/project")
+         get("/project")
          .accept(MediaType.APPLICATION_JSON)
          .principal(principal))
       .andExpect(status().isOk());
@@ -185,7 +185,7 @@ public class ProjectControllerTest {
    @Test
    public void testGetInvalidProject() throws Exception {
       mockMvc.perform(
-         get("/api/project/2")
+         get("/project/2")
          .accept(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk());
 

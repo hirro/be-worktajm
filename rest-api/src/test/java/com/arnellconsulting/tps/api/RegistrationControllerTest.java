@@ -73,7 +73,7 @@ public class RegistrationControllerTest {
    public void testCreate() throws Exception {
       when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(null);
       mockMvc.perform(
-         get("/api/registration")
+         get("/registration")
             .param("password", TestConstants.PERSON_A_PASSWORD)
             .param("email", TestConstants.PERSON_A_EMAIL)
             .param("company", TestConstants.PERSON_A_COMPANY)
@@ -90,7 +90,7 @@ public class RegistrationControllerTest {
 
       try {
          mockMvc.perform(
-            get("/api/registration")
+            get("/registration")
               .param("password", TestConstants.PERSON_A_PASSWORD)
               .param("email", TestConstants.PERSON_A_EMAIL)
               .param("company", TestConstants.PERSON_A_COMPANY)
@@ -107,7 +107,7 @@ public class RegistrationControllerTest {
    @Test
    public void testIndex() throws Exception {
       mockMvc.perform(
-         get("/api/registration").
+         get("/registration").
             accept(MediaType.APPLICATION_JSON))
          .andExpect(status().isBadRequest());
       verifyNoMoreInteractions(tpsServiceMock);

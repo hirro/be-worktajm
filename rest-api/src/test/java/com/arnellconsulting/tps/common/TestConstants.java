@@ -34,7 +34,7 @@ public final class TestConstants {
    public static final Boolean ENABLED = Boolean.TRUE;
    private static final Boolean PERSON_A_EMAIL_VERIFIED = true;
    public static final PersonStatus PERSON_A_STATUS = PersonStatus.NORMAL;
-   public static final String CHECK_EMAIL_PATH = "/api/registration/isEmailAvailable?email=%s";
+   public static final String CHECK_EMAIL_PATH = "/registration/isEmailAvailable?email=%s";
    public static final String COMPANY_A = "company A";
 
    // Person A

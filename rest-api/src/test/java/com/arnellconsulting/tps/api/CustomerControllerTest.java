@@ -98,7 +98,7 @@ public class CustomerControllerTest {
       when(tpsServiceMock.getCustomersForPerson(1)).thenReturn(customers);
 
       mockMvc.perform(
-         post("/api/customer")
+         post("/customer")
             .content(TestConstants.CUSTOMER_A_JSON_CREATE)
             .contentType(MediaType.APPLICATION_JSON)
             .principal(principal))
@@ -113,7 +113,7 @@ public class CustomerControllerTest {
    public void testRead() throws Exception {
       when(tpsServiceMock.getCustomer(1L)).thenReturn(customerA);
       mockMvc.perform(
-         get("/api/customer/1")
+         get("/customer/1")
             .accept(MediaType.APPLICATION_JSON))
          .andExpect(status().isOk())
          .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
@@ -126,7 +126,7 @@ public class CustomerControllerTest {
    @Test
    public void testUpdate() throws Exception {
       mockMvc.perform(
-         put("/api/customer/1")
+         put("/customer/1")
             .content(TestConstants.CUSTOMER_A_JSON_UPDATE)
             .contentType(MediaType.APPLICATION_JSON)
             .principal(principal))
@@ -141,7 +141,7 @@ public class CustomerControllerTest {
    @Test
    public void testDelete() throws Exception {
       mockMvc.perform(
-         delete("/api/customer/1")
+         delete("/customer/1")
             .accept(MediaType.APPLICATION_JSON))
          .andExpect(status().isNoContent());
       verify(tpsServiceMock, times(1)).deleteCustomer(1L);
@@ -152,7 +152,7 @@ public class CustomerControllerTest {
    public void testList() throws Exception {
       when(tpsServiceMock.getCustomersForPerson(1)).thenReturn(customers);
       mockMvc.perform(
-         get("/api/customer")
+         get("/customer")
             .accept(MediaType.APPLICATION_JSON)
             .principal(principal))
          .andExpect(status().isOk());
@@ -174,7 +174,7 @@ public class CustomerControllerTest {
    @Test
    public void testGetInvalidCustomer() throws Exception {
       mockMvc.perform(
-         get("/api/customer/2")
+         get("/customer/2")
             .accept(MediaType.APPLICATION_JSON))
          .andExpect(status().isOk());
 
