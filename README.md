@@ -39,16 +39,16 @@ The backend is written mainly in Java using the bleeding edge components.
 * Mysql/MariaDB
 
 ### Stack
-* Java 7/8
-* Maven 3
-* Jackson for the REST API ( [API version 1](https://github.com/hirro/be-worktajm/blob/master/api.md) )
-* Spring Framework 3 (soon 4)
+* Java 7/8, servlet 3.0.1
+* Spring Framework 4
  * [Spring](www.spring.org)  Spring Data (JPA)
- * [Spring](www.spring.org)  Spring  Security
+ * [Spring](www.spring.org)  Spring Security
+* Jackson for the REST API ( [API version 1](https://github.com/hirro/be-worktajm/blob/master/api.md) )
 * Liquibase for database change management.
 * Lombok (no longer used)
+* Maven 3
 
-## Front end:
+## Front end
 Git: [yo-worktajm](https://github.com/hirro/yo-worktajm)
 
 ### System requirements
@@ -68,6 +68,8 @@ Git: [yo-worktajm](https://github.com/hirro/yo-worktajm)
 ### Continious Integration
 
 * [Travis-CI](https://travis-ci.org/) 
+
+
 
 
 
