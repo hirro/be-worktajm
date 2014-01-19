@@ -10,21 +10,33 @@
    <version>2.0.5.BUILD-SNAPSHOT</version>   
    <packaging>pom</packaging>
    <properties>
-      <bonecp.version>0.7.1.RELEASE</bonecp.version>
-      <h2.version>1.3.172</h2.version>
+      <apache-commons-lang3-version>3.2.1</apache-commons-lang3-version>
+      <bonecp.version>0.8.0.RELEASE</bonecp.version>
+      <commons-dbcp>1.4</commons-dbcp>
+      <easymock-version>3.2</easymock-version>
+      <h2.version>1.3.175</h2.version>
       <hibernate-validator-version>5.0.1.Final</hibernate-validator-version>
-      <hibernate-version>4.2.3.Final</hibernate-version>
+      <hibernate-version>4.3.0.Final</hibernate-version>
+      <jaxb-api-version>2.2.11</jaxb-api-version>
       <jackson.version>2.2.1</jackson.version>
+      <jackson-annotations-version>2.3.0</jackson-annotations-version>
+      <jackson-mapper-version>1.9.13</jackson-mapper-version>
       <junit.version>4.11</junit.version>
-      <logback.version>0.9.26</logback.version>
+      <joda-time-version>2.3</joda-time-version>
+      <joda-time-jsptags-version>1.1.1</joda-time-jsptags-version>
+      <jsp-api-version>2.2.1</jsp-api-version>
+      <jstl-version>1.2</jstl-version>
+      <logback.version>1.0.13</logback.version>
+      <log4j-version>1.2.17</log4j-version>
       <mockito.version>1.9.5</mockito.version>
       <netbeans.hint.license>apache20</netbeans.hint.license>
       <slf4j-version>1.7.5</slf4j-version>
       <slf4j.version>1.7.5</slf4j.version>
-      <servlet-api-version>3.0.1</servlet-api-version>
+      <mysql-connector-java-version>5.1.28</mysql-connector-java-version>
+      <servlet-api-version>3.1.0</servlet-api-version>
       <springdata-version>1.4.3.RELEASE</springdata-version>
       <springframework-version>4.0.0.RELEASE</springframework-version>
-      <springsecurity-version>3.1.3.RELEASE</springsecurity-version>
+      <springsecurity-version>3.2.0.RELEASE</springsecurity-version>
       <thymeleaf-extras-conditionalcomments-version>2.0.0</thymeleaf-extras-conditionalcomments-version>
       <thymeleaf-extras-springsecurity3-version>2.0.0</thymeleaf-extras-springsecurity3-version>
       <thymeleaf-version>2.0.15</thymeleaf-version>
@@ -91,7 +103,7 @@
       <dependency>
          <groupId>joda-time</groupId>
          <artifactId>joda-time</artifactId>
-         <version>2.3</version>
+         <version>${joda-time-version}</version>
       </dependency>
       <dependency>
          <groupId>joda-time</groupId>
@@ -103,7 +115,7 @@
       <dependency>
          <groupId>org.easymock</groupId>
          <artifactId>easymock</artifactId>
-         <version>2.5.2</version>
+         <version>${easymock-version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
@@ -123,13 +135,13 @@
       <dependency>
          <groupId>org.apache.commons</groupId>
          <artifactId>commons-lang3</artifactId>
-         <version>3.1</version>
+         <version>${apache-commons-lang3-version}</version>
          <type>jar</type>
       </dependency>
       <dependency>
          <groupId>commons-dbcp</groupId>
          <artifactId>commons-dbcp</artifactId>
-         <version>1.3</version>
+         <version>${commons-dbcp}</version>
          <exclusions>
             <exclusion>
                <groupId>commons-logging</groupId>
@@ -151,7 +163,7 @@
       <dependency>
          <groupId>log4j</groupId>
          <artifactId>log4j</artifactId>
-         <version>1.2.16</version>
+         <version>${log4j-version}</version>
       </dependency>
       <dependency>
          <groupId>org.slf4j</groupId>
