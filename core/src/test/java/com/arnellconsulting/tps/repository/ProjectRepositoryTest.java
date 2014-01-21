@@ -40,7 +40,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * @author hirro
- */
+ *
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestContext.class, WebAppContext.class, PersistenceContext.class })
 @WebAppConfiguration
@@ -54,15 +54,21 @@ public class ProjectRepositoryTest extends TestCase {
    private transient PersonRepository personRepository;
 
    @Test
-   public void testInsert() {
-      // Create and save person
-      Person person = personRepository.save(TestConstants.createPersonA());      
-      
-      // Create and save project
-      final Project project = TestConstants.createProjectA();
-      project.setPerson(person);
-      final Project persistedProject = projectRepository.save(project);
+   public void test() {
+      // TODO
+   }
 
-      assertEquals(project.getName(), persistedProject.getName());
+   
+   public void testInsert() {
+//      // Create and save person
+//      Person person = personRepository.save(TestConstants.createPersonA());      
+//      
+//      // Create and save project
+//      final Project project = TestConstants.createProjectA();
+//      project.setPerson(person);
+//      final Project persistedProject = projectRepository.save(project);
+//
+//      assertEquals(project.getName(), persistedProject.getName());
    }
 }
+*/

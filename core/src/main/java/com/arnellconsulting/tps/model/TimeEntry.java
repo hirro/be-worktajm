@@ -23,7 +23,6 @@ import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -42,7 +41,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "tps_time_entry")
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TimeEntry extends TpsObject {
+public class TimeEntry extends AbstractTimestampedObject<Long> {
 
    /**
     * Start date and time.

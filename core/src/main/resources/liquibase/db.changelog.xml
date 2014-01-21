@@ -22,8 +22,9 @@
             <constraints primaryKey="true" nullable="false"/>
          </column>
          <column name="created" type="timestamp" defaultValueDate="${now}">
-             <constraints nullable="false" />
+            <constraints nullable="false" />
          </column>         
+         <column name="modified" type="timestamp"/>
          <column name="email" type="varchar(255)">
             <constraints nullable="false"/>
          </column>
@@ -46,10 +47,11 @@
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-        <column name="created" type="timestamp" defaultValueDate="${now}">
-             <constraints nullable="false" />
+         <column name="created" type="timestamp" defaultValueDate="${now}">
+            <constraints nullable="false" />
          </column>         
-          <column name="name" type="char(255)"/>
+         <column name="modified" type="timestamp"/>
+         <column name="name" type="char(255)"/>
          <column name="description" type="char(255)"/>
          <column name="rate" type="decimal(19,2)"/>
       </createTable>
@@ -58,10 +60,11 @@
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-        <column name="created" type="timestamp" defaultValueDate="${now}">
-             <constraints nullable="false" />
+         <column name="created" type="timestamp" defaultValueDate="${now}">
+            <constraints nullable="false" />
          </column>         
-          <column name="name" type="varchar(255)">
+         <column name="modified" type="timestamp"/>
+         <column name="name" type="varchar(255)">
             <constraints nullable="false"/>
          </column>
          <column name="line1" type="char(255)"/>
@@ -77,10 +80,11 @@
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-        <column name="created" type="timestamp" defaultValueDate="${now}">
-             <constraints nullable="false" />
+         <column name="created" type="timestamp" defaultValueDate="${now}">
+            <constraints nullable="false" />
          </column>         
-          <column name="comment" type="char(255)"/>
+         <column name="modified" type="timestamp"/>
+         <column name="comment" type="char(255)"/>
          <column name="end_time" type="datetime"/>
          <column name="start_time" type="datetime"/>
       </createTable>

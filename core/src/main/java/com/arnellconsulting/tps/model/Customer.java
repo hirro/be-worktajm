@@ -34,7 +34,7 @@ import java.util.Collection;
        uniqueConstraints = {
          @UniqueConstraint(columnNames = {"name", "person_id"}, name="idx_customer_person")
        })
-public class Customer extends TpsObject {
+public class Customer extends AbstractTimestampedObject<Long> {
 
    private static final long serialVersionUID = -390230121353660214L;
 

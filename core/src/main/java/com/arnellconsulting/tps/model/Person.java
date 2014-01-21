@@ -37,7 +37,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "tps_person")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Person extends TpsObject {
+public class Person extends AbstractTimestampedObject<Long> {
 
    private static final long serialVersionUID = -3902301243341660214L;
    /**
@@ -89,18 +89,6 @@ public class Person extends TpsObject {
    @JsonIgnore
    private Collection<Project> projects;
 
-   @Column(name = "created", nullable = false)
-   @Temporal(TemporalType.TIMESTAMP)
-   private Date created;
-
-   public Date getCreated() {
-      return created;
-   }
-
-   public void setCreated(final Date createdTimestamp) {
-      this.created = createdTimestamp;
-   }
-   
    public Person() {
       super();
       this.emailVerified = false;

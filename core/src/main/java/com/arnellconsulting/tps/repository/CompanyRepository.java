@@ -25,7 +25,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * Created by jiar on 2013-12-22.
+ * Created by hirro on 2013-12-22.
  */
 public interface CompanyRepository extends JpaRepository<Customer, Long> {
    List<Customer> findByPersonId(long id);

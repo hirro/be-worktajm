@@ -14,14 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-
-
 package com.arnellconsulting.tps.model;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.math.BigDecimal;
 
@@ -31,21 +26,21 @@ import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
 
-
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * Project POJO
- * 
+ *
  * @author hirro
  */
 @Entity
-@Table(name="tps_project",
-        uniqueConstraints={
-           @UniqueConstraint(columnNames = {"name", "person_id"}, name="idx_project_person")
-})
+@Table(name = "tps_project",
+        uniqueConstraints = {
+           @UniqueConstraint(columnNames = {"name", "person_id"}, name = "idx_project_person")
+        })
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Project extends TpsObject {
+public class Project extends AbstractTimestampedObject<Long> {
+
    private static final long serialVersionUID = -3902305943341540214L;
 
    /**
@@ -67,7 +62,7 @@ public class Project extends TpsObject {
    /**
     * Time entries associated to this project.
     */
-   @OneToMany(mappedBy="project")
+   @OneToMany(mappedBy = "project")
    @JsonIgnore
    private Collection<TimeEntry> timeEntries;
 
@@ -75,7 +70,7 @@ public class Project extends TpsObject {
     * The person who owns this project.
     */
    @ManyToOne
-   @JoinColumn(name="person_id")
+   @JoinColumn(name = "person_id")
    @NotNull
    @JsonIgnore
    private Person person;
