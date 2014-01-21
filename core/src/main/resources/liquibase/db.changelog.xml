@@ -43,7 +43,9 @@
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-         <column name="created_timestamp" type="TIMESTAMP"/>
+         <column name="created_timestamp" type="TIMESTAMP" defaultValueNumeric="CURRENT_TIMESTAMP">
+             <constraints nullable="false" />
+         </column>         
          <column name="name" type="char(255)"/>
          <column name="description" type="char(255)"/>
          <column name="rate" type="decimal(19,2)"/>
@@ -53,7 +55,9 @@
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-         <column name="created_timestamp" type="TIMESTAMP"/>
+         <column name="created_timestamp" type="TIMESTAMP" defaultValueNumeric="CURRENT_TIMESTAMP">
+             <constraints nullable="false" />
+         </column>         
          <column name="name" type="varchar(255)">
             <constraints nullable="false"/>
          </column>
@@ -70,7 +74,9 @@
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-         <column name="created_timestamp" type="TIMESTAMP"/>
+         <column name="created_timestamp" type="TIMESTAMP" defaultValueNumeric="CURRENT_TIMESTAMP">
+             <constraints nullable="false" />
+         </column>         
          <column name="comment" type="char(255)"/>
          <column name="end_time" type="datetime"/>
          <column name="start_time" type="datetime"/>

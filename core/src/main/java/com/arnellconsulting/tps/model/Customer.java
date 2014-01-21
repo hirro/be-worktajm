@@ -34,7 +34,7 @@ import java.util.Collection;
        uniqueConstraints = {
          @UniqueConstraint(columnNames = {"name", "person_id"}, name="idx_customer_person")
        })
-public class Customer extends AbstractPersistable<Long> {
+public class Customer extends TpsObject {
 
    private static final long serialVersionUID = -390230121353660214L;
 

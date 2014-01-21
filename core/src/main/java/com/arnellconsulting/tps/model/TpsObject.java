@@ -21,7 +21,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- *
+ * Generic properties for objects.
  * @author jiar
  */
 public class TpsObject extends AbstractPersistable<Long> {
@@ -30,8 +30,12 @@ public class TpsObject extends AbstractPersistable<Long> {
    @Temporal(TemporalType.TIMESTAMP)
    public Date createdTimestamp;
 
-   @PrePersist
-   protected void onCreate() {
-      createdTimestamp = new Date();
+   public Date getCreatedTimestamp() {
+      return createdTimestamp;
    }
+
+   public void setCreatedTimestamp(final Date createdTimestamp) {
+      this.createdTimestamp = createdTimestamp;
+   }
+
 }

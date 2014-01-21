@@ -42,7 +42,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "tps_time_entry")
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TimeEntry extends AbstractPersistable<Long> {
+public class TimeEntry extends TpsObject {
 
    /**
     * Start date and time.
