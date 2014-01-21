@@ -16,9 +16,9 @@
  */
 package com.arnellconsulting.tps.model;
 
+import java.util.Date;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Generic properties for objects.
@@ -26,16 +26,5 @@ import java.util.Date;
  */
 public class TpsObject extends AbstractPersistable<Long> {
 
-   @Column(name = "created_timestamp", nullable = false)
-   @Temporal(TemporalType.TIMESTAMP)
-   public Date createdTimestamp;
-
-   public Date getCreatedTimestamp() {
-      return createdTimestamp;
-   }
-
-   public void setCreatedTimestamp(final Date createdTimestamp) {
-      this.createdTimestamp = createdTimestamp;
-   }
 
 }

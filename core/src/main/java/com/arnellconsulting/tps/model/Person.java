@@ -22,6 +22,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -88,6 +89,18 @@ public class Person extends TpsObject {
    @JsonIgnore
    private Collection<Project> projects;
 
+   @Column(name = "created", nullable = false)
+   @Temporal(TemporalType.TIMESTAMP)
+   private Date created;
+
+   public Date getCreated() {
+      return created;
+   }
+
+   public void setCreated(final Date createdTimestamp) {
+      this.created = createdTimestamp;
+   }
+   
    public Person() {
       super();
       this.emailVerified = false;

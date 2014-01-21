@@ -18,6 +18,7 @@
 package com.arnellconsulting.tps.repository;
 
 import com.arnellconsulting.tps.model.Person;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,6 +31,11 @@ import org.springframework.data.jpa.repository.Query;
 public interface PersonRepository extends JpaRepository<Person, Long> {
    public Person findByEmail(String email);
    
-   @Query("SELECT p FROM Person p WHERE p.email LIKE '%protractor.org'")
-   public List<Person> findIntegrationTestPersons();
+   /**
+    * Used to find users to clean up (created by e2e tests).
+    * @param date entries older than this will be deleted.
+    * @param suffix the suffix that e2e test users have.
+    * @return list of persons that should be deleted.
+    */
+   public List<Person> findByCreatedBeforeAndEmailEndingWith(Date date, String suffix);
 }

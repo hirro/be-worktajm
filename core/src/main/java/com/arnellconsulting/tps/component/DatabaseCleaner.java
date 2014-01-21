@@ -19,7 +19,9 @@ package com.arnellconsulting.tps.component;
 
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.repository.PersonRepository;
+import java.util.Date;
 import java.util.List;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
 
 import org.slf4j.Logger;
@@ -36,6 +38,7 @@ public class DatabaseCleaner {
 
    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseCleaner.class);
    private static final long CLEANUP_RATE = 60 * 1000;
+   private static final String E2E_EMAIL_SUFFIX = "@protractor.org";
 
    private final transient PersonRepository repository;
 
@@ -46,8 +49,9 @@ public class DatabaseCleaner {
 
    @Scheduled(fixedRate=CLEANUP_RATE)
    public void cleanIntegrationTests() {
-      LOGGER.debug("cleanIntegrationTests");
-      List<Person> persons = repository.findIntegrationTestPersons();
+      Date date = DateTime.now().minusHours(1).toDate();
+      List<Person> persons = repository.findByCreatedBeforeAndEmailEndingWith(date, E2E_EMAIL_SUFFIX);
+      LOGGER.debug("cleanIntegrationTests - Found [{}] integration test users to remove (older than {})", persons.size(), date);
       repository.deleteInBatch(persons);
    }
 }

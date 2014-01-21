@@ -7,18 +7,21 @@
    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+   <property name="now" value="sysdate" dbms="oracle"/>
+   <property name="now" value="CURRENT_TIMESTAMP" dbms="mysql"/>
+   
    <preConditions>
       <runningAs username="tps"/>
    </preConditions>
 
    <!-- Add all the initial tables without foreign keys -->
    <changeSet id="1" author="hirro">
-       
+             
       <createTable tableName="tps_person">
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-         <column name="created_timestamp" type="TIMESTAMP" defaultValueNumeric="CURRENT_TIMESTAMP">
+         <column name="created" type="timestamp" defaultValueDate="${now}">
              <constraints nullable="false" />
          </column>         
          <column name="email" type="varchar(255)">
@@ -43,10 +46,10 @@
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-         <column name="created_timestamp" type="TIMESTAMP" defaultValueNumeric="CURRENT_TIMESTAMP">
+        <column name="created" type="timestamp" defaultValueDate="${now}">
              <constraints nullable="false" />
          </column>         
-         <column name="name" type="char(255)"/>
+          <column name="name" type="char(255)"/>
          <column name="description" type="char(255)"/>
          <column name="rate" type="decimal(19,2)"/>
       </createTable>
@@ -55,10 +58,10 @@
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-         <column name="created_timestamp" type="TIMESTAMP" defaultValueNumeric="CURRENT_TIMESTAMP">
+        <column name="created" type="timestamp" defaultValueDate="${now}">
              <constraints nullable="false" />
          </column>         
-         <column name="name" type="varchar(255)">
+          <column name="name" type="varchar(255)">
             <constraints nullable="false"/>
          </column>
          <column name="line1" type="char(255)"/>
@@ -74,10 +77,10 @@
          <column name="id" type="bigint" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
          </column>
-         <column name="created_timestamp" type="TIMESTAMP" defaultValueNumeric="CURRENT_TIMESTAMP">
+        <column name="created" type="timestamp" defaultValueDate="${now}">
              <constraints nullable="false" />
          </column>         
-         <column name="comment" type="char(255)"/>
+          <column name="comment" type="char(255)"/>
          <column name="end_time" type="datetime"/>
          <column name="start_time" type="datetime"/>
       </createTable>
