@@ -28,7 +28,6 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ import java.util.List;
  *
  * @author hirro
  */
-@Controller
+@RestController
 @RequestMapping("project")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class ProjectController extends BaseController {
@@ -56,7 +56,6 @@ public class ProjectController extends BaseController {
 
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
-   @ResponseBody
    public List<Project> list(final Principal principal) throws InterruptedException, AccessDeniedException {
       LOG.debug("list");
       final Person person = getAuthenticatedPerson(principal);
@@ -65,7 +64,6 @@ public class ProjectController extends BaseController {
 
    @Transactional
    @RequestMapping(method = RequestMethod.POST)
-   @ResponseBody
    public Project create(@RequestBody final Project project,
                          final Principal principal) throws AccessDeniedException {
       LOG.debug("create: {}", project.toString());

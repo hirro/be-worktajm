@@ -14,22 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package com.arnellconsulting.tps.model;
 
-package com.arnellconsulting.tps.repository;
-
-import com.arnellconsulting.tps.model.Person;
-import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  *
- * @author hirro
+ * @author jiar
  */
-public interface PersonRepository extends JpaRepository<Person, Long> {
-   public Person findByEmail(String email);
-   
-   @Query("SELECT p FROM Person p WHERE p.email LIKE '%protractor.org'")
-   public List<Person> findIntegrationTestPersons();
+public class TpsObject extends AbstractPersistable<Long> {
+
+   @Column(name = "created_timestamp", nullable = false)
+   @Temporal(TemporalType.TIMESTAMP)
+   public Date createdTimestamp;
+
+   @PrePersist
+   protected void onCreate() {
+      createdTimestamp = new Date();
+   }
 }

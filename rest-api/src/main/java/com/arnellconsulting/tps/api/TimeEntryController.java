@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
@@ -49,7 +49,7 @@ import org.joda.time.DateTime;
  *
  * @author hirro
  */
-@Controller
+@RestController
 @RequestMapping("timeEntry")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class TimeEntryController extends BaseController {
@@ -70,7 +70,6 @@ public class TimeEntryController extends BaseController {
     */
    @Transactional
    @RequestMapping(method = RequestMethod.POST, headers = { "Accept=application/json" })
-   @ResponseBody
    @Secured("ROLE_USER")
    public TimeEntry create(@RequestBody final TimeEntry timeEntry, final Principal principal) throws AccessDeniedException {
       // Logged in person
@@ -111,7 +110,6 @@ public class TimeEntryController extends BaseController {
     */
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
-   @ResponseBody
    @Secured("ROLE_USER")
    public List<TimeEntry> list(@RequestParam(value = "from", required = false) final String fromDate,
                                @RequestParam(value = "to", required = false) final String toDate,
@@ -145,7 +143,6 @@ public class TimeEntryController extends BaseController {
     */
    @Transactional
    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-   @ResponseBody
    @Secured("ROLE_USER")
    public TimeEntry read(@PathVariable final long id, final Principal principal) throws AccessDeniedException {
       final Person person = getAuthenticatedPerson(principal);

@@ -36,7 +36,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "tps_person")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Person extends AbstractPersistable<Long> {
+public class Person extends TpsObject {
 
    private static final long serialVersionUID = -3902301243341660214L;
    /**
@@ -54,7 +54,7 @@ public class Person extends AbstractPersistable<Long> {
    /**
     * One person may have one or more time entries.
     */
-   @OneToMany(mappedBy="person")
+   @OneToMany(mappedBy="person", cascade=CascadeType.ALL)
    @JsonIgnore
    private Collection<TimeEntry> timeEntries;
 
@@ -84,7 +84,7 @@ public class Person extends AbstractPersistable<Long> {
    /**
     * The projects owned by the person.
     */
-   @OneToMany(mappedBy="person")
+   @OneToMany(mappedBy="person", cascade=CascadeType.ALL)
    @JsonIgnore
    private Collection<Project> projects;
 

@@ -28,7 +28,6 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ import java.util.List;
  *
  * @author hirro
  */
-@Controller
+@RestController
 @RequestMapping("customer")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class CustomerController extends BaseController {
@@ -56,7 +56,6 @@ public class CustomerController extends BaseController {
 
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
-   @ResponseBody
    public List<Customer> list(final Principal principal) throws InterruptedException, AccessDeniedException {
       LOG.debug("list");
       final Person person = getAuthenticatedPerson(principal);
@@ -65,7 +64,6 @@ public class CustomerController extends BaseController {
 
    @Transactional
    @RequestMapping(method = RequestMethod.POST)
-   @ResponseBody
    public Customer create(@RequestBody final Customer customer,
                          final Principal principal) throws AccessDeniedException {
       LOG.debug("create: {}", customer.toString());
@@ -84,7 +82,6 @@ public class CustomerController extends BaseController {
            value = "/{id}",
            method = RequestMethod.GET
    )
-   @ResponseBody
    public Customer read(@PathVariable final long id) {
       LOG.debug("read id: {}", id);
 

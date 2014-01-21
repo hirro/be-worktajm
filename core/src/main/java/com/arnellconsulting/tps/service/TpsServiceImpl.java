@@ -154,10 +154,5 @@ public class TpsServiceImpl implements TpsService {
    public void saveTimeEntry(final TimeEntry person) {
       timeEntryRepository.save(person);
    }
-   
-   @Scheduled(fixedRate=60000)
-   public void doSomething() {
-       LOG.debug("Scheduled job");
-   }   
 
 }

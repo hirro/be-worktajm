@@ -29,7 +29,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ import java.util.List;
  *
  * @author hirro
  */
-@Controller
+@RestController
 @RequestMapping("/person")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
 public class PersonController {
@@ -70,7 +70,6 @@ public class PersonController {
     */
    @Transactional
    @RequestMapping(method = RequestMethod.POST, headers = { "Accept=application/json" })
-   @ResponseBody
    @Secured("ROLE_ADMIN")
    public Person create(@RequestBody final Person person) {
       LOG.debug("create");
@@ -102,7 +101,6 @@ public class PersonController {
     */
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
-   @ResponseBody
    @Secured("ROLE_ADMIN")
    public List<Person> list() {
       LOG.debug("list");
@@ -117,7 +115,6 @@ public class PersonController {
     */
    @Transactional
    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-   @ResponseBody
    @Secured("ROLE_USER")
    public Person read(@PathVariable final long id) {
       LOG.debug("read id: {}", id);
