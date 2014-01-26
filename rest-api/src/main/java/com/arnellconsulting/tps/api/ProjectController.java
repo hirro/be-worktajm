@@ -98,7 +98,7 @@ public class ProjectController extends BaseController {
    public void update(@PathVariable final Long id,
                          @RequestBody final Project project,
                          final Principal principal) throws AccessDeniedException {
-      LOG.debug("update name: {}");
+      LOG.debug("update name: {}", project.getName());
 
       // Project must belong to a person
       final Person person = getAuthenticatedPerson(principal);
