@@ -83,7 +83,7 @@ public class ProjectController extends BaseController {
       method = RequestMethod.GET
    )
    @ResponseBody
-   public Project read(@PathVariable final long id) {
+   public Project read(@PathVariable final Long id) {
       LOG.debug("read id: {}", id);
 
       return tpsService.getProject(id);
@@ -95,7 +95,7 @@ public class ProjectController extends BaseController {
       method = RequestMethod.PUT
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void update(@PathVariable final long id,
+   public void update(@PathVariable final Long id,
                          @RequestBody final Project project,
                          final Principal principal) throws AccessDeniedException {
       LOG.debug("update name: {}");
@@ -111,7 +111,7 @@ public class ProjectController extends BaseController {
       method = RequestMethod.DELETE
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void delete(@PathVariable final long id) {
+   public void delete(@PathVariable final Long id) {
       LOG.debug("delete id: {}", id);
       tpsService.deleteProject(id);
    }

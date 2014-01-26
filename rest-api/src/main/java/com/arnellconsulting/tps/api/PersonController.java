@@ -90,7 +90,7 @@ public class PersonController {
    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
    @ResponseStatus(HttpStatus.NO_CONTENT)
    @Secured("ROLE_ADMIN")
-   public void delete(@PathVariable final long id) {
+   public void delete(@PathVariable final Long id) {
       LOG.debug("delete id: {}", id);
       tpsService.deletePerson(id);
    }
@@ -116,7 +116,7 @@ public class PersonController {
    @Transactional
    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
    @Secured("ROLE_USER")
-   public Person read(@PathVariable final long id) {
+   public Person read(@PathVariable final Long id) {
       LOG.debug("read id: {}", id);
 
       final Authentication auth = SecurityContextHolder.getContext().getAuthentication();

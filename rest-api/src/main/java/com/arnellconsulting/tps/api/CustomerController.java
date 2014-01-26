@@ -82,7 +82,7 @@ public class CustomerController extends BaseController {
            value = "/{id}",
            method = RequestMethod.GET
    )
-   public Customer read(@PathVariable final long id) {
+   public Customer read(@PathVariable final Long id) {
       LOG.debug("read id: {}", id);
 
       return tpsService.getCustomer(id);
@@ -94,7 +94,7 @@ public class CustomerController extends BaseController {
            method = RequestMethod.PUT
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void update(@PathVariable final long id,
+   public void update(@PathVariable final Long id,
                       @RequestBody final Customer customer,
                       final Principal principal) throws AccessDeniedException {
       LOG.debug("update name: {}");
@@ -111,7 +111,7 @@ public class CustomerController extends BaseController {
            method = RequestMethod.DELETE
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
-   public void delete(@PathVariable final long id) {
+   public void delete(@PathVariable final Long id) {
       LOG.debug("delete id: {}", id);
       tpsService.deleteCustomer(id);
    }

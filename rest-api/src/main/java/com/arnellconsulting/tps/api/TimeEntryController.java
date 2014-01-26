@@ -92,7 +92,7 @@ public class TimeEntryController extends BaseController {
    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
    @ResponseStatus(HttpStatus.NO_CONTENT)
    @Secured("ROLE_USER")
-   public void delete(@PathVariable final long id, final Principal principal) throws AccessDeniedException {
+   public void delete(@PathVariable final Long id, final Principal principal) throws AccessDeniedException {
       // Logged in person
       final Person person = getAuthenticatedPerson(principal);
 
@@ -144,7 +144,7 @@ public class TimeEntryController extends BaseController {
    @Transactional
    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
    @Secured("ROLE_USER")
-   public TimeEntry read(@PathVariable final long id, final Principal principal) throws AccessDeniedException {
+   public TimeEntry read(@PathVariable final Long id, final Principal principal) throws AccessDeniedException {
       final Person person = getAuthenticatedPerson(principal);
 
       LOG.debug("read id: {} as user: {}", id, person.getId());
@@ -173,7 +173,7 @@ public class TimeEntryController extends BaseController {
    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
    @ResponseStatus(HttpStatus.NO_CONTENT)
    @Secured("ROLE_USER")
-   public void update(@PathVariable final long id,
+   public void update(@PathVariable final Long id,
                       @RequestBody final TimeEntry timeEntry,
                       final Principal principal)
            throws AccessDeniedException, InvalidParameterExeception {
