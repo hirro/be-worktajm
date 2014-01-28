@@ -14,7 +14,7 @@
       <runningAs username="tps"/>
    </preConditions>
 
-   <!-- Add all the initial tables without foreign keys -->
+   <!-- Add all the plain tables without foreign keys -->
    <changeSet id="1" author="hirro">
              
       <createTable tableName="tps_person">
@@ -90,7 +90,9 @@
       </createTable>
    </changeSet>
 
-   <!-- One project has one person -->
+   <!-- 
+      Person (1) -> (*) Project, Cascade onDelete
+   -->
    <changeSet id="2" author="hirro">
 
       <addColumn tableName="tps_project">
@@ -114,11 +116,13 @@
          referencedColumnNames="id"
          referencedTableName="tps_person"
          onDelete="CASCADE"
-         referencedTableSchemaName="tps"/>        
-
+         referencedTableSchemaName="tps"/>
    </changeSet>
 
-   <!-- One customer has one person -->    
+   <!-- 
+      Person (1) -> (*) Customer, Cascade onDelete
+      Deleting the person will delete the customer (for now since sharing isn't supported)
+   -->
    <changeSet id="3" author="hirro">
       <addColumn tableName="tps_customer">
          <column name="person_id" type="bigint"/>
@@ -139,10 +143,13 @@
          constraintName="fk_customer_person"
          referencedColumnNames="id"
          referencedTableName="tps_person"
+         onDelete="CASCADE"         
          referencedTableSchemaName="tps"/>    
    </changeSet>
 
-   <!-- One time entry has one person and one project -->
+   <!-- 
+      Person (1) -> (*) TimeEntry, Cascade onDelete
+   -->
    <changeSet id="4" author="hirro">
       <addColumn tableName="tps_time_entry">
          <column name="person_id" type="bigint"/>
@@ -155,6 +162,7 @@
          constraintName="fk_time_entry_person"
          referencedColumnNames="id"
          referencedTableName="tps_person"
+         onDelete="CASCADE"
          referencedTableSchemaName="tps"/>        
       <addForeignKeyConstraint 
          baseColumnNames="project_id"
@@ -163,10 +171,14 @@
          constraintName="fk_time_entry_project"
          referencedColumnNames="id"
          referencedTableName="tps_project"
+         onDelete="CASCADE"
          referencedTableSchemaName="tps"/>   
    </changeSet>
     
-   <!-- One person has one active project (TODO : unnecessary imho) -->
+   <!--
+      One person has one active project 
+      (FIXME : can be derived from existing data)
+   -->
    <changeSet id="5" author="hirro">
       <addColumn tableName="tps_person">
          <column name="active_time_entry_id" type="bigint"/>
@@ -181,13 +193,14 @@
          referencedTableSchemaName="tps"/>    
    </changeSet>
 
-   <!-- One time entry has one person and one project -->
+   <!-- Customer property invoice period which defines when invoices should be auto generated. -->
    <changeSet id="6" author="hirro">
       <addColumn tableName="tps_customer">
          <column name="invoice_period" type="char(10)"/>
       </addColumn>
    </changeSet>          
-    
+   
+   <!-- This is a default user -->
    <changeSet id="7" author="hirro">
       <insert tableName="tps_person" schemaName="tps">
          <column name="email" value="jim@arnellconsulting.com"/>
