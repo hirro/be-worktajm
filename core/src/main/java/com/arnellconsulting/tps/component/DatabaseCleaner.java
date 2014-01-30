@@ -53,5 +53,11 @@ public class DatabaseCleaner {
       List<Person> persons = repository.findByCreatedBeforeAndEmailEndingWith(date, E2E_EMAIL_SUFFIX);
       LOGGER.debug("cleanIntegrationTests - Found [{}] integration test users to remove (older than {})", persons.size(), date);
       repository.deleteInBatch(persons);
+      
+      // XXX
+      Runnable runnable = () -> { LOGGER.debug("Running from Lambda"); };
+      Thread t = new Thread(runnable);
+      t.start();
+      
    }
 }
