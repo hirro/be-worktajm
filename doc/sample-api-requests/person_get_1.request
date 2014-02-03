@@ -20,8 +20,12 @@
 	<array/>
 	<key>parametersType</key>
 	<integer>0</integer>
+	<key>password</key>
+	<string>password</string>
 	<key>presentBeforeChallenge</key>
 	<false/>
+	<key>shouldStorePassword</key>
+	<true/>
 	<key>stringEncoding</key>
 	<integer>4</integer>
 	<key>username</key>

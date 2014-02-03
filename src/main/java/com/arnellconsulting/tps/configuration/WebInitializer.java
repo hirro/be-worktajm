@@ -15,6 +15,13 @@
  */
 package com.arnellconsulting.tps.configuration;
 
+import com.arnellconsulting.tps.cors.CORSFilter;
+import java.util.EnumSet;
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -22,13 +29,6 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
-import java.util.EnumSet;
-import javax.servlet.DispatcherType;
-import javax.servlet.FilterRegistration;
 
 /**
  * @author Jim Arnell
@@ -45,7 +45,9 @@ public class WebInitializer implements WebApplicationInitializer {
       AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
       rootContext.register(WorktajmApplicationContext.class);
 
-      ServletRegistration.Dynamic dispatcher = servletContext.addServlet(DISPATCHER_SERVLET_NAME, new DispatcherServlet(rootContext));
+      ServletRegistration.Dynamic dispatcher = servletContext.addServlet(
+         DISPATCHER_SERVLET_NAME, 
+         new DispatcherServlet(rootContext));
       dispatcher.setLoadOnStartup(1);
       dispatcher.addMapping(DISPATCHER_SERVLET_MAPPING);
 
@@ -63,6 +65,10 @@ public class WebInitializer implements WebApplicationInitializer {
       // Spring Security
       FilterRegistration.Dynamic security = servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy());
       security.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
+      
+      // CORS
+      FilterRegistration.Dynamic corsFilter = servletContext.addFilter("corsFilter", CORSFilter.class);
+      corsFilter.addMappingForUrlPatterns(null, false, "/*");      
 
       servletContext.addListener(new ContextLoaderListener(rootContext));
    }
