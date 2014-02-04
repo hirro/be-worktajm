@@ -32,7 +32,7 @@ public class CORSInterceptor extends HandlerInterceptorAdapter {
    
    @Override
    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-      LOG.debug("preHandle");
+      LOG.debug("yyyyyyyyyyyyyyyyyyyy - preHandle");
       String origin = request.getHeader("Origin");
       response.addHeader("Access-Control-Allow-Origin", origin);
       return true;

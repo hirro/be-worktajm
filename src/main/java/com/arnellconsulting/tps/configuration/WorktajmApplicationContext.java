@@ -40,11 +40,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @PropertySource("classpath:application.properties")
 public class WorktajmApplicationContext extends WebMvcConfigurerAdapter {
   
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new CORSInterceptor());
-    }
-
     @Bean
     public PropertySourcesPlaceholderConfigurer propertyPlaceHolderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();

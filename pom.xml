@@ -160,6 +160,29 @@
                   <additionalClasspathDir>${project.basedir}/profiles/${build.profile.id}</additionalClasspathDir>
                </additionalClasspathDirs>
                <additionalConfigFilesDir>${project.basedir}/profiles/${build.profile.id}</additionalConfigFilesDir>
+               <!-- Enable loggging -->
+                <extraDependencies>
+                  <dependency>
+                     <groupId>org.slf4j</groupId>
+                     <artifactId>slf4j-api</artifactId>
+                     <version>${slf4j.version}</version>
+                  </dependency>
+                  <dependency>
+                     <groupId>org.slf4j</groupId>
+                     <artifactId>jul-to-slf4j</artifactId>
+                     <version>${slf4j.version}</version>
+                  </dependency>
+                  <dependency>
+                     <groupId>ch.qos.logback</groupId>
+                     <artifactId>logback-classic</artifactId>
+                     <version>${logback.version}</version>
+                  </dependency>
+                  <dependency>
+                     <groupId>ch.qos.logback</groupId>
+                     <artifactId>logback-core</artifactId>
+                     <version>${logback.version}</version>
+                  </dependency>
+               </extraDependencies>
             </configuration>
          </plugin>
          <plugin>

@@ -82,9 +82,9 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic()
-            .and()
-                .authorizeRequests()
-                .antMatchers("/**").hasRole("USER");
+               .and()
+                  .authorizeRequests()
+                  .antMatchers("/**").permitAll();
     }
    
     @Bean
