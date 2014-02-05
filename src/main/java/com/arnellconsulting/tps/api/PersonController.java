@@ -20,6 +20,7 @@ package com.arnellconsulting.tps.api;
 
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.service.TpsService;
+import java.security.Principal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+
 
 /**
  * JSON API for Person.
@@ -49,7 +50,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/person")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
-public class PersonController {
+public class PersonController extends BaseController {
 
    private static final Logger LOG = LoggerFactory.getLogger(PersonController.class);
 
@@ -95,16 +96,17 @@ public class PersonController {
    }
 
    /**
-    * Find all persons belonging to the organization of the logged in administrator.
+    * Get the currently logged in person.
+    * @param principal
     * @return list of persons
+    * @throws com.arnellconsulting.tps.api.AccessDeniedException
     */
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
-   @Secured("ROLE_ADMIN")
-   public List<Person> list() {
-      LOG.debug("list");
-
-      return tpsService.getPersons();
+   public Person get(final Principal principal) throws AccessDeniedException {
+      LOG.debug("get");
+      final Person person = getAuthenticatedPerson(principal);
+      return person;
    }
 
    /**

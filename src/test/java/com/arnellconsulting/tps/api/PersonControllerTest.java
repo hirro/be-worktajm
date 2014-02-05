@@ -29,6 +29,7 @@ import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
 
 import org.junit.Before;
@@ -49,6 +50,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 /**
  *
@@ -67,8 +69,10 @@ public class PersonControllerTest {
    private transient Person person;
    private transient List<Person> persons;
 
-   //~--- methods -------------------------------------------------------------
-
+   @Autowired
+   private transient PersonUserDetails personUserDetails;
+   private UsernamePasswordAuthenticationToken principal;
+   
    @Before
    public void prepare() {
 
@@ -80,6 +84,15 @@ public class PersonControllerTest {
       person = TestConstants.createPersonA();
       persons = new ArrayList<Person>();
       persons.add(person);
+
+      when(personUserDetails.getPerson()).thenReturn(person);
+      UsernamePasswordAuthenticationToken token;
+      token = new UsernamePasswordAuthenticationToken(
+         TestConstants.PERSON_A_EMAIL, 
+         TestConstants.PERSON_A_PASSWORD);
+      principal = spy(token);
+      when(principal.getPrincipal()).thenReturn(personUserDetails);
+      
    }
 
    @Test
@@ -101,10 +114,12 @@ public class PersonControllerTest {
    }
 
    @Test
-   public void testList() throws Exception {
-      when(tpsServiceMock.getPersons()).thenReturn(persons);
-      mockMvc.perform(get("/person").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-      verify(tpsServiceMock, times(1)).getPersons();
+   public void testGet() throws Exception {
+      mockMvc.perform(
+         get("/person")
+            .accept(MediaType.APPLICATION_JSON)
+            .principal(principal)
+      ).andExpect(status().isOk());
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
