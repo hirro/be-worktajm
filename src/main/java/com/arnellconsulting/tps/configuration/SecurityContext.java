@@ -27,14 +27,21 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * <code>
+ * 
  * <security:global-method-security secured-annotations="enabled"/>
- * <security:http realm="Protected API" use-expressions="true" auto-config="false" create-session="stateless"
- * entry-point-ref="unauthorizedEntryPoint" authentication-manager-ref="authenticationManager">
- * <security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
+ * <security:http realm="Protected API" 
+ *                use-expressions="true" 
+ *                auto-config="false" 
+ *                create-session="stateless"
+ *                entry-point-ref="unauthorizedEntryPoint" 
+ *                authentication-manager-ref="authenticationManager">
+ * <security:custom-filter ref="authenticationTokenProcessingFilter" 
+ *                         position="FORM_LOGIN_FILTER" />
  * <security:intercept-url pattern="/registration/**" access="permitAll"/>
  * <security:intercept-url pattern="/authenticate/**" access="permitAll"/>
  * <security:intercept-url method="GET" pattern="/person/**" access="isAuthenticated()"/>
@@ -47,13 +54,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * /security:authentication-provider>
  * </security:authentication-manager>
  *
- * <bean id="unauthorizedEntryPoint" class="com.arnellconsulting.tps.security.UnauthorizedEntryPoint" />
- * <bean id="customUserDetailsService" class="com.arnellconsulting.tps.security.TpsUserDetailsService"/>
- * <bean class="com.arnellconsulting.tps.security.AuthenticationTokenProcessingFilter"
- * id="authenticationTokenProcessingFilter">
- * <constructor-arg ref="authenticationManager" />
- * <constructor-arg ref="customUserDetailsService" />
+ * <bean id="unauthorizedEntryPoint" 
+ *       class="com.arnellconsulting.tps.security.UnauthorizedEntryPoint" />
+ * <bean id="customUserDetailsService" 
+ *       class="com.arnellconsulting.tps.security.TpsUserDetailsService"/>
+ * <bean id="authenticationTokenProcessingFilter"
+ *       class="com.arnellconsulting.tps.security.AuthenticationTokenProcessingFilter">
+ *    <constructor-arg ref="authenticationManager" />
+ *    <constructor-arg ref="customUserDetailsService" />
  * </bean>
+ * 
  * </code>
  *
  * @author jiar
@@ -68,6 +78,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
    @Override
    public void configure(WebSecurity web) throws Exception {
       web
+              .debug(true)
               //Spring Security ignores request to static resources such as CSS or JS files.
               .ignoring()
               .antMatchers("/static/**");
@@ -81,10 +92,10 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic()
-               .and()
-                  .authorizeRequests()
-                  .antMatchers("/**").permitAll();
+        http.csrf().disable()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .httpBasic().and()
+            .authorizeRequests().antMatchers("/**").permitAll();
     }
    
     @Bean
