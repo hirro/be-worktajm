@@ -56,15 +56,17 @@ public class AuthenticationController extends BaseController {
     *
     * @param principal the authenticated principal
     * @return created person
+    * @throws com.arnellconsulting.tps.api.AccessDeniedException
     */
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
    @Secured("ROLE_USER")
-   public AuthenticationToken authentcate(final Principal principal) throws AccessDeniedException {
+   public AuthenticationToken authenticate(final Principal principal) throws AccessDeniedException {
       LOG.debug("authenticate");
       final Person person = getAuthenticatedPerson(principal);
+      LOG.debug("User id {}", person.getId());
 
-      return new AuthenticationToken(person.getId());
+      return new AuthenticationToken(person);
    }
 
 }

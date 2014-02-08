@@ -100,7 +100,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
             .httpBasic()
          .and()
             .authorizeRequests()
-               .antMatchers("/authorize").permitAll()
+               .antMatchers("/authenticate").authenticated()
                .antMatchers("/**").permitAll();
     }
    

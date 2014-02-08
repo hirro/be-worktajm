@@ -19,6 +19,8 @@ package com.arnellconsulting.tps.api;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.security.PersonUserDetails;
 import java.security.Principal;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 
 /**
@@ -27,6 +29,8 @@ import org.springframework.security.core.Authentication;
  */
 public class BaseController {
 
+   private static final Logger LOG = LoggerFactory.getLogger(BaseController.class);
+   
    Person getAuthenticatedPerson(final Principal principal) throws AccessDeniedException {
       Person person = null;
       
@@ -38,7 +42,9 @@ public class BaseController {
          }
       }
       if (person == null) {
-         throw new AccessDeniedException("Failed to map principal to person");
+         String error = "Failed to get principal";
+         LOG.info(error);
+         throw new AccessDeniedException(error);
       }
       return person;
    }

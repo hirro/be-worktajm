@@ -16,19 +16,27 @@
 
 package com.arnellconsulting.tps.security;
 
+import com.arnellconsulting.tps.model.Person;
+
 /**
  * Contains information retrieved during authentication.
  * 
  * @author jiar
  */
 public class AuthenticationToken {
-   private final Long personId;
+   private final Long id;
+   private final String email;
    
-   public AuthenticationToken(final long personId) {
-      this.personId = personId;      
+   public AuthenticationToken(final Person person) {
+      this.id = person.getId();
+      this.email = person.getEmail();
    }
    
-   public final long getPersonId() {
-      return personId;
+   public final long getId() {
+      return id;
+   }
+   
+   public final String getEmail() {
+      return email;
    }
 }
