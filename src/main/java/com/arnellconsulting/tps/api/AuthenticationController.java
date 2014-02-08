@@ -18,13 +18,13 @@
 package com.arnellconsulting.tps.api;
 
 import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.security.AuthenticationToken;
 import com.arnellconsulting.tps.service.TpsService;
 import java.security.Principal;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,11 +59,12 @@ public class AuthenticationController extends BaseController {
     */
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
-   public Person authentcate(final Principal principal) throws AccessDeniedException {
+   @Secured("ROLE_USER")
+   public AuthenticationToken authentcate(final Principal principal) throws AccessDeniedException {
       LOG.debug("authenticate");
       final Person person = getAuthenticatedPerson(principal);
 
-      return person;
+      return new AuthenticationToken(person.getId());
    }
 
 }

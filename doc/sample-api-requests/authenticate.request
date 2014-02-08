@@ -17,30 +17,15 @@
 	<key>paramBodyUIChoice</key>
 	<integer>0</integer>
 	<key>parameters</key>
-	<array>
-		<dict>
-			<key>inUse</key>
-			<true/>
-			<key>parameter</key>
-			<string>username</string>
-			<key>value</key>
-			<string>jim@arnellconsulting.com</string>
-		</dict>
-		<dict>
-			<key>inUse</key>
-			<true/>
-			<key>parameter</key>
-			<string>password</string>
-			<key>value</key>
-			<string>password</string>
-		</dict>
-	</array>
+	<array/>
 	<key>parametersType</key>
 	<integer>0</integer>
 	<key>presentBeforeChallenge</key>
 	<false/>
 	<key>stringEncoding</key>
 	<integer>4</integer>
+	<key>username</key>
+	<string>demo@worktajm.com</string>
 	<key>usingHTTPBody</key>
 	<false/>
 </dict>
