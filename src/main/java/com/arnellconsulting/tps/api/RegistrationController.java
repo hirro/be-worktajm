@@ -20,20 +20,18 @@
 package com.arnellconsulting.tps.api;
 
 import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.rest.Registration;
 import com.arnellconsulting.tps.service.TpsService;
-
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Handles registration of new users.
@@ -52,31 +50,28 @@ public class RegistrationController {
    //~--- methods -------------------------------------------------------------
 
    @Transactional
-   @RequestMapping(method = RequestMethod.GET)
-   public String create(@RequestParam(value = "email", required = false) final String email,
-                        @RequestParam(value = "password", required = false) final String password,
-                        @RequestParam(value = "company", required = false) final String company)
-           throws Exception {
-      LOG.debug("create: email {}, password: {}, company: {}  ", email, password, company);
+   @RequestMapping(method = RequestMethod.POST)
+   public String create(@RequestBody final Registration registration) throws Exception {
+      LOG.debug("create: email {}, ...", registration.getEmail());
 
       // Check all required values
-      if (email == null) {
+      if (registration.getEmail() == null) {
          LOG.warn("Email must be specified");
          throw new InvalidParameterExeception("Person must be specified!");
       }
 
       // Check uniqueness
-      if (tpsService.findPersonByEmail(email) != null) {
+      if (tpsService.findPersonByEmail(registration.getEmail()) != null) {
          throw new InvalidParameterExeception("Email is already registered");
       }
 
       // Normal processing
       final Person person = new Person();
 
-      person.setEmail(email);
-      person.setLastName("Last name");
-      person.setFirstName("First name");
-      person.setPassword(password);
+      person.setEmail(registration.getEmail());
+      person.setLastName(registration.getLastName());
+      person.setFirstName(registration.getFirstName());
+      person.setPassword(registration.getPassword());
 
       tpsService.savePerson(person);
 

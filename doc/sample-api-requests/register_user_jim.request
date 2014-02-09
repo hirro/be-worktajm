@@ -11,7 +11,7 @@
 	<key>headers</key>
 	<array/>
 	<key>httpMethod</key>
-	<string>GET</string>
+	<string>POST</string>
 	<key>jsonpScript</key>
 	<string></string>
 	<key>paramBodyUIChoice</key>
@@ -44,7 +44,7 @@
 		</dict>
 	</array>
 	<key>parametersType</key>
-	<integer>0</integer>
+	<integer>1</integer>
 	<key>presentBeforeChallenge</key>
 	<false/>
 	<key>stringEncoding</key>
