@@ -15,6 +15,7 @@
       <bonecp.version>0.8.0.RELEASE</bonecp.version>
       <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
       <commons-dbcp.version>1.4</commons-dbcp.version>
+      <cors-filter.version>1.9.2</cors-filter.version>
       <easymock.version>3.2</easymock.version>
       <h2.version>1.3.175</h2.version>
       <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
@@ -161,7 +162,7 @@
                </additionalClasspathDirs>
                <additionalConfigFilesDir>${project.basedir}/profiles/${build.profile.id}</additionalConfigFilesDir>
                <!-- Enable loggging -->
-                <extraDependencies>
+               <extraDependencies>
                   <dependency>
                      <groupId>org.slf4j</groupId>
                      <artifactId>slf4j-api</artifactId>
@@ -498,8 +499,17 @@
          <groupId>ch.qos.logback</groupId>
          <artifactId>logback-access</artifactId>
          <version>${logback.version}</version>
-      </dependency>       
-
+      </dependency>
+      
+      <!-- CORS filter 
+      https://bitbucket.org/thetransactioncompany/cors-filter
+      -->
+      <dependency>
+         <groupId>com.thetransactioncompany</groupId>
+         <artifactId>cors-filter</artifactId>
+         <version>${cors-filter.version}</version>
+      </dependency>      
+      
       <!-- Tests -->
       <dependency>
          <groupId>org.mockito</groupId>

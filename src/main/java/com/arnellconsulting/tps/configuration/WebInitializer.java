@@ -15,7 +15,7 @@
  */
 package com.arnellconsulting.tps.configuration;
 
-import com.arnellconsulting.tps.cors.CORSFilter;
+import com.thetransactioncompany.cors.CORSFilter;
 import java.util.EnumSet;
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -138,6 +138,10 @@ public class WebInitializer implements WebApplicationInitializer {
 
       EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
 
+      // CORS
+      FilterRegistration.Dynamic corsFilter = servletContext.addFilter("corsFilter", com.arnellconsulting.tps.cors.CORSFilter.class);
+      corsFilter.addMappingForUrlPatterns(dispatcherTypes, false, "/*");      
+
       // Character encoding filter
       FilterRegistration.Dynamic characterEncoding = servletContext.addFilter("characterEncoding", getUtf8EncodingFilter());
       characterEncoding.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
@@ -146,10 +150,6 @@ public class WebInitializer implements WebApplicationInitializer {
       FilterRegistration.Dynamic security = servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy());
       security.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
       
-      // CORS
-      FilterRegistration.Dynamic corsFilter = servletContext.addFilter("corsFilter", CORSFilter.class);
-      corsFilter.addMappingForUrlPatterns(null, false, "/*");      
-
       servletContext.addListener(new ContextLoaderListener(rootContext));
    }
 
