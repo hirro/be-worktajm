@@ -140,7 +140,7 @@ public class WebInitializer implements WebApplicationInitializer {
       EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
 
       // CORS
-      FilterRegistration.Dynamic corsFilter = servletContext.addFilter("corsFilter", com.arnellconsulting.tps.cors.CORSFilter.class);
+      FilterRegistration.Dynamic corsFilter = servletContext.addFilter("corsFilter", CORSFilter.class);
       corsFilter.addMappingForUrlPatterns(dispatcherTypes, false, "/*");      
 
       // Character encoding filter
