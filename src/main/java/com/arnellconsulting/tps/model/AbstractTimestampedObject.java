@@ -23,6 +23,7 @@ import javax.persistence.MappedSuperclass;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import org.joda.time.DateTime;
 
@@ -37,9 +38,11 @@ public abstract class AbstractTimestampedObject<PK extends Serializable> extends
 	private static final long serialVersionUID = 641461956116435381L;
 
 	@Temporal(TemporalType.TIMESTAMP)
+   @JsonIgnore
 	private Date created;
 
 	@Temporal(TemporalType.TIMESTAMP)
+   @JsonIgnore
 	private Date modified;
 
    @Override

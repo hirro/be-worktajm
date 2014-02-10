@@ -30,6 +30,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 /**
  * <code>
@@ -45,7 +46,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  *                         position="FORM_LOGIN_FILTER" />
  * <security:intercept-url pattern="/registration/**" access="permitAll"/>
  * <security:intercept-url pattern="/authenticate/**" access="permitAll"/>
- * <security:intercept-url method="GET" pattern="/person/**" access="isAuthenticated()"/>
+ * <security:intercept-url method="GET" pattern="/person/**" access="/>
  * </security:http>
  *
  * <security:authentication-manager alias="authenticationManager">
@@ -100,7 +101,13 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
             .httpBasic()
          .and()
             .authorizeRequests()
-               .antMatchers("/**").permitAll();
+               .antMatchers("/person/**").authenticated()
+               .antMatchers("/project/**").authenticated()
+               .antMatchers("/customer/**").authenticated()
+               .antMatchers("/timeEntry/**").authenticated()
+               .antMatchers("/authenticate/**").authenticated()
+               .antMatchers("/registration/**").anonymous()                
+               .antMatchers("/**").denyAll();
     }
    
     @Bean
@@ -110,6 +117,6 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new StandardPasswordEncoder();
     }    
 }

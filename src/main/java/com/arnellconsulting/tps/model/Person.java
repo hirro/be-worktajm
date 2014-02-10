@@ -80,6 +80,7 @@ public class Person extends AbstractTimestampedObject<Long> {
     * Encrypted password of the person.
     */
    @NotNull
+   @JsonIgnore
    private String password;
 
    /**

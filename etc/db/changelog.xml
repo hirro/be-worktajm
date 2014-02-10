@@ -206,7 +206,8 @@
          <column name="email" value="demo@worktajm.com"/>
          <column name="first_name" value="Demo"/>
          <column name="last_name" value="User"/>
-         <column name="password" value="password"/>
+         <column name="password" value="e7da2fb90ff96aa4bc535e719444762541cded1bc37b7156c9a8cdc6abf6067e2162e859538e8f07"/>
+         <column name="email_verified" valueBoolean="true"/>
       </insert>
       <insert tableName="tps_project" schemaName="tps">
          <column name="name" value="Project A"/>

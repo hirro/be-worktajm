@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,8 +48,8 @@ public class RegistrationController {
    @Autowired
    private transient TpsService tpsService;
 
-   //~--- methods -------------------------------------------------------------
-
+   StandardPasswordEncoder passwordEncoder = new StandardPasswordEncoder();
+   
    @Transactional
    @RequestMapping(method = RequestMethod.POST, headers = { "Accept=application/json" })
    public String create(@RequestBody final Registration registration) throws Exception {
@@ -71,7 +72,7 @@ public class RegistrationController {
       person.setEmail(registration.getEmail());
       person.setLastName(registration.getLastName());
       person.setFirstName(registration.getFirstName());
-      person.setPassword(registration.getPassword());
+      person.setPassword(passwordEncoder.encode(registration.getPassword()));
 
       tpsService.savePerson(person);
 
