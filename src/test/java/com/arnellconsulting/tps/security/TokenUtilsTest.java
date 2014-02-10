@@ -14,13 +14,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.tps.common;
+
+
+package com.arnellconsulting.tps.security;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author jiar
  */
-public enum InvoicePeriod {
-   NONE,
-   MONTHLY   
+public class TokenUtilsTest {
+   
+   public TokenUtilsTest() {
+   }
+
+   @Test
+   public void testCreateToken() {
+   }
+
+   @Test
+   public void testValidateToken() {
+   }
+
+   @Test
+   public void testGetUserNameFromToken() {
+   }
+   
 }
