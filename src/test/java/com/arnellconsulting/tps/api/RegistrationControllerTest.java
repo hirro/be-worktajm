@@ -22,7 +22,9 @@ import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.rest.Registration;
 import com.arnellconsulting.tps.service.TpsService;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -48,6 +50,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -66,41 +69,43 @@ public class RegistrationControllerTest {
    @Autowired
    private transient WebApplicationContext webApplicationContext;
    private transient Person person;
-
-   //~--- methods -------------------------------------------------------------
+   
+   @Before
+   public void setUp() {
+      Mockito.reset(tpsServiceMock);
+      mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+      person = new Person();
+      person.setFirstName(TestConstants.PERSON_A_FIRST_NAME);
+      person.setLastName(TestConstants.PERSON_A_LAST_NAME);
+      person.setEmail(TestConstants.PERSON_A_EMAIL);
+      person.setEmailVerified(Boolean.TRUE);
+   }   
 
    @Test
    public void testCreate() throws Exception {
       when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(null);
       mockMvc.perform(
-         get("/registration")
-            .param("password", TestConstants.PERSON_A_PASSWORD)
-            .param("email", TestConstants.PERSON_A_EMAIL)
-            .param("company", TestConstants.PERSON_A_COMPANY)
-            .accept(MediaType.APPLICATION_JSON))
-         .andExpect(status().isOk());
+         post("/registration")
+         .content(TestConstants.PERSON_A_REGISTER)
+         .contentType(MediaType.APPLICATION_JSON)
+      ).andExpect(status().isOk());
+
       verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verify(tpsServiceMock, times(1)).savePerson(any(Person.class));
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
    @Test
-   public void testCreateDuplicate() {
+   public void testCreateDuplicate() throws Exception {
       when(tpsServiceMock.findPersonByEmail(TestConstants.PERSON_A_EMAIL)).thenReturn(person);
-
-      try {
-         mockMvc.perform(
-            get("/registration")
-              .param("password", TestConstants.PERSON_A_PASSWORD)
-              .param("email", TestConstants.PERSON_A_EMAIL)
-              .param("company", TestConstants.PERSON_A_COMPANY)
-              .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isBadRequest());
-      } catch (Exception ex) {
-         fail("Should not throw here? Controller exception is not visible");
-      }
+      mockMvc.perform(
+         post("/registration")
+         .content(TestConstants.PERSON_A_REGISTER)
+         .contentType(MediaType.APPLICATION_JSON)
+      ).andExpect(status().isBadRequest());
 
       verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
+      verify(tpsServiceMock, times(0)).savePerson(any(Person.class));
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
@@ -109,7 +114,7 @@ public class RegistrationControllerTest {
       mockMvc.perform(
          get("/registration").
             accept(MediaType.APPLICATION_JSON))
-         .andExpect(status().isBadRequest());
+         .andExpect(status().isMethodNotAllowed());
       verifyNoMoreInteractions(tpsServiceMock);
    }
 
@@ -139,18 +144,5 @@ public class RegistrationControllerTest {
          .andExpect(content().string("true"));
       verify(tpsServiceMock, times(1)).findPersonByEmail(TestConstants.PERSON_A_EMAIL);
       verifyNoMoreInteractions(tpsServiceMock);
-   }
-
-   //~--- set methods ---------------------------------------------------------
-
-   @Before
-   public void setUp() {
-      Mockito.reset(tpsServiceMock);
-      mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-      person = new Person();
-      person.setFirstName(TestConstants.PERSON_A_FIRST_NAME);
-      person.setLastName(TestConstants.PERSON_A_LAST_NAME);
-      person.setEmail(TestConstants.PERSON_A_EMAIL);
-      person.setEmailVerified(Boolean.TRUE);
    }
 }

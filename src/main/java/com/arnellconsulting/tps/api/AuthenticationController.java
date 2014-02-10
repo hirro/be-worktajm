@@ -59,7 +59,7 @@ public class AuthenticationController extends BaseController {
     * @throws com.arnellconsulting.tps.api.AccessDeniedException
     */
    @Transactional
-   @RequestMapping(method = RequestMethod.GET)
+   @RequestMapping(method = RequestMethod.POST)
    @Secured("ROLE_USER")
    public AuthenticationToken authenticate(final Principal principal) throws AccessDeniedException {
       LOG.debug("authenticate");

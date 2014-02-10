@@ -30,6 +30,22 @@
 			<key>inUse</key>
 			<true/>
 			<key>parameter</key>
+			<string>firstName</string>
+			<key>value</key>
+			<string>value</string>
+		</dict>
+		<dict>
+			<key>inUse</key>
+			<true/>
+			<key>parameter</key>
+			<string>lastName</string>
+			<key>value</key>
+			<string>Arnell</string>
+		</dict>
+		<dict>
+			<key>inUse</key>
+			<true/>
+			<key>parameter</key>
 			<string>company</string>
 			<key>value</key>
 			<string>Acme inc</string>

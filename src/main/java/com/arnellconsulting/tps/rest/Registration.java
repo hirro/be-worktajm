@@ -17,10 +17,13 @@
 
 package com.arnellconsulting.tps.rest;
 
+import javax.xml.bind.annotation.XmlType;
+
 /**
  *
  * @author jiar
  */
+@XmlType
 public class Registration {
 
       

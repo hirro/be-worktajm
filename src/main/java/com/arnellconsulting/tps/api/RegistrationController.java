@@ -50,7 +50,7 @@ public class RegistrationController {
    //~--- methods -------------------------------------------------------------
 
    @Transactional
-   @RequestMapping(method = RequestMethod.POST)
+   @RequestMapping(method = RequestMethod.POST, headers = { "Accept=application/json" })
    public String create(@RequestBody final Registration registration) throws Exception {
       LOG.debug("create: email {}, ...", registration.getEmail());
 
