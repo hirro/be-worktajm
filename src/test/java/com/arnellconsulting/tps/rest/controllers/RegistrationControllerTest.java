@@ -16,7 +16,7 @@
  */
 
 
-package com.arnellconsulting.tps.api;
+package com.arnellconsulting.tps.rest.controllers;
 
 import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;

@@ -17,10 +17,13 @@
  */
 
 
-package com.arnellconsulting.tps.api;
+package com.arnellconsulting.tps.rest.controllers;
 
+import com.arnellconsulting.tps.rest.BaseController;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.TimeEntry;
+import com.arnellconsulting.tps.rest.AccessDeniedException;
+import com.arnellconsulting.tps.rest.InvalidParameterExeception;
 import com.arnellconsulting.tps.service.TpsService;
 
 import org.slf4j.Logger;

@@ -17,9 +17,11 @@
 
 
 
-package com.arnellconsulting.tps.api;
+package com.arnellconsulting.tps.rest.controllers;
 
 import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.rest.InvalidParameterExeception;
+import com.arnellconsulting.tps.rest.Registration;
 import com.arnellconsulting.tps.rest.Registration;
 import com.arnellconsulting.tps.service.TpsService;
 import javax.servlet.http.HttpServletResponse;

@@ -16,10 +16,12 @@
  */
 
 
-package com.arnellconsulting.tps.api;
+package com.arnellconsulting.tps.rest.controllers;
 
+import com.arnellconsulting.tps.rest.BaseController;
+import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.rest.AccessDeniedException;
 import com.arnellconsulting.tps.service.TpsService;
 import java.security.Principal;
 
@@ -40,79 +42,79 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * JSON API for Project.
+ * JSON API for Customer.
  *
  * @author hirro
  */
 @RestController
-@RequestMapping("project")
+@RequestMapping("customer")
 @SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.ShortVariable" })
-public class ProjectController extends BaseController {
+public class CustomerController extends BaseController {
 
-   private static final Logger LOG = LoggerFactory.getLogger(ProjectController.class);
+   private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
 
    @Autowired
    private transient TpsService tpsService;
 
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
-   public List<Project> list(final Principal principal) throws InterruptedException, AccessDeniedException {
+   public List<Customer> list(final Principal principal) throws InterruptedException, AccessDeniedException {
       LOG.debug("list");
       final Person person = getAuthenticatedPerson(principal);
-      return tpsService.getProjectsForPerson(person.getId());
+      return tpsService.getCustomersForPerson(person.getId());
    }
 
    @Transactional
    @RequestMapping(method = RequestMethod.POST)
-   public Project create(@RequestBody final Project project,
+   public Customer create(@RequestBody final Customer customer,
                          final Principal principal) throws AccessDeniedException {
-      LOG.debug("create: {}", project.toString());
+      LOG.debug("create: {}", customer.toString());
 
-      // Project must belong to a person
+      // Customer must belong to a person
       final Person person = getAuthenticatedPerson(principal);
-      project.setPerson(person);
+      customer.setPerson(person);
 
-      tpsService.saveProject(project);
+      tpsService.saveCustomer(customer);
 
-      return project;
+      return customer;
    }
 
    @Transactional
    @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.GET
+           value = "/{id}",
+           method = RequestMethod.GET
    )
-   @ResponseBody
-   public Project read(@PathVariable final Long id) {
+   public Customer read(@PathVariable final Long id) {
       LOG.debug("read id: {}", id);
 
-      return tpsService.getProject(id);
+      return tpsService.getCustomer(id);
    }
 
    @Transactional
    @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.PUT
+           value = "/{id}",
+           method = RequestMethod.PUT
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void update(@PathVariable final Long id,
-                         @RequestBody final Project project,
-                         final Principal principal) throws AccessDeniedException {
-      LOG.debug("update name: {}", project.getName());
+                      @RequestBody final Customer customer,
+                      final Principal principal) throws AccessDeniedException {
+      LOG.debug("update name: {}");
 
-      // Project must belong to a person
+      // Customer must belong to a person
       final Person person = getAuthenticatedPerson(principal);
-      project.setPerson(person);
-      tpsService.saveProject(project);
+      customer.setPerson(person);
+
+      tpsService.saveCustomer(customer);
    }
 
    @RequestMapping(
-      value = "/{id}",
-      method = RequestMethod.DELETE
+           value = "/{id}",
+           method = RequestMethod.DELETE
    )
    @ResponseStatus(HttpStatus.NO_CONTENT)
    public void delete(@PathVariable final Long id) {
       LOG.debug("delete id: {}", id);
-      tpsService.deleteProject(id);
+      tpsService.deleteCustomer(id);
    }
 }

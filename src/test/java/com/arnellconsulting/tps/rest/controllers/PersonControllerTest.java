@@ -17,7 +17,7 @@
 
 
 
-package com.arnellconsulting.tps.api;
+package com.arnellconsulting.tps.rest.controllers;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
