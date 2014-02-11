@@ -101,7 +101,7 @@ public class PersonController extends BaseController {
     * Get the currently logged in person.
     * @param principal
     * @return list of persons
-    * @throws com.arnellconsulting.tps.api.AccessDeniedException
+    * @throws com.arnellconsulting.tps.rest.AccessDeniedException
     */
    @Transactional
    @RequestMapping(method = RequestMethod.GET)

@@ -104,6 +104,11 @@ public class TpsServiceImpl implements TpsService {
 
    @Override
    public void savePerson(final Person person) {
+      // First get the current person's password
+      Person current = personRepository.findOne(person.getId());
+      if (current != null) {
+         person.setPassword(current.getPassword());      
+      }
       personRepository.save(person);
    }
 

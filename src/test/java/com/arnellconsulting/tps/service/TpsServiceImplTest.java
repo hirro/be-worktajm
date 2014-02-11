@@ -186,6 +186,7 @@ public class TpsServiceImplTest {
    @Test
    public void testSavePerson() {
       service.savePerson(personA);
+      verify(personRepository, times(1)).findOne(personA.getId());
       verify(personRepository, times(1)).save(personA);
       verifyNoMoreInteractions(personRepository);
    }

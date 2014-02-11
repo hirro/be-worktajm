@@ -141,7 +141,9 @@ public class WebInitializer implements WebApplicationInitializer {
 
       // CORS
       FilterRegistration.Dynamic corsFilter = servletContext.addFilter("corsFilter", CORSFilter.class);
-      corsFilter.addMappingForUrlPatterns(dispatcherTypes, false, "/*");      
+      corsFilter.addMappingForUrlPatterns(dispatcherTypes, false, "/*");
+      corsFilter.setInitParameter("cors.allowOrigin", "*");
+      corsFilter.setInitParameter("cors.supportedMethods", "GET, POST, HEAD, PUT, DELETE");
 
       // Character encoding filter
       FilterRegistration.Dynamic characterEncoding = servletContext.addFilter("characterEncoding", getUtf8EncodingFilter());
