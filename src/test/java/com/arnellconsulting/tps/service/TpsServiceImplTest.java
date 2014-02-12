@@ -184,10 +184,24 @@ public class TpsServiceImplTest {
     * Test of savePerson method, of class TpsServiceImpl.
     */
    @Test
-   public void testSavePerson() {
+   public void testSaveNewPerson() {
       service.savePerson(personA);
-      verify(personRepository, times(1)).findOne(personA.getId());
+      //verify(personRepository, times(1)).findOne(personA.getId());
       verify(personRepository, times(1)).save(personA);
+      verifyNoMoreInteractions(personRepository);
+   }
+
+   /**
+    * Test of savePerson method, of class TpsServiceImpl.
+    */
+   @Test
+   public void testSaveExistingPerson() {
+      Person personMock = mock(Person.class);
+      when(personMock.isNew()).thenReturn(Boolean.TRUE);
+      when(personMock.getId()).thenReturn(1L);
+      service.savePerson(personMock);
+      //verify(personRepository, times(1)).findOne(personMock.getId());
+      verify(personRepository, times(1)).save(personMock);
       verifyNoMoreInteractions(personRepository);
    }
 
