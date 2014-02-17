@@ -176,13 +176,12 @@
    </changeSet>
     
    <!--
-      One person has one active project 
-      (FIXME : can be derived from existing data)
+      One person has one active project, Cascade onDelte
    -->
    <changeSet id="5" author="hirro">
       <addColumn tableName="tps_person">
          <column name="active_time_entry_id" type="bigint"/>
-      </addColumn>
+      </addColumn>      
       <addForeignKeyConstraint 
          baseColumnNames="active_time_entry_id"
          baseTableName="tps_person"
@@ -190,6 +189,7 @@
          constraintName="fk_person_time_entry"
          referencedColumnNames="id"
          referencedTableName="tps_time_entry"
+         onDelete="CASCADE"
          referencedTableSchemaName="tps"/>    
    </changeSet>
 
