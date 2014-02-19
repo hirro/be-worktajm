@@ -209,9 +209,56 @@
          <column name="password" value="e7da2fb90ff96aa4bc535e719444762541cded1bc37b7156c9a8cdc6abf6067e2162e859538e8f07"/>
          <column name="email_verified" valueBoolean="true"/>
       </insert>
+   </changeSet>
+
+   <!-- Customer A, two sub projects -->
+   <changeSet id="8" author="hirro">
+      <insert tableName="tps_customer" schemaName="tps">
+         <column name="name" value="Customer A"/>
+         <column name="line1" value="A street"/>
+         <column name="line2" value="A box"/>
+         <column name="city" value="A city"/>
+         <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
+      </insert>
       <insert tableName="tps_project" schemaName="tps">
-         <column name="name" value="Project A"/>
+         <column name="name" value="Project A.1"/>
          <column name="description" value="Description for project A"/>
+         <column name="rate" value="666"/>
+         <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
+         <column name="customer_id" valueComputed="(SELECT id FROM tps_customer WHERE name = 'Customer A')"/>
+      </insert>
+      <insert tableName="tps_project" schemaName="tps">
+         <column name="name" value="Project A.2"/>
+         <column name="description" value="Description for project A.2"/>
+         <column name="rate" value="666"/>
+         <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
+         <column name="customer_id" valueComputed="(SELECT id FROM tps_customer WHERE name = 'Customer A')"/>
+      </insert>
+   </changeSet>
+
+   <!-- Customer B, two sub projects -->
+   <changeSet id="9" author="hirro">
+      <insert tableName="tps_customer" schemaName="tps">
+         <column name="name" value="Customer B"/>
+         <column name="line1" value="B street"/>
+         <column name="line2" value="B box"/>
+         <column name="city" value="B city"/>
+         <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
+      </insert>
+      <insert tableName="tps_project" schemaName="tps">
+         <column name="name" value="Project B.1"/>
+         <column name="description" value="Description for project B.1"/>
+         <column name="rate" value="666"/>
+         <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
+         <column name="customer_id" valueComputed="(SELECT id FROM tps_customer WHERE name = 'Customer B')"/>
+      </insert>
+   </changeSet>
+
+   <!-- Project C has no customer -->
+   <changeSet id="10" author="hirro">
+      <insert tableName="tps_project" schemaName="tps">
+         <column name="name" value="Project C"/>
+         <column name="description" value="Description for project C"/>
          <column name="rate" value="666"/>
          <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
       </insert>
