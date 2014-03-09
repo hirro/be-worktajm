@@ -263,5 +263,17 @@
          <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
       </insert>
    </changeSet>
+   
+   <!-- Additing more optional attributes for person -->
+   <changeSet id="11" author="hirro">
+      <addColumn tableName="tps_customer" schemaName="tps">
+         <column name="organizationNumber" type="varchar"/>
+         <column name="vatRegistrationNumber" type="varchar"/>
+         <column name="invoiceNumber" type="int"/>
+         <column name="email" type="varchar"/>
+         <column name="bank" type="varchar"/>
+         <column name="person_id" type="bigint"/>         
+      </addColumn>
+   </changeSet>   
 
 </databaseChangeLog>
