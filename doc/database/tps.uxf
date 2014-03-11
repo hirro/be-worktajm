@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>224</x>
+      <y>312</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Principal
+--
+firstName : String
+lastName : String
+email : String
+status: { active, passive }</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>584</x>
+      <y>120</y>
+      <w>144</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>Project
+--
+name : String
+description : String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>280</x>
+      <y>368</y>
+      <w>720</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;&gt;&gt;
+m1=0..n
+r1=customers
+
+
+</panel_attributes>
+    <additional_attributes>688;24;688;256;24;256;24;216</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>616</x>
+      <y>352</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>/Contract/
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>904</x>
+      <y>120</y>
+      <w>128</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;dataType&gt;&gt;
+Address
+--
+street : String
+streetNumber : String
+city : String
+state : String
+zipCode : Integer
+Country : String(2)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>272</x>
+      <y>200</y>
+      <w>76</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..n
+r1=user
+r2=timeEntries
+
+
+</panel_attributes>
+    <additional_attributes>40;112;40;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>872</x>
+      <y>312</y>
+      <w>192</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Customer
+--
+name : String
+organizationalNumber : Integer
+address : Address</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>624</x>
+      <y>200</y>
+      <w>60</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m2=1..n
+r1=contract
+r2=projects</panel_attributes>
+    <additional_attributes>32;152;32;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>368</x>
+      <y>144</y>
+      <w>232</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..n
+r1=project
+r2=timeEntries
+</panel_attributes>
+    <additional_attributes>216;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>520</x>
+      <y>488</y>
+      <w>128</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>PerHour
+(default)
+--
+id : Long
+rate : BigDecimal
+validFrom : Date
+validTo: Date
+infinite: Boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>120</x>
+      <y>328</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+r2=role
+
+</panel_attributes>
+    <additional_attributes>104;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>224</x>
+      <y>488</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Corporate
+--
+name : String
+address : Address
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>568</x>
+      <y>352</y>
+      <w>104</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>88;24;24;136</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>656</x>
+      <y>488</y>
+      <w>128</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>PerMonth
+--
+id : Long
+rate : BigDecimal
+validFrom : Date
+validTo: Date
+infinite : Boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>672</x>
+      <y>336</y>
+      <w>216</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+m1=0..n
+m2=1
+r1=constracts
+r2=customer
+
+</panel_attributes>
+    <additional_attributes>24;24;200;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>904</x>
+      <y>32</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+Status
+--
+active
+inactive</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>264</x>
+      <y>360</y>
+      <w>74</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+m2=1..n
+r1=employer
+r2=employees
+
+</panel_attributes>
+    <additional_attributes>40;128;40;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>224</x>
+      <y>120</y>
+      <w>168</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>TimeEntry
+--
+startTime : TimeStamp
+endTime : TimeStamp
+comment : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>48</x>
+      <y>328</y>
+      <w>96</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Group
+--
+name : String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>632</x>
+      <y>352</y>
+      <w>96</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;80;136</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>368</x>
+      <y>336</y>
+      <w>264</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=0..n
+r2=contracts
+r1=contracters
+</panel_attributes>
+    <additional_attributes>24;24;248;24</additional_attributes>
+  </element>
+</diagram>
