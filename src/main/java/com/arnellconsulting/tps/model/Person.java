@@ -19,10 +19,7 @@ package com.arnellconsulting.tps.model;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import java.util.Collection;
-import java.util.Date;
 
 import javax.persistence.*;
 
