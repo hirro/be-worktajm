@@ -1,0 +1,5 @@
+---
+applications:
+  target:
+      name: worktajm 
+          mem: 512M
