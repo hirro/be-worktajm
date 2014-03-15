@@ -35,92 +35,20 @@
 			"contents": "Searching 52 files for \"@Slf4j\"\n\n/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/security/TpsUserDetailsService.java:\n   32   * @author hirro\n   33   */\n   34: @Slf4j\n   35  public class TpsUserDetailsService implements UserDetailsService {\n   36     private final transient PersonRepository repository;\n\n/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java:\n   43   * @author hirro\n   44   */\n   45: @Slf4j\n   46  @Service\n   47  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n\n/Users/jiar/git/be-worktajm/core/src/test/java/com/arnellconsulting/tps/repository/ProjectRepositoryTest.java:\n   48  @WebAppConfiguration\n   49  @Transactional\n   50: @Slf4j\n   51  @SuppressWarnings(\"PMD.JUnitTestsShouldIncludeAssert\")\n   52  public class ProjectRepositoryTest extends TestCase {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/AuthenticationController.java:\n   51  @Controller\n   52  @RequestMapping(\"api/authenticate\")\n   53: @Slf4j\n   54  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   55  public class AuthenticationController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/CustomerController.java:\n   47  @Controller\n   48  @RequestMapping(\"api/customer\")\n   49: @Slf4j\n   50  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   51  public class CustomerController extends BaseController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/PersonController.java:\n   49  @Controller\n   50  @RequestMapping(\"api/person\")\n   51: @Slf4j\n   52  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   53  public class PersonController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/ProjectController.java:\n   47  @Controller\n   48  @RequestMapping(\"api/project\")\n   49: @Slf4j\n   50  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   51  public class ProjectController extends BaseController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/RegistrationController.java:\n   42  @Controller\n   43  @RequestMapping(\"/registration\")\n   44: @Slf4j\n   45  public class RegistrationController {\n   46     @Autowired\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/TimeEntryController.java:\n   51  @Controller\n   52  @RequestMapping(\"api/timeEntry\")\n   53: @Slf4j\n   54  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   55  public class TimeEntryController extends BaseController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/AuthenticationTokenProcessingFilter.java:\n   38  import javax.servlet.http.HttpServletRequest;\n   39  \n   40: @Slf4j\n   41  public class AuthenticationTokenProcessingFilter extends GenericFilterBean {\n   42  \n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/TokenUtils.java:\n   28  \n   29  \n   30: @Slf4j\n   31  public final class TokenUtils {\n   32     public static final String MAGIC_KEY = \"obfuscate\";\n\n11 matches across 11 files\n\n\nSearching 192 files for \"lombok\"\n\n/Users/jiar/git/be-worktajm/tps-parent.iml:\n   20      <orderEntry type=\"library\" name=\"Maven: commons-dbcp:commons-dbcp:1.3\" level=\"project\" />\n   21      <orderEntry type=\"library\" name=\"Maven: commons-pool:commons-pool:1.5.4\" level=\"project\" />\n   22:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   23      <orderEntry type=\"library\" name=\"Maven: org.slf4j:slf4j-api:1.7.5\" level=\"project\" />\n   24      <orderEntry type=\"library\" name=\"Maven: log4j:log4j:1.2.16\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/core/tps-core.iml:\n   69      <orderEntry type=\"library\" name=\"Maven: commons-dbcp:commons-dbcp:1.3\" level=\"project\" />\n   70      <orderEntry type=\"library\" name=\"Maven: commons-pool:commons-pool:1.5.4\" level=\"project\" />\n   71:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   72      <orderEntry type=\"library\" name=\"Maven: log4j:log4j:1.2.16\" level=\"project\" />\n   73      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-classic:0.9.26\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java:\n   31  import org.slf4j.LoggerFactory;\n   32  \n   33: import lombok.NonNull;\n   34  \n   35  import org.springframework.beans.factory.annotation.Autowired;\n\n/Users/jiar/git/be-worktajm/rest-api/api.iml:\n   95      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-core:0.9.26\" level=\"project\" />\n   96      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-access:0.9.26\" level=\"project\" />\n   97:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   98      <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.mockito:mockito-core:1.9.5\" level=\"project\" />\n   99      <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.objenesis:objenesis:1.0\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/rest-api/with.txt:\n   75  [INFO] |  +- com.fasterxml.jackson.core:jackson-core:jar:2.1.4:compile\n   76  [INFO] |  \\- com.fasterxml.jackson.core:jackson-databind:jar:2.1.4:compile\n   77: [INFO] +- org.projectlombok:lombok:jar:1.12.2:provided\n   78  [INFO] +- org.slf4j:slf4j-api:jar:1.7.5:compile\n   79  [INFO] +- log4j:log4j:jar:1.2.16:compile\n\n/Users/jiar/git/be-worktajm/rest-api/without.txt:\n   58  [INFO] |  \\- com.google.guava:guava:jar:r08:compile\n   59  [INFO] +- com.arnellconsulting.tps:tps-core:jar:2.0.5.BUILD-SNAPSHOT:compile\n   60: [INFO] +- org.projectlombok:lombok:jar:1.12.2:provided\n   61  [INFO] +- org.slf4j:slf4j-api:jar:1.7.5:compile\n   62  [INFO] +- log4j:log4j:jar:1.2.16:compile\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/AuthenticationTokenProcessingFilter.java:\n   20  package com.arnellconsulting.tps.security;\n   21  \n   22: import lombok.extern.slf4j.Slf4j;\n   23  \n   24  import org.springframework.security.authentication.AuthenticationManager;\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/UserTransfer.java:\n   24  \n   25  /**\n   26:  * XXX: Lombok?\n   27   * @author hirro\n   28   */\n\n13 matches across 8 files\n\n\nSearching 192 files for \"lombok\"\n\n/Users/jiar/git/be-worktajm/tps-parent.iml:\n   20      <orderEntry type=\"library\" name=\"Maven: commons-dbcp:commons-dbcp:1.3\" level=\"project\" />\n   21      <orderEntry type=\"library\" name=\"Maven: commons-pool:commons-pool:1.5.4\" level=\"project\" />\n   22:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   23      <orderEntry type=\"library\" name=\"Maven: org.slf4j:slf4j-api:1.7.5\" level=\"project\" />\n   24      <orderEntry type=\"library\" name=\"Maven: log4j:log4j:1.2.16\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/core/tps-core.iml:\n   69      <orderEntry type=\"library\" name=\"Maven: commons-dbcp:commons-dbcp:1.3\" level=\"project\" />\n   70      <orderEntry type=\"library\" name=\"Maven: commons-pool:commons-pool:1.5.4\" level=\"project\" />\n   71:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   72      <orderEntry type=\"library\" name=\"Maven: log4j:log4j:1.2.16\" level=\"project\" />\n   73      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-classic:0.9.26\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/rest-api/api.iml:\n   95      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-core:0.9.26\" level=\"project\" />\n   96      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-access:0.9.26\" level=\"project\" />\n   97:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   98      <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.mockito:mockito-core:1.9.5\" level=\"project\" />\n   99      <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.objenesis:objenesis:1.0\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/rest-api/with.txt:\n   75  [INFO] |  +- com.fasterxml.jackson.core:jackson-core:jar:2.1.4:compile\n   76  [INFO] |  \\- com.fasterxml.jackson.core:jackson-databind:jar:2.1.4:compile\n   77: [INFO] +- org.projectlombok:lombok:jar:1.12.2:provided\n   78  [INFO] +- org.slf4j:slf4j-api:jar:1.7.5:compile\n   79  [INFO] +- log4j:log4j:jar:1.2.16:compile\n\n/Users/jiar/git/be-worktajm/rest-api/without.txt:\n   58  [INFO] |  \\- com.google.guava:guava:jar:r08:compile\n   59  [INFO] +- com.arnellconsulting.tps:tps-core:jar:2.0.5.BUILD-SNAPSHOT:compile\n   60: [INFO] +- org.projectlombok:lombok:jar:1.12.2:provided\n   61  [INFO] +- org.slf4j:slf4j-api:jar:1.7.5:compile\n   62  [INFO] +- log4j:log4j:jar:1.2.16:compile\n\n10 matches across 5 files\n",
 			"settings":
 			{
-				"buffer_size": 9071,
+				"buffer_size": 9067,
 				"line_ending": "Unix",
 				"name": "Find Results",
 				"scratch": true
 			}
 		},
 		{
-			"file": "core/src/main/java/com/arnellconsulting/tps/security/TpsUserDetailsService.java",
-			"settings":
-			{
-				"buffer_size": 2264,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java",
-			"settings":
-			{
-				"buffer_size": 4645,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/AuthenticationController.java",
-			"settings":
-			{
-				"buffer_size": 3952,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/CustomerController.java",
-			"settings":
-			{
-				"buffer_size": 3902,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/PersonController.java",
-			"settings":
-			{
-				"buffer_size": 4904,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/ProjectController.java",
-			"settings":
-			{
-				"buffer_size": 3852,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/RegistrationController.java",
-			"settings":
-			{
-				"buffer_size": 3288,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"contents": "/*\n * Copyright 2013 Jim Arnell\n *\n * This program is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * This program is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with this program.  If not, see <http://www.gnu.org/licenses/>.\n */\n\n\n\npackage com.arnellconsulting.tps.security;\n\nimport org.springframework.security.core.userdetails.UserDetails;\nimport org.springframework.security.crypto.codec.Hex;\n\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\nimport java.security.MessageDigest;\nimport java.security.NoSuchAlgorithmException;\n\n\npublic final class TokenUtils {\n\n   private static final String MAGIC_KEY = \"obfuscate\";\n   private static final String BACKDOOR_TOKEN = \"jim@arnellco`nsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107\";\n\n   private static final Logger LOG = LoggerFactory.getLogger(TokenUtils.class);\n\n   private TokenUtils() {}\n\n    private static String computeSignature(final UserDetails userDetails, final long expires) {\n      final StringBuilder signatureBuilder = new StringBuilder();\n\n      signatureBuilder.append(userDetails.getUsername());\n      signatureBuilder.append(\":\");\n      signatureBuilder.append(expires);\n      signatureBuilder.append(\":\");\n      signatureBuilder.append(userDetails.getPassword());\n      signatureBuilder.append(\":\");\n      signatureBuilder.append(TokenUtils.MAGIC_KEY);\n\n      MessageDigest digest;\n\n      try {\n         digest = MessageDigest.getInstance(\"MD5\");\n      } catch (NoSuchAlgorithmException e) {\n         throw new IllegalStateException(\"No MD5 algorithm available!\");\n      }\n\n      return new String(Hex.encode(digest.digest(signatureBuilder.toString().getBytes())));\n   }\n\n   public static String createToken(final UserDetails userDetails) {\n\n      /* Expires in one hour */\n      final long expires = System.currentTimeMillis() + 1000L * 60 * 60;\n      final StringBuilder tokenBuilder = new StringBuilder();\n\n      tokenBuilder.append(userDetails.getUsername());\n      tokenBuilder.append(\":\");\n      tokenBuilder.append(expires);\n      tokenBuilder.append(\":\");\n      tokenBuilder.append(TokenUtils.computeSignature(userDetails, expires));\n\n      return tokenBuilder.toString();\n   }\n\n   public static boolean validateToken(final String authToken, final UserDetails userDetails) {\n      final String[] parts = authToken.split(\":\");\n      final long expires = Long.parseLong(parts[1]);\n      final String signature = parts[2];\n\n      // Backdoor for developers\n      if (authToken.equals(BACKDOOR_TOKEN)) {\n         LOG.warn(\"Logging in using developer backdoor\");\n         return true;\n      }\n\n      // Normal flow\n      return expires >= System.currentTimeMillis() && signature.equals(TokenUtils.computeSignature(userDetails, expires));\n   }\n\n   public static String getUserNameFromToken(final String authToken) {\n      if (null == authToken) {\n         return null;\n      }\n\n      final String[] parts = authToken.split(\":\");\n\n      return parts[0];\n   }\n}\n",
 			"file": "rest-api/src/main/java/com/arnellconsulting/tps/security/TokenUtils.java",
-			"file_size": 3407,
-			"file_write_time": 130327763470000000,
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
 				"buffer_size": 3408,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/TimeEntryController.java",
-			"settings":
-			{
-				"buffer_size": 7365,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "rest-api/src/main/java/com/arnellconsulting/tps/security/AuthenticationTokenProcessingFilter.java",
-			"settings":
-			{
-				"buffer_size": 3652,
 				"line_ending": "Unix"
 			}
 		}
@@ -152,19 +80,19 @@
 	},
 	"file_history":
 	[
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/UserTransfer.java",
 		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/AuthenticationTokenProcessingFilter.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/TokenUtils.java",
 		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/TimeEntryController.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/ProjectController.java",
 		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/RegistrationController.java",
-		"/Users/jiar/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/ProjectController.java",
 		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/PersonController.java",
 		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/CustomerController.java",
 		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/AuthenticationController.java",
-		"/Users/jiar/git/be-worktajm/core/src/test/java/com/arnellconsulting/tps/repository/ProjectRepositoryTest.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/security/TpsUserDetailsService.java"
+		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java",
+		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/security/TpsUserDetailsService.java",
+		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/UserTransfer.java",
+		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/TokenUtils.java",
+		"/Users/jiar/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/jiar/git/be-worktajm/core/src/test/java/com/arnellconsulting/tps/repository/ProjectRepositoryTest.java"
 	],
 	"find":
 	{
@@ -214,7 +142,7 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -222,159 +150,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9071,
+						"buffer_size": 9067,
 						"regions":
 						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										184,
-										190
-									],
-									[
-										472,
-										478
-									],
-									[
-										744,
-										750
-									],
-									[
-										1055,
-										1061
-									],
-									[
-										1360,
-										1366
-									],
-									[
-										1678,
-										1684
-									],
-									[
-										1973,
-										1979
-									],
-									[
-										2303,
-										2309
-									],
-									[
-										2549,
-										2555
-									],
-									[
-										2897,
-										2903
-									],
-									[
-										3122,
-										3128
-									],
-									[
-										3621,
-										3627
-									],
-									[
-										3628,
-										3634
-									],
-									[
-										4180,
-										4186
-									],
-									[
-										4187,
-										4193
-									],
-									[
-										4583,
-										4589
-									],
-									[
-										5017,
-										5023
-									],
-									[
-										5024,
-										5030
-									],
-									[
-										5521,
-										5527
-									],
-									[
-										5528,
-										5534
-									],
-									[
-										5880,
-										5886
-									],
-									[
-										5887,
-										5893
-									],
-									[
-										6217,
-										6223
-									],
-									[
-										6472,
-										6478
-									],
-									[
-										6905,
-										6911
-									],
-									[
-										6912,
-										6918
-									],
-									[
-										7464,
-										7470
-									],
-									[
-										7471,
-										7477
-									],
-									[
-										8044,
-										8050
-									],
-									[
-										8051,
-										8057
-									],
-									[
-										8548,
-										8554
-									],
-									[
-										8555,
-										8561
-									],
-									[
-										8907,
-										8913
-									],
-									[
-										8914,
-										8920
-									]
-								],
-								"scope": ""
-							}
 						},
 						"selection":
 						[
 							[
-								6544,
-								6544
+								0,
+								0
 							]
 						],
 						"settings":
@@ -392,221 +176,11 @@
 						"translation.y": 2130.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "core/src/main/java/com/arnellconsulting/tps/security/TpsUserDetailsService.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2264,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4645,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/AuthenticationController.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3952,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/CustomerController.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3902,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/PersonController.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4904,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/ProjectController.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3852,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/RegistrationController.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3288,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 1,
 					"file": "rest-api/src/main/java/com/arnellconsulting/tps/security/TokenUtils.java",
 					"semi_transient": false,
 					"settings":
@@ -633,66 +207,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "rest-api/src/main/java/com/arnellconsulting/tps/api/TimeEntryController.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7365,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "rest-api/src/main/java/com/arnellconsulting/tps/security/AuthenticationTokenProcessingFilter.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3652,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2492,
-								2483
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
 					"type": "text"
 				}
 			]
