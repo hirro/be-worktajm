@@ -83,6 +83,13 @@ public class Customer extends AbstractTimestampedObject<Long> {
    @JsonIgnore
    private Person person;
 
+   public Customer() {
+   }
+
+   public Customer(Long id) {
+      setId(id);
+   }
+
    public String getName() {
       return name;
    }
@@ -140,13 +147,22 @@ public class Customer extends AbstractTimestampedObject<Long> {
               SerializerProvider sp)
               throws IOException, JsonProcessingException {
          jsonGenerator.writeStartObject();
-         jsonGenerator.writeNumberField("id", customer.getId());
-         jsonGenerator.writeStringField("name", customer.getName());
-         jsonGenerator.writeStringField("referencePerson", customer.getReferencePerson());
+         
+         if (customer.getId() != null) {
+            jsonGenerator.writeNumberField("id", customer.getId());
+         }
+         if (customer.getName() != null) {
+            jsonGenerator.writeStringField("name", customer.getName());
+         }
+         if (customer.getReferencePerson() != null) {
+            jsonGenerator.writeStringField("referencePerson", customer.getReferencePerson());            
+         }
          if (customer.getLastModified() != null) {
             jsonGenerator.writeStringField("modified", customer.getLastModified().toString());
          }
-         jsonGenerator.writeObjectField("billingAddress", customer.getBillingAddress());
+         if (customer.getBillingAddress() != null) {
+            jsonGenerator.writeObjectField("billingAddress", customer.getBillingAddress());
+         }
          jsonGenerator.writeEndObject();
       }      
    }

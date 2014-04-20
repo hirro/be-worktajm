@@ -101,7 +101,7 @@ public final class TestConstants {
    }
 
    public static Customer createCustomerA() {
-      Customer customer = new Customer();
+      Customer customer = new Customer(1L);
       customer.setName(CUSTOMER_A_NAME);
       customer.setReferencePerson(CUSTOMER_A_REFERENCE_PERSON);
       customer.setBillingAddress(createAddressA());

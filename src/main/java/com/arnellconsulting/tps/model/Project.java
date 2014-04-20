@@ -138,8 +138,12 @@ public class Project extends AbstractTimestampedObject<Long> {
               SerializerProvider sp)
               throws IOException, JsonProcessingException {
          jsonGenerator.writeStartObject();
-         jsonGenerator.writeNumberField("id", project.getId());
-         jsonGenerator.writeStringField("name", project.getName());
+         if (project.getId() != null) {
+            jsonGenerator.writeNumberField("id", project.getId());
+         }
+         if (project.getName() != null) {
+            jsonGenerator.writeStringField("name", project.getName());
+         }
          if (project.getDescription() != null) {
             jsonGenerator.writeStringField("description", project.getDescription());         
          }
@@ -149,7 +153,6 @@ public class Project extends AbstractTimestampedObject<Long> {
          if (project.getCustomerId() != null) {
             jsonGenerator.writeNumberField("customerId", project.getCustomerId());
          }
-
          if (project.getLastModified() != null) {
             jsonGenerator.writeStringField("modified", project.getLastModified().toString());
          }

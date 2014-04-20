@@ -171,11 +171,18 @@ public class Person extends AbstractTimestampedObject<Long> {
               SerializerProvider sp)
               throws IOException, JsonProcessingException {
          jsonGenerator.writeStartObject();
-         jsonGenerator.writeNumberField("id", person.getId());
-         jsonGenerator.writeStringField("email", person.getEmail());
-         jsonGenerator.writeStringField("firstName", person.getFirstName());
-         jsonGenerator.writeStringField("lastName", person.getLastName());
-
+         if (person.getId() != null) {
+            jsonGenerator.writeNumberField("id", person.getId());
+         }
+         if (person.getEmail() != null) {
+            jsonGenerator.writeStringField("email", person.getEmail());
+         }
+         if (person.getFirstName() != null) {
+            jsonGenerator.writeStringField("firstName", person.getFirstName());
+         }
+         if (person.getLastName() != null) {
+            jsonGenerator.writeStringField("lastName", person.getLastName());
+         }
          if (person.getLastModified() != null) {
             jsonGenerator.writeStringField("modified", person.getLastModified().toString());
          }

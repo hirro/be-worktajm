@@ -132,9 +132,12 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
               SerializerProvider sp)
               throws IOException, JsonProcessingException {
          jsonGenerator.writeStartObject();
-         jsonGenerator.writeNumberField("id", timeEntry.getId());
-         jsonGenerator.writeNumberField("projectId", timeEntry.getProject().getId());
-         timeEntry.getProject();
+         if (timeEntry.getId() != null) {
+            jsonGenerator.writeNumberField("id", timeEntry.getId());
+         }
+         if (timeEntry.getProject() != null && timeEntry.getProject().getId() != null) {
+            jsonGenerator.writeNumberField("projectId", timeEntry.getProject().getId());
+         }
          if (timeEntry.getStartTime() != null) {
             jsonGenerator.writeStringField("startTime", timeEntry.getStartTime().toInstant().toString());
          }

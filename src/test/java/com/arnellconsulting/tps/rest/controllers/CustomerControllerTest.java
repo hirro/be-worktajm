@@ -80,12 +80,14 @@ public class CustomerControllerTest {
       // stubbing and verified behavior would "leak" from one test to another.
       Mockito.reset(tpsServiceMock);
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        Person person1 = spy(TestConstants.createPersonA());
-        Person person2 = spy(TestConstants.createPersonA());
+      Person person1 = spy(TestConstants.createPersonA());
+      Person person2 = spy(TestConstants.createPersonA());
       when(person1.getId()).thenReturn(1L);
       when(person2.getId()).thenReturn(2L);
       when(personUserDetails.getPerson()).thenReturn(person1);
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(TestConstants.PERSON_A_EMAIL, TestConstants.PERSON_A_PASSWORD);
+      UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+              TestConstants.PERSON_A_EMAIL, 
+              TestConstants.PERSON_A_PASSWORD);
       principal = spy(token);
       when(principal.getPrincipal()).thenReturn(personUserDetails);
 
