@@ -16,16 +16,14 @@
  */
 package com.arnellconsulting.tps.model;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.MappedSuperclass;
-
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import org.joda.time.DateTime;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  * Generic properties for objects.

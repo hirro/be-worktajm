@@ -19,13 +19,11 @@
 
 package com.arnellconsulting.tps.model;
 
-import org.codehaus.jackson.map.ObjectMapper;
-
-import org.junit.Test;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import static org.hamcrest.Matchers.is;
 
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *

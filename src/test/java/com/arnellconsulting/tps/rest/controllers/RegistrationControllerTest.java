@@ -24,7 +24,6 @@ import com.arnellconsulting.tps.config.WebAppContext;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.rest.Registration;
 import com.arnellconsulting.tps.service.TpsService;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import org.junit.Before;
 import org.junit.Test;

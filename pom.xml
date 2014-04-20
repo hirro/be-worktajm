@@ -22,7 +22,7 @@
       <hibernate.version>4.3.0.Final</hibernate.version>
       <jackson-annotations.version>2.3.0</jackson-annotations.version>
       <jackson-mapper.version>1.9.13</jackson-mapper.version>
-      <jackson.version>2.2.1</jackson.version>
+      <jackson.version>2.3.0</jackson.version>
       <jasperReport.version>5.5.0</jasperReport.version>
       <jaxb-api.version>2.2.11</jaxb-api.version>
       <joda-time-jsptags.version>1.1.1</joda-time-jsptags.version>
@@ -436,17 +436,19 @@
 
       <!-- Jackson -->
       <dependency>
-         <groupId>org.codehaus.jackson</groupId>
-         <artifactId>jackson-mapper-lgpl</artifactId>
-         <version>${jackson-mapper.version}</version>
-      </dependency> 
-
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-core</artifactId>
+         <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-databind</artifactId>
+         <version>${jackson.version}</version>
+      </dependency>
       <dependency>
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-annotations</artifactId>
-         <version>${jackson-annotations.version}</version>
-         <scope>test</scope>
-         <type>jar</type>
+         <version>${jackson.version}</version>
       </dependency>
      
       <!-- H2 Database -->

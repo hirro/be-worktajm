@@ -17,13 +17,12 @@
 package com.arnellconsulting.tps.model;
 
 import com.arnellconsulting.tps.common.InvoicePeriod;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Collection;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
 
 /**
  *
