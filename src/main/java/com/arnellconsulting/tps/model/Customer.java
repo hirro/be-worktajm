@@ -19,6 +19,12 @@ package com.arnellconsulting.tps.model;
 import com.arnellconsulting.tps.common.InvoicePeriod;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.io.IOException;
 import java.util.Collection;
 
 import javax.persistence.*;
@@ -33,6 +39,7 @@ import javax.validation.constraints.NotNull;
        uniqueConstraints = {
          @UniqueConstraint(columnNames = {"name", "person_id"}, name="idx_customer_person")
        })
+@JsonSerialize(using=Customer.CustomerSerializer.class)
 public class Customer extends AbstractTimestampedObject<Long> {
 
    private static final long serialVersionUID = -390230121353660214L;
@@ -123,4 +130,24 @@ public class Customer extends AbstractTimestampedObject<Long> {
    public void setPerson(final Person person) {
       this.person = person;
    }   
+
+   static class CustomerSerializer extends JsonSerializer<Customer> {
+
+      @Override
+      public void serialize(
+              Customer customer,
+              JsonGenerator jsonGenerator,
+              SerializerProvider sp)
+              throws IOException, JsonProcessingException {
+         jsonGenerator.writeStartObject();
+         jsonGenerator.writeNumberField("id", customer.getId());
+         jsonGenerator.writeStringField("name", customer.getName());
+         jsonGenerator.writeStringField("referencePerson", customer.getReferencePerson());
+         if (customer.getLastModified() != null) {
+            jsonGenerator.writeStringField("modified", customer.getLastModified().toString());
+         }
+         jsonGenerator.writeObjectField("billingAddress", customer.getBillingAddress());
+         jsonGenerator.writeEndObject();
+      }      
+   }
 }

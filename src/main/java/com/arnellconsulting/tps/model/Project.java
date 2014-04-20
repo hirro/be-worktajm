@@ -16,18 +16,19 @@
  */
 package com.arnellconsulting.tps.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.io.IOException;
 import java.math.BigDecimal;
-
 import java.util.Collection;
 
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
-
-
 
 /**
  * Project POJO
@@ -40,6 +41,7 @@ import javax.validation.constraints.NotNull;
            @UniqueConstraint(columnNames = {"name", "person_id"}, name = "idx_project_person")
         })
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(using = Project.ProjectSerializer.class)
 public class Project extends AbstractTimestampedObject<Long> {
 
    private static final long serialVersionUID = -3902305943341540214L;
@@ -64,7 +66,6 @@ public class Project extends AbstractTimestampedObject<Long> {
     * Time entries associated to this project.
     */
    @OneToMany(mappedBy = "project")
-   @JsonIgnore
    private Collection<TimeEntry> timeEntries;
 
    /**
@@ -73,7 +74,6 @@ public class Project extends AbstractTimestampedObject<Long> {
    @ManyToOne
    @JoinColumn(name = "person_id")
    @NotNull
-   @JsonIgnore
    private Person person;
 
    /**
@@ -127,6 +127,35 @@ public class Project extends AbstractTimestampedObject<Long> {
 
    public void setCustomerId(final Long customerId) {
       this.customerId = customerId;
+   }
+
+   static class ProjectSerializer extends JsonSerializer<Project> {
+
+      @Override
+      public void serialize(
+              Project project,
+              JsonGenerator jsonGenerator,
+              SerializerProvider sp)
+              throws IOException, JsonProcessingException {
+         jsonGenerator.writeStartObject();
+         jsonGenerator.writeNumberField("id", project.getId());
+         jsonGenerator.writeStringField("name", project.getName());
+         if (project.getDescription() != null) {
+            jsonGenerator.writeStringField("description", project.getDescription());         
+         }
+         if (project.getRate() != null) {
+            jsonGenerator.writeNumberField("rate", project.getRate());
+         }
+         if (project.getCustomerId() != null) {
+            jsonGenerator.writeNumberField("customerId", project.getCustomerId());
+         }
+
+         if (project.getLastModified() != null) {
+            jsonGenerator.writeStringField("modified", project.getLastModified().toString());
+         }
+         jsonGenerator.writeEndObject();
+      }
+
    }
 
 }

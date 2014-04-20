@@ -14,14 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-
-
 package com.arnellconsulting.tps.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -29,16 +33,16 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
-
 /**
  * Time entries.
+ *
  * @author hirro
  */
 @Entity
 @Table(name = "tps_time_entry")
 @SuppressWarnings("PMD")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(using = TimeEntry.TimeEntrySerializer.class)
 public class TimeEntry extends AbstractTimestampedObject<Long> {
 
    /**
@@ -47,7 +51,7 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
    @NotNull
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
-   private Date  startTime;
+   private Date startTime;
 
    /**
     * End date and time
@@ -65,7 +69,7 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
     * The person who owns this time entry.
     */
    @ManyToOne
-   @JoinColumn(name="person_id")
+   @JoinColumn(name = "person_id")
    @NotNull
    @JsonIgnore
    @JsonBackReference("activeTimeEntry")
@@ -75,7 +79,7 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
     * The project that is associated with the time entry.
     */
    @ManyToOne
-   @JoinColumn(name="project_id")
+   @JoinColumn(name = "project_id")
    @NotNull
    private Project project;
 
@@ -119,4 +123,25 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
       this.project = project;
    }
 
+   protected static class TimeEntrySerializer extends JsonSerializer<TimeEntry> {
+
+      @Override
+      public void serialize(
+              TimeEntry timeEntry,
+              JsonGenerator jsonGenerator,
+              SerializerProvider sp)
+              throws IOException, JsonProcessingException {
+         jsonGenerator.writeStartObject();
+         jsonGenerator.writeNumberField("id", timeEntry.getId());
+         jsonGenerator.writeNumberField("projectId", timeEntry.getProject().getId());
+         timeEntry.getProject();
+         if (timeEntry.getStartTime() != null) {
+            jsonGenerator.writeStringField("startTime", timeEntry.getStartTime().toInstant().toString());
+         }
+         if (timeEntry.getEndTime() != null) {
+            jsonGenerator.writeStringField("endTime", timeEntry.getEndTime().toInstant().toString());
+         }
+         jsonGenerator.writeEndObject();
+      }
+   }
 }

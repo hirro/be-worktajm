@@ -51,7 +51,7 @@
       -->
 
       <build.profile.id>dev</build.profile.id>
-      <jdk.version>1.7</jdk.version>
+      <jdk.version>1.8</jdk.version>
       <skip.integration.tests>true</skip.integration.tests>
       <skip.unit.tests>false</skip.unit.tests>
 
@@ -450,11 +450,11 @@
          <artifactId>jackson-annotations</artifactId>
          <version>${jackson.version}</version>
       </dependency>
-      <dependency>
+<!--      <dependency>
          <groupId>com.fasterxml.jackson.datatype</groupId>
          <artifactId>jackson-datatype-joda</artifactId>
          <version>${jackson.version}</version>
-      </dependency>
+      </dependency>-->
      
       <!-- H2 Database -->
       <dependency>

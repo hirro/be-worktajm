@@ -18,7 +18,12 @@ package com.arnellconsulting.tps.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.io.IOException;
 import java.util.Collection;
 
 import javax.persistence.*;
@@ -34,6 +39,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "tps_person")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonSerialize(using=Person.PersonSerializer.class)
 public class Person extends AbstractTimestampedObject<Long> {
 
    private static final long serialVersionUID = -3902301243341660214L;
@@ -154,5 +160,26 @@ public class Person extends AbstractTimestampedObject<Long> {
 
    public void setProjects(final Collection<Project> projects) {
       this.projects = projects;
+   }
+
+   static class PersonSerializer extends JsonSerializer<Person> {
+
+      @Override
+      public void serialize(
+              Person person,
+              JsonGenerator jsonGenerator,
+              SerializerProvider sp)
+              throws IOException, JsonProcessingException {
+         jsonGenerator.writeStartObject();
+         jsonGenerator.writeNumberField("id", person.getId());
+         jsonGenerator.writeStringField("email", person.getEmail());
+         jsonGenerator.writeStringField("firstName", person.getFirstName());
+         jsonGenerator.writeStringField("lastName", person.getLastName());
+
+         if (person.getLastModified() != null) {
+            jsonGenerator.writeStringField("modified", person.getLastModified().toString());
+         }
+         jsonGenerator.writeEndObject();
+      }      
    }
 }

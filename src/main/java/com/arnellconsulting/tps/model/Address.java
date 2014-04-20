@@ -16,10 +16,17 @@
  */
 package com.arnellconsulting.tps.model;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
+@JsonSerialize(using=Address.AddressSerializer.class)
 public class Address implements Serializable {
 
    private String line1;
@@ -75,6 +82,31 @@ public class Address implements Serializable {
 
    public void setZip(final String zip) {
       this.zip = zip;
+   }
+
+   static class AddressSerializer extends JsonSerializer<Address> {
+
+      @Override
+      public void serialize(
+              Address address,
+              JsonGenerator jsonGenerator,
+              SerializerProvider sp)
+              throws IOException, JsonProcessingException {
+         jsonGenerator.writeStartObject();
+         if (address.getLine1() != null) {
+            jsonGenerator.writeStringField("line1", address.getLine1());
+         }
+         if (address.getLine2() != null) {
+            jsonGenerator.writeStringField("line2", address.getLine2());         
+         }
+         if (address.getCountry() != null) {
+            jsonGenerator.writeStringField("country", address.getCountry());
+         }
+         if (address.getZip() != null) {
+            jsonGenerator.writeStringField("zip", address.getZip());         
+         }
+         jsonGenerator.writeEndObject();
+      } 
    }
 
 }
