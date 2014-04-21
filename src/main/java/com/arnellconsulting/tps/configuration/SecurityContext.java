@@ -32,48 +32,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
-/**
- * <code>
- * 
- * <security:global-method-security secured-annotations="enabled"/>
- * <security:http realm="Protected API" 
- *                use-expressions="true" 
- *                auto-config="false" 
- *                create-session="stateless"
- *                entry-point-ref="unauthorizedEntryPoint" 
- *                authentication-manager-ref="authenticationManager">
- * <security:custom-filter ref="authenticationTokenProcessingFilter" 
- *                         position="FORM_LOGIN_FILTER" />
- * <security:intercept-url pattern="/registration/**" access="permitAll"/>
- * <security:intercept-url pattern="/authenticate/**" access="permitAll"/>
- * <security:intercept-url method="GET" pattern="/person/**" access="/>
- * </security:http>
- *
- * <security:authentication-manager alias="authenticationManager">
- * <security:authentication-provider user-service-ref="customUserDetailsService">
- * <!-- <security:password-encoder hash="sha-256" /> -->
- *      <
- * /security:authentication-provider>
- * </security:authentication-manager>
- *
- * <bean id="unauthorizedEntryPoint" 
- *       class="com.arnellconsulting.tps.security.UnauthorizedEntryPoint" />
- * <bean id="customUserDetailsService" 
- *       class="com.arnellconsulting.tps.security.TpsUserDetailsService"/>
- * <bean id="authenticationTokenProcessingFilter"
- *       class="com.arnellconsulting.tps.security.AuthenticationTokenProcessingFilter">
- *    <constructor-arg ref="authenticationManager" />
- *    <constructor-arg ref="customUserDetailsService" />
- * </bean>
- * 
- * </code>
- *
- * @author jiar
- */
 @Configuration
 @EnableWebSecurity
 public class SecurityContext extends WebSecurityConfigurerAdapter {
