@@ -18,10 +18,14 @@ package com.arnellconsulting.tps.configuration;
 
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.security.TpsUserDetailsService;
+import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -74,29 +78,38 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 @EnableWebSecurity
 public class SecurityContext extends WebSecurityConfigurerAdapter {
 
+   @Inject
+   private Environment env;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new StandardPasswordEncoder();
+    }    
+    
    @Autowired
    PersonRepository personRepository;
 
    @Override
    public void configure(WebSecurity web) throws Exception {
       web
-              .debug(true)
-              //Spring Security ignores request to static resources such as CSS or JS files.
-              .ignoring()
-              .antMatchers("/static/**");
+         .debug(true)
+         //Spring Security ignores request to static resources such as CSS or JS files.
+         .ignoring()
+         .antMatchers("/static/**");
    }
 
    @Override
    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
       auth
-              .userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+         .userDetailsService(userDetailsService())
+            .passwordEncoder(passwordEncoder());
    }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+   @Override
+   protected void configure(HttpSecurity http) throws Exception {
+      http
+         .csrf().disable()
+         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
          .and()
             .httpBasic()
          .and()
@@ -108,15 +121,14 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                .antMatchers("/authenticate/**").authenticated()
                .antMatchers("/registration/**").anonymous()                
                .antMatchers("/**").denyAll();
-    }
+   }
    
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new TpsUserDetailsService(personRepository);
-    }
+   @Bean
+   public UserDetailsService userDetailsService() {
+      return new TpsUserDetailsService(personRepository);
+   }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new StandardPasswordEncoder();
-    }    
+   @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
+   private static class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
+   }    
 }
