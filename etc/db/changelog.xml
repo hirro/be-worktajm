@@ -267,12 +267,11 @@
    <!-- Additing more optional attributes for person -->
    <changeSet id="11" author="hirro">
       <addColumn tableName="tps_customer" schemaName="tps">
-         <column name="organizationNumber" type="varchar"/>
-         <column name="vatRegistrationNumber" type="varchar"/>
+         <column name="organizationNumber" type="varchar(255)"/>
+         <column name="vatRegistrationNumber" type="varchar(255)"/>
+         <column name="email" type="varchar(255)"/>
+         <column name="bank" type="varchar(255)"/>
          <column name="invoiceNumber" type="int"/>
-         <column name="email" type="varchar"/>
-         <column name="bank" type="varchar"/>
-         <column name="person_id" type="bigint"/>         
       </addColumn>
    </changeSet>   
 
