@@ -56,8 +56,8 @@ public final class TestConstants {
    private static final String PROJECT_A_NAME = "Project A";
 
    // Time Entry A
-   private static final DateTime TIMEENTRY_A_END_TIME = new DateTime("2010-01-01");
-   private static final DateTime TIMEENTRY_A_START_TIME = new DateTime("2010-05-21");
+   private static final DateTime TIMEENTRY_A_END_TIME = new DateTime(1262300400000L);
+   private static final DateTime TIMEENTRY_A_START_TIME = new DateTime(1274392800000L);
    public static final String TIMEENTRY_A_CREATE = "{\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
    public static final String TIMEENTRY_A_COMMENT = "Time Entry A comment";
    public static final String TIMEENTRY_A_UPDATE = "{\"id\":1,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
