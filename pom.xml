@@ -51,7 +51,8 @@
       -->
 
       <build.profile.id>dev</build.profile.id>
-      <jdk.version>1.8</jdk.version>
+      <!-- Can't switch to 8 before it is available on ArchLinux -->
+      <jdk.version>1.7</jdk.version>
       <skip.integration.tests>true</skip.integration.tests>
       <skip.unit.tests>false</skip.unit.tests>
 
