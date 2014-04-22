@@ -101,8 +101,8 @@ public final class TestConstants {
 
    public static TimeEntry createTimeEntryA(final Person person, final Project project) {
       final TimeEntry timeEntryA = new TimeEntry();
-      timeEntryA.setEndTime(TIMEENTRY_A_END_TIME.toDate());
-      timeEntryA.setStartTime(TIMEENTRY_A_START_TIME.toDate());
+      timeEntryA.setEndTime(TIMEENTRY_A_END_TIME);
+      timeEntryA.setStartTime(TIMEENTRY_A_START_TIME);
       timeEntryA.setComment(TIMEENTRY_A_COMMENT);
       timeEntryA.setPerson(person);
       timeEntryA.setProject(project);

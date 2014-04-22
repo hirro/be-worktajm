@@ -31,6 +31,9 @@ import java.util.Date;
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -52,7 +55,7 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
    @Column(name="start_time")   
-   private Date startTime;
+   private DateTime startTime;
 
    /**
     * End date and time
@@ -60,7 +63,7 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
    @Column(name="end_time")   
-   private Date endTime;
+   private DateTime endTime;
 
    /**
     * Optional comment for the time entry.
@@ -85,19 +88,19 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
    @NotNull
    private Project project;
 
-   public Date getStartTime() {
+   public DateTime getStartTime() {
       return startTime;
    }
 
-   public void setStartTime(final Date startTime) {
+   public void setStartTime(final DateTime startTime) {
       this.startTime = startTime;
    }
 
-   public Date getEndTime() {
+   public DateTime getEndTime() {
       return endTime;
    }
 
-   public void setEndTime(final Date endTime) {
+   public void setEndTime(final DateTime endTime) {
       this.endTime = endTime;
    }
 
@@ -140,11 +143,12 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
          if (timeEntry.getProject() != null && timeEntry.getProject().getId() != null) {
             jsonGenerator.writeNumberField("projectId", timeEntry.getProject().getId());
          }
+          DateTimeFormatter fmt = ISODateTimeFormat.dateHourMinuteSecond();
          if (timeEntry.getStartTime() != null) {
-            jsonGenerator.writeStringField("startTime", timeEntry.getStartTime().toInstant().toString());
+            jsonGenerator.writeStringField("startTime", fmt.print(timeEntry.getStartTime()));
          }
          if (timeEntry.getEndTime() != null) {
-            jsonGenerator.writeStringField("endTime", timeEntry.getEndTime().toInstant().toString());
+            jsonGenerator.writeStringField("endTime", fmt.print(timeEntry.getEndTime()));
          }
          jsonGenerator.writeEndObject();
       }

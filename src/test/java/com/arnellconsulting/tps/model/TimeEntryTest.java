@@ -38,8 +38,8 @@ public class TimeEntryTest {
       final Project project = TestConstants.createProjectA();
       final TimeEntry timeEntry = TestConstants.createTimeEntryA(person, project);
       assertThat(timeEntry.getComment(), is(TestConstants.TIMEENTRY_A_COMMENT));
-      assertThat(timeEntry.getEndTime(), is(TestConstants.TIMEENTRY_A_END_TIME.toDate()));
-      assertThat(timeEntry.getStartTime(), is(TestConstants.TIMEENTRY_A_START_TIME.toDate()));
+      assertThat(timeEntry.getEndTime(), is(TestConstants.TIMEENTRY_A_END_TIME));
+      assertThat(timeEntry.getStartTime(), is(TestConstants.TIMEENTRY_A_START_TIME));
       assertThat(timeEntry.getProject(), is(project));
       assertThat(timeEntry.getPerson(), is(person));
    }
