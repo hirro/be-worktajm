@@ -35,7 +35,7 @@ import java.util.Properties;
    "com.arnellconsulting.tps.repository"
 })
 @EnableTransactionManagement
-public class PersistenceConfig {
+public class DatabaseConfiguration {
 
    private static final String[] PROPERTY_PACKAGES_TO_SCAN = {
       "com.arnellconsulting.tps.model"

@@ -34,6 +34,8 @@
       <mysql.connector.version>5.1.26</mysql.connector.version>
       <netbeans.hint.license>apache20</netbeans.hint.license>
       <springsecurity.version>3.2.0.RELEASE</springsecurity.version>
+      <geronimo-javamail_1.4_mail.version>1.8.3</geronimo-javamail_1.4_mail.version>
+      
       <!-- 
            <thymeleaf-extras-conditionalcomments.version>2.0.0</thymeleaf-extras-conditionalcomments.version>
            <thymeleaf-extras-springsecurity3.version>2.0.0</thymeleaf-extras-springsecurity3-v.rsion>
@@ -247,6 +249,10 @@
          <artifactId>spring-boot-starter-test</artifactId>
          <scope>test</scope>
       </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-context-support</artifactId>
+      </dependency>      
                  
       <!-- Database, JPA -->
       <dependency>
@@ -259,7 +265,7 @@
          <artifactId>hibernate-entitymanager</artifactId>
       </dependency>
       <!-- Servlet -->
-<!--      <dependency>
+      <!--      <dependency>
          <groupId>javax.servlet</groupId>
          <artifactId>javax.servlet-api</artifactId>
          <scope>provided</scope>
@@ -402,6 +408,13 @@
          <version>${jasperReport.version}</version>
       </dependency>
       -->
+      
+      <dependency>
+         <groupId>org.apache.geronimo.javamail</groupId>
+         <artifactId>geronimo-javamail_1.4_mail</artifactId>
+         <version>${geronimo-javamail_1.4_mail.version}</version>
+      </dependency>
+      
    </dependencies>
 
 </project>
