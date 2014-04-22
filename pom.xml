@@ -38,7 +38,7 @@
     </profiles>  
    
     <properties>
-        <jdk.version>1.8</jdk.version>
+        <jdk.version>1.7</jdk.version>
         <build.profile.id>dev</build.profile.id>
         <skip.integration.tests>true</skip.integration.tests>
         <skip.unit.tests>false</skip.unit.tests>
