@@ -356,8 +356,8 @@
                                     <version>[3.0.0,)</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <message>You are running an older version of Java, 1.8 required.</message>
-                                    <version>[1.8.0,)</version>
+                                    <message>You are running an older version of Java, 1.7 required.</message>
+                                    <version>[1.7.0,)</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
