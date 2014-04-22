@@ -187,7 +187,7 @@ public class TimeEntryControllerTest {
         )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("startTime", is("2010-05-21T00:00:00")));
+                .andExpect(jsonPath("startTime", is("2010-05-20T22:00:00Z")));
 
         verify(tpsServiceMock, times(1)).getTimeEntry(1L);
         verifyNoMoreInteractions(tpsServiceMock);

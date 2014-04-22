@@ -32,6 +32,7 @@ import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -143,12 +144,12 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
          if (timeEntry.getProject() != null && timeEntry.getProject().getId() != null) {
             jsonGenerator.writeNumberField("projectId", timeEntry.getProject().getId());
          }
-          DateTimeFormatter fmt = ISODateTimeFormat.dateHourMinuteSecond();
+          DateTimeFormatter fmt = ISODateTimeFormat.dateTimeNoMillis();
          if (timeEntry.getStartTime() != null) {
-            jsonGenerator.writeStringField("startTime", fmt.print(timeEntry.getStartTime()));
+            jsonGenerator.writeStringField("startTime", fmt.print(timeEntry.getStartTime().toDateTime(DateTimeZone.UTC)));
          }
          if (timeEntry.getEndTime() != null) {
-            jsonGenerator.writeStringField("endTime", fmt.print(timeEntry.getEndTime()));
+            jsonGenerator.writeStringField("endTime", fmt.print(timeEntry.getEndTime().toDateTime(DateTimeZone.UTC)));
          }
          jsonGenerator.writeEndObject();
       }
