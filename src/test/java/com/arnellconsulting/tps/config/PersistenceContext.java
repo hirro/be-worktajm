@@ -16,22 +16,18 @@
  */
 package com.arnellconsulting.tps.config;
 
-import com.jolbox.bonecp.BoneCPDataSource;
-
+import com.zaxxer.hikari.HikariDataSource;
+import java.util.Properties;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-
-import java.util.Properties;
-
-import javax.annotation.Resource;
-
-import javax.sql.DataSource;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -67,12 +63,7 @@ public class PersistenceContext {
    //~--- methods -------------------------------------------------------------
    @Bean
    public DataSource dataSource() {
-      BoneCPDataSource dataSource = new BoneCPDataSource();
-
-      dataSource.setDriverClass(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
-      dataSource.setJdbcUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
-      dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
-      dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
+      HikariDataSource dataSource = new HikariDataSource();
 
       return dataSource;
    }

@@ -51,6 +51,7 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
    @NotNull
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
+   @Column(name="start_time")   
    private Date startTime;
 
    /**
@@ -58,6 +59,7 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
     */
    @Temporal(TemporalType.TIMESTAMP)
    @DateTimeFormat(style = "M-")
+   @Column(name="end_time")   
    private Date endTime;
 
    /**

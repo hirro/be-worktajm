@@ -79,6 +79,7 @@ public class Project extends AbstractTimestampedObject<Long> {
    /**
     * The optional customer who runs this project.
     */
+   @Column(name="customer_id")
    private Long customerId;
 
    public String getName() {

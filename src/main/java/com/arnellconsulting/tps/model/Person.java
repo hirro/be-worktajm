@@ -46,6 +46,7 @@ public class Person extends AbstractTimestampedObject<Long> {
    /**
     * This indicates whether the person has responded to the email verification.
     */
+   @Column(name="email_verified")
    private Boolean emailVerified = true;
 
    /**
@@ -65,11 +66,13 @@ public class Person extends AbstractTimestampedObject<Long> {
    /**
     * First name of the person.
     */
+   @Column(name="first_name")
    private String firstName;
 
    /**
     * Last name of the person
     */
+   @Column(name="last_name")
    private String lastName;
 
    /**

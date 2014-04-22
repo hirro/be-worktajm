@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.arnellconsulting.tps.configuration;
+package com.arnellconsulting.tps.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +27,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
-@Configuration
+//@Configuration
 public class MailConfiguration implements EnvironmentAware {
 
     private static final String ENV_SPRING_MAIL = "spring.mail.";

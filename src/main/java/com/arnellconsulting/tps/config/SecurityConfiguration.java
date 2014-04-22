@@ -14,12 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.tps.configuration;
+package com.arnellconsulting.tps.config;
 
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.security.TpsUserDetailsService;
 import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -37,7 +38,8 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityContext extends WebSecurityConfigurerAdapter {
+@AutoConfigureAfter(value = {DatabaseConfiguration.class})
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
    @Inject
    private Environment env;

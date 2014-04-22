@@ -1,0 +1,24 @@
+server:
+    port: 8080
+    address: localhost
+    contextPath: /worktajm-api
+
+spring:
+    profiles: dev
+    datasource:
+        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        url: jdbc:mysql://localhost:3306/tps
+        databaseName: tps
+        serverName: 
+        username: tps
+        password: tps
+
+    jpa:
+        database-platform: org.hibernate.dialect.MySQLInnoDBDialect
+        database: MYSQL
+        openInView: false
+        show_sql: false
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy

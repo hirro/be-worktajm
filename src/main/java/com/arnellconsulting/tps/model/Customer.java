@@ -54,16 +54,19 @@ public class Customer extends AbstractTimestampedObject<Long> {
     * Invoice period.
     */
    @Enumerated(EnumType.STRING)
+   @Column(name="invoice_period")      
    private InvoicePeriod invoicePeriod = InvoicePeriod.NONE;
 
    /**
     * Billings address, mandatory.
     */
+   @Column(name="billing_address")      
    private Address billingAddress;
 
    /**
     * Reference person, optional.
     */
+   @Column(name="reference_person")      
    private String referencePerson;
 
    /**
