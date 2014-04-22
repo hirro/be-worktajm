@@ -35,6 +35,8 @@
       <netbeans.hint.license>apache20</netbeans.hint.license>
       <springsecurity.version>3.2.0.RELEASE</springsecurity.version>
       <geronimo-javamail_1.4_mail.version>1.8.3</geronimo-javamail_1.4_mail.version>
+      <usertype.core.version>3.1.0.CR10</usertype.core.version>      
+      <maven-enforcer-plugin.version>1.3.1</maven-enforcer-plugin.version>
       
       <!-- 
            <thymeleaf-extras-conditionalcomments.version>2.0.0</thymeleaf-extras-conditionalcomments.version>
@@ -45,7 +47,7 @@
 
       <build.profile.id>dev</build.profile.id>
       <!-- Can't switch to 8 before it is available on ArchLinux -->
-      <jdk.version>1.7</jdk.version>
+      <jdk.version>1.8</jdk.version>
       <skip.integration.tests>true</skip.integration.tests>
       <skip.unit.tests>false</skip.unit.tests>
 
@@ -140,6 +142,31 @@
                </includes>
             </configuration>
          </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>${maven-enforcer-plugin.version}</version>
+            <executions>
+               <execution>
+                  <id>enforce-versions</id>
+                  <goals>
+                     <goal>enforce</goal>
+                  </goals>
+                  <configuration>
+                     <rules>
+                        <requireMavenVersion>
+                           <message>You are running an older version of Maven, 3.0 required.</message>
+                           <version>[3.0.0,)</version>
+                        </requireMavenVersion>
+                        <requireJavaVersion>
+                           <message>You are running an older version of Java, 1.8 required.</message>
+                           <version>[1.8.0,)</version>
+                        </requireJavaVersion>
+                     </rules>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>         
                   
          <!-- Release plugin used for ??? -->
          <plugin>
@@ -264,6 +291,27 @@
          <groupId>org.hibernate</groupId>
          <artifactId>hibernate-entitymanager</artifactId>
       </dependency>
+         <dependency>
+            <groupId>org.jadira.usertype</groupId>
+            <artifactId>usertype.core</artifactId>
+            <version>${usertype.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase.ext</groupId>
+            <artifactId>liquibase-hibernate4</artifactId>
+            <version>3.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hibernate.javax.persistence</groupId>
+                    <artifactId>hibernate-jpa-2.0-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+       
       <!-- Servlet -->
       <!--      <dependency>
          <groupId>javax.servlet</groupId>
