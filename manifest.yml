@@ -4,3 +4,6 @@ applications:
   mem: 512M
   domain: cfapps.io
   instances: 1
+  organization: worktajm
+  
+  
