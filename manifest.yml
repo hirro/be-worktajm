@@ -1,5 +1,6 @@
 ---
 applications:
-  target:
-      name: worktajm 
-          mem: 512M
+- name: worktajm
+  mem: 512M
+  domain: cfapps.io
+  instances: 1
