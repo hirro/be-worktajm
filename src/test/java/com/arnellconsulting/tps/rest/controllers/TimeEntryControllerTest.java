@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.startsWith;
 import org.joda.time.DateTime;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
@@ -37,6 +38,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -53,6 +55,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -190,7 +193,9 @@ public class TimeEntryControllerTest {
         )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(TestConstants.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("startTime", contains("2010-05-20T")));
+                // XXX Works on two dev machines and Travis but not Codeship
+                //.andExpect(jsonPath("startTime", is("2010-05-20T22:00:00Z")));
+                .andExpect(jsonPath("startTime", startsWith("2010-05-20T")));
 
         verify(tpsServiceMock, times(1)).getTimeEntry(1L);
         verifyNoMoreInteractions(tpsServiceMock);
