@@ -17,10 +17,9 @@
 package com.arnellconsulting.tps.model;
 
 import java.math.BigDecimal;
-
-import org.joda.time.DateTime;
 import java.util.Collection;
 import java.util.Vector;
+import org.joda.time.LocalDateTime;
 
 /**
  *
@@ -42,8 +41,8 @@ public final class TestConstants {
 
    // Time Entry A
    public static final String TIMEENTRY_A_COMMENT = "Time Entry A comment";
-   public static final DateTime TIMEENTRY_A_END_TIME = new DateTime("2010-01-01");
-   public static final DateTime TIMEENTRY_A_START_TIME = new DateTime("2010-05-21");
+   public static final LocalDateTime TIMEENTRY_A_END_TIME = new LocalDateTime("2010-01-01");
+   public static final LocalDateTime TIMEENTRY_A_START_TIME = new LocalDateTime("2010-05-21");
 
    // Address A
    public static final String ADDRESS_A_CITY = "Punxsutawney";

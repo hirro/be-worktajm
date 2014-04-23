@@ -1,8 +1,10 @@
 ---
 applications:
-- name: worktajm
+- name: worktajm-api
   mem: 512M
   domain: cfapps.io
   instances: 1
-  
+  path: ./target/worktajm-api.war
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+    
   

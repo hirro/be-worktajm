@@ -28,6 +28,24 @@
             </properties>
         </profile>
         <profile>
+            <id>prod</id>
+            <properties>
+                <!-- Spring profile to use -->
+                <spring.profiles.active>prod</spring.profiles.active>
+                <!-- log configuration -->
+                <logback.loglevel>ERROR</logback.loglevel>
+            </properties>
+        </profile>
+        <profile>
+            <id>epyon</id>
+            <properties>
+                <!-- Spring profile to use -->
+                <spring.profiles.active>epyon</spring.profiles.active>
+                <!-- log configuration -->
+                <logback.loglevel>ERROR</logback.loglevel>
+            </properties>
+        </profile>
+        <profile>
             <id>integration-test</id>
             <properties>
                 <build.profile.id>integration-test</build.profile.id>
@@ -39,7 +57,6 @@
    
     <properties>
         <jdk.version>1.7</jdk.version>
-        <build.profile.id>dev</build.profile.id>
         <skip.integration.tests>true</skip.integration.tests>
         <skip.unit.tests>false</skip.unit.tests>
 
@@ -306,9 +323,6 @@
                 </includes>
             </resource>
         </resources>      
-        <filters>
-            <filter>profiles/${build.profile.id}/config.properties</filter>
-        </filters>      
         <plugins>
          
             <!-- Spring boot -->

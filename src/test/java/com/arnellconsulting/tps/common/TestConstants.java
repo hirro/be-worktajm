@@ -16,12 +16,12 @@
  */
 package com.arnellconsulting.tps.common;
 
-import java.math.BigDecimal;
 
 import com.arnellconsulting.tps.model.*;
-import org.joda.time.DateTime;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Vector;
+import org.joda.time.LocalDateTime;
 
 /**
  *
@@ -56,8 +56,8 @@ public final class TestConstants {
    private static final String PROJECT_A_NAME = "Project A";
 
    // Time Entry A
-   private static final DateTime TIMEENTRY_A_END_TIME = new DateTime(1262300400000L);
-   private static final DateTime TIMEENTRY_A_START_TIME = new DateTime(1274392800000L);
+   private static final LocalDateTime TIMEENTRY_A_END_TIME = new LocalDateTime(1262300400000L);
+   private static final LocalDateTime TIMEENTRY_A_START_TIME = new LocalDateTime(1274392800000L);
    public static final String TIMEENTRY_A_CREATE = "{\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";
    public static final String TIMEENTRY_A_COMMENT = "Time Entry A comment";
    public static final String TIMEENTRY_A_UPDATE = "{\"id\":1,\"startTime\":1274392800000,\"endTime\":1262300400000,\"comment\":\"Time Entry A comment\",\"new\":true}";

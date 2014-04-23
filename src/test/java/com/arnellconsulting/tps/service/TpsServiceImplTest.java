@@ -24,20 +24,17 @@ import com.arnellconsulting.tps.repository.CompanyRepository;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.hamcrest.Matchers.is;
-
-import static org.junit.Assert.assertThat;
-
-import static org.mockito.Mockito.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import static org.hamcrest.Matchers.is;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import static org.junit.Assert.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -86,7 +83,7 @@ public class TpsServiceImplTest {
         timeEntryA.setPerson(personA);
         timeEntriesA = new ArrayList<TimeEntry>();
         timeEntriesA.add(timeEntryA);
-        DateTime dateA = new DateTime(0);
+        LocalDateTime dateA = new LocalDateTime(0);
         timeEntryA.setEndTime(dateA);
     }
 

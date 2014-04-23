@@ -25,17 +25,14 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Time entries.
@@ -53,18 +50,16 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
     * Start date and time.
     */
    @NotNull
-   @Temporal(TemporalType.TIMESTAMP)
-   @DateTimeFormat(style = "M-")
+   @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
    @Column(name="start_time")   
-   private DateTime startTime;
+   private LocalDateTime startTime;
 
    /**
     * End date and time
     */
-   @Temporal(TemporalType.TIMESTAMP)
-   @DateTimeFormat(style = "M-")
+   @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
    @Column(name="end_time")   
-   private DateTime endTime;
+   private LocalDateTime endTime;
 
    /**
     * Optional comment for the time entry.
@@ -89,19 +84,19 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
    @NotNull
    private Project project;
 
-   public DateTime getStartTime() {
+   public LocalDateTime getStartTime() {
       return startTime;
    }
 
-   public void setStartTime(final DateTime startTime) {
+   public void setStartTime(final LocalDateTime startTime) {
       this.startTime = startTime;
    }
 
-   public DateTime getEndTime() {
+   public LocalDateTime getEndTime() {
       return endTime;
    }
 
-   public void setEndTime(final DateTime endTime) {
+   public void setEndTime(final LocalDateTime endTime) {
       this.endTime = endTime;
    }
 
@@ -146,10 +141,10 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
          }
           DateTimeFormatter fmt = ISODateTimeFormat.dateTimeNoMillis();
          if (timeEntry.getStartTime() != null) {
-            jsonGenerator.writeStringField("startTime", fmt.print(timeEntry.getStartTime().toDateTime(DateTimeZone.UTC)));
+            jsonGenerator.writeStringField("startTime", fmt.print(timeEntry.getStartTime()));
          }
          if (timeEntry.getEndTime() != null) {
-            jsonGenerator.writeStringField("endTime", fmt.print(timeEntry.getEndTime().toDateTime(DateTimeZone.UTC)));
+            jsonGenerator.writeStringField("endTime", fmt.print(timeEntry.getEndTime()));
          }
          jsonGenerator.writeEndObject();
       }
