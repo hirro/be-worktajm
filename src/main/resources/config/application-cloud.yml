@@ -1,17 +1,18 @@
 server:
-    port: 8081
+    port: 18080
     address: localhost
     contextPath: /worktajm-api
 
 spring:
-    profiles: prod
+    profiles: cloud
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
         url: jdbc:mysql://us-cdbr-east-05.cleardb.net:3306/ad_59c6bf602049d0e
         databaseName: ad_59c6bf602049d0e
-        serverName: 
+        serverName: us-cdbr-east-05.cleardb.net
         username: be92cd9da4c92e
-        password: 
+        password: 030d26b1
+        maximumPoolSize: 4
 
     jpa:
         database-platform: org.hibernate.dialect.MySQLInnoDBDialect

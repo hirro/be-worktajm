@@ -28,10 +28,10 @@
             </properties>
         </profile>
         <profile>
-            <id>prod</id>
+            <id>cloud</id>
             <properties>
                 <!-- Spring profile to use -->
-                <spring.profiles.active>prod</spring.profiles.active>
+                <spring.profiles.active>cloud</spring.profiles.active>
                 <!-- log configuration -->
                 <logback.loglevel>ERROR</logback.loglevel>
             </properties>

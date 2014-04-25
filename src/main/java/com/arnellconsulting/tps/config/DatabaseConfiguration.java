@@ -73,6 +73,12 @@ public class DatabaseConfiguration implements EnvironmentAware {
         }
         config.addDataSourceProperty("user", propertyResolver.getProperty("username"));
         config.addDataSourceProperty("password", propertyResolver.getProperty("password"));
+        try {
+            int maxPoolSize = Integer.parseInt(propertyResolver.getProperty("maximumPoolSize"));
+            config.setMaximumPoolSize(maxPoolSize);
+        } catch(Exception e) {
+            // 
+        }
         return new HikariDataSource(config);
     }
 

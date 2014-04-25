@@ -10,9 +10,9 @@
    <property name="now" value="sysdate" dbms="oracle"/>
    <property name="now" value="CURRENT_TIMESTAMP" dbms="mysql"/>
    
-   <preConditions>
+<!--   <preConditions>
       <runningAs username="tps"/>
-   </preConditions>
+   </preConditions>-->
 
    <!-- Add all the plain tables without foreign keys -->
    <changeSet id="1" author="hirro">
@@ -34,9 +34,7 @@
          <column name="email_verified" type="bit" defaultValueBoolean="false"/>
       </createTable>
      
-      <createIndex catalogName="tps"
-                   indexName="idx_email"
-                   schemaName="tps"
+      <createIndex indexName="idx_email"
                    tableName="tps_person"
                    tablespace="space A"
                    unique="true">
@@ -99,9 +97,7 @@
          <column name="person_id" type="bigint"/>
          <column name="customer_id" type="bigint"/>
       </addColumn>
-      <createIndex catalogName="tps"
-                   indexName="idx_project_person"
-                   schemaName="tps"
+      <createIndex indexName="idx_project_person"
                    tableName="tps_project"
                    tablespace="space A"
                    unique="true">
@@ -111,12 +107,10 @@
       <addForeignKeyConstraint 
          baseColumnNames="person_id"
          baseTableName="tps_project"
-         baseTableSchemaName="tps"
          constraintName="fk_project_person"
          referencedColumnNames="id"
          referencedTableName="tps_person"
-         onDelete="CASCADE"
-         referencedTableSchemaName="tps"/>
+         onDelete="CASCADE"/>
    </changeSet>
 
    <!-- 
@@ -127,9 +121,7 @@
       <addColumn tableName="tps_customer">
          <column name="person_id" type="bigint"/>
       </addColumn>
-      <createIndex catalogName="tps"
-                   indexName="idx_customer_person"
-                   schemaName="tps"
+      <createIndex indexName="idx_customer_person"
                    tableName="tps_customer"
                    tablespace="space A"
                    unique="true">
@@ -139,12 +131,10 @@
       <addForeignKeyConstraint 
          baseColumnNames="person_id"
          baseTableName="tps_customer"
-         baseTableSchemaName="tps"
          constraintName="fk_customer_person"
          referencedColumnNames="id"
          referencedTableName="tps_person"
-         onDelete="CASCADE"         
-         referencedTableSchemaName="tps"/>    
+         onDelete="CASCADE"/>
    </changeSet>
 
    <!-- 
@@ -158,21 +148,17 @@
       <addForeignKeyConstraint 
          baseColumnNames="person_id"
          baseTableName="tps_time_entry"
-         baseTableSchemaName="tps"
          constraintName="fk_time_entry_person"
          referencedColumnNames="id"
          referencedTableName="tps_person"
-         onDelete="CASCADE"
-         referencedTableSchemaName="tps"/>        
+         onDelete="CASCADE"/>        
       <addForeignKeyConstraint 
          baseColumnNames="project_id"
          baseTableName="tps_time_entry"
-         baseTableSchemaName="tps"
          constraintName="fk_time_entry_project"
          referencedColumnNames="id"
          referencedTableName="tps_project"
-         onDelete="CASCADE"
-         referencedTableSchemaName="tps"/>   
+         onDelete="CASCADE"/>
    </changeSet>
     
    <!--
@@ -185,12 +171,10 @@
       <addForeignKeyConstraint 
          baseColumnNames="active_time_entry_id"
          baseTableName="tps_person"
-         baseTableSchemaName="tps"
          constraintName="fk_person_time_entry"
          referencedColumnNames="id"
          referencedTableName="tps_time_entry"
-         onDelete="CASCADE"
-         referencedTableSchemaName="tps"/>    
+         onDelete="CASCADE"/>    
    </changeSet>
 
    <!-- Customer property invoice period which defines when invoices should be auto generated. -->
@@ -202,7 +186,7 @@
    
    <!-- This is a default user -->
    <changeSet id="7" author="hirro">
-      <insert tableName="tps_person" schemaName="tps">
+      <insert tableName="tps_person">
          <column name="email" value="demo@worktajm.com"/>
          <column name="first_name" value="John"/>
          <column name="last_name" value="Doe"/>
@@ -213,21 +197,21 @@
 
    <!-- Customer A, two sub projects -->
    <changeSet id="8" author="hirro">
-      <insert tableName="tps_customer" schemaName="tps">
+      <insert tableName="tps_customer">
          <column name="name" value="Customer A"/>
          <column name="line1" value="A street"/>
          <column name="line2" value="A box"/>
          <column name="city" value="A city"/>
          <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
       </insert>
-      <insert tableName="tps_project" schemaName="tps">
+      <insert tableName="tps_project">
          <column name="name" value="Project A.1"/>
          <column name="description" value="Description for project A"/>
          <column name="rate" value="666"/>
          <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
          <column name="customer_id" valueComputed="(SELECT id FROM tps_customer WHERE name = 'Customer A')"/>
       </insert>
-      <insert tableName="tps_project" schemaName="tps">
+      <insert tableName="tps_project">
          <column name="name" value="Project A.2"/>
          <column name="description" value="Description for project A.2"/>
          <column name="rate" value="666"/>
@@ -238,14 +222,14 @@
 
    <!-- Customer B, two sub projects -->
    <changeSet id="9" author="hirro">
-      <insert tableName="tps_customer" schemaName="tps">
+      <insert tableName="tps_customer">
          <column name="name" value="Customer B"/>
          <column name="line1" value="B street"/>
          <column name="line2" value="B box"/>
          <column name="city" value="B city"/>
          <column name="person_id" valueComputed="(SELECT id FROM tps_person WHERE email = 'demo@worktajm.com')"/>
       </insert>
-      <insert tableName="tps_project" schemaName="tps">
+      <insert tableName="tps_project">
          <column name="name" value="Project B.1"/>
          <column name="description" value="Description for project B.1"/>
          <column name="rate" value="666"/>
@@ -256,7 +240,7 @@
 
    <!-- Project C has no customer -->
    <changeSet id="10" author="hirro">
-      <insert tableName="tps_project" schemaName="tps">
+      <insert tableName="tps_project">
          <column name="name" value="Project C"/>
          <column name="description" value="Description for project C"/>
          <column name="rate" value="666"/>
@@ -266,7 +250,7 @@
    
    <!-- Additing more optional attributes for person -->
    <changeSet id="11" author="hirro">
-      <addColumn tableName="tps_customer" schemaName="tps">
+      <addColumn tableName="tps_customer">
          <column name="organizationNumber" type="varchar(255)"/>
          <column name="vatRegistrationNumber" type="varchar(255)"/>
          <column name="email" type="varchar(255)"/>
