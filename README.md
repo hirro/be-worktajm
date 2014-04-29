@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/hirro/be-worktajm.png?branch=master)](https://travis-ci.org/hirro/be-worktajm)
 [![Coverage Status](https://coveralls.io/repos/hirro/be-worktajm/badge.png)](https://coveralls.io/r/hirro/be-worktajm)
-[![Codeship](https://www.codeship.io/projects/a3e4a590-8e5e-0131-f76e-6a78b2210bd8/status)
+[![Codeship](https://www.codeship.io/projects/acf7fa20-b204-0131-9b79-66f8eb76dc49/status)
 
 # WorkTajm
 Hosted at: http://www.worktajm.com
