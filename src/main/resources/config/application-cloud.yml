@@ -1,7 +1,7 @@
-server:
-    port: 18080
-    address: localhost
-    contextPath: /worktajm-api
+#server:
+#    port: 18080
+#    address: localhost
+#    contextPath: /worktajm-api
 
 spring:
     profiles: cloud

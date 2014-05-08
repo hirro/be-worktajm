@@ -1,6 +1,6 @@
 ---
 applications:
-- name: 
+- name: worktajm-api
   host: worktajm-api-${random-word}
   mem: 512M
   domain: cfapps.io

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Jim Arnell
+ * Copyright 2013 Jim Arnell
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,29 +14,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.tps.rest;
 
-import com.arnellconsulting.tps.model.Person;
+package com.arnellconsulting.tps.rest.v1;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Contains information retrieved during authentication.
- * 
- * @author jiar
+ *
+ * @author hirro
  */
-public class AuthenticationToken {
-   private final Long id;
-   private final String email;
-   
-   public AuthenticationToken(final Person person) {
-      this.id = person.getId();
-      this.email = person.getEmail();
-   }
-   
-   public final long getId() {
-      return id;
-   }
-   
-   public final String getEmail() {
-      return email;
+@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason="Invalid parameter")
+public class InvalidParameterExeception extends Exception {
+
+   /**
+    * Constructs an instance of
+    * <code>InvalidParameterExeception</code> with the specified detail message.
+    *
+    * @param msg the detail message.
+    */
+   public InvalidParameterExeception(final String msg) {
+      super(msg);
    }
 }

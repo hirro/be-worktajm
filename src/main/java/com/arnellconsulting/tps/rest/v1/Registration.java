@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.arnellconsulting.tps.rest;
+package com.arnellconsulting.tps.rest.v1;
 
 import javax.xml.bind.annotation.XmlType;
 

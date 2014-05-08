@@ -17,12 +17,12 @@
 
 
 
-package com.arnellconsulting.tps.rest.controllers;
+package com.arnellconsulting.tps.rest.v1;
 
 import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.rest.InvalidParameterExeception;
-import com.arnellconsulting.tps.rest.Registration;
-import com.arnellconsulting.tps.rest.Registration;
+import com.arnellconsulting.tps.rest.v1.InvalidParameterExeception;
+import com.arnellconsulting.tps.rest.v1.Registration;
+import com.arnellconsulting.tps.rest.v1.Registration;
 import com.arnellconsulting.tps.service.TpsService;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;

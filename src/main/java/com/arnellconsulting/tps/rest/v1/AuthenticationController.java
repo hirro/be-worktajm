@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.arnellconsulting.tps.rest.controllers;
+package com.arnellconsulting.tps.rest.v1;
 
-import com.arnellconsulting.tps.rest.BaseController;
+import com.arnellconsulting.tps.rest.v1.BaseController;
 import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.rest.AccessDeniedException;
-import com.arnellconsulting.tps.rest.AuthenticationToken;
+import com.arnellconsulting.tps.rest.v1.AccessDeniedException;
+import com.arnellconsulting.tps.rest.v1.AuthenticationToken;
 import com.arnellconsulting.tps.service.TpsService;
 import java.security.Principal;
 import org.slf4j.Logger;
