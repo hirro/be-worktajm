@@ -50,14 +50,14 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
     * Start date and time.
     */
    @NotNull
-   @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+   @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
    @Column(name="start_time")   
    private LocalDateTime startTime;
 
    /**
     * End date and time
     */
-   @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+   @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
    @Column(name="end_time")   
    private LocalDateTime endTime;
 

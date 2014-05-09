@@ -18,19 +18,14 @@ package com.arnellconsulting.tps.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.util.ReflectionUtils;
 
 import javax.inject.Inject;
 import javax.servlet.*;
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Configuration of web application with Servlet 3.0 APIs.
@@ -47,6 +42,9 @@ public class WebConfigurer implements ServletContextInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         log.info("Web application configuration, using profiles: {}", Arrays.toString(env.getActiveProfiles()));
         EnumSet<DispatcherType> disps = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ASYNC);
+        
+        servletContext.addFilter("CORS", "com.thetransactioncompany.cors.CORSFilter")
+                .addMappingForUrlPatterns(null, false, "/*");
 
         log.info("Web application fully configured");
     }

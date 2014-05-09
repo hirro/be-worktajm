@@ -55,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    @Override
    public void configure(WebSecurity web) throws Exception {
       web
-         .debug(true)
+         .debug(false)
          //Spring Security ignores request to static resources such as CSS or JS files.
          .ignoring()
          .antMatchers("/static/**");

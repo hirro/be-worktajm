@@ -30,6 +30,7 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +39,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verify;
@@ -139,8 +141,8 @@ public class TimeEntryControllerTest {
         when(
                 tpsServiceMock.getTimeEntriesForPerson(
                         Mockito.anyLong(),
-                        Mockito.any(DateTime.class),
-                        Mockito.any(DateTime.class)
+                        Mockito.any(LocalDateTime.class),
+                        Mockito.any(LocalDateTime.class)
                 )
         ).thenReturn(timeEntries);
         mockMvc.perform(
@@ -150,8 +152,8 @@ public class TimeEntryControllerTest {
         ).andExpect(status().isOk());
         verify(tpsServiceMock, times(1)).getTimeEntriesForPerson(
                 Mockito.anyLong(),
-                Mockito.any(DateTime.class),
-                Mockito.any(DateTime.class));
+                Mockito.any(LocalDateTime.class),
+                Mockito.any(LocalDateTime.class));
         verifyNoMoreInteractions(tpsServiceMock);
     }
 
@@ -162,8 +164,8 @@ public class TimeEntryControllerTest {
         when(
                 tpsServiceMock.getTimeEntriesForPerson(
                         Mockito.anyLong(),
-                        Mockito.any(DateTime.class),
-                        Mockito.any(DateTime.class)
+                        Mockito.any(LocalDateTime.class),
+                        Mockito.any(LocalDateTime.class)
                 )
         ).thenReturn(timeEntries);
         mockMvc.perform(
@@ -178,8 +180,8 @@ public class TimeEntryControllerTest {
                 times(1)
         ).getTimeEntriesForPerson(
                 Mockito.anyLong(),
-                Mockito.any(DateTime.class),
-                Mockito.any(DateTime.class));
+                Mockito.any(LocalDateTime.class),
+                Mockito.any(LocalDateTime.class));
         verifyNoMoreInteractions(tpsServiceMock);
     }
 

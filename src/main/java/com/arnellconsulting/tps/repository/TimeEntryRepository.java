@@ -19,17 +19,16 @@
 package com.arnellconsulting.tps.repository;
 
 import com.arnellconsulting.tps.model.TimeEntry;
-import java.util.Date;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import org.joda.time.LocalDateTime;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author hirro
  */
 public interface TimeEntryRepository extends JpaRepository<TimeEntry, Long> {
-   public List<TimeEntry> findByPersonIdAndStartTimeBetween(long userId, Date from, Date to);
+   public List<TimeEntry> findByPersonIdAndStartTimeBetween(long userId, LocalDateTime from, LocalDateTime to);
    List<TimeEntry> findByPersonId(final long personId);
 }

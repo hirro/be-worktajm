@@ -22,10 +22,9 @@ import com.arnellconsulting.tps.model.Customer;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.Project;
 import com.arnellconsulting.tps.model.TimeEntry;
-
-
 import java.util.List;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 
 /**
  * Separation between repositories.
@@ -121,7 +120,7 @@ public interface TpsService {
     * @param to the date to which time entries should be retrieved.
     * @return list of time entries.
     */
-   public List<TimeEntry> getTimeEntriesForPerson(final long userId, final DateTime from, final DateTime to);
+   public List<TimeEntry> getTimeEntriesForPerson(final long userId, final LocalDateTime from, final LocalDateTime to);
 
    /**
     * Retrieve all the projects the current user is authorized for.

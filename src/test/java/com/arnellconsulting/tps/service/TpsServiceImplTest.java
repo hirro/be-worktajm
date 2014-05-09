@@ -25,11 +25,9 @@ import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import static org.hamcrest.Matchers.is;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
@@ -217,13 +215,13 @@ public class TpsServiceImplTest {
      */
     @Test
     public void testGetTimeEntries() {
-        final DateTime startTime = new DateTime(0);
-        final DateTime endTime = new DateTime();
+        final LocalDateTime startTime = new LocalDateTime(0);
+        final LocalDateTime endTime = new LocalDateTime();
 
-        when(timeEntryRepository.findByPersonIdAndStartTimeBetween(1, startTime.toDate(), endTime.toDate())).thenReturn(timeEntriesA);
+        when(timeEntryRepository.findByPersonIdAndStartTimeBetween(1, startTime, endTime)).thenReturn(timeEntriesA);
         final List<TimeEntry> timeEntries = service.getTimeEntriesForPerson(1, startTime, endTime);
         assertThat(timeEntriesA.size(), is(timeEntries.size()));
-        verify(timeEntryRepository, times(1)).findByPersonIdAndStartTimeBetween(1, startTime.toDate(), endTime.toDate());
+        verify(timeEntryRepository, times(1)).findByPersonIdAndStartTimeBetween(1, startTime, endTime);
         verifyNoMoreInteractions(timeEntryRepository);
     }
 

@@ -19,16 +19,15 @@
 
 package com.arnellconsulting.tps.rest.v1;
 
-import com.arnellconsulting.tps.rest.v1.BaseController;
 import com.arnellconsulting.tps.model.Person;
 import com.arnellconsulting.tps.model.TimeEntry;
-import com.arnellconsulting.tps.rest.v1.AccessDeniedException;
-import com.arnellconsulting.tps.rest.v1.InvalidParameterExeception;
 import com.arnellconsulting.tps.service.TpsService;
-
+import java.security.Principal;
+import java.util.List;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -38,14 +37,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.security.Principal;
-
-import java.util.List;
-import org.joda.time.DateTime;
 
 /**
  * JSON API for TimeEntry.
@@ -121,15 +114,15 @@ public class TimeEntryController extends BaseController {
       final Person person = getAuthenticatedPerson(principal);
    
       // Parse start time, default to 0
-      DateTime from = new DateTime(0);
+      LocalDateTime from = new LocalDateTime(0);
       if (fromDate != null) {
-         from = DateTime.parse(fromDate);
+         from = LocalDateTime.parse(fromDate);
       }
 
       // Parse to time, default to current time
-      DateTime to = new DateTime();
+      LocalDateTime to = new LocalDateTime();
       if (toDate != null) {
-         to = DateTime.parse(toDate);
+         to = LocalDateTime.parse(toDate);
       }
       LOG.debug("list time entries as user: {}", person.getId());
 
