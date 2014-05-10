@@ -16,19 +16,37 @@
 
 package com.arnellconsulting.tps.config;
 
+import com.thetransactioncompany.cors.CORSFilter;
+import java.util.Arrays;
+import java.util.EnumSet;
+import javax.inject.Inject;
+import javax.servlet.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
-import javax.inject.Inject;
-import javax.servlet.*;
-import java.util.Arrays;
-import java.util.EnumSet;
-
 /**
  * Configuration of web application with Servlet 3.0 APIs.
+ *    <!-- CORS configuration for Tomcat -->		
+   <filter>
+      <filter-name>CorsFilter</filter-name>
+      <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+      <init-param>
+         <param-name>cors.allowed.methods</param-name>
+         <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+      </init-param>
+      <init-param>
+         <param-name>cors.allowed.headers</param-name>
+         <param-value>Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Jim,Auth-Token</param-value>
+      </init-param>
+   </filter>
+   <filter-mapping>
+      <filter-name>CorsFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+
  */
 @Configuration
 public class WebConfigurer implements ServletContextInitializer {
@@ -43,10 +61,20 @@ public class WebConfigurer implements ServletContextInitializer {
         log.info("Web application configuration, using profiles: {}", Arrays.toString(env.getActiveProfiles()));
         EnumSet<DispatcherType> disps = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ASYNC);
         
-        servletContext.addFilter("CORS", "com.thetransactioncompany.cors.CORSFilter")
-                .addMappingForUrlPatterns(null, false, "/*");
-
+        initCORSFilter(servletContext, disps);
+        
+        
         log.info("Web application fully configured");
+    }
+
+    private void initCORSFilter(ServletContext servletContext, EnumSet<DispatcherType> disps) {
+        final FilterRegistration.Dynamic corsFilter;
+
+        log.info("Initiating CORS filter");
+        corsFilter = servletContext.addFilter("CORS", new CORSFilter());
+        corsFilter.addMappingForUrlPatterns(disps, true, "/*");
+        corsFilter.setInitParameter("cors.allowed.method", "GET,POST,HEAD,OPTIONS,PUT,DELETE");
+        corsFilter.setInitParameter("cors.allowed.headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Jim,Auth-Token");
     }
 
 }
