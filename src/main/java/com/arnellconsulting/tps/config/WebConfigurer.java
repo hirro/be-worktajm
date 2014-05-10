@@ -73,8 +73,9 @@ public class WebConfigurer implements ServletContextInitializer {
         log.info("Initiating CORS filter");
         corsFilter = servletContext.addFilter("CORS", new CORSFilter());
         corsFilter.addMappingForUrlPatterns(disps, true, "/*");
-        corsFilter.setInitParameter("cors.allowed.method", "GET,POST,HEAD,OPTIONS,PUT,DELETE");
+        corsFilter.setInitParameter("cors.allowed.method", "GET,POST,HEAD,PUT,DELETE");
         corsFilter.setInitParameter("cors.allowed.headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Jim,Auth-Token");
+        corsFilter.setInitParameter("cors.allowOrigin", "*");
     }
 
 }
