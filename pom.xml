@@ -313,7 +313,13 @@
             <artifactId>json-path</artifactId>
             <version>0.9.1</version>
             <scope>test</scope>          
-        </dependency>                              
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <scope>test</scope>          
+        </dependency>        
+                      
     </dependencies>
 
     <build>

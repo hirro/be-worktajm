@@ -26,9 +26,7 @@ import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
 import java.util.ArrayList;
 import java.util.List;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.startsWith;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import static org.junit.Assert.assertThat;
@@ -39,9 +37,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -57,9 +52,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -159,8 +151,8 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testListWithDefinedRange() throws Exception {
-        final DateTime fromDate = new DateTime(0);
-        final DateTime toDate = new DateTime(1);
+        final LocalDateTime fromDate = new LocalDateTime(0);
+        final LocalDateTime toDate = new LocalDateTime(1);
         when(
                 tpsServiceMock.getTimeEntriesForPerson(
                         Mockito.anyLong(),
