@@ -81,7 +81,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                .antMatchers("/project/**").authenticated()
                .antMatchers("/customer/**").authenticated()
                .antMatchers("/timeEntry/**").authenticated()
-               .antMatchers("/authenticate/**").permitAll()
+               .antMatchers("/authenticate/**").authenticated()
                .antMatchers("/registration/**").permitAll()
                .antMatchers("/**").denyAll();
    }
