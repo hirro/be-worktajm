@@ -19,7 +19,6 @@ package com.arnellconsulting.tps.config;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.security.TpsUserDetailsService;
 import javax.inject.Inject;
-import com.arnellconsulting.tps.rest.CORSAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
@@ -47,11 +46,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    @Inject
    private Environment env;
    
-   @Bean
-   public AuthenticationEntryPoint corsAuthorizationEntryPoint() {
-       return new CORSAuthenticationEntryPoint();
-   }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new StandardPasswordEncoder();
