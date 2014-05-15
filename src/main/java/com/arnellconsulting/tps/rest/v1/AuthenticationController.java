@@ -62,7 +62,7 @@ public class AuthenticationController extends BaseController {
     */
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
-   @Secured("ROLE_USER")
+   //@Secured("ROLE_USER")
    public AuthenticationToken authenticate(final Principal principal) throws AccessDeniedException {
       LOG.debug("authenticate");
       final Person person = getAuthenticatedPerson(principal);
