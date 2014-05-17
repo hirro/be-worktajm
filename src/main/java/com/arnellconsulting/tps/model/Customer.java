@@ -73,7 +73,7 @@ public class Customer extends AbstractTimestampedObject<Long> {
     * The projects owned by the project.
     */
    @OneToMany
-   @JoinColumn(name="customerId")
+   @JoinColumn(name="customer_id")
    @JsonIgnore
    private Collection<Project> projects;
 
