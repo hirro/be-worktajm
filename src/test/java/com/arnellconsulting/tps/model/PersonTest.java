@@ -18,6 +18,9 @@
 
 package com.arnellconsulting.tps.model;
 
+import com.arnellconsulting.tps.domain.TimeEntry;
+import com.arnellconsulting.tps.domain.Project;
+import com.arnellconsulting.tps.domain.Person;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

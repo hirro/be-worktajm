@@ -18,7 +18,7 @@
 
 package com.arnellconsulting.tps.repository;
 
-import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.domain.Project;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 

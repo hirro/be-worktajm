@@ -17,7 +17,7 @@
 
 package com.arnellconsulting.tps.repository;
 
-import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.domain.Person;
 import java.util.Date;
 import java.util.List;
 

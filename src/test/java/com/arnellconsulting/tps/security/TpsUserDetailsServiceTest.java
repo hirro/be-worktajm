@@ -20,7 +20,7 @@
 package com.arnellconsulting.tps.security;
 
 import com.arnellconsulting.tps.common.TestConstants;
-import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.domain.Person;
 import com.arnellconsulting.tps.repository.PersonRepository;
 
 import org.junit.Before;

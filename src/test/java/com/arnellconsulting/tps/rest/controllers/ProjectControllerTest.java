@@ -26,8 +26,8 @@ import static org.junit.Assert.assertThat;
 import com.arnellconsulting.tps.common.TestConstants;
 import com.arnellconsulting.tps.config.TestContext;
 import com.arnellconsulting.tps.config.WebAppContext;
-import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.model.Project;
+import com.arnellconsulting.tps.domain.Person;
+import com.arnellconsulting.tps.domain.Project;
 import com.arnellconsulting.tps.security.PersonUserDetails;
 import com.arnellconsulting.tps.service.TpsService;
 

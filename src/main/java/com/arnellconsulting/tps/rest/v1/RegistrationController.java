@@ -19,7 +19,7 @@
 
 package com.arnellconsulting.tps.rest.v1;
 
-import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.domain.Person;
 import com.arnellconsulting.tps.rest.v1.InvalidParameterExeception;
 import com.arnellconsulting.tps.rest.v1.Registration;
 import com.arnellconsulting.tps.rest.v1.Registration;

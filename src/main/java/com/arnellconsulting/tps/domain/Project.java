@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.tps.model;
+package com.arnellconsulting.tps.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -45,6 +45,15 @@ import javax.validation.constraints.NotNull;
 public class Project extends AbstractTimestampedObject<Long> {
 
    private static final long serialVersionUID = -3902305943341540214L;
+   
+   public Project() {
+       super();
+   }
+   
+   public Project(long id) {
+       super();
+       this.setId(id);
+   }
 
    /**
     * Project name.

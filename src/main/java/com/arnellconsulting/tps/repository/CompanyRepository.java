@@ -19,7 +19,7 @@
 
 package com.arnellconsulting.tps.repository;
 
-import com.arnellconsulting.tps.model.Customer;
+import com.arnellconsulting.tps.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

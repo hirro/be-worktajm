@@ -18,7 +18,7 @@
 
 package com.arnellconsulting.tps.security;
 
-import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.domain.Person;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

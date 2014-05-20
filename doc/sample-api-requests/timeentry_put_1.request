@@ -4,14 +4,34 @@
 <dict>
 	<key>baseURL</key>
 	<string>http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/timeEntry/1</string>
+	<key>bodyString</key>
+	<string>{
+    "id": 1,
+    "projectId": 1,
+    "startTime": "2014-05-19T06:01:46",
+    "endTime": "2014-05-19T09:01:46",
+	"comment": "Tjabbahej!",
+    "project": {
+        "id": 2
+    }
+}</string>
 	<key>followRedirect</key>
 	<true/>
 	<key>handleJSONPCallbacks</key>
 	<false/>
 	<key>headers</key>
-	<array/>
+	<array>
+		<dict>
+			<key>header</key>
+			<string>Content-Type</string>
+			<key>inUse</key>
+			<true/>
+			<key>value</key>
+			<string>application/json</string>
+		</dict>
+	</array>
 	<key>httpMethod</key>
-	<string>GET</string>
+	<string>PUT</string>
 	<key>jsonpScript</key>
 	<string></string>
 	<key>paramBodyUIChoice</key>
@@ -31,6 +51,6 @@
 	<key>username</key>
 	<string>demo@worktajm.com</string>
 	<key>usingHTTPBody</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

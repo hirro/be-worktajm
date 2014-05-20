@@ -18,7 +18,7 @@
 package com.arnellconsulting.tps.rest.v1;
 
 import com.arnellconsulting.tps.rest.v1.BaseController;
-import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.domain.Person;
 import com.arnellconsulting.tps.rest.v1.AccessDeniedException;
 import com.arnellconsulting.tps.rest.v1.AuthenticationToken;
 import com.arnellconsulting.tps.service.TpsService;

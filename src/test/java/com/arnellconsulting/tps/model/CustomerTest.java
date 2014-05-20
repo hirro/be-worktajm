@@ -19,6 +19,8 @@
 
 package com.arnellconsulting.tps.model;
 
+import com.arnellconsulting.tps.domain.Customer;
+import com.arnellconsulting.tps.domain.Person;
 import com.arnellconsulting.tps.common.InvoicePeriod;
 import junit.framework.TestCase;
 import org.junit.Test;

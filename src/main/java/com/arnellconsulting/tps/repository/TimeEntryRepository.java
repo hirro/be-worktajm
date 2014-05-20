@@ -18,7 +18,7 @@
 
 package com.arnellconsulting.tps.repository;
 
-import com.arnellconsulting.tps.model.TimeEntry;
+import com.arnellconsulting.tps.domain.TimeEntry;
 
 import java.util.List;
 import org.joda.time.LocalDateTime;

@@ -19,6 +19,9 @@
 
 package com.arnellconsulting.tps.model;
 
+import com.arnellconsulting.tps.domain.TimeEntry;
+import com.arnellconsulting.tps.domain.Project;
+import com.arnellconsulting.tps.domain.Person;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static org.hamcrest.Matchers.is;
 

@@ -16,7 +16,7 @@
 
 package com.arnellconsulting.tps.rest.v2.resource;
 
-import com.arnellconsulting.tps.model.Address;
+import com.arnellconsulting.tps.domain.Address;
 import org.springframework.hateoas.ResourceSupport;
 
 /**
