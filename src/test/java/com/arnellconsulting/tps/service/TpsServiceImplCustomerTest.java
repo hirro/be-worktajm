@@ -25,6 +25,7 @@ import com.arnellconsulting.tps.repository.CompanyRepository;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
+import com.arnellconsulting.tps.common.TestConstants;
 
 import org.junit.Before;
 import org.junit.Test;

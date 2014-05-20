@@ -16,6 +16,7 @@
  */
 package com.arnellconsulting.tps.domain;
 
+import com.arnellconsulting.tps.domain.util.JsonUtils;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -188,22 +189,7 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
             // Start time is mandatory
             if (node.has("startTime") ) {
                 final String startTime = node.get("startTime").asText();            
-                LOG.debug(startTime);
-                
-                // Try parse as standard time string
-                try {
-                    timeEntry.setStartTime(LocalDateTime.parse(startTime));            
-                } catch (IllegalArgumentException e) {
-                    //
-                }
-
-                // Try parse as long
-                try {
-                    long startTimeMillis = Long.parseLong(startTime);
-                    timeEntry.setStartTime(new LocalDateTime(startTimeMillis));
-                } catch (NumberFormatException e) {
-                }
-                
+                timeEntry.setStartTime(JsonUtils.parseTimeString(startTime));                
             } else {
                 throw new IllegalArgumentException("Required parameter startTime missing");
             }
@@ -211,8 +197,7 @@ public class TimeEntry extends AbstractTimestampedObject<Long> {
             // End time is optional
             if (node.has("endTime") ) {
                 final String endTime = node.get("endTime").asText();            
-                LOG.debug(endTime);
-                timeEntry.setEndTime(LocalDateTime.parse(node.get("endTime").asText()));            
+                timeEntry.setEndTime(JsonUtils.parseTimeString(endTime));                
             }
             
             // Project is mandatory

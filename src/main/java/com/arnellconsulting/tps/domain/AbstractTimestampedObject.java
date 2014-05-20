@@ -32,7 +32,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  * @param <PK> the type of the auditing type's identifier
  */
 @MappedSuperclass
-public abstract class AbstractTimestampedObject<PK extends Serializable> extends AbstractPersistable<PK> implements Timestampable<PK> {
+public abstract class AbstractTimestampedObject<PK extends Serializable> 
+        extends AbstractPersistable<PK> 
+        implements Timestampable<PK> {
 
     private static final long serialVersionUID = 641461956116435381L;
 
