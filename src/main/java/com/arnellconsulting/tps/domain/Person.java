@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.tps.model;
+package com.arnellconsulting.tps.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -188,6 +188,12 @@ public class Person extends AbstractTimestampedObject<Long> {
          }
          if (person.getLastModified() != null) {
             jsonGenerator.writeStringField("modified", person.getLastModified().toString());
+         }
+         if (person.getActiveTimeEntry() != null) {
+             jsonGenerator.writeNumberField("active_time_entry_id", person.getActiveTimeEntry().getId());
+         }
+         if (person.getLastModified() != null) {
+             jsonGenerator.writeStringField("last_modified", person.getLastModified().toDateTimeISO().toString());
          }
          jsonGenerator.writeEndObject();
       }      

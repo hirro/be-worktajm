@@ -19,11 +19,13 @@
 
 package com.arnellconsulting.tps.service;
 
-import com.arnellconsulting.tps.model.*;
+import com.arnellconsulting.tps.domain.Person;
+import com.arnellconsulting.tps.domain.Customer;
 import com.arnellconsulting.tps.repository.CompanyRepository;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
+import com.arnellconsulting.tps.common.TestConstants;
 
 import org.junit.Before;
 import org.junit.Test;

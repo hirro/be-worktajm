@@ -19,8 +19,8 @@
 
 package com.arnellconsulting.tps.rest.v1;
 
-import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.model.TimeEntry;
+import com.arnellconsulting.tps.domain.Person;
+import com.arnellconsulting.tps.domain.TimeEntry;
 import com.arnellconsulting.tps.service.TpsService;
 import java.security.Principal;
 import java.util.List;

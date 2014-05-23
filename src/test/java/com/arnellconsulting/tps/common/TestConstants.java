@@ -17,7 +17,11 @@
 package com.arnellconsulting.tps.common;
 
 
-import com.arnellconsulting.tps.model.*;
+import com.arnellconsulting.tps.domain.TimeEntry;
+import com.arnellconsulting.tps.domain.Project;
+import com.arnellconsulting.tps.domain.Person;
+import com.arnellconsulting.tps.domain.Address;
+import com.arnellconsulting.tps.domain.Customer;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Vector;

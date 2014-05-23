@@ -18,21 +18,19 @@
 
 package com.arnellconsulting.tps.service;
 
-import com.arnellconsulting.tps.model.Customer;
-import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.model.Project;
-import com.arnellconsulting.tps.model.TimeEntry;
+import com.arnellconsulting.tps.domain.Customer;
+import com.arnellconsulting.tps.domain.Person;
+import com.arnellconsulting.tps.domain.Project;
+import com.arnellconsulting.tps.domain.TimeEntry;
 import com.arnellconsulting.tps.repository.CompanyRepository;
 import com.arnellconsulting.tps.repository.PersonRepository;
 import com.arnellconsulting.tps.repository.ProjectRepository;
 import com.arnellconsulting.tps.repository.TimeEntryRepository;
 import java.util.List;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**

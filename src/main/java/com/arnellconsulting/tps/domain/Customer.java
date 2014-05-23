@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.tps.model;
+package com.arnellconsulting.tps.domain;
 
 import com.arnellconsulting.tps.common.InvoicePeriod;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -73,7 +73,7 @@ public class Customer extends AbstractTimestampedObject<Long> {
     * The projects owned by the project.
     */
    @OneToMany
-   @JoinColumn(name="customerId")
+   @JoinColumn(name="customer_id")
    @JsonIgnore
    private Collection<Project> projects;
 

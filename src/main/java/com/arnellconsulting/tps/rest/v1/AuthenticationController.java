@@ -18,7 +18,7 @@
 package com.arnellconsulting.tps.rest.v1;
 
 import com.arnellconsulting.tps.rest.v1.BaseController;
-import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.domain.Person;
 import com.arnellconsulting.tps.rest.v1.AccessDeniedException;
 import com.arnellconsulting.tps.rest.v1.AuthenticationToken;
 import com.arnellconsulting.tps.service.TpsService;
@@ -62,7 +62,7 @@ public class AuthenticationController extends BaseController {
     */
    @Transactional
    @RequestMapping(method = RequestMethod.GET)
-   @Secured("ROLE_USER")
+   //@Secured("ROLE_USER")
    public AuthenticationToken authenticate(final Principal principal) throws AccessDeniedException {
       LOG.debug("authenticate");
       final Person person = getAuthenticatedPerson(principal);

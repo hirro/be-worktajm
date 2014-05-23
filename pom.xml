@@ -275,7 +275,13 @@
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>cors-filter</artifactId>
             <version>${cors-filter.version}</version>
-        </dependency>      
+        </dependency>
+        <dependency>
+            <groupId>org.ebaysf.web</groupId>
+            <artifactId>cors-filter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        
 
         <!-- JSR-330 -->
         <dependency>

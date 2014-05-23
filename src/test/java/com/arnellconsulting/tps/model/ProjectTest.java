@@ -18,6 +18,7 @@
 
 package com.arnellconsulting.tps.model;
 
+import com.arnellconsulting.tps.domain.Project;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
 import static org.junit.Assert.*;

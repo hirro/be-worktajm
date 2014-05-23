@@ -1,3 +1,5 @@
+package com.arnellconsulting.tps.domain;
+
 ///*
 // * Copyright 2013 Jim Arnell
 // *

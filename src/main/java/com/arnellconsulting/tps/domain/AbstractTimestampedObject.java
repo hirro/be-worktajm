@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.tps.model;
+package com.arnellconsulting.tps.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
@@ -27,43 +27,46 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  * Generic properties for objects.
+ *
  * @author hirro
  * @param <PK> the type of the auditing type's identifier
  */
 @MappedSuperclass
-public abstract class AbstractTimestampedObject<PK extends Serializable> extends AbstractPersistable<PK> implements Timestampable<PK> {
+public abstract class AbstractTimestampedObject<PK extends Serializable> 
+        extends AbstractPersistable<PK> 
+        implements Timestampable<PK> {
 
-	private static final long serialVersionUID = 641461956116435381L;
+    private static final long serialVersionUID = 641461956116435381L;
 
-	@Temporal(TemporalType.TIMESTAMP)
-   @JsonIgnore
-	private Date created;
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
+    private Date created;
 
-	@Temporal(TemporalType.TIMESTAMP)
-   @JsonIgnore
-	private Date modified;
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
+    private Date modified;
 
-   @Override
-	public DateTime getCreated() {
+    @Override
+    public DateTime getCreated() {
 
-		return null == created ? null : new DateTime(created);
-	}
+        return null == created ? null : new DateTime(created);
+    }
 
-   @Override
-	public void setCreated(final DateTime createdDate) {
+    @Override
+    public void setCreated(final DateTime createdDate) {
 
-		this.created = null == createdDate ? null : createdDate.toDate();
-	}
+        this.created = null == createdDate ? null : createdDate.toDate();
+    }
 
-   @Override
-	public DateTime getLastModified() {
+    @Override
+    public DateTime getLastModified() {
 
-		return null == modified ? null : new DateTime(modified);
-	}
+        return null == modified ? null : new DateTime(modified);
+    }
 
-   @Override
-	public void setLastModified(final DateTime lastModifiedDate) {
+    @Override
+    public void setLastModified(final DateTime lastModifiedDate) {
 
-		this.modified = null == lastModifiedDate ? null : lastModifiedDate.toDate();
-	}
+        this.modified = null == lastModifiedDate ? null : lastModifiedDate.toDate();
+    }
 }

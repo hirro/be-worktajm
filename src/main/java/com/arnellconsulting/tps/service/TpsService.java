@@ -18,10 +18,10 @@
 
 package com.arnellconsulting.tps.service;
 
-import com.arnellconsulting.tps.model.Customer;
-import com.arnellconsulting.tps.model.Person;
-import com.arnellconsulting.tps.model.Project;
-import com.arnellconsulting.tps.model.TimeEntry;
+import com.arnellconsulting.tps.domain.Customer;
+import com.arnellconsulting.tps.domain.Person;
+import com.arnellconsulting.tps.domain.Project;
+import com.arnellconsulting.tps.domain.TimeEntry;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;

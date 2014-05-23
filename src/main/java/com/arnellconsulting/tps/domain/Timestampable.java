@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.arnellconsulting.tps.model;
+package com.arnellconsulting.tps.domain;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

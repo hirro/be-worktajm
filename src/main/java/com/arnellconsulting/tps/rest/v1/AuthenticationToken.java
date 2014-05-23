@@ -16,7 +16,7 @@
  */
 package com.arnellconsulting.tps.rest.v1;
 
-import com.arnellconsulting.tps.model.Person;
+import com.arnellconsulting.tps.domain.Person;
 
 /**
  * Contains information retrieved during authentication.
