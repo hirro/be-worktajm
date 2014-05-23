@@ -3,29 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>baseURL</key>
-	<string>http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project/1</string>
+	<string>http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project/6</string>
 	<key>bodyString</key>
-	<string>{
-    "id": 1,
-    "name": "Project A",
-    "description": null,
-    "rate": 12,
-    "new": false
-}</string>
+	<string>{"name":"ujjjjj","active":false,"rate":"333"}</string>
 	<key>followRedirect</key>
 	<true/>
 	<key>handleJSONPCallbacks</key>
 	<false/>
 	<key>headers</key>
 	<array>
-		<dict>
-			<key>header</key>
-			<string>Auth-Token</string>
-			<key>inUse</key>
-			<true/>
-			<key>value</key>
-			<string>jim@arnellconsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107</string>
-		</dict>
 		<dict>
 			<key>header</key>
 			<string>Content-Type</string>
@@ -45,10 +31,16 @@
 	<array/>
 	<key>parametersType</key>
 	<integer>0</integer>
+	<key>password</key>
+	<string>password</string>
 	<key>presentBeforeChallenge</key>
 	<false/>
+	<key>shouldStorePassword</key>
+	<true/>
 	<key>stringEncoding</key>
 	<integer>4</integer>
+	<key>username</key>
+	<string>demo@worktajm.com</string>
 	<key>usingHTTPBody</key>
 	<true/>
 </dict>
