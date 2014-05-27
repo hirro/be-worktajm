@@ -15,7 +15,10 @@
  */
 package com.arnellconsulting.tps.domain.util;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -23,23 +26,19 @@ import org.joda.time.LocalDateTime;
  */
 public class JsonUtils {
 
+    private static final Logger LOG = LoggerFactory.getLogger(JsonUtils.class);
+       
     public static final LocalDateTime parseTimeString(final String timeString) {
         LocalDateTime result = null;
 
         // Try parse as standard time string
         try {
-            result = LocalDateTime.parse(timeString);
+            DateTime dateTime = DateTime.parse(timeString);
+            result = dateTime.toLocalDateTime();
         } catch (IllegalArgumentException e) {
-            //
+            LOG.warn("Failed to parse", e);
         }
-
-        // Try parse as long
-        try {
-            long startTimeMillis = Long.parseLong(timeString);
-            result = new LocalDateTime(startTimeMillis);
-        } catch (NumberFormatException e) {
-        }
-
+        
         return result;
     }
 
