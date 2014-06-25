@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>worktajm-api</artifactId>
-    <groupId>com.arnellconsulting.tps</groupId>
+    <groupId>com.arnellconsulting.worktajm</groupId>
     <packaging>war</packaging>
     <name>be-worktajm</name>
     <version>2.0.5.BUILD-SNAPSHOT</version>   
