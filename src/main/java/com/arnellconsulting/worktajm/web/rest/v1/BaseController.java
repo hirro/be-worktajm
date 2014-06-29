@@ -14,10 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.worktajm.rest.v1;
+package com.arnellconsulting.worktajm.web.rest.v1;
 
 import com.arnellconsulting.worktajm.domain.Person;
-import com.arnellconsulting.worktajm.rest.v1.AccessDeniedException;
+import com.arnellconsulting.worktajm.web.rest.v1.AccessDeniedException;
 import com.arnellconsulting.worktajm.security.PersonUserDetails;
 import java.security.Principal;
 import org.slf4j.Logger;

@@ -16,13 +16,13 @@
  */
 
 
-package com.arnellconsulting.worktajm.rest.controllers;
+package com.arnellconsulting.worktajm.web.rest.controllers;
 
 import com.arnellconsulting.worktajm.common.TestConstants;
 import com.arnellconsulting.worktajm.config.TestContext;
 import com.arnellconsulting.worktajm.config.WebAppContext;
 import com.arnellconsulting.worktajm.domain.Person;
-import com.arnellconsulting.worktajm.rest.v1.Registration;
+import com.arnellconsulting.worktajm.web.rest.v1.Registration;
 import com.arnellconsulting.worktajm.service.TpsService;
 
 import org.junit.Before;

@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.arnellconsulting.worktajm.rest.v1;
+package com.arnellconsulting.worktajm.web.rest.v1;
 
-import com.arnellconsulting.worktajm.rest.v1.BaseController;
+import com.arnellconsulting.worktajm.web.rest.v1.BaseController;
 import com.arnellconsulting.worktajm.domain.Person;
-import com.arnellconsulting.worktajm.rest.v1.AccessDeniedException;
-import com.arnellconsulting.worktajm.rest.v1.AuthenticationToken;
+import com.arnellconsulting.worktajm.web.rest.v1.AccessDeniedException;
+import com.arnellconsulting.worktajm.web.rest.v1.AuthenticationToken;
 import com.arnellconsulting.worktajm.service.TpsService;
 import java.security.Principal;
 import org.slf4j.Logger;

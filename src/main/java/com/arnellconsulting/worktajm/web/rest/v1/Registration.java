@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.arnellconsulting.worktajm.rest.v1;
+package com.arnellconsulting.worktajm.web.rest.v1;
 
 import javax.xml.bind.annotation.XmlType;
 

@@ -17,7 +17,7 @@
 
 
 
-package com.arnellconsulting.worktajm.rest.controllers;
+package com.arnellconsulting.worktajm.web.rest.controllers;
 
 import com.arnellconsulting.worktajm.common.TestConstants;
 import com.arnellconsulting.worktajm.config.TestContext;

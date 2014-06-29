@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.arnellconsulting.worktajm.rest.controllers;
+package com.arnellconsulting.worktajm.web.rest.controllers;
 
 import com.arnellconsulting.worktajm.common.TestConstants;
 import com.arnellconsulting.worktajm.config.TestContext;

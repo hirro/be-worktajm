@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Pivotal Software, Inc..
+ * Copyright 2014 Jim Arnell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,22 @@
  * limitations under the License.
  */
 
-package com.arnellconsulting.worktajm.rest.v2;
+package com.arnellconsulting.worktajm.web.rest.v2.resource;
 
+import com.arnellconsulting.worktajm.domain.Address;
 import org.springframework.hateoas.ResourceSupport;
 
 /**
  *
- * This object only contains links to other customers.
- * 
  * @author jiar
  */
-public class Customers extends ResourceSupport {
+public class CustomerResource extends ResourceSupport {
+   String name;
+
+   Address billingAddress;
+
+   String referencePerson;
+   
+   String organizationalNumber;
     
 }

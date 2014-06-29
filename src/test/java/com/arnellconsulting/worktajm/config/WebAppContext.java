@@ -36,7 +36,7 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {
-        "com.arnellconsulting.worktajm.rest"
+        "com.arnellconsulting.worktajm.web.rest"
 })
 public class WebAppContext extends WebMvcConfigurerAdapter {
 

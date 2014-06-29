@@ -16,12 +16,12 @@
  */
 
 
-package com.arnellconsulting.worktajm.rest.v1;
+package com.arnellconsulting.worktajm.web.rest.v1;
 
-import com.arnellconsulting.worktajm.rest.v1.BaseController;
+import com.arnellconsulting.worktajm.web.rest.v1.BaseController;
 import com.arnellconsulting.worktajm.domain.Person;
 import com.arnellconsulting.worktajm.domain.Project;
-import com.arnellconsulting.worktajm.rest.v1.AccessDeniedException;
+import com.arnellconsulting.worktajm.web.rest.v1.AccessDeniedException;
 import com.arnellconsulting.worktajm.service.TpsService;
 import java.security.Principal;
 
