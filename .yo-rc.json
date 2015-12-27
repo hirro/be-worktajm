@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "worktajm",
+    "packageName": "com.worktajm",
+    "packageFolder": "com/worktajm",
+    "authenticationType": "session",
+    "hibernateCache": "hazelcast",
+    "clusteredHttpSession": "no",
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "useSass": true,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": true,
+    "enableSocialSignIn": true,
+    "rememberMeKey": "3f8622d880645097aa88f656e56d45492693cf69",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}
