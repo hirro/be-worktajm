@@ -1,0 +1,26 @@
+{
+    "worktajmApp": {
+        "timeEntry" : {
+            "home": {
+                "title": "TimeEntrys",
+                "createLabel": "Créer un nouveau TimeEntry",
+                "createOrEditLabel": "Créer ou éditer un TimeEntry"
+            },
+            "created": "Un nouveau TimeEntry a été créé avec l'identifiant {{ param }}",
+            "updated": "Le TimeEntry avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le TimeEntry avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le TimeEntry {{ id }} ?"
+            },
+            "detail": {
+                "title": "TimeEntry"
+            },
+            "startTime": "StartTime",
+            "endTime": "EndTime",
+            "comment": "Comment",
+            "user": "User",
+            "project": "Project"
+        }
+    }
+}
+

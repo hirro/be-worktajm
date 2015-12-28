@@ -16,6 +16,8 @@ module.exports = function (config) {
             'main/webapp/bower_components/angular/angular.js',
             'main/webapp/bower_components/angular-aria/angular-aria.js',
             'main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+            'main/webapp/bower_components/moment/moment.js',
+            'main/webapp/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
             'main/webapp/bower_components/angular-cache-buster/angular-cache-buster.js',
             'main/webapp/bower_components/angular-cookies/angular-cookies.js',
             'main/webapp/bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js',

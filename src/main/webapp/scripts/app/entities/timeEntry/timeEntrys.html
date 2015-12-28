@@ -1,0 +1,83 @@
+<div>
+    <h2 translate="worktajmApp.timeEntry.home.title">TimeEntrys</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button uib-tooltip="{{ 'worktajmApp.timeEntry.home.createLabel' | translate }}" tooltip-placement="right" tooltip-popup-delay='500' class="btn btn-primary" ui-sref="timeEntry.new" >
+                    <span class="glyphicon glyphicon-flash"></span>
+                    <span 
+class="hidden-xs"                        translate="worktajmApp.timeEntry.home.createLabel">Skapa nytt TimeEntry
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="query">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="search()"  uib-tooltip="{{ 'worktajmApp.timeEntry.home.search' | translate }}"  tooltip-popup-delay='500'>
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="startTime"><span translate="worktajmApp.timeEntry.startTime">StartTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="endTime"><span translate="worktajmApp.timeEntry.endTime">EndTime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="comment"><span translate="worktajmApp.timeEntry.comment">Comment</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.login"><span translate="worktajmApp.timeEntry.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="project.name"><span translate="worktajmApp.timeEntry.project">project</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="timeEntry in timeEntrys track by timeEntry.id">
+                    <td><a ui-sref="timeEntry.detail({id:timeEntry.id})">{{timeEntry.id}}</a></td>
+                    <td>{{timeEntry.startTime | date:'medium'}}</td>
+                    <td>{{timeEntry.endTime | date:'medium'}}</td>
+                    <td>{{timeEntry.comment}}</td>
+                    <td>
+                        {{timeEntry.user.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="project.detail({id:timeEntry.project.id})">{{timeEntry.project.name}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="timeEntry.detail({id:timeEntry.id})"
+                                    class="btn btn-info btn-sm"
+                                    uib-tooltip="{{ 'entity.action.view' | translate }}" tooltip-placement="top" tooltip-popup-delay='500' popover-append-to-body='true'> 
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="timeEntry.edit({id:timeEntry.id})"
+                                    class="btn btn-primary btn-sm"
+                                    uib-tooltip="{{'entity.action.edit' | translate}}" tooltip-placement="top" tooltip-popup-delay='500' popover-append-to-body='true'>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="timeEntry.delete({id:timeEntry.id})"
+                                    class="btn btn-danger btn-sm"
+                                    uib-tooltip="{{'entity.action.delete' | translate}}" tooltip-placement="top" tooltip-popup-delay='500' popover-append-to-body='true'>                                    
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <uib-pagination class="pagination-sm" total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pagination>
+    </div>
+</div>

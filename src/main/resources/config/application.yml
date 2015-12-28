@@ -40,6 +40,8 @@ spring:
             clientId: xxx
             clientSecret: xxx
 
+        # jhipster-needle-add-social-configuration
+
 security:
     basic:
         enabled: false

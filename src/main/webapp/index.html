@@ -10,6 +10,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css assets/styles/vendor.css -->
         <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" />
         <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
         <!-- endbower -->
         <!-- endbuild -->
@@ -47,6 +48,8 @@
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-aria/angular-aria.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
         <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
@@ -158,6 +161,20 @@
     <script src="scripts/app/admin/tracker/tracker.js"></script>
     <script src="scripts/app/admin/tracker/tracker.controller.js"></script>
     <script src="scripts/components/tracker/tracker.service.js"></script>
+    <script src="scripts/app/entities/project/project.js"></script>
+    <script src="scripts/app/entities/project/project.controller.js"></script>
+    <script src="scripts/app/entities/project/project-dialog.controller.js"></script>
+    <script src="scripts/app/entities/project/project-delete-dialog.controller.js"></script>
+    <script src="scripts/app/entities/project/project-detail.controller.js"></script>
+    <script src="scripts/components/entities/project/project.service.js"></script>
+    <script src="scripts/components/entities/project/project.search.service.js"></script>
+    <script src="scripts/app/entities/timeEntry/timeEntry.js"></script>
+    <script src="scripts/app/entities/timeEntry/timeEntry.controller.js"></script>
+    <script src="scripts/app/entities/timeEntry/timeEntry-dialog.controller.js"></script>
+    <script src="scripts/app/entities/timeEntry/timeEntry-delete-dialog.controller.js"></script>
+    <script src="scripts/app/entities/timeEntry/timeEntry-detail.controller.js"></script>
+    <script src="scripts/components/entities/timeEntry/timeEntry.service.js"></script>
+    <script src="scripts/components/entities/timeEntry/timeEntry.search.service.js"></script>
     <!-- endbuild -->
 </body>
 </html>

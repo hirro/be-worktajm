@@ -2,8 +2,8 @@
 
 angular.module('worktajmApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprecht.translate', 
     'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload',
-    // jhipster-needle-angularjs-add-module JHipster will add new module
-    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar'])
+    // jhipster-needle-angularjs-add-module JHipster will add new module here
+    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar','ui.bootstrap.datetimepicker'])
 
     .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, Auth, Principal, ENV, VERSION) {
         // update the window title using params in the following
@@ -104,6 +104,7 @@ angular.module('worktajmApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pasca
         $httpProvider.interceptors.push('errorHandlerInterceptor');
         $httpProvider.interceptors.push('authExpiredInterceptor');
         $httpProvider.interceptors.push('notificationInterceptor');
+        // jhipster-needle-angularjs-add-interceptor JHipster will add new application interceptor here
         
         // Initialize angular-translate
         $translateProvider.useLoader('$translatePartialLoader', {
@@ -120,7 +121,7 @@ angular.module('worktajmApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pasca
         tmhDynamicLocaleProvider.storageKey('NG_TRANSLATE_LANG_KEY');
         
     })
-    // jhipster-needle-angularjs-add-config JHipster will add new application configuration
+    // jhipster-needle-angularjs-add-config JHipster will add new application configuration here
     .config(['$urlMatcherFactoryProvider', function($urlMatcherFactory) {
         $urlMatcherFactory.type('boolean', {
             name : 'boolean',

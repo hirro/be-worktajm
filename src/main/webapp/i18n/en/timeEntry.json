@@ -1,0 +1,26 @@
+{
+    "worktajmApp": {
+        "timeEntry" : {
+            "home": {
+                "title": "TimeEntrys",
+                "createLabel": "Create a new TimeEntry",
+                "createOrEditLabel": "Create or edit a TimeEntry",
+                "search": "Search for TimeEntry"
+            },
+            "created": "A new TimeEntry is created with identifier {{ param }}",
+            "updated": "A TimeEntry is updated with identifier {{ param }}",
+            "deleted": "A TimeEntry is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete TimeEntry {{ id }}?"
+            },
+            "detail": {
+                "title": "TimeEntry"
+            },
+            "startTime": "StartTime",
+            "endTime": "EndTime",
+            "comment": "Comment",
+            "user": "User",
+            "project": "Project"
+        }
+    }
+}

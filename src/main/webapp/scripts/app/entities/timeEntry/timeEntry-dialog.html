@@ -1,0 +1,78 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myTimeEntryLabel" translate="worktajmApp.timeEntry.home.createOrEditLabel">Create or edit a TimeEntry</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="timeEntry.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="worktajmApp.timeEntry.startTime" for="field_startTime">StartTime</label>
+            <div class="input-group">              
+                <input id="field_startTime" type="text" class="form-control" ng-model="timeEntry.startTime"
+                />              
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown_startTime" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <datetimepicker role="menu" aria-labelledby="dropdown_startTime" data-ng-model="timeEntry.startTime" data-datetimepicker-config="{ dropdownSelector: '.dropdown_startTime' }"></datetimepicker>
+                        </li>
+                    </ul>
+                </div><!-- /btn-group-btn -->
+            </div><!-- /input-group -->
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="worktajmApp.timeEntry.endTime" for="field_endTime">EndTime</label>
+            <div class="input-group">              
+                <input id="field_endTime" type="text" class="form-control" ng-model="timeEntry.endTime"
+                />              
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown_endTime" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <datetimepicker role="menu" aria-labelledby="dropdown_endTime" data-ng-model="timeEntry.endTime" data-datetimepicker-config="{ dropdownSelector: '.dropdown_endTime' }"></datetimepicker>
+                        </li>
+                    </ul>
+                </div><!-- /btn-group-btn -->
+            </div><!-- /input-group -->
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="worktajmApp.timeEntry.comment" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                    ng-model="timeEntry.comment"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label translate="worktajmApp.timeEntry.user" for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="timeEntry.user" ng-options="user as user.login for user in users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="worktajmApp.timeEntry.project" for="field_project">project</label>
+            <select class="form-control" id="field_project" name="project" ng-model="timeEntry.project" ng-options="project as project.name for project in projects track by project.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
