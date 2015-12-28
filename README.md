@@ -1,76 +1,75 @@
-[![Build Status](https://travis-ci.org/hirro/be-worktajm.png?branch=master)](https://travis-ci.org/hirro/be-worktajm)
-[![Coverage Status](https://coveralls.io/repos/hirro/be-worktajm/badge.png)](https://coveralls.io/r/hirro/be-worktajm)
-[![Codeship](https://www.codeship.io/projects/acf7fa20-b204-0131-9b79-66f8eb76dc49/status)
+# worktajm
 
-# WorkTajm
-Hosted at: http://www.worktajm.com
+This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
 
-***
+Before you can build this project, you must install and configure the following dependencies on your machine:
 
-## Work in progress
-Version 1.0 is not yet scheduled.
+1. [Node.js][]: We use Node to run a development web server and build the project.
+   Depending on your system, you can install Node either from source or as a pre-packaged bundle.
 
-## Description
-Worktajm is a simple time reporting tool that helps you keep track of your work time.
+After installing Node, you should be able to run the following command to install development tools (like
+[Bower][] and [BrowserSync][]). You will only need to run this command when dependencies change in package.json.
 
-The application is ideal for small contractors with features as automatic invoice generation.
+    npm install
 
-The application is free of charge with the exception of the iPhone and Android clients.
-If you like it send some money to charity.
+We use [Grunt][] as our build system. Install the grunt command-line tool globally with:
 
+    npm install -g grunt-cli
 
-## Description
+Run the following commands in two separate terminals to create a blissful development experience where your browser
+auto-refreshes when files change on your hard drive.
 
-This application is divided into two git projects, a backend and a frontend.
+    mvn
+    grunt
 
-The backend server is written in Java and distributed as a war file.
+Bower is used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
+specifying a newer version in `bower.json`. You can also run `bower update` and `bower install` to manage dependencies.
+Add the `-h` flag on any command to see how you can use it. For example, `bower update -h`.
 
-The front end is a AngularJS single page application.
+# Building for production
 
-	
-## Backend
-Git: [be-worktajm](https://github.com/hirro/be-worktajm)
+To optimize the worktajm client for production, run:
 
-The backend is written mainly in Java using the bleeding edge components.
+    mvn -Pprod clean package
 
-### System requirements
-* Tomcat 7.42+, may be moved to 8 soon.
-* JRE 7
-* Mysql/MariaDB
+This will concatenate and minify CSS and JavaScript files. It will also modify `index.html` so it references
+these new files.
 
-### Stack
-* Java 8, servlet 3.1.0
-* Spring Framework 4.x
- * [Spring](www.spring.org)  Spring Data (JPA)
- * [Spring](www.spring.org)  Spring Security
-* Jackson for the REST API ( [API version 1](https://github.com/hirro/be-worktajm/blob/master/api.md) )
-* Liquibase for database change management.
-* Lombok (no longer used)
-* Maven 3
+To ensure everything worked, run:
 
-## Front end
-Git: [yo-worktajm](https://github.com/hirro/yo-worktajm)
+    java -jar target/*.war --spring.profiles.active=prod
 
-### System requirements
+Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
-### Stack
-* [Yeoman 1.0](http://yeoman.io/)
- * [Grunt.js](http://gruntjs.com/)
- * bower
- * angular generators
-* [AngularJS 1.2.11](http://www.angularjs.org/) as foundation.
-* [Bootstrap 3](http://getbootstrap.com/) as default stylesheet.
-* [Restangular](https://github.com/mgonto/restangular) for communicating with backend using REST.
-* [toastr](https://github.com/CodeSeven/toastr) to send the user notifications in Growl like fashion.
-* [Jasmine](http://pivotal.github.com/jasmine/) for wrting unit tests
-* [Karma Test Runner](http://karma-runner.github.io/0.8/index.html) (integrated with the Grunt.js build)
+# Testing
 
-### Continious Integration
+Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in `src/test/javascript` and can be run with:
 
-* [Travis-CI](https://travis-ci.org/) 
+    grunt test
 
 
 
+# Continuous Integration
 
+To setup this project in Jenkins, use the following configuration:
 
+* Project name: `worktajm`
+* Source Code Management
+    * Git Repository: `git@github.com:xxxx/worktajm.git`
+    * Branches to build: `*/master`
+    * Additional Behaviours: `Wipe out repository & force clone`
+* Build Triggers
+    * Poll SCM / Schedule: `H/5 * * * *`
+* Build
+    * Invoke Maven / Tasks: `-Pprod clean package`
+* Post-build Actions
+    * Publish JUnit test result report / Test Report XMLs: `build/test-results/*.xml`
 
+[JHipster]: https://jhipster.github.io/
+[Node.js]: https://nodejs.org/
+[Bower]: http://bower.io/
+[Grunt]: http://gruntjs.com/
+[BrowserSync]: http://www.browsersync.io/
+[Karma]: http://karma-runner.github.io/
+[Jasmine]: http://jasmine.github.io/2.0/introduction.html
+[Protractor]: https://angular.github.io/protractor/
