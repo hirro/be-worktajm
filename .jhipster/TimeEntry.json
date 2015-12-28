@@ -2,24 +2,28 @@
     "relationships": [
         {
             "relationshipId": 1,
-            "relationshipName": "users",
+            "relationshipName": "user",
             "otherEntityName": "user",
             "relationshipType": "many-to-one",
             "otherEntityField": "login"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "project",
+            "otherEntityName": "project",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
         }
     ],
     "fields": [
         {
             "fieldId": 1,
-            "fieldName": "start",
-            "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldName": "startTime",
+            "fieldType": "ZonedDateTime"
         },
         {
             "fieldId": 2,
-            "fieldName": "end",
+            "fieldName": "endTime",
             "fieldType": "ZonedDateTime"
         },
         {
@@ -28,7 +32,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20151227223900",
+    "changelogDate": "20151228021407",
     "dto": "no",
     "service": "serviceImpl",
     "pagination": "pagination"

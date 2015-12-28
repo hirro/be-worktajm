@@ -6,13 +6,6 @@
             "otherEntityName": "user",
             "relationshipType": "many-to-one",
             "otherEntityField": "login"
-        },
-        {
-            "relationshipId": 2,
-            "relationshipName": "timeEntry",
-            "otherEntityName": "timeEntry",
-            "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "project"
         }
     ],
     "fields": [
