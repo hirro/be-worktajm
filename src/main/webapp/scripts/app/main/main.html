@@ -1,41 +1,159 @@
-<div ng-cloak>
-    <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
-        </div>
-        <div class="col-md-8">
-            <h1 translate="main.title">Welcome, Java Hipster!</h1>
-            <p class="lead" translate="main.subtitle">This is your homepage</p>
-
-            <div ng-switch="isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" translate="main.logged.message" translate-values="{username: '{{account.login}}'}">
-                    You are logged in as user "{{account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">
-                    If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register">
-                    You don't have an account yet? <a class="alert-link" href="#/register">Register a new account</a>
-                </div>
-            </div>
-
-            <p translate="main.question">
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank" translate="main.link.homepage">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" translate="main.link.stackoverflow">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" translate="main.link.bugtracker">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" translate="main.link.chat">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank"  translate="main.link.contact">contact @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span translate="main.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" translate="main.github">Github</a>!
-            </p>
-        </div>
+<header full-height="full-height" ng-style="style()" id="page-top">
+  <div class="container">
+    <div class="intro-text">
+      <div class="intro-heading">Time Reports</div>
+      <div class="intro-login"><a id="loginButton" href="/login" class="page-scroll btn btn-login">Login</a>
+        <div class="intro-signin">Or sign in with</div><a href="" ng-click="loginOauth(&quot;facebook&quot;)" class="page-scroll btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a> <a href="" ng-click="loginOauth(&quot;google&quot;)" class="page-scroll btn btn-google-plus"><i class="fa fa-google-plus"></i> Google+</a>
+        <div class="intro-scroll-down"><a href="#features" du-smooth-scroll="du-smooth-scroll" class="btn btn-circle page-scroll"><i class="fa fa-angle-double-down animated"></i></a></div>
+      </div>
     </div>
-</div>
+  </div>
+</header>
+<!-- Features Section-->
+<section full-height="min" ng-style="style()" id="features">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Features</h2>
+        <h3 class="section-subheading text-muted">Easy to use time reporting system.</h3>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4"><span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-mobile fa-stack-1x fa-inverse"></i></span>
+        <h4 class="service-heading">Mobile first </h4>
+        <p class="text-muted">
+          The web application is works with any modern browser on any device.
+        </p>
+      </div>
+      <div class="col-md-4"><span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-clock-o fa-stack-1x fa-inverse"></i></span>
+        <h4 class="service-heading">Free and Easy to use</h4>
+        <p class="text-muted">Just register and you can start filing in your reports right now. </p>
+      </div>
+      <div class="col-md-4"><span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-bar-chart-o fa-stack-1x fa-inverse"></i></span>
+        <h4 class="service-heading">Charts</h4>
+        <p class="text-muted">Get a summary of your filed hour weekly or monthly.</p>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4"><span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-desktop fa-stack-1x fa-inverse"></i></span>
+        <h4 class="service-heading">Responsive Design</h4>
+        <p class="text-muted">
+          The web application is works with any modern browser on any device.
+        </p>
+      </div>
+      <div class="col-md-4"><span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-usd fa-stack-1x fa-inverse"></i></span>
+        <h4 class="service-heading">Free </h4>
+        <p class="text-muted">That's right free.</p>
+      </div>
+      <div class="col-md-4"><span class="fa-stack fa-4x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span>
+        <h4 class="service-heading">Reports via email</h4>
+        <p class="text-muted">Get an email of your billed hours on daily, weekly or monthly basis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Team Section -->
+<section full-height="min" ng-style="style()" id="team" class="bg-light-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Team</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="team-member"><img src="assets/images/team/jim.jpg" alt="" class="img-responsive img-circle"/>
+          <h4>Jim Arnell</h4>
+          <p class="text-muted"></p>
+          <ul class="list-inline social-buttons">
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contributers">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6"><a href="https://angularjs.org/"><img src="assets/images/logos/angularjs.png" alt="AngularJS" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://getbootstrap.com/"><img src="assets/images/logos/bootstrap.png" alt="Bootstrap" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://en.wikipedia.org/wiki/CSS3"><img src="assets/images/logos/css3.png" alt="CSS3" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://expressjs.com/"><img src="assets/images/logos/expressjs.png" alt="Express" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="https://github.com/" class="awesome-icon"> <img src="assets/images/logos/github.png" alt="github" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://en.wikipedia.org/wiki/HTML5" class="awesome-icon"> <img src="assets/images/logos/html5.png" alt="HTML5" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://www.mongodb.com/"><img src="assets/images/logos/mongodb.png" alt="mongoDB" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://nodejs.org/"><img src="assets/images/logos/nodejs.png" alt="nodejs" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://passportjs.org/"><img src="assets/images/logos/passportjs.png" alt="passportjs" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://sass-lang.com/"><img src="assets/images/logos/sass-less.png" alt="CSS with superpowers" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://socket.io/"><img src="assets/images/logos/socketio.png" alt="socket.io" class="img-responsive img-centered"/></a></div>
+        <div class="col-md-3 col-sm-6"><a href="http://yeoman.io/"><img src="assets/images/logos/yeoman.png" alt="Yeoman" class="img-responsive img-centered"/></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section full-height="min" ng-style="style()" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Sign up</h2>
+        <h3 class="section-subheading text-muted">Start filing in your time reports now!</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <form id="contactForm" name="form" ng-submit="register(form)" novalidate="novalidate">
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <div class="form-group">
+                <input id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." ng-model="user.name" class="form-control"/>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <div class="form-group">
+                <input id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." ng-model="user.email" class="form-control"/>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+              <div class="form-group">
+                <input id="email" type="password" placeholder="Your Password *" required="required" data-validation-required-message="Please enter your password" ng-model="user.password" class="form-control"/>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-12 text-center">
+              <div id="success"></div>
+              <button type="submit" class="btn btn-login">Join</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3"><span class="copyright">Copyright © Arnell Consulting AB 2014</span></div>
+      <div class="col-md-4">
+        <ul class="list-inline social-buttons">
+          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="list-inline quicklinks">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

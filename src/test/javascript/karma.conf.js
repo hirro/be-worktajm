@@ -25,6 +25,7 @@ module.exports = function (config) {
             'main/webapp/bower_components/angular-loading-bar/build/loading-bar.js',
             'main/webapp/bower_components/angular-resource/angular-resource.js',
             'main/webapp/bower_components/angular-sanitize/angular-sanitize.js',
+            'main/webapp/bower_components/angular-scroll/angular-scroll.js',
             'main/webapp/bower_components/angular-translate/angular-translate.js',
             'main/webapp/bower_components/messageformat/messageformat.js',
             'main/webapp/bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js',

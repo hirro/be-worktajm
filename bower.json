@@ -16,6 +16,7 @@
         "angular-loading-bar": "0.8.0",
         "angular-resource": "1.4.8",
         "angular-sanitize": "1.4.8",
+        "angular-scroll": "~0.7.2",
         "angular-translate": "2.8.1",
         "angular-translate-interpolation-messageformat": "2.8.1",
         "angular-translate-loader-partial": "2.8.1",

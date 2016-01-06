@@ -10,8 +10,12 @@ angular.module('worktajmApp')
                     authorities: []
                 },
                 views: {
-                    'content@': {
+                    'container@': {
                         templateUrl: 'scripts/app/main/main.html',
+                        controller: 'MainController'
+                    },
+                    'navbar@': {
+                        templateUrl: 'scripts/app/main/main-navbar.html',
                         controller: 'MainController'
                     }
                 },

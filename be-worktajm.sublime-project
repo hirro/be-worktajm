@@ -2,8 +2,8 @@
 	"folders":
 	[
 		{
-			"follow_symlinks": true,
-			"path": "."
+			"path": ".",
+			"folder_exclude_patterns": ["node_modules", "target", "src/main/webapp/bower_components"]
 		}
 	]
 }

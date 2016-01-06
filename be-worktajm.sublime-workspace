@@ -4,6 +4,66 @@
 		"selected_items":
 		[
 			[
+				"log",
+				"logstash"
+			],
+			[
+				"logs",
+				"logstash-forwarder"
+			],
+			[
+				"m",
+				"msisdn"
+			],
+			[
+				"TOMCAT_",
+				"TOMCAT_INSTANCE_PATH"
+			],
+			[
+				"is",
+				"isActiveProject"
+			],
+			[
+				"curr",
+				"currentUser"
+			],
+			[
+				"get",
+				"getCurrentUser"
+			],
+			[
+				"model",
+				"modelName"
+			],
+			[
+				"ac",
+				"activeProjectId"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"res",
+				"resolveTimeEntry"
+			],
+			[
+				"p",
+				"promise"
+			],
+			[
+				"projec",
+				"projectList"
+			],
+			[
+				"proj",
+				"projectList"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
 				"Time",
 				"TimeEntryController"
 			],
@@ -32,41 +92,141 @@
 	"buffers":
 	[
 		{
-			"contents": "Searching 52 files for \"@Slf4j\"\n\n/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/security/TpsUserDetailsService.java:\n   32   * @author hirro\n   33   */\n   34: @Slf4j\n   35  public class TpsUserDetailsService implements UserDetailsService {\n   36     private final transient PersonRepository repository;\n\n/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java:\n   43   * @author hirro\n   44   */\n   45: @Slf4j\n   46  @Service\n   47  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n\n/Users/jiar/git/be-worktajm/core/src/test/java/com/arnellconsulting/tps/repository/ProjectRepositoryTest.java:\n   48  @WebAppConfiguration\n   49  @Transactional\n   50: @Slf4j\n   51  @SuppressWarnings(\"PMD.JUnitTestsShouldIncludeAssert\")\n   52  public class ProjectRepositoryTest extends TestCase {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/AuthenticationController.java:\n   51  @Controller\n   52  @RequestMapping(\"api/authenticate\")\n   53: @Slf4j\n   54  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   55  public class AuthenticationController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/CustomerController.java:\n   47  @Controller\n   48  @RequestMapping(\"api/customer\")\n   49: @Slf4j\n   50  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   51  public class CustomerController extends BaseController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/PersonController.java:\n   49  @Controller\n   50  @RequestMapping(\"api/person\")\n   51: @Slf4j\n   52  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   53  public class PersonController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/ProjectController.java:\n   47  @Controller\n   48  @RequestMapping(\"api/project\")\n   49: @Slf4j\n   50  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   51  public class ProjectController extends BaseController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/RegistrationController.java:\n   42  @Controller\n   43  @RequestMapping(\"/registration\")\n   44: @Slf4j\n   45  public class RegistrationController {\n   46     @Autowired\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/TimeEntryController.java:\n   51  @Controller\n   52  @RequestMapping(\"api/timeEntry\")\n   53: @Slf4j\n   54  @SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.ShortVariable\" })\n   55  public class TimeEntryController extends BaseController {\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/AuthenticationTokenProcessingFilter.java:\n   38  import javax.servlet.http.HttpServletRequest;\n   39  \n   40: @Slf4j\n   41  public class AuthenticationTokenProcessingFilter extends GenericFilterBean {\n   42  \n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/TokenUtils.java:\n   28  \n   29  \n   30: @Slf4j\n   31  public final class TokenUtils {\n   32     public static final String MAGIC_KEY = \"obfuscate\";\n\n11 matches across 11 files\n\n\nSearching 192 files for \"lombok\"\n\n/Users/jiar/git/be-worktajm/tps-parent.iml:\n   20      <orderEntry type=\"library\" name=\"Maven: commons-dbcp:commons-dbcp:1.3\" level=\"project\" />\n   21      <orderEntry type=\"library\" name=\"Maven: commons-pool:commons-pool:1.5.4\" level=\"project\" />\n   22:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   23      <orderEntry type=\"library\" name=\"Maven: org.slf4j:slf4j-api:1.7.5\" level=\"project\" />\n   24      <orderEntry type=\"library\" name=\"Maven: log4j:log4j:1.2.16\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/core/tps-core.iml:\n   69      <orderEntry type=\"library\" name=\"Maven: commons-dbcp:commons-dbcp:1.3\" level=\"project\" />\n   70      <orderEntry type=\"library\" name=\"Maven: commons-pool:commons-pool:1.5.4\" level=\"project\" />\n   71:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   72      <orderEntry type=\"library\" name=\"Maven: log4j:log4j:1.2.16\" level=\"project\" />\n   73      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-classic:0.9.26\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java:\n   31  import org.slf4j.LoggerFactory;\n   32  \n   33: import lombok.NonNull;\n   34  \n   35  import org.springframework.beans.factory.annotation.Autowired;\n\n/Users/jiar/git/be-worktajm/rest-api/api.iml:\n   95      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-core:0.9.26\" level=\"project\" />\n   96      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-access:0.9.26\" level=\"project\" />\n   97:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   98      <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.mockito:mockito-core:1.9.5\" level=\"project\" />\n   99      <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.objenesis:objenesis:1.0\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/rest-api/with.txt:\n   75  [INFO] |  +- com.fasterxml.jackson.core:jackson-core:jar:2.1.4:compile\n   76  [INFO] |  \\- com.fasterxml.jackson.core:jackson-databind:jar:2.1.4:compile\n   77: [INFO] +- org.projectlombok:lombok:jar:1.12.2:provided\n   78  [INFO] +- org.slf4j:slf4j-api:jar:1.7.5:compile\n   79  [INFO] +- log4j:log4j:jar:1.2.16:compile\n\n/Users/jiar/git/be-worktajm/rest-api/without.txt:\n   58  [INFO] |  \\- com.google.guava:guava:jar:r08:compile\n   59  [INFO] +- com.arnellconsulting.tps:tps-core:jar:2.0.5.BUILD-SNAPSHOT:compile\n   60: [INFO] +- org.projectlombok:lombok:jar:1.12.2:provided\n   61  [INFO] +- org.slf4j:slf4j-api:jar:1.7.5:compile\n   62  [INFO] +- log4j:log4j:jar:1.2.16:compile\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/AuthenticationTokenProcessingFilter.java:\n   20  package com.arnellconsulting.tps.security;\n   21  \n   22: import lombok.extern.slf4j.Slf4j;\n   23  \n   24  import org.springframework.security.authentication.AuthenticationManager;\n\n/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/UserTransfer.java:\n   24  \n   25  /**\n   26:  * XXX: Lombok?\n   27   * @author hirro\n   28   */\n\n13 matches across 8 files\n\n\nSearching 192 files for \"lombok\"\n\n/Users/jiar/git/be-worktajm/tps-parent.iml:\n   20      <orderEntry type=\"library\" name=\"Maven: commons-dbcp:commons-dbcp:1.3\" level=\"project\" />\n   21      <orderEntry type=\"library\" name=\"Maven: commons-pool:commons-pool:1.5.4\" level=\"project\" />\n   22:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   23      <orderEntry type=\"library\" name=\"Maven: org.slf4j:slf4j-api:1.7.5\" level=\"project\" />\n   24      <orderEntry type=\"library\" name=\"Maven: log4j:log4j:1.2.16\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/core/tps-core.iml:\n   69      <orderEntry type=\"library\" name=\"Maven: commons-dbcp:commons-dbcp:1.3\" level=\"project\" />\n   70      <orderEntry type=\"library\" name=\"Maven: commons-pool:commons-pool:1.5.4\" level=\"project\" />\n   71:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   72      <orderEntry type=\"library\" name=\"Maven: log4j:log4j:1.2.16\" level=\"project\" />\n   73      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-classic:0.9.26\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/rest-api/api.iml:\n   95      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-core:0.9.26\" level=\"project\" />\n   96      <orderEntry type=\"library\" name=\"Maven: ch.qos.logback:logback-access:0.9.26\" level=\"project\" />\n   97:     <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"Maven: org.projectlombok:lombok:1.12.2\" level=\"project\" />\n   98      <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.mockito:mockito-core:1.9.5\" level=\"project\" />\n   99      <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.objenesis:objenesis:1.0\" level=\"project\" />\n\n/Users/jiar/git/be-worktajm/rest-api/with.txt:\n   75  [INFO] |  +- com.fasterxml.jackson.core:jackson-core:jar:2.1.4:compile\n   76  [INFO] |  \\- com.fasterxml.jackson.core:jackson-databind:jar:2.1.4:compile\n   77: [INFO] +- org.projectlombok:lombok:jar:1.12.2:provided\n   78  [INFO] +- org.slf4j:slf4j-api:jar:1.7.5:compile\n   79  [INFO] +- log4j:log4j:jar:1.2.16:compile\n\n/Users/jiar/git/be-worktajm/rest-api/without.txt:\n   58  [INFO] |  \\- com.google.guava:guava:jar:r08:compile\n   59  [INFO] +- com.arnellconsulting.tps:tps-core:jar:2.0.5.BUILD-SNAPSHOT:compile\n   60: [INFO] +- org.projectlombok:lombok:jar:1.12.2:provided\n   61  [INFO] +- org.slf4j:slf4j-api:jar:1.7.5:compile\n   62  [INFO] +- log4j:log4j:jar:1.2.16:compile\n\n10 matches across 5 files\n",
+			"file": "src/main/scss/main.scss",
 			"settings":
 			{
-				"buffer_size": 9067,
+				"buffer_size": 5836,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/webapp/scripts/app/entities/project/projects.html",
+			"settings":
+			{
+				"buffer_size": 4629,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/webapp/index.html",
+			"settings":
+			{
+				"buffer_size": 12694,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/webapp/scripts/app/landing/landing.jade",
+			"settings":
+			{
+				"buffer_size": 7463,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/webapp/scripts/app/main/main.html",
+			"settings":
+			{
+				"buffer_size": 2477,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 60258 files for \"Welcome, Java Hipster\" (regex, case sensitive)\n\n/Users/jiar/git/worktajm/be-worktajm/node_modules/generator-jhipster/app/templates/src/main/webapp/i18n/en/main.json:\n    1  {\n    2      \"main\": {\n    3:         \"title\": \"Welcome, Java Hipster!\",\n    4          \"subtitle\": \"This is your homepage\",\n    5          \"logged\": {\n\n/Users/jiar/git/worktajm/be-worktajm/node_modules/generator-jhipster/app/templates/src/main/webapp/scripts/app/main/main.html:\n    5          </div>\n    6          <div class=\"col-md-8\">\n    7:             <h1 translate=\"main.title\">Welcome, Java Hipster!</h1>\n    8              <p class=\"lead\" translate=\"main.subtitle\">This is your homepage</p>\n    9  \n\n/Users/jiar/git/worktajm/be-worktajm/node_modules/generator-jhipster/app/templates/src/test/javascript/e2e/_account.js:\n    9  \n   10      it('should fail to login with bad password', function () {\n   11:         expect(element.all(by.css('h1')).first().getText()).toMatch(/Welcome, Java Hipster!/);\n   12          element(by.id('account-menu')).click();\n   13          element(by.css('[ui-sref=\"login\"]')).click();\n\n",
+			"settings":
+			{
+				"buffer_size": 1127,
 				"line_ending": "Unix",
 				"name": "Find Results",
 				"scratch": true
 			}
 		},
 		{
-			"contents": "/*\n * Copyright 2013 Jim Arnell\n *\n * This program is free software: you can redistribute it and/or modify\n * it under the terms of the GNU General Public License as published by\n * the Free Software Foundation, either version 3 of the License, or\n * (at your option) any later version.\n *\n * This program is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n * GNU General Public License for more details.\n *\n * You should have received a copy of the GNU General Public License\n * along with this program.  If not, see <http://www.gnu.org/licenses/>.\n */\n\n\n\npackage com.arnellconsulting.tps.security;\n\nimport org.springframework.security.core.userdetails.UserDetails;\nimport org.springframework.security.crypto.codec.Hex;\n\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\n\nimport java.security.MessageDigest;\nimport java.security.NoSuchAlgorithmException;\n\n\npublic final class TokenUtils {\n\n   private static final String MAGIC_KEY = \"obfuscate\";\n   private static final String BACKDOOR_TOKEN = \"jim@arnellco`nsulting.com:1379262675510:ca1f13683a6aa9eacac64683b745b107\";\n\n   private static final Logger LOG = LoggerFactory.getLogger(TokenUtils.class);\n\n   private TokenUtils() {}\n\n    private static String computeSignature(final UserDetails userDetails, final long expires) {\n      final StringBuilder signatureBuilder = new StringBuilder();\n\n      signatureBuilder.append(userDetails.getUsername());\n      signatureBuilder.append(\":\");\n      signatureBuilder.append(expires);\n      signatureBuilder.append(\":\");\n      signatureBuilder.append(userDetails.getPassword());\n      signatureBuilder.append(\":\");\n      signatureBuilder.append(TokenUtils.MAGIC_KEY);\n\n      MessageDigest digest;\n\n      try {\n         digest = MessageDigest.getInstance(\"MD5\");\n      } catch (NoSuchAlgorithmException e) {\n         throw new IllegalStateException(\"No MD5 algorithm available!\");\n      }\n\n      return new String(Hex.encode(digest.digest(signatureBuilder.toString().getBytes())));\n   }\n\n   public static String createToken(final UserDetails userDetails) {\n\n      /* Expires in one hour */\n      final long expires = System.currentTimeMillis() + 1000L * 60 * 60;\n      final StringBuilder tokenBuilder = new StringBuilder();\n\n      tokenBuilder.append(userDetails.getUsername());\n      tokenBuilder.append(\":\");\n      tokenBuilder.append(expires);\n      tokenBuilder.append(\":\");\n      tokenBuilder.append(TokenUtils.computeSignature(userDetails, expires));\n\n      return tokenBuilder.toString();\n   }\n\n   public static boolean validateToken(final String authToken, final UserDetails userDetails) {\n      final String[] parts = authToken.split(\":\");\n      final long expires = Long.parseLong(parts[1]);\n      final String signature = parts[2];\n\n      // Backdoor for developers\n      if (authToken.equals(BACKDOOR_TOKEN)) {\n         LOG.warn(\"Logging in using developer backdoor\");\n         return true;\n      }\n\n      // Normal flow\n      return expires >= System.currentTimeMillis() && signature.equals(TokenUtils.computeSignature(userDetails, expires));\n   }\n\n   public static String getUserNameFromToken(final String authToken) {\n      if (null == authToken) {\n         return null;\n      }\n\n      final String[] parts = authToken.split(\":\");\n\n      return parts[0];\n   }\n}\n",
-			"file": "rest-api/src/main/java/com/arnellconsulting/tps/security/TokenUtils.java",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "src/main/webapp/scripts/app/account/activate/activate.html",
 			"settings":
 			{
-				"buffer_size": 3408,
+				"buffer_size": 639,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 14264,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/resources/i18n/messages_en.properties",
+			"settings":
+			{
+				"buffer_size": 927,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/webapp/assets/styles/main.css",
+			"settings":
+			{
+				"buffer_size": 158573,
 				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 247.0,
+		"last_filter": "insta",
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"j",
+				"Indent JSON"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"xml",
+				"Indent XML"
+			],
+			[
+				"ind",
+				"Indent XML"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			]
 		],
-		"width": 0.0
+		"width": 467.0
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 126.0,
 		"history":
 		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
 		]
 	},
 	"distraction_free":
@@ -78,31 +238,185 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Users/jiar/git/worktajm/be-worktajm",
+		"/Users/jiar/git/worktajm/be-worktajm/.jhipster",
+		"/Users/jiar/git/worktajm/be-worktajm/src",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/resources",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/resources/i18n",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/scss",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/assets",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/assets/styles",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/bower_components/angular-bootstrap-datetimepicker",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/bower_components/angular-bootstrap-datetimepicker/src",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/bower_components/angular-bootstrap-datetimepicker/src/js",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/i18n",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/account",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/account/activate",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/account/login",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/account/register",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/account/social",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/entities",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/entities/project",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/landing",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/main"
+	],
 	"file_history":
 	[
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/AuthenticationTokenProcessingFilter.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/TimeEntryController.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/RegistrationController.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/ProjectController.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/PersonController.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/CustomerController.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/AuthenticationController.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/security/TpsUserDetailsService.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/UserTransfer.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/security/TokenUtils.java",
-		"/Users/jiar/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/jiar/git/be-worktajm/core/src/test/java/com/arnellconsulting/tps/repository/ProjectRepositoryTest.java"
+		"/Users/jiar/git/worktajm/be-worktajm/doc/database/tps.uxf",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/entities/timeEntry/timeEntry-dialog.html",
+		"/Users/jiar/git/worktajm/be-worktajm/bower.json",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/entities/project/projects.html",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/scripts/app/app.js",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/index.html",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/webapp/assets/styles/main.css",
+		"/Users/jiar/git/worktajm/be-worktajm/.jhipster/Project.json",
+		"/Users/jiar/git/worktajm/be-worktajm/src/main/resources/config/liquibase/changelog/20151228011949_added_entity_Project.xml",
+		"/Users/jiar/git/worktajm/be-worktajm/bugreports/Timezones/yo-rc.json.txt",
+		"/Users/jiar/git/worktajm/be-worktajm/.jhipster/TimeEntry.json",
+		"/Users/jiar/git/worktajm/coreos/doc/etcd2.md",
+		"/Users/jiar/git/worktajm/docker/docker.sublime-project",
+		"/Users/jiar/git/worktajm/coreos/README.md",
+		"/Users/jiar/git/worktajm/coreos/doc/howto.md",
+		"/Users/jiar/git/worktajm/coreos/generate.py",
+		"/Users/jiar/git/worktajm/coreos/generate/generate.sh",
+		"/Users/jiar/git/worktajm/coreos/machines.d/epyon.yaml",
+		"/Users/jiar/git/worktajm/coreos/install.sh",
+		"/Users/jiar/git/worktajm/coreos/machines.d/unicorn.yaml",
+		"/Users/jiar/git/worktajm/coreos/LICENSE.md",
+		"/Users/jiar/git/worktajm/coreos/machines.d/zero.yaml",
+		"/Users/jiar/Dropbox/Development/coreos/install.sh",
+		"/Users/jiar/tmp/log_short.txt",
+		"/Users/jiar/tmp/log_long.txt",
+		"/Users/jiar/git/mideye/plus-fenris/test/bin/create_pvs_data.rb",
+		"/Users/jiar/Desktop/stackdumps.log",
+		"/Users/jiar/Desktop/stackdumps2.log",
+		"/Users/jiar/Downloads/colors_deep_orange_orange.xml",
+		"/Users/jiar/Desktop/mideyer.log",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntries.controller.js",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/node_modules/passport-google-oauth/lib/passport-google-oauth/oauth2.js",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/Gruntfile.js",
+		"/Users/jiar/tmp/jhipster/src/main/java/com/mycompany/myapp/config/CloudDatabaseConfiguration.java",
+		"/Users/jiar/tmp/jhipster/src/main/java/com/mycompany/myapp/config/CacheConfiguration.java",
+		"/Users/jiar/tmp/jhipster/src/main/java/com/mycompany/myapp/config/DatabaseConfiguration.java",
+		"/Users/jiar/tmp/jhipster/src/main/java/com/mycompany/myapp/config/MetricsConfiguration.java",
+		"/Users/jiar/git/mideye/push-smsc/docs/sql/pas/migrate.sql",
+		"/Users/jiar/git/mideye/push-smsc/docs/sql/all_entries.sql",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/13_logstash/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/13_logstash/patterns/nginx",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/13_logstash/etc/logstash/logstash.conf",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/50_nginx/etc/nginx/conf.d/ssl.conf",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/11_dataelk/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/13_logstash/patterns/11-nginx.conf",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/docs/boot2docker.md",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/bin/setup_build_environment.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/bin/setup_gems.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/50_nginx/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/50_nginx/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/14_kibana/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/92_logstash-forwarder/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/12_elasticsearch/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/14_kibana/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/92_logstash-forwarder/etc/logstash-forwarder/config.json",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/_90_elk/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/13_logstash/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/_90_elk/etc/logstash.conf",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/_90_elk/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/92_logstash-forwarder/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/92_lumberjack/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/92_lumberjack/etc/logstash-forwarder/config.json",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/_13_logstash/etc/logstash/logstash.conf",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/_13_logstash/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/_13_logstash/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/12_logstash/etc/logstash/logstash.conf",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/12_logstash/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/12_logstash/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/12_logstash/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/stop.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/cleanup-dangling.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_dataelk/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_dataelk/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/91_elk/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/92_lumberjack/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/91_kibana/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/91_kibana/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/11_elastic_search/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/11_elasticsearch/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/11_elasticsearch/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/11_elasticsearch/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/91_kibana/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/92_lumberjack/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/91_elk/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/91_elk/etc/logstash/logstash.conf",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_dataelk/logstash.conf",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_dataelk/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_elk/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_lumberjack/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_logstash/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/10_mongodb/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/20_node/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_logstash/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_logstash/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_elk/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_lumberjack/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_elk/etc/logstash.conf",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/20_node/start.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/10_mongodb/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_lumberjack/Dockerfile",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_lumberjack/config.json",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/server/api/user/user.model.spec.js",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/devops/images/90_node/build.sh",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/dist/package.json",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/server/config/environment/production.js",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/server/config/environment/docker.json",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/server/api/thing/thing.spec.js",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/server/config/environment/development.js",
+		"/Users/jiar/git/worktajm/yo-worktajm/master/Dockerfile",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/devops/nginx/Dockerfile",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/conf/logstash-forwarder/logstash-forwarder.conf",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/conf/logstash-forwarder/logstash-spring-boot.conf",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/src/main/resources/logback.xml",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/pom.xml",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/.jhipster/TimeEntry.json",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/src/main/resources/config/application-prod.yml",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/src/main/java/com/arnellconsulting/worktajm/domain/Organization.java",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/src/main/java/com/arnellconsulting/worktajm/domain/Customer.java",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/src/main/java/com/arnellconsulting/worktajm/domain/Project.java",
+		"/Users/jiar/git/worktajm/be-worktajm/jhipster/.jhipster/Worker.json",
+		"/Users/jiar/git/mideye/push-smsc/smsc-server/src/main/java/com/mideye/pushserver/pusher/AndroidGcmPusher.java",
+		"/Users/jiar/git/mideye/push-smsc/smsc-server/src/main/resources/config/application-prod.yml",
+		"/Users/jiar/git/mideye/push-smsc/smsc-server/src/main/resources/config/application.yml",
+		"/Users/jiar/git/mideye/push-smsc/docs/test/mountebank/wns-mock.json",
+		"/Users/jiar/git/mideye/push-smsc/docs/sql/device.txt",
+		"/Users/jiar/git/mideye/push-smsc/docs/test/mountebank/README.md"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
 		"height": 93.0,
 		"where_history":
 		[
+			"",
+			"*.jade",
+			"*.js",
+			"",
+			"/Users/jiar/git/mideye/push-smsc",
+			"",
+			"-/Users/jiar/git/yo-worktajm/node/client/bower_components/*",
+			"-/Users/jiar/git/yo-worktajm/node/client/bower_components",
+			"",
+			"*.java",
+			"*",
 			"*.java",
 			"",
 			"*.java"
@@ -110,21 +424,142 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
-			"log.warn",
-			"log.error",
-			"log.debug",
-			"private final Logger log",
-			"lombok",
-			"@Slf4j",
-			"    "
+			"Welcome, Java Hipster",
+			"sass:server",
+			"sass:",
+			"jade",
+			"sass",
+			"server: ",
+			"sass",
+			"scss",
+			"                    </",
+			"css/bootstrap.css",
+			"StartTime",
+			"hipster",
+			"192.168.1.2",
+			"      ",
+			"deploy",
+			"192.168.1.5",
+			"start",
+			"git",
+			"Attempt to invoke virtual method 'boolean java.lang.Boolean.booleanValue()' on a null object reference",
+			"List<Me>",
+			"timeEntry",
+			"TimeEntry",
+			"project",
+			"Project",
+			"android:",
+			"=",
+			"mideye",
+			"counter_generator",
+			"activation_orders_columns",
+			"device_info_alternatives",
+			"device_infos",
+			"createDeviceInfo",
+			"Rand",
+			"} ",
+			"|",
+			"{\\\\\\\"",
+			"\"",
+			"# ",
+			"|",
+			"| ",
+			"|",
+			"settings",
+			"karma",
+			"karam",
+			".then(",
+			"start",
+			"karma",
+			"server",
+			"HealthCheckRegistry",
+			"hikaricp",
+			"HealthIndicator",
+			"HealthIndicatorAutoConfigurationProperties",
+			"CompositeHealthIndicator",
+			"HealthEndpoint",
+			"Aggregator",
+			"HealthAggregator",
+			"dropwizard-metrics.version",
+			"        <dependency>\n            <groupId>io.dropwizard.metrics</groupId>\n            <artifactId>metrics-core</artifactId>\n        </dependency>\n        <dependency>\n            <groupId>io.dropwizard.metrics</groupId>\n            <artifactId>metrics-annotation</artifactId>\n            <version>${dropwizard-metrics.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>io.dropwizard.metrics</groupId>\n            <artifactId>metrics-graphite</artifactId>\n        </dependency>\n        <dependency>\n            <groupId>io.dropwizard.metrics</groupId>\n            <artifactId>metrics-healthchecks</artifactId>\n            <version>${dropwizard-metrics.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>io.dropwizard.metrics</groupId>\n            <artifactId>metrics-json</artifactId>\n            <version>${dropwizard-metrics.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>io.dropwizard.metrics</groupId>\n            <artifactId>metrics-jvm</artifactId>\n            <version>${dropwizard-metrics.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>io.dropwizard.metrics</groupId>\n            <artifactId>metrics-servlet</artifactId>\n            <version>${dropwizard-metrics.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>io.dropwizard.metrics</groupId>\n            <artifactId>metrics-servlets</artifactId>\n            <exclusions>\n                <exclusion>\n                    <artifactId>metrics-healthchecks</artifactId>\n                    <groupId>io.dropwizard.metrics</groupId>\n                </exclusion>\n            </exclusions>\n        </dependency>",
+			"Health.Builder",
+			"HealthAggregator",
+			"HealthIndicatorConfiguration",
+			"health",
+			"CLoud",
+			"datasource",
+			"JHipsterHealthIndicatorConfiguration",
+			"health",
+			"HealthIndicator",
+			"DatabaseHealthIndicator",
+			"hikari",
+			"health",
+			"actua",
+			"hazel",
+			"hikari",
+			"mountebank",
+			"montebank",
+			"/etc/logstash/",
+			"lumberjack",
+			"rw",
+			"elasticsearch",
+			"\n    ",
+			"FACEBOOK_ID",
+			"Timer",
+			"listOnTimeout",
+			"Timer.listOnTimeout",
+			"time",
+			"onTim",
+			"before all",
+			"before",
+			"$APP_PATH",
+			"public",
+			"0",
+			"serve:",
+			"serve",
+			"/*;",
+			"encoder",
+			"tester",
+			"port",
+			"elast",
+			"remoteHost",
+			"logback",
+			":space:",
+			"\\s",
+			"AUTOCURL",
+			"verification id:",
+			"\n         ",
+			"\\n",
+			"curl",
+			"404",
+			"requried",
+			"parameters",
+			"X-NotificationClass",
+			"\"predicates\": [ { \"not\": { \"exists\": { \"headers\": {  ",
+			"X-MessageID",
+			"FENRIS",
+			"Fenris",
+			"FENRIS",
+			"FENRIS_PATH",
+			".0.0:61",
+			"61616",
+			"brokerUrl",
+			"tcp://127.0.0.1:61616",
+			"61616",
+			"jdbc/PvsDB1",
+			"deferred",
+			"def",
+			"[ ][ ]*$",
+			"function[(]",
+			"function("
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
 			"LOG.warn",
@@ -142,17 +577,186 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "src/main/scss/main.scss",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9067,
+						"buffer_size": 5836,
 						"regions":
 						{
+						},
+						"selection":
+						[
+							[
+								5422,
+								4722
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3127.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/main/webapp/scripts/app/entities/project/projects.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4629,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								606,
+								588
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/main/webapp/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12694,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2548,
+								2548
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/main/webapp/scripts/app/landing/landing.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7463,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1539,
+								1539
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/main/webapp/scripts/app/main/main.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2477,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2191,
+								2191
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1127,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										248,
+										269
+									],
+									[
+										586,
+										607
+									],
+									[
+										984,
+										1005
+									]
+								],
+								"scope": ""
+							}
 						},
 						"selection":
 						[
@@ -165,7 +769,7 @@
 						{
 							"detect_indentation": false,
 							"line_numbers": false,
-							"output_tag": 3,
+							"output_tag": 1,
 							"result_base_dir": "",
 							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
 							"result_line_regex": "^ +([0-9]+):",
@@ -173,40 +777,128 @@
 							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2130.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "rest-api/src/main/java/com/arnellconsulting/tps/security/TokenUtils.java",
-					"semi_transient": false,
+					"buffer": 6,
+					"file": "src/main/webapp/scripts/app/account/activate/activate.html",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 3408,
+						"buffer_size": 639,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1147,
-								1147
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Java/Java.tmLanguage",
-							"tab_size": 3,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 146.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Gruntfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13054,
+								13065
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5058.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/main/resources/i18n/messages_en.properties",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 927,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/JavaProperties.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/main/webapp/assets/styles/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 158573,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								158235,
+								157983
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 90057.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -218,7 +910,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -243,10 +935,15 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 230.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
 	},
+	"pinned_build_system": "",
 	"project": "be-worktajm.sublime-project",
 	"replace":
 	{
@@ -256,35 +953,107 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"grunt",
+				"Gruntfile.js"
+			],
+			[
+				"index.html",
+				"src/main/webapp/index.html"
+			],
+			[
+				"ports",
+				"test/doc/ports.md"
+			],
+			[
+				"oaut",
+				"node_modules/passport-google-oauth/lib/passport-google-oauth/oauth2.js"
+			],
+			[
+				"index",
+				"client/index.html"
+			],
+			[
+				"user",
+				"server/api/user/user.model.spec.js"
+			],
+			[
+				"things",
+				"server/api/thing/thing.spec.js"
+			],
+			[
+				"logbac",
+				"src/main/resources/logback.xml"
+			],
+			[
+				"context",
+				"instances/tomcat/1/conf/context.xml"
+			],
+			[
+				"pvsconfig.json",
+				"imp/server/PvsProd/PvsProd/src/main/webapp/WEB-INF/pvsConfig.json"
+			],
+			[
+				"wor",
+				"client/components/worktajm/worktajm.service.spec.js"
+			],
+			[
+				"timer",
+				"server/api/timeentry/timeentry.controller.js"
+			],
+			[
+				"projects.con",
+				"client/app/dashboard/projects/projects.controller.js"
+			],
+			[
+				"login",
+				"app/account/login/login.jade"
+			],
+			[
+				"bower",
+				"bower.json"
+			],
+			[
+				"invoice",
+				"app/views/reports/invoice.html"
+			]
 		],
 		"width": 0.0
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"~/git/worktajm/docker/docker.sublime-project"
+			]
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
 		"width": 0.0
 	},
+	"selected_group": 0,
 	"settings":
 	{
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 344.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

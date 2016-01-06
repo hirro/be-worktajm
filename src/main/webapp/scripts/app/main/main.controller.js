@@ -6,4 +6,9 @@ angular.module('worktajmApp')
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
         });
+
+		$scope.toggleNavbar = function() {
+			console.log('toggleNavbar');
+			$scope.isCollapsed = !$scope.isCollapsed;
+		};
     });

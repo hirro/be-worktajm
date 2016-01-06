@@ -53,6 +53,12 @@ module.exports = function (grunt) {
             sass: {
                 files: ['src/main/scss/**/*.{scss,sass}'],
                 tasks: ['sass:server']
+            },
+            jade: {
+                files: [
+                '<%= yeoman.client %>/{app,components}/*',
+                '<%= yeoman.client %>/{app,components}/**/*.jade'],
+                tasks: ['jade']
             }
         },
         autoprefixer: {
@@ -127,6 +133,25 @@ module.exports = function (grunt) {
                 'src/main/webapp/scripts/components/**/*.js'
             ]
         },
+        // Compiles Jade to html
+        jade: {
+            compile: {
+                options: {
+                    data: {
+                    debug: false
+                    }
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.client %>',
+                    src: [
+                    '{app,components}/**/*.jade'
+                    ],
+                    dest: '.tmp',
+                    ext: '.html'
+                }]
+            }
+        },        
         sass: {
             options: {
                 includePaths: [

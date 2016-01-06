@@ -3,6 +3,8 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 // bower:scss
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
+@import "_variables.scss";
+@import "_mixins.scss";
 
 body {
     background: #fafafa;
@@ -21,7 +23,7 @@ body {
     top: 0;
     left: 0;
     border: 0;
-    z-index: 1000;
+    z-index: 10000;
     background-image: url("../images/development_ribbon.png");
     background-position: center center;
     background-repeat: no-repeat;
@@ -268,5 +270,9 @@ ul#strength {
    justify-content: flex-end;
 }  
 /* end of entity tables helpers */
+
+/* Should be injected */
+@import "_worktajm.scss"
+/* end of Should be injected */
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */

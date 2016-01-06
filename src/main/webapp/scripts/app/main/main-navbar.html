@@ -1,0 +1,18 @@
+<nav ng-controller="MainController" animated-header="animated-header" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" ng-click="toggleNavbar()" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#page-top" class="navbar-brand page-scroll">Worktajm</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div collapse="isCollapsed" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li du-scrollspy="anchor"><a href="#page-top" du-smooth-scroll="du-smooth-scroll">Home</a></li>
+        <li du-scrollspy="features"><a href="#features" du-smooth-scroll="du-smooth-scroll">Features</a></li>
+        <li du-scrollspy="team"><a href="#team" du-smooth-scroll="du-smooth-scroll">Team</a></li>
+        <li du-scrollspy="contact"><a href="#contact" du-smooth-scroll="du-smooth-scroll">Signup</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
