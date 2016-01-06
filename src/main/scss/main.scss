@@ -236,8 +236,8 @@ ul#strength {
 
 /* entity tables helpers */
 
-// Remove Bootstrap padding from the element
-// http://stackoverflow.com/questions/19562903/remove-padding-from-columns-in-bootstrap-3
+/* Remove Bootstrap padding from the element
+   http://stackoverflow.com/questions/19562903/remove-padding-from-columns-in-bootstrap-3 */
 @mixin no-padding($side) {
     @if $side == 'all' {
         .no-padding {
@@ -255,12 +255,12 @@ ul#strength {
 @include no-padding("bottom");
 @include no-padding("all");
 
-// bootstrap 3 input-group 100% width
-// http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width
+/* bootstrap 3 input-group 100% width
+   http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
 .width-min { width: 1% !important; }
 
-// Makes toolbar not wrap on smaller screens
-// http://www.sketchingwithcss.com/samplechapter/cheatsheet.html#right
+/* Makes toolbar not wrap on smaller screens
+   http://www.sketchingwithcss.com/samplechapter/cheatsheet.html#right */
 .flex-btn-group-container {
    display: -webkit-flex;
    display: flex;
@@ -269,10 +269,16 @@ ul#strength {
    -webkit-justify-content: flex-end;
    justify-content: flex-end;
 }  
+
+/* Align text in td verifically (top aligned by Bootstrap) */
+.jh-table > tbody > tr > td {
+    vertical-align: middle;
+}
 /* end of entity tables helpers */
 
 /* Should be injected */
 @import "_worktajm.scss"
 /* end of Should be injected */
+
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
