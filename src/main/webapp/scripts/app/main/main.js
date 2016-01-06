@@ -10,7 +10,7 @@ angular.module('worktajmApp')
                     authorities: []
                 },
                 views: {
-                    'container@': {
+                    'fullview@': {
                         templateUrl: 'scripts/app/main/main.html',
                         controller: 'MainController'
                     },
